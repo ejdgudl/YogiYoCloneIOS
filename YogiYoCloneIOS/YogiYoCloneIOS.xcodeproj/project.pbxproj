@@ -3,13 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
+		D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768BE24ECC55C00E0C27A /* HomeVC.swift */; };
+		D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C024ECC72000E0C27A /* LikeVC.swift */; };
+		D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C224ECC78300E0C27A /* SearchVC.swift */; };
+		D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C424ECC83300E0C27A /* HistoryVC.swift */; };
+		D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C624ECC87700E0C27A /* AccountVC.swift */; };
+		D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768D924ECCC3100E0C27A /* StoreListVC.swift */; };
+		D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768DB24ECCC9000E0C27A /* MenuListVC.swift */; };
+		D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */; };
 		D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */; };
-		D3E5F78C24EAAFC6001BB6B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* ViewController.swift */; };
+		D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */; };
 		D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */; };
 		D3E5F79424EAAFC7001BB6B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79224EAAFC7001BB6B2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -17,9 +25,17 @@
 /* Begin PBXFileReference section */
 		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
+		D33768BE24ECC55C00E0C27A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		D33768C024ECC72000E0C27A /* LikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeVC.swift; sourceTree = "<group>"; };
+		D33768C224ECC78300E0C27A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		D33768C424ECC83300E0C27A /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		D33768C624ECC87700E0C27A /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
+		D33768D924ECCC3100E0C27A /* StoreListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListVC.swift; sourceTree = "<group>"; };
+		D33768DB24ECCC9000E0C27A /* MenuListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListVC.swift; sourceTree = "<group>"; };
+		D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuVC.swift; sourceTree = "<group>"; };
 		D3E5F78424EAAFC6001BB6B2 /* YogiYoCloneIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogiYoCloneIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3E5F78B24EAAFC6001BB6B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
 		D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3E5F79324EAAFC7001BB6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3E5F79524EAAFC7001BB6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +62,124 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D33768BD24ECC54E00E0C27A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D33768C824ECC9C300E0C27A /* MainTabVC */,
+				D33768C924ECC9CA00E0C27A /* ViewControllers */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D33768C824ECC9C300E0C27A /* MainTabVC */ = {
+			isa = PBXGroup;
+			children = (
+				D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */,
+			);
+			path = MainTabVC;
+			sourceTree = "<group>";
+		};
+		D33768C924ECC9CA00E0C27A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D33768D024ECCB3E00E0C27A /* HomeVC */,
+				D33768D124ECCB4600E0C27A /* LikeVC */,
+				D33768D224ECCB4F00E0C27A /* SearchVC */,
+				D33768D324ECCB5900E0C27A /* HistoryVC */,
+				D33768D424ECCB6500E0C27A /* AccountVC */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D33768CA24ECC9FA00E0C27A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D33768CF24ECCA0D00E0C27A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D33768D024ECCB3E00E0C27A /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				D33768D524ECCBC600E0C27A /* Pyo */,
+				D33768D724ECCBED00E0C27A /* Siroo */,
+				D33768D624ECCBDF00E0C27A /* Dong */,
+				D33768D824ECCBF200E0C27A /* Byun */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		D33768D124ECCB4600E0C27A /* LikeVC */ = {
+			isa = PBXGroup;
+			children = (
+				D33768C024ECC72000E0C27A /* LikeVC.swift */,
+			);
+			path = LikeVC;
+			sourceTree = "<group>";
+		};
+		D33768D224ECCB4F00E0C27A /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				D33768C224ECC78300E0C27A /* SearchVC.swift */,
+			);
+			path = SearchVC;
+			sourceTree = "<group>";
+		};
+		D33768D324ECCB5900E0C27A /* HistoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				D33768C424ECC83300E0C27A /* HistoryVC.swift */,
+			);
+			path = HistoryVC;
+			sourceTree = "<group>";
+		};
+		D33768D424ECCB6500E0C27A /* AccountVC */ = {
+			isa = PBXGroup;
+			children = (
+				D33768C624ECC87700E0C27A /* AccountVC.swift */,
+			);
+			path = AccountVC;
+			sourceTree = "<group>";
+		};
+		D33768D524ECCBC600E0C27A /* Pyo */ = {
+			isa = PBXGroup;
+			children = (
+				D33768BE24ECC55C00E0C27A /* HomeVC.swift */,
+			);
+			path = Pyo;
+			sourceTree = "<group>";
+		};
+		D33768D624ECCBDF00E0C27A /* Dong */ = {
+			isa = PBXGroup;
+			children = (
+				D33768DB24ECCC9000E0C27A /* MenuListVC.swift */,
+			);
+			path = Dong;
+			sourceTree = "<group>";
+		};
+		D33768D724ECCBED00E0C27A /* Siroo */ = {
+			isa = PBXGroup;
+			children = (
+				D33768D924ECCC3100E0C27A /* StoreListVC.swift */,
+			);
+			path = Siroo;
+			sourceTree = "<group>";
+		};
+		D33768D824ECCBF200E0C27A /* Byun */ = {
+			isa = PBXGroup;
+			children = (
+				D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */,
+			);
+			path = Byun;
+			sourceTree = "<group>";
+		};
 		D3E5F77B24EAAFC6001BB6B2 = {
 			isa = PBXGroup;
 			children = (
@@ -67,8 +201,10 @@
 		D3E5F78624EAAFC6001BB6B2 /* YogiYoCloneIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D33768CF24ECCA0D00E0C27A /* Extension */,
+				D33768CA24ECC9FA00E0C27A /* Model */,
+				D33768BD24ECC54E00E0C27A /* ViewController */,
 				D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */,
-				D3E5F78B24EAAFC6001BB6B2 /* ViewController.swift */,
 				D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */,
 				D3E5F79224EAAFC7001BB6B2 /* LaunchScreen.storyboard */,
 				D3E5F79524EAAFC7001BB6B2 /* Info.plist */,
@@ -82,7 +218,6 @@
 				74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */,
 				8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -200,7 +335,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3E5F78C24EAAFC6001BB6B2 /* ViewController.swift in Sources */,
+				D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */,
+				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
+				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
+				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
+				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
+				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,
+				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
+				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
+				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,13 +482,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S8BG7546AB;
+				DEVELOPMENT_TEAM = RA99PDU87Z;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneIOS.YogiYoCloneIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,13 +501,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S8BG7546AB;
+				DEVELOPMENT_TEAM = RA99PDU87Z;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneIOS.YogiYoCloneIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
