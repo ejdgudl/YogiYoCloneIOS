@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */; };
 		D3E5F78C24EAAFC6001BB6B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* ViewController.swift */; };
 		D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */; };
@@ -14,12 +15,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D3E5F78424EAAFC6001BB6B2 /* YogiYoCloneIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogiYoCloneIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E5F78B24EAAFC6001BB6B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3E5F79324EAAFC7001BB6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3E5F79524EAAFC7001BB6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +31,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E9DD74491D6B090A37CFBB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D3E5F77B24EAAFC6001BB6B2 = {
 			isa = PBXGroup;
 			children = (
 				D3E5F78624EAAFC6001BB6B2 /* YogiYoCloneIOS */,
 				D3E5F78524EAAFC6001BB6B2 /* Products */,
+				FA341AF98EB3983C322BD832 /* Pods */,
+				8E9DD74491D6B090A37CFBB5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +76,16 @@
 			path = YogiYoCloneIOS;
 			sourceTree = "<group>";
 		};
+		FA341AF98EB3983C322BD832 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */,
+				8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -68,9 +93,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3E5F79824EAAFC7001BB6B2 /* Build configuration list for PBXNativeTarget "YogiYoCloneIOS" */;
 			buildPhases = (
+				BBF023B12A0EA314382A265C /* [CP] Check Pods Manifest.lock */,
 				D3E5F78024EAAFC6001BB6B2 /* Sources */,
 				D3E5F78124EAAFC6001BB6B2 /* Frameworks */,
 				D3E5F78224EAAFC6001BB6B2 /* Resources */,
+				1A7795CF5ECE3DFD9DFD5B36 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +152,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A7795CF5ECE3DFD9DFD5B36 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBF023B12A0EA314382A265C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YogiYoCloneIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3E5F78024EAAFC6001BB6B2 /* Sources */ = {
@@ -266,6 +335,7 @@
 		};
 		D3E5F79924EAAFC7001BB6B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -284,6 +354,7 @@
 		};
 		D3E5F79A24EAAFC7001BB6B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
