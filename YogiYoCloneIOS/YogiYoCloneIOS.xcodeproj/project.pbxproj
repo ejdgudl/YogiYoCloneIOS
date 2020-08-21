@@ -16,6 +16,10 @@
 		D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768D924ECCC3100E0C27A /* StoreListVC.swift */; };
 		D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768DB24ECCC9000E0C27A /* MenuListVC.swift */; };
 		D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */; };
+		D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */; };
+		D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3F124EF5D8300B2873B /* HeaderView.swift */; };
+		D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3F424EF6ED600B2873B /* StretchHeaderLayout.swift */; };
+		D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C43724EF9CE000B2873B /* StackViewExtension.swift */; };
 		D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */; };
 		D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */; };
 		D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */; };
@@ -33,6 +37,10 @@
 		D33768D924ECCC3100E0C27A /* StoreListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListVC.swift; sourceTree = "<group>"; };
 		D33768DB24ECCC9000E0C27A /* MenuListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListVC.swift; sourceTree = "<group>"; };
 		D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuVC.swift; sourceTree = "<group>"; };
+		D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoCell.swift; sourceTree = "<group>"; };
+		D3D6C3F124EF5D8300B2873B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		D3D6C3F424EF6ED600B2873B /* StretchHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeaderLayout.swift; sourceTree = "<group>"; };
+		D3D6C43724EF9CE000B2873B /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
 		D3E5F78424EAAFC6001BB6B2 /* YogiYoCloneIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogiYoCloneIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
@@ -159,7 +167,11 @@
 		D33768D624ECCBDF00E0C27A /* Dong */ = {
 			isa = PBXGroup;
 			children = (
-				D33768DB24ECCC9000E0C27A /* MenuListVC.swift */,
+				D3D6C43624EF9CC700B2873B /* Extension */,
+				D3EFBAB824EECA6D00E08196 /* ViewController */,
+				D3D6C3F324EF6EC400B2873B /* Custom */,
+				D3D6C3EE24EF55DF00B2873B /* CollectionViewCell */,
+				D3D6C3EB24EECD7500B2873B /* TableViewCell */,
 			);
 			path = Dong;
 			sourceTree = "<group>";
@@ -178,6 +190,38 @@
 				D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */,
 			);
 			path = Byun;
+			sourceTree = "<group>";
+		};
+		D3D6C3EB24EECD7500B2873B /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		D3D6C3EE24EF55DF00B2873B /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6C3F124EF5D8300B2873B /* HeaderView.swift */,
+				D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		D3D6C3F324EF6EC400B2873B /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6C3F424EF6ED600B2873B /* StretchHeaderLayout.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		D3D6C43624EF9CC700B2873B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6C43724EF9CE000B2873B /* StackViewExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D3E5F77B24EAAFC6001BB6B2 = {
@@ -210,6 +254,14 @@
 				D3E5F79524EAAFC7001BB6B2 /* Info.plist */,
 			);
 			path = YogiYoCloneIOS;
+			sourceTree = "<group>";
+		};
+		D3EFBAB824EECA6D00E08196 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D33768DB24ECCC9000E0C27A /* MenuListVC.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		FA341AF98EB3983C322BD832 /* Pods */ = {
@@ -337,7 +389,10 @@
 			files = (
 				D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */,
 				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
+				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
+				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
+				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
 				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,
@@ -345,6 +400,7 @@
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
+				D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
