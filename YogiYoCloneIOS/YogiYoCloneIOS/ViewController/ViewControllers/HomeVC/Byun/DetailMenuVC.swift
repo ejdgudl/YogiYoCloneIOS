@@ -30,10 +30,9 @@ class DetailMenuVC: UIViewController {
     
   //  tableView.backgroundView = .red
     tableView.frame = UIScreen().bounds
-  //  tableView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellReuseIdentifier: <#T##String#>)
     view.addSubview(tableView)
   }
   
-  
+        //
 }
 
