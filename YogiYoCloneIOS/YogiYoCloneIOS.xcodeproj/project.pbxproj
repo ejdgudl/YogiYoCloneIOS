@@ -19,6 +19,7 @@
 		D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */; };
 		D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3F124EF5D8300B2873B /* HeaderView.swift */; };
 		D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3F424EF6ED600B2873B /* StretchHeaderLayout.swift */; };
+		D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C43724EF9CE000B2873B /* StackViewExtension.swift */; };
 		D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */; };
 		D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */; };
 		D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoCell.swift; sourceTree = "<group>"; };
 		D3D6C3F124EF5D8300B2873B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D3D6C3F424EF6ED600B2873B /* StretchHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeaderLayout.swift; sourceTree = "<group>"; };
+		D3D6C43724EF9CE000B2873B /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
 		D3E5F78424EAAFC6001BB6B2 /* YogiYoCloneIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogiYoCloneIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
@@ -165,10 +167,11 @@
 		D33768D624ECCBDF00E0C27A /* Dong */ = {
 			isa = PBXGroup;
 			children = (
+				D3D6C43624EF9CC700B2873B /* Extension */,
+				D3EFBAB824EECA6D00E08196 /* ViewController */,
 				D3D6C3F324EF6EC400B2873B /* Custom */,
 				D3D6C3EB24EECD7500B2873B /* TableViewCell */,
 				D3D6C3EE24EF55DF00B2873B /* CollectionViewCell */,
-				D3EFBAB824EECA6D00E08196 /* ViewController */,
 			);
 			path = Dong;
 			sourceTree = "<group>";
@@ -211,6 +214,14 @@
 				D3D6C3F424EF6ED600B2873B /* StretchHeaderLayout.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		D3D6C43624EF9CC700B2873B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6C43724EF9CE000B2873B /* StackViewExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D3E5F77B24EAAFC6001BB6B2 = {
@@ -381,6 +392,7 @@
 				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
+				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
 				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,

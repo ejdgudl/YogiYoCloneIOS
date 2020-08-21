@@ -26,5 +26,6 @@ class StoreInfoCell: UICollectionViewCell {
     // MARK: ConfigureViews
     private func configureViews() {
         backgroundColor = .black
+        
     }
 }
