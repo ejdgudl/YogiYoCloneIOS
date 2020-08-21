@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class HeaderView: UICollectionReusableView {
     
@@ -15,7 +16,7 @@ class HeaderView: UICollectionReusableView {
     
     let imageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "TopImag2eView")
+        imageView.image = UIImage(named: "TopImageView")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
