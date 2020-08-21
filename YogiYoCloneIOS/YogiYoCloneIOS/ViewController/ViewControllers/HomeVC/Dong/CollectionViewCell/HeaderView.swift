@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Cosmos
 
 class HeaderView: UICollectionReusableView {
     
@@ -25,7 +26,7 @@ class HeaderView: UICollectionReusableView {
     let storeLabel: UILabel = {
         let label = UILabel()
         label.text = "Store Name"
-        label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -35,6 +36,18 @@ class HeaderView: UICollectionReusableView {
         let label = UILabel()
         label.text = "Star Point"
         return label
+    }()
+    
+    let cosmosView: CosmosView = {
+       let view = CosmosView()
+        view.settings.totalStars = 5
+        view.rating = 3.2
+        view.settings.starMargin = 1
+        view.settings.fillMode = .precise
+        view.settings.starSize = 15
+        view.settings.filledColor = .red
+        view.settings.emptyBorderColor = .lightGray
+        return view
     }()
     
     let discountLabel: UILabel = {
@@ -52,12 +65,12 @@ class HeaderView: UICollectionReusableView {
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [storeLabel, starPoint, discountLabel, deliveryTime])
+        let stackView = UIStackView(arrangedSubviews: [storeLabel, cosmosView, discountLabel, deliveryTime])
         stackView.axis = .vertical
         stackView.spacing = 2
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
-        stackView.addBackground(color: .lightGray)
+        stackView.addBackground(color: .orange)
         return stackView
     }()
     
