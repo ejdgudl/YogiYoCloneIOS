@@ -91,7 +91,7 @@ class HeaderView: UICollectionReusableView {
         stackView.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.85)
+            make.width.equalToSuperview().inset(16)
         }
     }
 }
