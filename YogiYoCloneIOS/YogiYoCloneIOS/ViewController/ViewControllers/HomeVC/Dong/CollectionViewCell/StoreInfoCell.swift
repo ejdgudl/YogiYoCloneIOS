@@ -16,6 +16,7 @@ class StoreInfoCell: UICollectionViewCell {
     private var minPrice = 10000
     private var deliPrice = 10000
     private var payMent = "요기서 결제"
+    private var heartCount = 52
     
     let numberFormatter = NumberFormatter()
     
@@ -93,6 +94,34 @@ class StoreInfoCell: UICollectionViewCell {
         return view
     }()
     
+    private lazy var heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setTitle("  찜  \(heartCount)", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.tintColor = .black
+        return button
+    }()
+    
+    private let shareButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        button.setTitle("공유", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.tintColor = .black
+        return button
+    }()
+    
+    private lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [heartButton, shareButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.addBackgroundButtonStack(color: .white)
+        return stackView
+    }()
+    
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -113,7 +142,7 @@ class StoreInfoCell: UICollectionViewCell {
     private func configureViews() {
         backgroundColor = .white
         
-        [payStackView, notiView].forEach {
+        [payStackView, notiView, buttonStackView].forEach {
             addSubview($0)
         }
         
@@ -125,6 +154,12 @@ class StoreInfoCell: UICollectionViewCell {
         notiView.snp.makeConstraints { (make) in
             make.top.equalTo(self.payStackView.snp.bottom).offset(12)
             make.left.right.equalToSuperview()
+        }
+        
+        buttonStackView.snp.makeConstraints { (make) in
+            make.top.equalTo(notiView.snp.bottom).offset(18)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(40)
         }
     }
 }

@@ -64,7 +64,7 @@ class HeaderView: UICollectionReusableView {
         stackView.spacing = 2
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
-        stackView.addBackground(color: .white)
+        stackView.addBackgroundWithShadow(color: .white)
         return stackView
     }()
     
