@@ -170,8 +170,8 @@
 				D3D6C43624EF9CC700B2873B /* Extension */,
 				D3EFBAB824EECA6D00E08196 /* ViewController */,
 				D3D6C3F324EF6EC400B2873B /* Custom */,
-				D3D6C3EB24EECD7500B2873B /* TableViewCell */,
 				D3D6C3EE24EF55DF00B2873B /* CollectionViewCell */,
+				D3D6C3EB24EECD7500B2873B /* TableViewCell */,
 			);
 			path = Dong;
 			sourceTree = "<group>";

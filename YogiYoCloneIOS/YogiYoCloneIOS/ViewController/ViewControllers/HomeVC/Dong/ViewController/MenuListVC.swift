@@ -89,7 +89,7 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: padding + 80, left: padding, bottom: padding, right: padding)
+        return UIEdgeInsets(top: padding + 75, left: padding, bottom: padding, right: padding)
     }
     
 }
