@@ -58,6 +58,7 @@ class MenuListVC: UIViewController {
     private func configure() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         collectionView.register(StoreInfoCell.self, forCellWithReuseIdentifier: StoreInfoCell.cellID)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.cellID)
     }
@@ -74,7 +75,6 @@ class MenuListVC: UIViewController {
             make.edges.equalToSuperview()
         }
     }
-    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
@@ -111,5 +111,4 @@ extension MenuListVC: UICollectionViewDataSource {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.cellID, for: indexPath)
         return header
     }
- 
 }

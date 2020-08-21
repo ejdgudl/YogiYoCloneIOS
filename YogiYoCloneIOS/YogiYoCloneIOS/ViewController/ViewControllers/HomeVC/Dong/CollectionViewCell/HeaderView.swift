@@ -32,12 +32,6 @@ class HeaderView: UICollectionReusableView {
         return label
     }()
     
-    let starPoint: UILabel = {
-        let label = UILabel()
-        label.text = "Star Point"
-        return label
-    }()
-    
     let cosmosView: CosmosView = {
        let view = CosmosView()
         view.settings.totalStars = 5
