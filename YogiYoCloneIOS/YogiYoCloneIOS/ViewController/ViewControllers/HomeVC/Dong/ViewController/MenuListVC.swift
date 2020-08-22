@@ -63,6 +63,7 @@ class MenuListVC: UIViewController {
         
         collectionView.register(StoreInfoCell.self, forCellWithReuseIdentifier: StoreInfoCell.cellID)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.cellID)
+        collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.cellID)
         collectionView.register(SegmentCell.self, forCellWithReuseIdentifier: SegmentCell.cellID)
         collectionView.register(SegMenuCell.self, forCellWithReuseIdentifier: SegMenuCell.cellID)
     }
@@ -85,6 +86,10 @@ class MenuListVC: UIViewController {
 extension MenuListVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 220)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return .init(width: view.frame.width, height: 220)
     }
     
@@ -142,7 +147,13 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     // header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.cellID, for: indexPath)
-        return header
+        
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.cellID, for: indexPath)
+            return header
+        }else {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.cellID, for: indexPath)
+            return footer
+        }
     }
 }
