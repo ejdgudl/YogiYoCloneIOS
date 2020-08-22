@@ -64,7 +64,7 @@ class HeaderView: UICollectionReusableView {
         stackView.spacing = 2
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
-        stackView.addBackground(color: .white)
+        stackView.addBackgroundWithShadow(color: .white)
         return stackView
     }()
     
@@ -91,7 +91,7 @@ class HeaderView: UICollectionReusableView {
         stackView.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.85)
+            make.width.equalToSuperview().inset(16)
         }
     }
 }
