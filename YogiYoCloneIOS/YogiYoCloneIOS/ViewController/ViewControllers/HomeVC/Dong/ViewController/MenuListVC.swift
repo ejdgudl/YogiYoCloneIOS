@@ -14,6 +14,8 @@ class MenuListVC: UIViewController {
     // MARK: Properties
     fileprivate let padding: CGFloat = 16
     
+    private var imageVIewOption = true
+    
     private lazy var collectionView: UICollectionView = {
         let layout = StretchHeaderLayout()
         layout.scrollDirection = .vertical
@@ -101,7 +103,11 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: padding + 75, left: 0, bottom: padding, right: 0)
+        if self.imageVIewOption {
+            return UIEdgeInsets(top: padding + 75, left: 0, bottom: padding, right: 0)
+        } else {
+            return UIEdgeInsets(top: padding - 5, left: 0, bottom: padding, right: 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
