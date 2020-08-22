@@ -109,9 +109,9 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if self.imageVIewOption {
-            return UIEdgeInsets(top: padding + 75, left: 0, bottom: padding, right: 0)
+            return UIEdgeInsets(top: padding + 75, left: 0, bottom: 0, right: 0)
         } else {
-            return UIEdgeInsets(top: padding - 5, left: 0, bottom: padding, right: 0)
+            return UIEdgeInsets(top: padding - 5, left: 0, bottom: 0, right: 0)
         }
     }
     

@@ -25,6 +25,14 @@ class MenuListCell: UITableViewCell {
         return label
     }()
     
+    private let buttonImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "chevron.down")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .black
+        return imageView
+    }()
+    
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,16 +56,23 @@ class MenuListCell: UITableViewCell {
         addSubview(baseView)
         
         baseView.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview().inset(3)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().inset(5)
             make.left.right.equalToSuperview()
         }
         
-        baseView.addSubview(listTitle)
+        [listTitle, buttonImage].forEach {
+            baseView.addSubview($0)
+        }
         
         listTitle.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(15)
-            make
+        }
+        
+        buttonImage.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.top.right.equalToSuperview().inset(15)
         }
     }
 }
