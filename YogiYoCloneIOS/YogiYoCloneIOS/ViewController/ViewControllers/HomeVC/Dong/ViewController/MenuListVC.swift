@@ -62,6 +62,7 @@ class MenuListVC: UIViewController {
         collectionView.register(StoreInfoCell.self, forCellWithReuseIdentifier: StoreInfoCell.cellID)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.cellID)
         collectionView.register(SegmentCell.self, forCellWithReuseIdentifier: SegmentCell.cellID)
+        collectionView.register(SegMenuCell.self, forCellWithReuseIdentifier: SegMenuCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -91,6 +92,8 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
             return .init(width: view.frame.width - 2 * padding, height: 210)
         case 1:
             return .init(width: view.frame.width - 2 * padding, height: 50)
+        case 2:
+            return .init(width: view.frame.width, height: 170)
         default:
             break
         }
@@ -98,16 +101,20 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: padding + 75, left: padding, bottom: padding, right: padding)
+        return UIEdgeInsets(top: padding + 75, left: 0, bottom: padding, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
 }
 
 // MARK: UICollectionViewDataSource
-extension MenuListVC: UICollectionViewDataSource {
+extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,6 +124,9 @@ extension MenuListVC: UICollectionViewDataSource {
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegmentCell.cellID, for: indexPath) as? SegmentCell else { return UICollectionViewCell() }
+            return cell
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegMenuCell.cellID, for: indexPath) as? SegMenuCell else { return UICollectionViewCell() }
             return cell
         default:
             break

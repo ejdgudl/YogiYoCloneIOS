@@ -30,6 +30,8 @@
 		D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */; };
 		D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */; };
 		D3E5F79424EAAFC7001BB6B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79224EAAFC7001BB6B2 /* LaunchScreen.storyboard */; };
+		D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */; };
+		D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3E5F79324EAAFC7001BB6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3E5F79524EAAFC7001BB6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuCell.swift; sourceTree = "<group>"; };
+		D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuItemCell.swift; sourceTree = "<group>"; };
 		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -227,6 +231,8 @@
 				D3D6C3F124EF5D8300B2873B /* HeaderView.swift */,
 				D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */,
 				D32F4F2B24F120D100375DB2 /* SegmentCell.swift */,
+				D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */,
+				D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -424,9 +430,11 @@
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
+				D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
 				7354B1A624EFA91B001903AF /* FontModel.swift in Sources */,
+				D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */,
 				7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */,
 				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
