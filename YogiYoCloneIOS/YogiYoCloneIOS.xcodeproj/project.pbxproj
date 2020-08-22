@@ -12,6 +12,7 @@
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D32F4F2C24F120D100375DB2 /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32F4F2B24F120D100375DB2 /* SegmentCell.swift */; };
 		D32F4F2E24F128DE00375DB2 /* SegmentedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32F4F2D24F128DE00375DB2 /* SegmentedExtension.swift */; };
+		D32F4F3124F12C5300375DB2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32F4F3024F12C5300375DB2 /* API.swift */; };
 		D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768BE24ECC55C00E0C27A /* HomeVC.swift */; };
 		D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C024ECC72000E0C27A /* LikeVC.swift */; };
 		D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C224ECC78300E0C27A /* SearchVC.swift */; };
@@ -38,6 +39,7 @@
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D32F4F2B24F120D100375DB2 /* SegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
 		D32F4F2D24F128DE00375DB2 /* SegmentedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedExtension.swift; sourceTree = "<group>"; };
+		D32F4F3024F12C5300375DB2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D33768BE24ECC55C00E0C27A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		D33768C024ECC72000E0C27A /* LikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeVC.swift; sourceTree = "<group>"; };
 		D33768C224ECC78300E0C27A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 				E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D32F4F2F24F12C4500375DB2 /* Utills */ = {
+			isa = PBXGroup;
+			children = (
+				D32F4F3024F12C5300375DB2 /* API.swift */,
+			);
+			path = Utills;
 			sourceTree = "<group>";
 		};
 		D33768BD24ECC54E00E0C27A /* ViewController */ = {
@@ -260,6 +270,7 @@
 		D3E5F78624EAAFC6001BB6B2 /* YogiYoCloneIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D32F4F2F24F12C4500375DB2 /* Utills */,
 				D33768CF24ECCA0D00E0C27A /* Extension */,
 				D33768CA24ECC9FA00E0C27A /* Model */,
 				D33768BD24ECC54E00E0C27A /* ViewController */,
@@ -421,6 +432,7 @@
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
+				D32F4F3124F12C5300375DB2 /* API.swift in Sources */,
 				D32F4F2C24F120D100375DB2 /* SegmentCell.swift in Sources */,
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
 				D32F4F2E24F128DE00375DB2 /* SegmentedExtension.swift in Sources */,
