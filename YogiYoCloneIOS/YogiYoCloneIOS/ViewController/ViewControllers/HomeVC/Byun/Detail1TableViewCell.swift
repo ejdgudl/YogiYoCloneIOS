@@ -3,22 +3,26 @@
 //  YogiYoCloneIOS
 //
 //  Created by Qussk_MAC on 2020/08/21.
-//  Copyright © 2020 김동현. All rights reserved.
+//  Copyright © 2020 변윤나. All rights reserved.
 //
 
 import UIKit
 
 class Detail1TableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+  
+  //  let identifier = "Detail1"
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    setConstrain()
+    
+  }
+  
+  func setConstrain(){
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }
+
