@@ -43,6 +43,12 @@ class WalletCell: UITableViewCell {
         return button
     }()
     
+    private lazy var topDeviderView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     private lazy var deviderView1: UIView = {
        let view = UIView()
         view.backgroundColor = .lightGray
@@ -88,8 +94,13 @@ class WalletCell: UITableViewCell {
             make.edges.equalToSuperview()
         }
         
-        [deviderView1, deviderView2].forEach {
+        [topDeviderView, deviderView1, deviderView2].forEach {
             stackView.addSubview($0)
+        }
+        
+        topDeviderView.snp.makeConstraints { (make) in
+            make.width.top.equalToSuperview()
+            make.height.equalTo(0.5)
         }
         
         deviderView1.snp.makeConstraints { (make) in
