@@ -52,6 +52,7 @@ class AccountVC: UIViewController {
         tableView.dataSource = self
         
         tableView.register(SignCell.self, forCellReuseIdentifier: SignCell.cellID)
+        tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -73,7 +74,7 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 130
         case 1:
-            return 100
+            return 85
         default:
             return CGFloat()
         }
@@ -93,7 +94,7 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SignCell.cellID, for: indexPath) as? SignCell else { return UITableViewCell() }
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SignCell.cellID, for: indexPath) as? SignCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletCell.cellID, for: indexPath) as? WalletCell else { return UITableViewCell() }
         return cell
         default:
             return UITableViewCell()
