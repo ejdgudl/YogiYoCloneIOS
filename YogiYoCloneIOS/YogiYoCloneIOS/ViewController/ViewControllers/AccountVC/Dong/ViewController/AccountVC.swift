@@ -13,6 +13,7 @@ class AccountVC: UIViewController {
     // MARK: Properties
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .lightGray
         return tableView
     }()
     
@@ -50,7 +51,7 @@ class AccountVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(MyAccountListCell.self, forCellReuseIdentifier: MyAccountListCell.cellID)
+        tableView.register(SignCell.self, forCellReuseIdentifier: SignCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -68,7 +69,14 @@ class AccountVC: UIViewController {
 extension AccountVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        switch indexPath.row {
+        case 0:
+            return 130
+        case 1:
+            return 100
+        default:
+            return CGFloat()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,11 +84,19 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyAccountListCell.cellID, for: indexPath) as? MyAccountListCell else { return UITableViewCell() }
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SignCell.cellID, for: indexPath) as? SignCell else { return UITableViewCell() }
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SignCell.cellID, for: indexPath) as? SignCell else { return UITableViewCell() }
         return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }
