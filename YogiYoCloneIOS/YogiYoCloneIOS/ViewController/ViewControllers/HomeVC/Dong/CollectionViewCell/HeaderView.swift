@@ -89,9 +89,17 @@ class HeaderView: UICollectionReusableView {
         }
         
         stackView.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().inset(16)
+            if self.imageView.image == nil {
+                print("no")
+                make.centerY.equalTo(self.snp.bottom).offset(-80)
+                make.centerX.equalToSuperview()
+                make.width.equalToSuperview().inset(16)
+            } else {
+                print("yes")
+                make.centerY.equalTo(self.snp.bottom).offset(20)
+                make.centerX.equalToSuperview()
+                make.width.equalToSuperview().inset(16)
+            }
         }
     }
 }
