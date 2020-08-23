@@ -14,6 +14,7 @@ class AccountVC: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -54,6 +55,7 @@ class AccountVC: UIViewController {
         tableView.register(SignCell.self, forCellReuseIdentifier: SignCell.cellID)
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(BannerCell.self, forCellReuseIdentifier: BannerCell.cellID)
+        tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -79,7 +81,7 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         case 2:
             return 100
         default:
-            return CGFloat()
+            return 50
         }
     }
     
@@ -88,7 +90,7 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,6 +103,23 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerCell.cellID, for: indexPath) as? BannerCell else { return UITableViewCell() }
+            return cell
+        case 3:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "요기서 1초 결제 관리"
+            return cell
+        case 4:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "이벤트 및 공지사항"
+            cell.newImageView.backgroundColor = .red
+            return cell
+        case 5:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "요기요 안내"
+            return cell
+        case 6:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "고객만족센터"
             return cell
         default:
             return UITableViewCell()
