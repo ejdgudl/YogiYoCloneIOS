@@ -19,7 +19,7 @@ class MenuListCell: UITableViewCell {
         return view
     }()
     
-    private var listTitle: UILabel = {
+    var listTitle: UILabel = {
         let label = UILabel()
         label.text = "인기메뉴"
         return label
