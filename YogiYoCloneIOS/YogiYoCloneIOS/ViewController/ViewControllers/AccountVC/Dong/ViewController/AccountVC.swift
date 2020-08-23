@@ -11,7 +11,10 @@ import UIKit
 class AccountVC: UIViewController {
     
     // MARK: Properties
-    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -23,7 +26,8 @@ class AccountVC: UIViewController {
     
     // MARK: @Objc
     @objc private func didTapBellButton() {
-        
+        let yoFeedVC = YoFeedVC()
+        navigationController?.pushViewController(yoFeedVC, animated: true)
     }
     
     @objc private func didTapconfigButton() {
@@ -43,11 +47,40 @@ class AccountVC: UIViewController {
     
     // MARK: Configure
     private func configure() {
+        tableView.delegate = self
+        tableView.dataSource = self
         
+        tableView.register(MyAccountListCell.self, forCellReuseIdentifier: MyAccountListCell.cellID)
     }
     
     // MARK: ConfigureViews
     private func configureViews() {
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
+        
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+}
+
+extension AccountVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyAccountListCell.cellID, for: indexPath) as? MyAccountListCell else { return UITableViewCell() }
+        return cell
     }
 }
