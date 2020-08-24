@@ -88,7 +88,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .systemBackground
         
         motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: categoryCollection.frame.maxY)
+                                              height: firstCollection.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
                                                  height: topBannerView.frame.height)
