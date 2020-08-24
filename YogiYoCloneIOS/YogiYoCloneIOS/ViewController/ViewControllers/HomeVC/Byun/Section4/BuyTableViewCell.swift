@@ -14,6 +14,7 @@ class BuyTableViewCell: UITableViewCell {
     let l = UILabel()
     l.font = FontModel.toSize.customFont
     l.text = "수량"
+    l.backgroundColor = .green
     l.textColor = .black //ColorPiker.customDarkGray
     return l
   }()
@@ -51,6 +52,7 @@ class BuyTableViewCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUI()
     setConstrain()
+ 
   }
   
   func setUI(){
@@ -101,13 +103,14 @@ class BuyTableViewCell: UITableViewCell {
     NSLayoutConstraint.activate([
       buyLable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
       buyLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-      buyLable.heightAnchor.constraint(equalToConstant: 48),
-      buyLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+      buyLable.heightAnchor.constraint(equalToConstant: 70),
+      buyLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       
       //   plusButton.centerYAnchor.constraint(equalTo: buyLable.centerYAnchor),
       plusButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
       plusButton.widthAnchor.constraint(equalToConstant: stackSize.stack),
       plusButton.heightAnchor.constraint(equalToConstant: stackSize.stack),
+      
       
       countLable.trailingAnchor.constraint(equalTo: plusButton.leadingAnchor, constant: 1),
       countLable.widthAnchor.constraint(equalToConstant: 60),
@@ -116,6 +119,13 @@ class BuyTableViewCell: UITableViewCell {
       minusButton.trailingAnchor.constraint(equalTo: countLable.leadingAnchor, constant: 1),
       minusButton.widthAnchor.constraint(equalToConstant: stackSize.stack),
       minusButton.heightAnchor.constraint(equalToConstant: stackSize.stack),
+      
+      //
+      //  costView.topAnchor.constraint(equalTo: buyLable.bottomAnchor),
+      //  costView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+     //   costView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+     //   costView.heightAnchor.constraint(equalToConstant: 40),
+    //  costView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
       
     ])
   }
