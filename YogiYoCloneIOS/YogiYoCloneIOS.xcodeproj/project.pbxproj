@@ -20,6 +20,8 @@
 		7373019C24F36528008C04E9 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373019B24F36528008C04E9 /* OptionTableViewCell.swift */; };
 		7373019E24F36533008C04E9 /* BuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373019D24F36533008C04E9 /* BuyTableViewCell.swift */; };
 		737301A224F3657F008C04E9 /* NilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737301A124F3657F008C04E9 /* NilCell.swift */; };
+		737301AD24F3A2B2008C04E9 /* ListMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737301AC24F3A2B2008C04E9 /* ListMenuTableViewCell.swift */; };
+		737301AF24F3A2F2008C04E9 /* ListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737301AE24F3A2F2008C04E9 /* ListOptionTableViewCell.swift */; };
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768BE24ECC55C00E0C27A /* HomeVC.swift */; };
 		D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33768C024ECC72000E0C27A /* LikeVC.swift */; };
@@ -52,6 +54,8 @@
 		7373019B24F36528008C04E9 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		7373019D24F36533008C04E9 /* BuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyTableViewCell.swift; sourceTree = "<group>"; };
 		737301A124F3657F008C04E9 /* NilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilCell.swift; sourceTree = "<group>"; };
+		737301AC24F3A2B2008C04E9 /* ListMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMenuTableViewCell.swift; sourceTree = "<group>"; };
+		737301AE24F3A2F2008C04E9 /* ListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionTableViewCell.swift; sourceTree = "<group>"; };
 		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D33768BE24ECC55C00E0C27A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -86,7 +90,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		737301A324F365AF008C04E9 /* Section1 */ = {
+		737301A324F365AF008C04E9 /* Section0 */ = {
 			isa = PBXGroup;
 			children = (
 				7373018D24F363EB008C04E9 /* ImageTableViewCell.swift */,
@@ -95,39 +99,41 @@
 				7373019324F364B2008C04E9 /* DetailTableViewCell.swift */,
 				7373019524F364FE008C04E9 /* ReviewTableViewCell.swift */,
 			);
-			path = Section1;
+			path = Section0;
 			sourceTree = "<group>";
 		};
-		737301A424F365CE008C04E9 /* Section2 */ = {
+		737301A424F365CE008C04E9 /* Section1 */ = {
 			isa = PBXGroup;
 			children = (
 				7373019724F36508008C04E9 /* CostTableViewCell.swift */,
 			);
-			path = Section2;
+			path = Section1;
 			sourceTree = "<group>";
 		};
-		737301A524F365D9008C04E9 /* Section3 */ = {
+		737301A524F365D9008C04E9 /* Section2 */ = {
 			isa = PBXGroup;
 			children = (
 				7373019924F3651A008C04E9 /* MenuTableViewCell.swift */,
+				737301AC24F3A2B2008C04E9 /* ListMenuTableViewCell.swift */,
+			);
+			path = Section2;
+			sourceTree = "<group>";
+		};
+		737301A624F3662C008C04E9 /* Section3 */ = {
+			isa = PBXGroup;
+			children = (
+				7373019B24F36528008C04E9 /* OptionTableViewCell.swift */,
+				737301AE24F3A2F2008C04E9 /* ListOptionTableViewCell.swift */,
 			);
 			path = Section3;
 			sourceTree = "<group>";
 		};
-		737301A624F3662C008C04E9 /* Section4 */ = {
-			isa = PBXGroup;
-			children = (
-				7373019B24F36528008C04E9 /* OptionTableViewCell.swift */,
-			);
-			path = Section4;
-			sourceTree = "<group>";
-		};
-		737301A724F36653008C04E9 /* Section5 */ = {
+		737301A724F36653008C04E9 /* Section4 */ = {
 			isa = PBXGroup;
 			children = (
 				7373019D24F36533008C04E9 /* BuyTableViewCell.swift */,
 			);
-			path = Section5;
+			path = Section4;
 			sourceTree = "<group>";
 		};
 		8E9DD74491D6B090A37CFBB5 /* Frameworks */ = {
@@ -259,11 +265,11 @@
 			children = (
 				7373018B24F363C0008C04E9 /* DetailMenuVC.swift */,
 				737301A124F3657F008C04E9 /* NilCell.swift */,
-				737301A324F365AF008C04E9 /* Section1 */,
-				737301A424F365CE008C04E9 /* Section2 */,
-				737301A524F365D9008C04E9 /* Section3 */,
-				737301A624F3662C008C04E9 /* Section4 */,
-				737301A724F36653008C04E9 /* Section5 */,
+				737301A324F365AF008C04E9 /* Section0 */,
+				737301A424F365CE008C04E9 /* Section1 */,
+				737301A524F365D9008C04E9 /* Section2 */,
+				737301A624F3662C008C04E9 /* Section3 */,
+				737301A724F36653008C04E9 /* Section4 */,
 			);
 			path = Byun;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 				7373019024F36487008C04E9 /* SaleTableViewCell.swift in Sources */,
 				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
+				737301AD24F3A2B2008C04E9 /* ListMenuTableViewCell.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
@@ -486,6 +493,7 @@
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
 				737301A224F3657F008C04E9 /* NilCell.swift in Sources */,
 				7373019224F36498008C04E9 /* NameTableViewCell.swift in Sources */,
+				737301AF24F3A2F2008C04E9 /* ListOptionTableViewCell.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
 				7373018E24F363EB008C04E9 /* ImageTableViewCell.swift in Sources */,

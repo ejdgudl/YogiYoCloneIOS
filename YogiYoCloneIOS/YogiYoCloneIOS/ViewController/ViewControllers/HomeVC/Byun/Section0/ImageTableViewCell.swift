@@ -14,24 +14,28 @@ class ImageTableViewCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
+
     setUI()
     constrian()
   }
   
   func setUI(){
     selectionStyle = .none
+    layer.masksToBounds = true
     setImage()
-    //self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-    
+
   }
   
   func setImage(){
+    //detailmenuImage.layer.masksToBounds = true
     detailmenuImage.backgroundColor = .black
-    // detailmenuImage.frame = contentView.bounds
     detailmenuImage.contentMode = .scaleAspectFit
-    detailmenuImage.image = UIImage(named: "f")
+    detailmenuImage.contentMode = .center
+    detailmenuImage.image = UIImage(named: "TopImageView")
+    detailmenuImage.layer.masksToBounds = true
+
     contentView.addSubview(detailmenuImage)
+
     
   }
   
@@ -47,7 +51,7 @@ class ImageTableViewCell: UITableViewCell {
       detailmenuImage.topAnchor.constraint(equalTo: contentView.topAnchor),
       detailmenuImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       detailmenuImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      detailmenuImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+      detailmenuImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
     ])
   }
   

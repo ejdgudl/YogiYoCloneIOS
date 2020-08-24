@@ -22,7 +22,7 @@ class ReviewTableViewCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    selectionStyle = .none
+   // selectionStyle = .none
     reviewButton.layer.cornerRadius = 20
     contentView.addSubview(reviewButton)
     setConstrain()
@@ -36,12 +36,12 @@ class ReviewTableViewCell: UITableViewCell {
   func setConstrain(){
     reviewButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      reviewButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      reviewButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant:  -8),
       reviewButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      reviewButton.heightAnchor.constraint(equalToConstant: 40),
-      reviewButton.widthAnchor.constraint(equalToConstant: 140),
+      reviewButton.heightAnchor.constraint(equalToConstant: 44),
+      reviewButton.widthAnchor.constraint(equalToConstant: 160),
+      reviewButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant:  -18)
     ])
   }
-  
   
 }

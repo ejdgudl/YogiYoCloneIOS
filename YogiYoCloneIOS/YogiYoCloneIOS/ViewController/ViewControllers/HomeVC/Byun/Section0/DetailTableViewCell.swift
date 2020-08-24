@@ -43,7 +43,7 @@ class DetailTableViewCell: UITableViewCell {
       detailmenuRemark.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
       detailmenuRemark.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
       detailmenuRemark.widthAnchor.constraint(equalToConstant: contentView.frame.width - 20),
-      detailmenuRemark.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+      detailmenuRemark.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
       
     ])
     

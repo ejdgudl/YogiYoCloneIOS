@@ -36,7 +36,7 @@ class SaleTableViewCell: UITableViewCell {
   func setConstrain(){
     saleRogo.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      saleRogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+      saleRogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
       saleRogo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
       saleRogo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
     ])
