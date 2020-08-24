@@ -9,16 +9,39 @@
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+  
+  let reviewButton : UIButton = {
+    let b = UIButton()
+    b.backgroundColor = ColorPiker.customGray
+    b.setTitle("리뷰보기 (\(19)) ⟩", for: .normal)
+    b.setTitleColor(.darkGray, for: .normal)
+    b.titleLabel?.font = UIFont(name : FontModel.customSemibold, size: 17)
+    return b
+  }()
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    selectionStyle = .none
+    reviewButton.layer.cornerRadius = 20
+    contentView.addSubview(reviewButton)
+    setConstrain()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  
+  func setConstrain(){
+    reviewButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      reviewButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      reviewButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+      reviewButton.heightAnchor.constraint(equalToConstant: 40),
+      reviewButton.widthAnchor.constraint(equalToConstant: 140),
+    ])
+  }
+  
+  
 }

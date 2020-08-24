@@ -10,15 +10,37 @@ import UIKit
 
 class NameTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+   let detailmenuName = UILabel()
+    
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+      super.init(style: style, reuseIdentifier: reuseIdentifier)
+      selectionStyle = .none
+      
+      setLable()
+      setConstrain()
+
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func setLable(){
+      detailmenuName.text = "순살 새우치킨 콤보(반반)우이우이"
+      detailmenuName.font = UIFont(name: FontModel.customLight, size: 28)
+      detailmenuName.textAlignment = .center
+      detailmenuName.numberOfLines = 2
+      contentView.addSubview(detailmenuName)
     }
-
+    
+    func setConstrain(){
+      detailmenuName.translatesAutoresizingMaskIntoConstraints = false
+      NSLayoutConstraint.activate([
+        detailmenuName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+        detailmenuName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        detailmenuName.widthAnchor.constraint(equalToConstant: contentView.frame.width - 20),
+        detailmenuName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+      ])
+    }
+    required init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
 }

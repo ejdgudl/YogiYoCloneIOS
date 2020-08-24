@@ -9,16 +9,53 @@
 import UIKit
 
 class ImageTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+  
+  let detailmenuImage = UIImageView()
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    setUI()
+    constrian()
+  }
+  
+  func setUI(){
+    selectionStyle = .none
+    setImage()
+    //self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+    
+  }
+  
+  func setImage(){
+    detailmenuImage.backgroundColor = .black
+    // detailmenuImage.frame = contentView.bounds
+    detailmenuImage.contentMode = .scaleAspectFit
+    detailmenuImage.image = UIImage(named: "f")
+    contentView.addSubview(detailmenuImage)
+    
+  }
+  
+  
+  func constrian() {
+    [detailmenuImage].forEach{
+      contentView.addSubview($0)
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    //Full
+    NSLayoutConstraint.activate([
+      detailmenuImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+      detailmenuImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      detailmenuImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      detailmenuImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+    ])
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  func configure(){
+    //셀데이터 넣을 곳
+  }
 }
