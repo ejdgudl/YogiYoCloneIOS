@@ -11,6 +11,15 @@ import UIKit
 class LogVC: UIViewController {
     
     // MARK: Properties
+    private let dissmissButton: UIButton = {
+       let button = UIButton()
+        button.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .black
+        button.contentMode = .scaleAspectFit
+        return button
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -20,7 +29,6 @@ class LogVC: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavi()
         configure()
         configureViews()
     }
@@ -28,14 +36,6 @@ class LogVC: UIViewController {
     // MARK: @Objc
     @objc private func didTapDismissButton() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: Helpers
-    private func configureNavi() {
-        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .black
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(didTapDismissButton))
     }
     
     // MARK: Configure
@@ -52,10 +52,18 @@ class LogVC: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
+        view.addSubview(dissmissButton)
         view.addSubview(tableView)
         
+        dissmissButton.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().inset(10)
+            make.top.equalToSuperview().inset(50)
+            make.width.height.equalTo(37)
+        }
+        
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.equalTo(self.dissmissButton.snp.bottom).offset(5)
+            make.left.bottom.right.equalToSuperview()
         }
     }
 }
