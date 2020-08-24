@@ -124,7 +124,6 @@ class DetailMenuVC: UIViewController {
         case 3:
           if indexPath.row == 0 {
           let optionCell = tableView.dequeueReusableCell(withIdentifier: "OptionTableViewCell", for: indexPath) as! OptionTableViewCell
-          optionCell.backgroundColor = .green
           return optionCell
           }else if indexPath.row == 1{
              let listOPCell = tableView.dequeueReusableCell(withIdentifier: "ListOptionTableViewCell", for: indexPath) as! ListOptionTableViewCell
@@ -132,7 +131,6 @@ class DetailMenuVC: UIViewController {
           }
         case 4:
           let buyCell = tableView.dequeueReusableCell(withIdentifier: "BuyTableViewCell", for: indexPath) as! BuyTableViewCell
-          buyCell.backgroundColor = .brown
           return buyCell
           
         default:
