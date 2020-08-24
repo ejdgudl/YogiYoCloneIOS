@@ -21,7 +21,7 @@ class SignCell: UITableViewCell {
         return label
     }()
     
-    private let singInButton: UIButton = {
+    let singInButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.backgroundColor = .red

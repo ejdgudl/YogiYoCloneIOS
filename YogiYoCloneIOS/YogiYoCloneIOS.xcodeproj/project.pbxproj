@@ -27,8 +27,12 @@
 		D33EDF2924F27D870033330E /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33EDF2824F27D870033330E /* BannerCell.swift */; };
 		D33EDF2B24F281E90033330E /* BottomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33EDF2A24F281E90033330E /* BottomListCell.swift */; };
 		D35349CA24EFFD4A007DA461 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35349C924EFFD4A007DA461 /* LabelExtension.swift */; };
+		D368064524F34F5500A7E59D /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368064424F34F5500A7E59D /* LogVC.swift */; };
+		D368064924F3690600A7E59D /* LogoImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368064824F3690600A7E59D /* LogoImageCell.swift */; };
 		D392C64B24F273D400210829 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D392C64A24F273D400210829 /* WalletCell.swift */; };
 		D3969B5A24F2660C0093ACE7 /* ConfigureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */; };
+		D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2672724F36C3500FB29A6 /* LogCell.swift */; };
+		D3C2672A24F386F600FB29A6 /* SocialLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2672924F386F600FB29A6 /* SocialLogCell.swift */; };
 		D3C9D54E24F1833000D8E93C /* MenuListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C9D54D24F1833000D8E93C /* MenuListCell.swift */; };
 		D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */; };
 		D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6C3F124EF5D8300B2873B /* HeaderView.swift */; };
@@ -65,8 +69,12 @@
 		D33EDF2824F27D870033330E /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		D33EDF2A24F281E90033330E /* BottomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomListCell.swift; sourceTree = "<group>"; };
 		D35349C924EFFD4A007DA461 /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
+		D368064424F34F5500A7E59D /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
+		D368064824F3690600A7E59D /* LogoImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageCell.swift; sourceTree = "<group>"; };
 		D392C64A24F273D400210829 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureVC.swift; sourceTree = "<group>"; };
+		D3C2672724F36C3500FB29A6 /* LogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
+		D3C2672924F386F600FB29A6 /* SocialLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLogCell.swift; sourceTree = "<group>"; };
 		D3C9D54D24F1833000D8E93C /* MenuListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListCell.swift; sourceTree = "<group>"; };
 		D3D6C3EF24EF561900B2873B /* StoreInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoCell.swift; sourceTree = "<group>"; };
 		D3D6C3F124EF5D8300B2873B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -107,10 +115,8 @@
 		D307AADF24F268CA00225E6A /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				D307AAE024F268E400225E6A /* SignCell.swift */,
-				D392C64A24F273D400210829 /* WalletCell.swift */,
-				D33EDF2824F27D870033330E /* BannerCell.swift */,
-				D33EDF2A24F281E90033330E /* BottomListCell.swift */,
+				D368064624F368DF00A7E59D /* AccountVCCell */,
+				D368064724F368EC00A7E59D /* LogVCCell */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -248,6 +254,27 @@
 			path = Byun;
 			sourceTree = "<group>";
 		};
+		D368064624F368DF00A7E59D /* AccountVCCell */ = {
+			isa = PBXGroup;
+			children = (
+				D307AAE024F268E400225E6A /* SignCell.swift */,
+				D392C64A24F273D400210829 /* WalletCell.swift */,
+				D33EDF2824F27D870033330E /* BannerCell.swift */,
+				D33EDF2A24F281E90033330E /* BottomListCell.swift */,
+			);
+			path = AccountVCCell;
+			sourceTree = "<group>";
+		};
+		D368064724F368EC00A7E59D /* LogVCCell */ = {
+			isa = PBXGroup;
+			children = (
+				D368064824F3690600A7E59D /* LogoImageCell.swift */,
+				D3C2672724F36C3500FB29A6 /* LogCell.swift */,
+				D3C2672924F386F600FB29A6 /* SocialLogCell.swift */,
+			);
+			path = LogVCCell;
+			sourceTree = "<group>";
+		};
 		D3969B5724F25E3C0093ACE7 /* Dong */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +290,7 @@
 				D33768C624ECC87700E0C27A /* AccountVC.swift */,
 				D307AAE224F26A6B00225E6A /* YoFeedVC.swift */,
 				D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */,
+				D368064424F34F5500A7E59D /* LogVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -485,6 +513,7 @@
 				D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */,
 				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
 				D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */,
+				D368064924F3690600A7E59D /* LogoImageCell.swift in Sources */,
 				D35349CA24EFFD4A007DA461 /* LabelExtension.swift in Sources */,
 				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
@@ -499,8 +528,11 @@
 				D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */,
 				7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */,
 				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,
+				D368064524F34F5500A7E59D /* LogVC.swift in Sources */,
 				D3C9D54E24F1833000D8E93C /* MenuListCell.swift in Sources */,
+				D3C2672A24F386F600FB29A6 /* SocialLogCell.swift in Sources */,
 				D33EDF2B24F281E90033330E /* BottomListCell.swift in Sources */,
+				D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
 				D392C64B24F273D400210829 /* WalletCell.swift in Sources */,
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
