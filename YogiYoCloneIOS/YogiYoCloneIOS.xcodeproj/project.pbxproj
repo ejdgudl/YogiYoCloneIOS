@@ -26,6 +26,7 @@
 		D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5F78B24EAAFC6001BB6B2 /* MainTabVC.swift */; };
 		D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */; };
 		D3E5F79424EAAFC7001BB6B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E5F79224EAAFC7001BB6B2 /* LaunchScreen.storyboard */; };
+		DE21FA6B24F3F60D004D8A56 /* TopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA6A24F3F60D004D8A56 /* TopCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3E5F79324EAAFC7001BB6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3E5F79524EAAFC7001BB6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE21FA6A24F3F60D004D8A56 /* TopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryView.swift; sourceTree = "<group>"; };
 		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -185,7 +187,9 @@
 		D33768D724ECCBED00E0C27A /* Siroo */ = {
 			isa = PBXGroup;
 			children = (
+				DE21FA6724F3921F004D8A56 /* ViewController */,
 				D33768D924ECCC3100E0C27A /* StoreListVC.swift */,
+				DE21FA6624F3920A004D8A56 /* Custom */,
 			);
 			path = Siroo;
 			sourceTree = "<group>";
@@ -266,6 +270,21 @@
 			isa = PBXGroup;
 			children = (
 				D33768DB24ECCC9000E0C27A /* MenuListVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE21FA6624F3920A004D8A56 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				DE21FA6A24F3F60D004D8A56 /* TopCategoryView.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		DE21FA6724F3921F004D8A56 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -401,6 +420,7 @@
 				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
 				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
+				DE21FA6B24F3F60D004D8A56 /* TopCategoryView.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
