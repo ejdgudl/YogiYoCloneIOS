@@ -10,7 +10,6 @@ import UIKit
 
 class BuyTableViewCell: UITableViewCell {
   
-  
   let buyLable: UILabel = {
     let l = UILabel()
     l.font = FontModel.toSize.customFont
@@ -48,18 +47,6 @@ class BuyTableViewCell: UITableViewCell {
   }()
   
   
-  
-  var pieceCount: Int = 1{
-    didSet {
-      countLable.text = "\(pieceCount)"
-      if countLable.text == "1" {
-        minusButton.tintColor = ColorPiker.customDarkGray
-      }else {
-        minusButton.tintColor = .black
-      }
-    }
-  }
-  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUI()
@@ -72,16 +59,27 @@ class BuyTableViewCell: UITableViewCell {
       $0.translatesAutoresizingMaskIntoConstraints = false
       $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
-    buttonAction()
+    buttondidTab()
   }
   
   
-  func buttonAction(){
+  func buttondidTab(){
     plusButton.addTarget(self, action: #selector(plusdidTap), for: .touchUpInside)
     minusButton.addTarget(self, action: #selector(minusdidTap), for: .touchUpInside)
-    
   }
   
+  
+  //MARK:- Action
+  var pieceCount: Int = 1{
+    didSet {
+      countLable.text = "\(pieceCount)"
+      if countLable.text == "1" {
+        minusButton.tintColor = ColorPiker.customDarkGray
+      }else {
+        minusButton.tintColor = .black
+      }
+    }
+  }
   //증가
   @objc func plusdidTap(sender : UIButton){
     pieceCount += 1
@@ -94,6 +92,7 @@ class BuyTableViewCell: UITableViewCell {
       countLable.text = "1"
     }
   }
+  
   struct stackSize {
     static let stack: CGFloat = 40
   }

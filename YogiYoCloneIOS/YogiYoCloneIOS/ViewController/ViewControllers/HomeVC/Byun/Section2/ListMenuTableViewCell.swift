@@ -10,10 +10,13 @@ import UIKit
 
 class ListMenuTableViewCell: UITableViewCell {
 
+  
+  var checkOn : Bool = false
+  
      let selectButton : UIButton = {
        let b = UIButton()
-       // b.setImage(UIImage(systemName: "checkmark"), for: .normal)
-       b.tintColor = ColorPiker.customRed
+       b.setImage(UIImage(systemName: "checkmark"), for: .normal)
+      b.tintColor = .clear
        b.layer.borderWidth = 0.8
        b.layer.borderColor = ColorPiker.customDarkGray.cgColor
       // b.layer.borderColor = ColorPiker.customRed.cgColor
@@ -39,12 +42,13 @@ class ListMenuTableViewCell: UITableViewCell {
      
      override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
        super.init(style: style, reuseIdentifier: reuseIdentifier)
-       
-      
        setConstrain()
-     
+       buttondidTab()
      }
      
+     func buttondidTab(){
+       selectButton.addTarget(self, action: #selector(checkdidTap), for: .touchUpInside)
+     }
      /*
      func nsString(){
        let attributedString = NSMutableAttributedString(string: "")
@@ -55,7 +59,20 @@ class ListMenuTableViewCell: UITableViewCell {
        costLabel.attributedText = attributedString
      }
     */
-     
+  
+  //MARK:- Action
+  @objc func checkdidTap(sender: UIButton){
+    if checkOn == false{
+        checkOn = true
+        selectButton.tintColor = ColorPiker.customRed
+        selectButton.layer.borderColor = ColorPiker.customRed.cgColor
+    }else if checkOn == true {
+      checkOn = false
+      selectButton.tintColor = .clear
+      selectButton.layer.borderColor = ColorPiker.customDarkGray.cgColor
+      }
+      print(checkOn)
+    }
      
      func setConstrain(){
        [selectButton,selectLable,costLabel].forEach{

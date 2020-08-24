@@ -10,10 +10,12 @@ import UIKit
 
 class ListOptionTableViewCell: UITableViewCell {
   
+  var checkOn : Bool = false
+  
   let selectButton : UIButton = {
     let b = UIButton()
-    // b.setImage(UIImage(systemName: "checkmark"), for: .normal)
-    b.tintColor = ColorPiker.customRed
+    b.setImage(UIImage(systemName: "checkmark"), for: .normal)
+    b.tintColor = .clear
     b.layer.borderWidth = 0.8
     b.layer.borderColor = ColorPiker.customDarkGray.cgColor
     // b.layer.borderColor = ColorPiker.customRed.cgColor
@@ -41,8 +43,32 @@ class ListOptionTableViewCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setConstrain()
     selectButton.layer.cornerRadius = frame.width/20.5
-    
+    buttondidTab()
   }
+  
+  func buttondidTab(){
+    selectButton.addTarget(self, action: #selector(checkdidTap), for: .touchUpInside)
+  }
+  
+  //var checkOn : Bool = false {
+   // didSet{
+ // }
+ // }
+  //MARK:- Action
+  @objc func checkdidTap(sender: UIButton){
+
+  if checkOn == false{
+      checkOn = true
+      selectButton.tintColor = ColorPiker.customRed
+      selectButton.layer.borderColor = ColorPiker.customRed.cgColor
+  }else if checkOn == true {
+    checkOn = false
+    selectButton.tintColor = .clear
+    selectButton.layer.borderColor = ColorPiker.customDarkGray.cgColor
+    }
+    print(checkOn)
+  }
+  
   
   func setConstrain(){
     [selectButton,selectLable,costLabel].forEach{
@@ -66,7 +92,6 @@ class ListOptionTableViewCell: UITableViewCell {
       
     ])
   }
-  
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
