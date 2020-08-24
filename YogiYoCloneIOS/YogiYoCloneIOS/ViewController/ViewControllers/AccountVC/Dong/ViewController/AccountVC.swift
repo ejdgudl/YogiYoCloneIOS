@@ -37,6 +37,12 @@ class AccountVC: UIViewController {
         navigationController?.pushViewController(configureVC, animated: true)
     }
     
+    @objc private func didTapSignInButton() {
+        let signVC = LogVC()
+        signVC.modalPresentationStyle = .fullScreen
+        present(signVC, animated: true)
+    }
+    
     // MARK: Helpers
     private func configureNavi() {
         navigationController?.navigationBar.tintColor = .black
@@ -97,6 +103,7 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SignCell.cellID, for: indexPath) as? SignCell else { return UITableViewCell() }
+            cell.singInButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletCell.cellID, for: indexPath) as? WalletCell else { return UITableViewCell() }
