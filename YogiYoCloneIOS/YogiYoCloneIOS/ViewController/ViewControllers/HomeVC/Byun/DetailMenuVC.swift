@@ -9,21 +9,27 @@
 import UIKit
 
 class DetailMenuVC: UIViewController {
-
+ 
+  let costView = CostView()
   let tableView = UITableView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setTableView()
+    costViewFrame()
     
     self.view.layoutIfNeeded()
     enum FeedItem {
       //  case status(Status)
       //  case photo(Photo)
-      
     }
     
+  }
+  
+  func costViewFrame(){
+    costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
+      view.addSubview(costView)
   }
   
   override func viewDidLayoutSubviews() {
@@ -54,6 +60,14 @@ class DetailMenuVC: UIViewController {
     tableView.register(BuyTableViewCell.self, forCellReuseIdentifier: "BuyTableViewCell")//8
     tableView.register(BuyLastTableViewCell.self, forCellReuseIdentifier: "BuyLastTableViewCell")//8-1
     tableView.register(NilCell.self, forCellReuseIdentifier: "NilCell")
+    
+    var cellRedister = [ImageTableViewCell.self,SaleTableViewCell.self,NameTableViewCell.self,DetailTableViewCell.self,ReviewTableViewCell.self,CostTableViewCell.self,ListMenuTableViewCell.self,MenuTableViewCell.self,ListOptionTableViewCell.self,OptionTableViewCell.self,OptionTableViewCell.self,BuyTableViewCell.self,BuyLastTableViewCell.self,NilCell.self]
+    
+//    for i in cellRedister {
+//      tableView.register([cellRedister.], forCellReuseIdentifier: "\(cellRedister)")
+//    }
+    
+    
     
   }
   
@@ -180,7 +194,7 @@ extension DetailMenuVC: UITableViewDataSource{
     case 3:
       return 1
     case 4:
-      return 2
+      return 0
     default:
       return 0
     }

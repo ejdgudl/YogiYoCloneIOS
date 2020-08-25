@@ -21,7 +21,7 @@ class BuyLastTableViewCell: UITableViewCell {
   let costLable: UILabel = {
     let l = UILabel()
     l.font = FontModel.toSize.customFont
-    l.font = UIFont(name: FontModel.customMedium, size: 26)
+    l.font = UIFont(name: FontModel.customSemibold, size: 26)
     l.text = "\("22,400")원"
     l.textColor = ColorPiker.customMainRed
     return l
@@ -43,6 +43,7 @@ class BuyLastTableViewCell: UITableViewCell {
   
   
   func setUI(){
+    backgroundColor = ColorPiker.customSystem
     [buyLable,costLable,mincostLabel].forEach{
       $0.translatesAutoresizingMaskIntoConstraints = false
       contentView.addSubview($0)
@@ -52,10 +53,8 @@ class BuyLastTableViewCell: UITableViewCell {
   func setConstrain(){
   
   NSLayoutConstraint.activate([
-   // buyLable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -20),
     buyLable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
     buyLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-  //  buyLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
     
    costLable.centerYAnchor.constraint(equalTo: buyLable.centerYAnchor),
    costLable.leadingAnchor.constraint(equalTo: buyLable.trailingAnchor, constant: 8),
@@ -64,7 +63,7 @@ class BuyLastTableViewCell: UITableViewCell {
 //
     mincostLabel.topAnchor.constraint(equalTo: costLable.bottomAnchor, constant: 8),
     mincostLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-    mincostLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+    mincostLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
     ])
   }
   

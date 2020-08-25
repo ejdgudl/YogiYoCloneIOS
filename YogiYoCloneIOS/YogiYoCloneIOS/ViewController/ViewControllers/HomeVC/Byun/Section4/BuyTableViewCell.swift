@@ -14,7 +14,6 @@ class BuyTableViewCell: UITableViewCell {
     let l = UILabel()
     l.font = FontModel.toSize.customFont
     l.text = "수량"
-    l.backgroundColor = .green
     l.textColor = .black //ColorPiker.customDarkGray
     return l
   }()
