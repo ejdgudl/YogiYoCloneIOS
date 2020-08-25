@@ -45,6 +45,9 @@
 		D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */; };
 		D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */; };
 		D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5326524F18FF300C25B58 /* TestModel.swift */; };
+
+		DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +92,9 @@
 		D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuCell.swift; sourceTree = "<group>"; };
 		D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuItemCell.swift; sourceTree = "<group>"; };
 		D3F5326524F18FF300C25B58 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+
+		DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryView.swift; sourceTree = "<group>"; };
+
 		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -241,6 +247,8 @@
 		D33768D724ECCBED00E0C27A /* Siroo */ = {
 			isa = PBXGroup;
 			children = (
+				DE21FA6D24F4AC14004D8A56 /* View */,
+				DE21FA6C24F4AC08004D8A56 /* ViewController */,
 				D33768D924ECCC3100E0C27A /* StoreListVC.swift */,
 			);
 			path = Siroo;
@@ -383,6 +391,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+
+		DE21FA6C24F4AC08004D8A56 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE21FA6D24F4AC14004D8A56 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+
 		FA341AF98EB3983C322BD832 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +559,9 @@
 				D33EDF2B24F281E90033330E /* BottomListCell.swift in Sources */,
 				D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
+
+				DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */,
+
 				D392C64B24F273D400210829 /* WalletCell.swift in Sources */,
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
