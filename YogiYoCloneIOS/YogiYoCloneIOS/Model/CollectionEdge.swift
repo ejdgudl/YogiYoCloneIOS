@@ -12,8 +12,9 @@ import UIKit
 struct CollectionDesign {
     static let CateLineCount: CGFloat = 2
     
-    static let padding: CGFloat = 20
-    static let edge = UIEdgeInsets(top: 25, left: 15, bottom: 25, right: 15)
+    static let padding: CGFloat = 15
+    static let edge = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
     
-    static let textPadding: CGFloat = 5
+    static let textPadding: CGFloat = 10
+    static let collectionPadding: CGFloat = 5
 }

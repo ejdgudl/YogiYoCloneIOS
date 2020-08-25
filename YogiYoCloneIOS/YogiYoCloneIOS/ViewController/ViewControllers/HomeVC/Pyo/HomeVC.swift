@@ -13,15 +13,19 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private let titleStack: UIStackView = {
         let stack = UIStackView()
-        stack.alignment = .center
+        stack.spacing = CollectionDesign.textPadding
         stack.axis = .horizontal
-        stack.distribution = .fillEqually
+        stack.alignment = .center
+        stack.distribution = .fill
         return stack
     }()
     private let titleLogo: UIImageView = {
         let imageView = UIImageView()
+        let imageViewWidth = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+        let imageViewHeight = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+        imageView.addConstraints([imageViewWidth, imageViewHeight])
         imageView.image = UIImage(named: "logo")
-        imageView.contentMode = .right
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     private let titleButton: UIButton = {
@@ -53,7 +57,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     private let topBannerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "TopImageView")
+        imageView.image = UIImage(named: "MyAccountVCImage")
         return imageView
     }()
     
@@ -69,6 +73,22 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
+    let firstCollectionHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    let firstHeaderTitle: UILabel = {
+        let label = UILabel()
+        label.text = "나의 입맛 저격!"
+        label.font = UIFont(name: FontModel.customRegular, size: 20)
+        return label
+    }()
+    let firstQueryButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "testQ"), for: .normal)
+        return button
+    }()
     private lazy var firstCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -81,7 +101,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
-    private let testCategory = ["전체보기", "1인분주문", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트", "족발/보쌈", "일식/돈가스"]
+    private let testCategory = ["전체보기", "1인분주문", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트", "족발/보쌈", "일식/돈가스"]
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -123,6 +143,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         motherScrollView.addSubview(categoryCollection)
         
+        motherScrollView.addSubview(firstCollectionHeader)
+        firstCollectionHeader.addSubview(firstHeaderTitle)
+        firstCollectionHeader.addSubview(firstQueryButton)
         motherScrollView.addSubview(firstCollection)
     }
     
@@ -136,7 +159,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         topBannerView.snp.makeConstraints {
             $0.top.leading.equalTo(motherScrollView)
             $0.width.equalTo(motherScrollView)
-            $0.height.equalTo(motherScrollView).multipliedBy(0.2)
+            $0.height.equalTo(topBannerView.snp.width).multipliedBy(0.31)
         }
         topBannerScrollView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(topBannerView)
@@ -150,22 +173,28 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         categoryCollection.snp.makeConstraints {
             $0.top.equalTo(topBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(view.snp.height).multipliedBy(0.42)
+            $0.height.equalTo(categoryCollection.snp.width).multipliedBy(0.61)
         }
         
-        firstCollection.snp.makeConstraints {
+        firstCollectionHeader.snp.makeConstraints {
             $0.top.equalTo(categoryCollection.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(view.snp.height).multipliedBy(0.42)
+            $0.height.equalTo(firstCollection.snp.width).multipliedBy(0.15)
+        }
+        firstHeaderTitle.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
+        }
+        firstQueryButton.snp.makeConstraints {
+            $0.centerY.equalTo(firstHeaderTitle)
+            $0.leading.equalTo(firstHeaderTitle.snp.trailing).offset(2)
+        }
+        firstCollection.snp.makeConstraints {
+            $0.top.equalTo(firstCollectionHeader.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(firstCollection.snp.width).multipliedBy(0.63)
         }
     }
-    
-    // MARK: @objc
-    @objc private func didTapNext() {
-        let sotreListVC = StoreListVC()
-        navigationController?.pushViewController(sotreListVC, animated: true)
-    }
-    
 }
 // MARK: Collection Data, Delegate
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -179,16 +208,21 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCustomCell.identifier,
                                                                 for: indexPath) as? CategoryCustomCell else { fatalError() }
             item.setValue(image: "testCate",
-                          title: testCategory[indexPath.item])
-            return item
+                          title: testCategory[indexPath.item]
+            )
             
+            return item
         case firstCollection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testCate",
-                          title: testCategory[indexPath.item])
-            return item
+            item.setValue(image: "testRestaurant",
+                          title: "버거킹-건대입구역점",
+                          starPoint: 4.4,
+                          review: 895,
+                          explain: "버거킹은 불고기와퍼세트가 짜세지"
+            )
             
+            return item
         default:
             fatalError()
         }
@@ -198,26 +232,26 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     // 줄 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-      return CollectionDesign.padding
+        return CollectionDesign.padding
     }
     // 행 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-      return CollectionDesign.padding
+        return CollectionDesign.padding
     }
     // 테두리
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-      return CollectionDesign.edge
+        return CollectionDesign.edge
     }
     // 아이템 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         collectionView == categoryCollection ? categorySize(collectionView: collectionView) : restaurantSize(collectionView: collectionView)
     }
-    func categorySize(collectionView: UICollectionView) -> CGSize {
+    private func categorySize(collectionView: UICollectionView) -> CGSize {
         let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom) - (CollectionDesign.padding * (CollectionDesign.CateLineCount - 1))) / CollectionDesign.CateLineCount
-        return CGSize(width: size - 22, height: size)
+        return CGSize(width: size * 0.78, height: size)
     }
-    func restaurantSize(collectionView: UICollectionView) -> CGSize {
+    private func restaurantSize(collectionView: UICollectionView) -> CGSize {
         let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom))
-        return CGSize(width: size - 22, height: size)
+        return CGSize(width: size * 0.7, height: size)
     }
 }
