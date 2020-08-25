@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "IMG_0801.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "TopImageView.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
