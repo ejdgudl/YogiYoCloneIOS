@@ -12,9 +12,9 @@ import SnapKit
 class StoreListVC: UIViewController {
 
     
-    private var interfaceSegmented: CustomTopCategoryView! {
+    var interfaceSegmented: CustomTopCategoryView! {
         didSet{
-            interfaceSegmented.setButtonTitles(categoryTitles: ["전체보기","1인주문","치킨","중국집"])
+            interfaceSegmented.setButtonTitles(categoryTitles: ["전체보기","1인주문","치킨","중국집","디저트"])
             interfaceSegmented.selectorViewColor = .systemRed
             interfaceSegmented.selectorTextColor = .systemRed
         }
@@ -26,7 +26,7 @@ class StoreListVC: UIViewController {
         configure()
         view.backgroundColor = .purple
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "임시 next", style: .plain, target: self, action: #selector(didTapNext))
-//        configure()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,9 +43,12 @@ class StoreListVC: UIViewController {
 //    MARK: Configure
     func configure() {
         
-        let codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: ["전체보기","1인주문","치킨","중국집"])
+        let codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: ["전체보기","1인주문","치킨","중국집","디저트"])
         codeSegmented.backgroundColor = .gray
+        
         view.addSubview(codeSegmented)
+        
+//        view.addSubview(interfaceSegmented)
 
 
 

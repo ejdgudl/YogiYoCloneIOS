@@ -19,6 +19,7 @@ class CustomTopCategoryView: UIView {
     private var categoryTitles: [String]!
     private var buttons : [UIButton] = []
     private var selectorView : UIView!
+
     
     var textColor: UIColor = .systemGray2
     var selectorViewColor: UIColor = .red
