@@ -29,8 +29,7 @@ class ImageTableViewCell: UITableViewCell {
   func setImage(){
     //detailmenuImage.layer.masksToBounds = true
     detailmenuImage.backgroundColor = .black
-    detailmenuImage.contentMode = .scaleAspectFit
-    detailmenuImage.contentMode = .center
+    detailmenuImage.contentMode = .scaleToFill
     detailmenuImage.image = UIImage(named: "TopImageView")
     detailmenuImage.layer.masksToBounds = true
     
@@ -52,6 +51,8 @@ class ImageTableViewCell: UITableViewCell {
       detailmenuImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       detailmenuImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       detailmenuImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      detailmenuImage.widthAnchor.constraint(equalToConstant: frame.width),
+      detailmenuImage.heightAnchor.constraint(equalToConstant: 280)
     ])
   }
   

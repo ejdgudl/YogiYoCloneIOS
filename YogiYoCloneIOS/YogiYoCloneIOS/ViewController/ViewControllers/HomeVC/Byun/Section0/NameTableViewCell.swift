@@ -12,7 +12,6 @@ class NameTableViewCell: UITableViewCell {
   
   let detailmenuName = UILabel()
   
-  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     selectionStyle = .none

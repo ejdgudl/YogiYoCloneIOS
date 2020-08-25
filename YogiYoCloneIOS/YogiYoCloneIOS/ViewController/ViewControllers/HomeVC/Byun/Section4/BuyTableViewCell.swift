@@ -10,7 +10,6 @@ import UIKit
 
 class BuyTableViewCell: UITableViewCell {
   
-  
   let buyLable: UILabel = {
     let l = UILabel()
     l.font = FontModel.toSize.customFont

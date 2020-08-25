@@ -10,7 +10,6 @@ import UIKit
 
 class ListOptionTableViewCell: UITableViewCell {
   
-  
   var checkOn : Bool = false
   
   let selectButton : UIButton = {
@@ -90,7 +89,6 @@ class ListOptionTableViewCell: UITableViewCell {
       costLabel.widthAnchor.constraint(equalToConstant: 100),
       costLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant:  -16),
       costLabel.leadingAnchor.constraint(equalTo: selectLable.trailingAnchor,constant: 2)
-      
     ])
   }
   
@@ -99,3 +97,4 @@ class ListOptionTableViewCell: UITableViewCell {
   }
   
 }
+

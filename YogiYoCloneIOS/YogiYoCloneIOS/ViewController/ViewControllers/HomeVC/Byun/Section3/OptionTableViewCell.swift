@@ -10,6 +10,7 @@ import UIKit
 
 class OptionTableViewCell: UITableViewCell {
   
+  
   let optionLable: UILabel = {
     let l = UILabel()
     l.font = FontModel.toSize.customFont

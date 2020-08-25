@@ -1,5 +1,5 @@
 //
-//  NilTableViewCell.swift
+//  NilCell.swift
 //  YogiYoCloneIOS
 //
 //  Created by Qussk_MAC on 2020/08/25.
