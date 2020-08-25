@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354B1A324EF9835001903AF /* ColorPiker.swift */; };
 		7354B1A624EFA91B001903AF /* FontModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354B1A524EFA91B001903AF /* FontModel.swift */; };
+		73E6ED5624F4E11F0069DF39 /* NilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED5524F4E11F0069DF39 /* NilCell.swift */; };
+		73E6ED5924F4E15A0069DF39 /* CostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED5824F4E15A0069DF39 /* CostView.swift */; };
+		73E6ED5C24F4E19E0069DF39 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED5B24F4E19E0069DF39 /* ImageTableViewCell.swift */; };
+		73E6ED5E24F4E1CA0069DF39 /* SaleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED5D24F4E1CA0069DF39 /* SaleTableViewCell.swift */; };
+		73E6ED6024F4E1E50069DF39 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED5F24F4E1E50069DF39 /* NameTableViewCell.swift */; };
+		73E6ED6224F4E1FF0069DF39 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED6124F4E1FF0069DF39 /* DetailTableViewCell.swift */; };
+		73E6ED6424F4E2400069DF39 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED6324F4E2400069DF39 /* ReviewTableViewCell.swift */; };
+		73E6ED6724F4E2900069DF39 /* CostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED6624F4E2900069DF39 /* CostTableViewCell.swift */; };
+		73E6ED6A24F4E2CD0069DF39 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED6924F4E2CD0069DF39 /* MenuTableViewCell.swift */; };
+		73E6ED6C24F4E2EF0069DF39 /* ListMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED6B24F4E2EF0069DF39 /* ListMenuTableViewCell.swift */; };
+		73E6ED6F24F4E31B0069DF39 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED6E24F4E31B0069DF39 /* OptionTableViewCell.swift */; };
+		73E6ED7124F4E33A0069DF39 /* ListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED7024F4E33A0069DF39 /* ListOptionTableViewCell.swift */; };
+		73E6ED7424F4E36A0069DF39 /* BuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED7324F4E36A0069DF39 /* BuyTableViewCell.swift */; };
+		73E6ED7624F4E38C0069DF39 /* BuyLastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6ED7524F4E38C0069DF39 /* BuyLastTableViewCell.swift */; };
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D303B41924F17C04001701F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D303B41824F17C04001701F0 /* FooterView.swift */; };
 		D307AAE124F268E400225E6A /* SignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307AAE024F268E400225E6A /* SignCell.swift */; };
@@ -45,14 +59,26 @@
 		D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */; };
 		D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */; };
 		D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5326524F18FF300C25B58 /* TestModel.swift */; };
-
 		DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7354B1A324EF9835001903AF /* ColorPiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPiker.swift; sourceTree = "<group>"; };
 		7354B1A524EFA91B001903AF /* FontModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontModel.swift; path = ../ViewController/ViewControllers/HomeVC/Byun/FontModel.swift; sourceTree = "<group>"; };
+		73E6ED5524F4E11F0069DF39 /* NilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilCell.swift; sourceTree = "<group>"; };
+		73E6ED5824F4E15A0069DF39 /* CostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostView.swift; sourceTree = "<group>"; };
+		73E6ED5B24F4E19E0069DF39 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED5D24F4E1CA0069DF39 /* SaleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED5F24F4E1E50069DF39 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED6124F4E1FF0069DF39 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED6324F4E2400069DF39 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED6624F4E2900069DF39 /* CostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED6924F4E2CD0069DF39 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED6B24F4E2EF0069DF39 /* ListMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMenuTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED6E24F4E31B0069DF39 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED7024F4E33A0069DF39 /* ListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED7324F4E36A0069DF39 /* BuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyTableViewCell.swift; sourceTree = "<group>"; };
+		73E6ED7524F4E38C0069DF39 /* BuyLastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyLastTableViewCell.swift; sourceTree = "<group>"; };
 		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D303B41824F17C04001701F0 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
@@ -92,9 +118,7 @@
 		D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuCell.swift; sourceTree = "<group>"; };
 		D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuItemCell.swift; sourceTree = "<group>"; };
 		D3F5326524F18FF300C25B58 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
-
 		DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryView.swift; sourceTree = "<group>"; };
-
 		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -110,6 +134,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73E6ED5724F4E1340069DF39 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				73E6ED5824F4E15A0069DF39 /* CostView.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		73E6ED5A24F4E1870069DF39 /* Section0 */ = {
+			isa = PBXGroup;
+			children = (
+				73E6ED5B24F4E19E0069DF39 /* ImageTableViewCell.swift */,
+				73E6ED5D24F4E1CA0069DF39 /* SaleTableViewCell.swift */,
+				73E6ED5F24F4E1E50069DF39 /* NameTableViewCell.swift */,
+				73E6ED6124F4E1FF0069DF39 /* DetailTableViewCell.swift */,
+				73E6ED6324F4E2400069DF39 /* ReviewTableViewCell.swift */,
+			);
+			path = Section0;
+			sourceTree = "<group>";
+		};
+		73E6ED6524F4E25F0069DF39 /* Section1 */ = {
+			isa = PBXGroup;
+			children = (
+				73E6ED6624F4E2900069DF39 /* CostTableViewCell.swift */,
+			);
+			path = Section1;
+			sourceTree = "<group>";
+		};
+		73E6ED6824F4E2A50069DF39 /* Section2 */ = {
+			isa = PBXGroup;
+			children = (
+				73E6ED6924F4E2CD0069DF39 /* MenuTableViewCell.swift */,
+				73E6ED6B24F4E2EF0069DF39 /* ListMenuTableViewCell.swift */,
+			);
+			path = Section2;
+			sourceTree = "<group>";
+		};
+		73E6ED6D24F4E3000069DF39 /* Section3 */ = {
+			isa = PBXGroup;
+			children = (
+				73E6ED6E24F4E31B0069DF39 /* OptionTableViewCell.swift */,
+				73E6ED7024F4E33A0069DF39 /* ListOptionTableViewCell.swift */,
+			);
+			path = Section3;
+			sourceTree = "<group>";
+		};
+		73E6ED7224F4E3530069DF39 /* Section4 */ = {
+			isa = PBXGroup;
+			children = (
+				73E6ED7324F4E36A0069DF39 /* BuyTableViewCell.swift */,
+				73E6ED7524F4E38C0069DF39 /* BuyLastTableViewCell.swift */,
+			);
+			path = Section4;
+			sourceTree = "<group>";
+		};
 		8E9DD74491D6B090A37CFBB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +337,13 @@
 			isa = PBXGroup;
 			children = (
 				D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */,
+				73E6ED5524F4E11F0069DF39 /* NilCell.swift */,
+				73E6ED5724F4E1340069DF39 /* Extention */,
+				73E6ED5A24F4E1870069DF39 /* Section0 */,
+				73E6ED6524F4E25F0069DF39 /* Section1 */,
+				73E6ED6824F4E2A50069DF39 /* Section2 */,
+				73E6ED6D24F4E3000069DF39 /* Section3 */,
+				73E6ED7224F4E3530069DF39 /* Section4 */,
 			);
 			path = Byun;
 			sourceTree = "<group>";
@@ -391,7 +477,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-
 		DE21FA6C24F4AC08004D8A56 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,7 +492,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-
 		FA341AF98EB3983C322BD832 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,14 +621,21 @@
 			files = (
 				D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */,
 				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
+				73E6ED6C24F4E2EF0069DF39 /* ListMenuTableViewCell.swift in Sources */,
 				D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */,
+				73E6ED5924F4E15A0069DF39 /* CostView.swift in Sources */,
+				73E6ED6424F4E2400069DF39 /* ReviewTableViewCell.swift in Sources */,
 				D368064924F3690600A7E59D /* LogoImageCell.swift in Sources */,
 				D35349CA24EFFD4A007DA461 /* LabelExtension.swift in Sources */,
+				73E6ED5624F4E11F0069DF39 /* NilCell.swift in Sources */,
 				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
+				73E6ED7424F4E36A0069DF39 /* BuyTableViewCell.swift in Sources */,
+				73E6ED6024F4E1E50069DF39 /* NameTableViewCell.swift in Sources */,
 				D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */,
+				73E6ED6A24F4E2CD0069DF39 /* MenuTableViewCell.swift in Sources */,
 				D3969B5A24F2660C0093ACE7 /* ConfigureVC.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
 				D33EDF2924F27D870033330E /* BannerCell.swift in Sources */,
@@ -554,17 +645,21 @@
 				7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */,
 				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,
 				D368064524F34F5500A7E59D /* LogVC.swift in Sources */,
+				73E6ED5C24F4E19E0069DF39 /* ImageTableViewCell.swift in Sources */,
 				D3C9D54E24F1833000D8E93C /* MenuListCell.swift in Sources */,
+				73E6ED6F24F4E31B0069DF39 /* OptionTableViewCell.swift in Sources */,
 				D3C2672A24F386F600FB29A6 /* SocialLogCell.swift in Sources */,
 				D33EDF2B24F281E90033330E /* BottomListCell.swift in Sources */,
 				D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */,
+				73E6ED5E24F4E1CA0069DF39 /* SaleTableViewCell.swift in Sources */,
+				73E6ED7124F4E33A0069DF39 /* ListOptionTableViewCell.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
-
 				DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */,
-
+				73E6ED6224F4E1FF0069DF39 /* DetailTableViewCell.swift in Sources */,
 				D392C64B24F273D400210829 /* WalletCell.swift in Sources */,
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
+				73E6ED7624F4E38C0069DF39 /* BuyLastTableViewCell.swift in Sources */,
 				D32F4F3124F12C5300375DB2 /* API.swift in Sources */,
 				D32F4F2C24F120D100375DB2 /* SegmentCell.swift in Sources */,
 				D307AAE324F26A6B00225E6A /* YoFeedVC.swift in Sources */,
@@ -572,6 +667,7 @@
 				D32F4F2E24F128DE00375DB2 /* SegmentedExtension.swift in Sources */,
 				D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */,
 				D303B41924F17C04001701F0 /* FooterView.swift in Sources */,
+				73E6ED6724F4E2900069DF39 /* CostTableViewCell.swift in Sources */,
 				D307AAE124F268E400225E6A /* SignCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
