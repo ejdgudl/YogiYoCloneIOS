@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIStackView {
-    func addBackground(color: UIColor) {
+    func addBackgroundWithShadow(color: UIColor) {
         let subView = UIView(frame: bounds)
         subView.backgroundColor = color
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -19,5 +19,22 @@ extension UIStackView {
         subView.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
         subView.layer.shadowRadius = 8
         subView.layer.shadowOpacity = 0.2
+    }
+    
+    func addBackgroundButtonStack(color: UIColor) {
+        let subView = UIView(frame: bounds)
+        subView.backgroundColor = color
+        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        subView.layer.borderColor = UIColor.lightGray.cgColor
+        subView.layer.borderWidth = 1
+        insertSubview(subView, at: 0)
+        
+        let devideView = UIView()
+        devideView.backgroundColor = .lightGray
+        subView.addSubview(devideView)
+        devideView.snp.makeConstraints { (make) in
+            make.top.bottom.centerX.equalToSuperview()
+            make.width.equalTo(1)
+        }
     }
 }
