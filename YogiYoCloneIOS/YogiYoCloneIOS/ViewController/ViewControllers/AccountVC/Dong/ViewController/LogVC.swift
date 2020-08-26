@@ -7,19 +7,12 @@
 //
 
 import UIKit
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class LogVC: UIViewController {
     
     // MARK: Properties
-    private let dissmissButton: UIButton = {
-       let button = UIButton()
-        button.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .black
-        button.contentMode = .scaleAspectFit
-        return button
-    }()
-    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -29,6 +22,7 @@ class LogVC: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavi()
         configure()
         configureViews()
     }
@@ -36,6 +30,29 @@ class LogVC: UIViewController {
     // MARK: @Objc
     @objc private func didTapDismissButton() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func didTapKakaoButton() {
+        if (AuthApi.isKakaoTalkLoginAvailable()) {
+            AuthApi.shared.loginWithKakaoTalk { (oAuthToken, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                let acceptVC = AcceptVC()
+                self.navigationController?.pushViewController(acceptVC, animated: true)
+                guard let token = oAuthToken else { return }
+                print("Login With Kakao Suc And Token is \(token)")
+            }
+        }
+    }
+    
+    // MARK: Helpers
+    private func configureNavi() {
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
     }
     
     // MARK: Configure
@@ -52,18 +69,10 @@ class LogVC: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
-        view.addSubview(dissmissButton)
         view.addSubview(tableView)
         
-        dissmissButton.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().inset(10)
-            make.top.equalToSuperview().inset(50)
-            make.width.height.equalTo(37)
-        }
-        
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.dissmissButton.snp.bottom).offset(5)
-            make.left.bottom.right.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 }
@@ -99,6 +108,7 @@ extension LogVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SocialLogCell.cellID, for: indexPath) as? SocialLogCell else { return UITableViewCell() }
+            cell.kakaoButton.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
             return cell
         }
     }

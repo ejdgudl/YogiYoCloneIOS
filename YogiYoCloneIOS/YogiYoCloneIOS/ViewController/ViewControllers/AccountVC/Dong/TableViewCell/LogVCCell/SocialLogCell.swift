@@ -13,6 +13,35 @@ class SocialLogCell: UITableViewCell {
     // MARK: Properties
     static let cellID = "SocialLogCellID"
     
+    let kakaoButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "Kakao"), for: .normal)
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 1
+        button.contentMode = .scaleAspectFit
+        return button
+    }()
+    
+    private let naverButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "Naver"), for: .normal)
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 1
+        button.contentMode = .scaleAspectFit
+        button.backgroundColor = .red
+        return button
+    }()
+    
+    private let appleButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "Apple"), for: .normal)
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 1
+        button.contentMode = .scaleAspectFit
+        button.backgroundColor = .blue
+        return button
+    }()
+    
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,6 +60,28 @@ class SocialLogCell: UITableViewCell {
     
     // MARK: ConfigureViews
     private func configureViews() {
-        backgroundColor = .red
+        backgroundColor = .white
+        
+        [kakaoButton, naverButton, appleButton].forEach {
+            addSubview($0)
+        }
+        
+        kakaoButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().inset(5)
+            make.left.right.equalToSuperview().inset(10)
+            make.height.equalTo(50)
+        }
+        
+        naverButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.kakaoButton.snp.bottom).offset(5)
+            make.left.right.equalToSuperview().inset(10)
+            make.height.equalTo(50)
+        }
+        
+        appleButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.naverButton.snp.bottom).offset(5)
+            make.left.right.equalToSuperview().inset(10)
+            make.height.equalTo(50)
+        }
     }
 }
