@@ -14,7 +14,7 @@ class ListOptionTableViewCell: UITableViewCell {
   
   let selectButton : UIButton = {
     let b = UIButton()
-    b.setImage(UIImage(systemName: "checkmark"), for: .normal)
+    b.setImage(UIImage(systemName: "circle.fill"), for: .normal)
     b.tintColor = .clear
     b.layer.borderWidth = 0.8
     b.layer.borderColor = ColorPiker.customDarkGray.cgColor
