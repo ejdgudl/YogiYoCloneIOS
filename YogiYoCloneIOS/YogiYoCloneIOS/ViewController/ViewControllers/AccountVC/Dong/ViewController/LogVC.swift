@@ -31,6 +31,7 @@ class LogVC: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavi()
         configure()
         configureViews()
     }
@@ -52,6 +53,15 @@ class LogVC: UIViewController {
         }
     }
     
+    // MARK: Helpers
+    private func configureNavi() {
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapDismissButton))
+    }
+    
     // MARK: Configure
     private func configure() {
         tableView.delegate = self
@@ -66,18 +76,10 @@ class LogVC: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
-        view.addSubview(dissmissButton)
         view.addSubview(tableView)
         
-        dissmissButton.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().inset(10)
-            make.top.equalToSuperview().inset(50)
-            make.width.height.equalTo(37)
-        }
-        
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.dissmissButton.snp.bottom).offset(5)
-            make.left.bottom.right.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 }
