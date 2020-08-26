@@ -9,22 +9,25 @@
 import UIKit
 import SnapKit
 
-class StoreListVC: UIViewController {
+class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
+    func change(to index: Int) {
+        print("click \(index)")
+    }
+    
+
+//    MARK: Properties
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemPink
+        return view
+    }()
 
     
-    var interfaceSegmented: CustomTopCategoryView! {
-        didSet{
-            interfaceSegmented.setButtonTitles(categoryTitles: ["전체보기","1인주문","치킨","중국집","디저트"])
-            interfaceSegmented.selectorViewColor = .systemRed
-            interfaceSegmented.selectorTextColor = .systemRed
-        }
-    }
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        view.backgroundColor = .purple
+        view.backgroundColor = ColorPiker.customSystem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "임시 next", style: .plain, target: self, action: #selector(didTapNext))
 
     }
@@ -42,19 +45,21 @@ class StoreListVC: UIViewController {
     
 //    MARK: Configure
     func configure() {
-        
         let codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: ["전체보기","1인주문","치킨","중국집","디저트"])
-        codeSegmented.backgroundColor = .gray
-        
+        codeSegmented.backgroundColor = .white
+        codeSegmented.delegate = self
+
         view.addSubview(codeSegmented)
         
-//        view.addSubview(interfaceSegmented)
-
-
-
-
-
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(100)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).offset(0)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(0)
+        }
+        
     }
+    
     
     
     
