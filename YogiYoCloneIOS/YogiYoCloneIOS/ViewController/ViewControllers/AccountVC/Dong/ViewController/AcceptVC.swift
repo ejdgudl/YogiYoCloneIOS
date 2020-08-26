@@ -127,13 +127,29 @@ class AcceptVC: UIViewController {
     }
 
     @objc private func didTapCheckBoxButton(_ sender: UIButton) {
-        switch sender.isSelected {
-        case false:
-            sender.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
-            sender.isSelected = true
-        case true:
-            sender.setImage(UIImage(named: "EmptyBox"), for: .normal)
-            sender.isSelected = false
+        let elements = [titleCheckBoxButton, firstCheckBoxButton, secondCheckBoxButton, thirdCheckBoxButton, fourthCheckBoxButton, fiffthCheckBoxButton]
+        if sender == titleCheckBoxButton {
+            switch sender.isSelected {
+            case false:
+                elements.forEach {
+                    $0.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
+                    $0.isSelected = true
+                }
+            case true:
+                elements.forEach {
+                    $0.setImage(UIImage(named: "EmptyBox"), for: .normal)
+                    $0.isSelected = false
+                }
+            }
+        } else {
+            switch sender.isSelected {
+            case false:
+                sender.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
+                sender.isSelected = true
+            case true:
+                sender.setImage(UIImage(named: "EmptyBox"), for: .normal)
+                sender.isSelected = false
+            }
         }
     }
     
