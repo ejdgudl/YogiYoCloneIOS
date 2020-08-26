@@ -8,15 +8,22 @@
 import UIKit
 
 class DetailMenuVC: UIViewController {
- 
+  
   let costView = CostView()
+  let shareView = ShareView()
   let tableView = UITableView()
   
+  lazy var leftButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(shareButton))
+  lazy var rightButton = UIBarButtonItem(image: UIImage(systemName: "tray.and.arrow.up"), style: .plain, target: self, action: #selector(dismissButton))
+  let DeleteItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(shareButton(_:)))
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setTableView()
     costViewFrame()
+    setNaviBar()
+    shareViewFrame()
     
     self.view.layoutIfNeeded()
     enum FeedItem {
@@ -28,7 +35,14 @@ class DetailMenuVC: UIViewController {
   
   func costViewFrame(){
     costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
-      view.addSubview(costView)
+    view.addSubview(costView)
+  }
+  
+  //보류
+  func shareViewFrame(){
+//    shareView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 40, height: 50)
+//    shareView.center = view.center
+//    view.addSubview(shareView)
   }
   
   override func viewDidLayoutSubviews() {
@@ -59,17 +73,30 @@ class DetailMenuVC: UIViewController {
     tableView.register(BuyTableViewCell.self, forCellReuseIdentifier: "BuyTableViewCell")//8
     tableView.register(BuyLastTableViewCell.self, forCellReuseIdentifier: "BuyLastTableViewCell")//8-1
     tableView.register(NilCell.self, forCellReuseIdentifier: "NilCell")
-    
- //   var cellRedister = [ImageTableViewCell.self,SaleTableViewCell.self,NameTableViewCell.self,DetailTableViewCell.self,ReviewTableViewCell.self,CostTableViewCell.self,ListMenuTableViewCell.self,MenuTableViewCell.self,ListOptionTableViewCell.self,OptionTableViewCell.self,OptionTableViewCell.self,BuyTableViewCell.self,BuyLastTableViewCell.self,NilCell.self]
-    
-//    for i in cellRedister {
-//      tableView.register([cellRedister.], forCellReuseIdentifier: "\(cellRedister)")
-//    }
-    
+  }
+  
+  func setNaviBar(){
+    navigationItem.leftBarButtonItem = DeleteItem
+    navigationItem.rightBarButtonItems = [rightButton]
+  }
+  
+  
+  func navigationBarLess(){
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationController?.navigationBar.shadowImage = UIImage()
+    navigationController?.navigationBar.backgroundColor = UIColor.clear
+  }
+ 
+  
+  @objc func dismissButton(_ sender : UIBarButtonItem){
+    dismiss(animated: true, completion: nil)
+  }
+  @objc func shareButton(_ sender : UIBarButtonItem){
+ //  let vc = ShareVC()
+    let vc = ShareVC()
     
     
   }
-  
 }
 //MARK: -numberOfRowsInSection
 
@@ -144,11 +171,11 @@ extension DetailMenuVC: UITableViewDataSource{
       }
     case 4:
       if indexPath.row == 0 {
-      let buyCell = tableView.dequeueReusableCell(withIdentifier: "BuyTableViewCell", for: indexPath) as! BuyTableViewCell
-      return buyCell
+        let buyCell = tableView.dequeueReusableCell(withIdentifier: "BuyTableViewCell", for: indexPath) as! BuyTableViewCell
+        return buyCell
       }else if indexPath.row == 1{
-      let buyLastCell = tableView.dequeueReusableCell(withIdentifier: "BuyLastTableViewCell", for: indexPath) as! BuyLastTableViewCell
-      return buyLastCell
+        let buyLastCell = tableView.dequeueReusableCell(withIdentifier: "BuyLastTableViewCell", for: indexPath) as! BuyLastTableViewCell
+        return buyLastCell
       }
     default:
       let cell = tableView.dequeueReusableCell(withIdentifier: "NilCell", for: indexPath) as! NilCell
@@ -182,7 +209,6 @@ extension DetailMenuVC: UITableViewDataSource{
   //MARK:-heightForFooterInSection
   //푸터뷰 높이
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    self.superclass
     switch section{
     case 0:
       return 1
@@ -197,7 +223,6 @@ extension DetailMenuVC: UITableViewDataSource{
     default:
       return 0
     }
-    return 0
   }
 }
 
@@ -243,13 +268,27 @@ extension DetailMenuVC: UITableViewDelegate{
 
 //MARK:- UIScrollViewDelegate
 //스크롤뷰 제어
-extension DetailMenuVC: UIScrollViewDelegate {
+extension DetailMenuVC: UIScrollViewDelegate{
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView.contentOffset.y < 1 {
       scrollView.contentOffset.y = 1
     }
-    print(scrollView.contentOffset.y)
-  }
+    if scrollView.contentOffset.y >= 260 {
+      title = "메뉴명"
+      self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
+      [DeleteItem,rightButton].forEach{
+        $0.tintColor = .black
+      }
+    }else {
+      navigationBarLess()
+      title = ""
+      [DeleteItem,rightButton].forEach{ $0.tintColor = .white }
+    }
+      print(scrollView.contentOffset.y)
+    }
+
+
+
 }
 
 
