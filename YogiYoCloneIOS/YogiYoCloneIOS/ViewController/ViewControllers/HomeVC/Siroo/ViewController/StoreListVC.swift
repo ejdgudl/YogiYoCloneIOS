@@ -15,6 +15,15 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
     }
     
 
+//    MARK: Properties
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemPink
+        return view
+    }()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -41,6 +50,14 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
         codeSegmented.delegate = self
 
         view.addSubview(codeSegmented)
+        
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(100)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).offset(0)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(0)
+        }
+        
     }
     
     
