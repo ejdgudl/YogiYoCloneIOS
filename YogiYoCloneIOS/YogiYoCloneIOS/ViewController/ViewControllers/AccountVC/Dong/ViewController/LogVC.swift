@@ -13,15 +13,6 @@ import KakaoSDKUser
 class LogVC: UIViewController {
     
     // MARK: Properties
-    private let dissmissButton: UIButton = {
-       let button = UIButton()
-        button.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .black
-        button.contentMode = .scaleAspectFit
-        return button
-    }()
-    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -47,6 +38,8 @@ class LogVC: UIViewController {
                 if let error = error {
                     print(error.localizedDescription)
                 }
+                let acceptVC = AcceptVC()
+                self.navigationController?.pushViewController(acceptVC, animated: true)
                 guard let token = oAuthToken else { return }
                 print("Login With Kakao Suc And Token is \(token)")
             }
