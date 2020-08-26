@@ -32,13 +32,9 @@ class CostView: UIView {
     super.init(frame: frame)
     setUI()
     setConstraint()
-    
   }
   
   func setUI(){
-    
-    // addButton.frame = CGRect(x: 0, y: 0, width: self.frame.width/2, height: self.frame.height)
-    // orderButton.frame = CGRect(x: addButton.frame.maxX, y: 0, width: frame.width/2, height: frame.height)
     [addButton,orderButton].forEach{
       addSubview($0)
       $0.translatesAutoresizingMaskIntoConstraints = false
@@ -48,16 +44,12 @@ class CostView: UIView {
     }
   }
   
-  
-  
-  
   func setConstraint(){
     
     NSLayoutConstraint.activate([
       addButton.leadingAnchor.constraint(equalTo: leadingAnchor),
       orderButton.leadingAnchor.constraint(equalTo: addButton.trailingAnchor),
     ])
-    
   }
   
   

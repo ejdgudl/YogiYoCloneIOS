@@ -10,12 +10,10 @@ import UIKit
 class DetailMenuVC: UIViewController {
   
   let costView = CostView()
-  let shareView = ShareView()
   let tableView = UITableView()
   
-  lazy var leftButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(shareButton))
-  lazy var rightButton = UIBarButtonItem(image: UIImage(systemName: "tray.and.arrow.up"), style: .plain, target: self, action: #selector(dismissButton))
-  let DeleteItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(shareButton(_:)))
+  lazy var rightButton = UIBarButtonItem(image: UIImage(systemName: "tray.and.arrow.up"), style: .plain, target: self, action: #selector(shareButton))
+  lazy var DeleteItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissButton))
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,7 +21,6 @@ class DetailMenuVC: UIViewController {
     setTableView()
     costViewFrame()
     setNaviBar()
-    shareViewFrame()
     
     self.view.layoutIfNeeded()
     enum FeedItem {
@@ -38,13 +35,7 @@ class DetailMenuVC: UIViewController {
     view.addSubview(costView)
   }
   
-  //보류
-  func shareViewFrame(){
-//    shareView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 40, height: 50)
-//    shareView.center = view.center
-//    view.addSubview(shareView)
-  }
-  
+
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
   }
@@ -88,14 +79,16 @@ class DetailMenuVC: UIViewController {
   }
  
   
-  @objc func dismissButton(_ sender : UIBarButtonItem){
+  @objc func dismissButton(sender : UIBarButtonItem){
     dismiss(animated: true, completion: nil)
+    print("ee")
   }
-  @objc func shareButton(_ sender : UIBarButtonItem){
- //  let vc = ShareVC()
+  
+  @objc func shareButton(sender : UIBarButtonItem){
     let vc = ShareVC()
-    
-    
+    vc.modalPresentationStyle = .overFullScreen
+    present(vc, animated: true, completion: nil)
+    print("dd")
   }
 }
 //MARK: -numberOfRowsInSection

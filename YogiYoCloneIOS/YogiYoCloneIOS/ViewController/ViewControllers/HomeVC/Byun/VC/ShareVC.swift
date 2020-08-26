@@ -10,11 +10,19 @@ import UIKit
 
 class ShareVC: UIViewController {
 
+  let shareView = ShareView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      view.backgroundColor = .darkGray
-      view.alpha = 0.5
+      view.backgroundColor = ColorPiker.customAlpha2
+      shareViewFrame()
     }
-
+  
+    func shareViewFrame(){
+      shareView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 40, height: view.frame.height/3)
+      shareView.center = view.center
+      view.addSubview(shareView)
+    }
+  
 }
