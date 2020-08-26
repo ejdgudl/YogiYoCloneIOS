@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.rootViewController = UINavigationController(rootViewController: MenuListVC())
-        window?.rootViewController = StoreListVC()
+        window?.rootViewController = MenuListVC()
         window?.makeKeyAndVisible()
         return true
     }
