@@ -18,15 +18,14 @@ class ListMenuTableViewCell: UITableViewCell {
     b.tintColor = .clear
     b.layer.borderWidth = 0.8
     b.layer.borderColor = ColorPiker.customDarkGray.cgColor
-    // b.layer.borderColor = ColorPiker.customRed.cgColor
     return b
   }()
   
   let selectLable : UILabel = {
     let l = UILabel()
-    l.font = UIFont(name: "PingFangTC-Regular", size: 18)//FontModel.toSize.customFont
+    l.font = UIFont(name: "PingFangTC-Regular", size: 18)
     l.text = " 순살치킨 변경"
-    l.textColor = .black //ColorPiker.customDarkGray
+    l.textColor = .black
     return l
   }()
   

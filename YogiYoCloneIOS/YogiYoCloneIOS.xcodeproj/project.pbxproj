@@ -27,6 +27,9 @@
 		7306256A24F53D1B00DC70C1 /* BuyLastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306256924F53D1B00DC70C1 /* BuyLastTableViewCell.swift */; };
 		7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354B1A324EF9835001903AF /* ColorPiker.swift */; };
 		7354B1A624EFA91B001903AF /* FontModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354B1A524EFA91B001903AF /* FontModel.swift */; };
+		739A42CA24F5F7F300A51BE0 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A42C924F5F7F300A51BE0 /* ShareView.swift */; };
+		739A42CD24F626DB00A51BE0 /* ShareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A42CC24F626DB00A51BE0 /* ShareVC.swift */; };
+		739A42CF24F63A0400A51BE0 /* CancelBt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A42CE24F63A0300A51BE0 /* CancelBt.swift */; };
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D303B41924F17C04001701F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D303B41824F17C04001701F0 /* FooterView.swift */; };
 		D307AAE124F268E400225E6A /* SignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307AAE024F268E400225E6A /* SignCell.swift */; };
@@ -97,6 +100,9 @@
 		7306256924F53D1B00DC70C1 /* BuyLastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyLastTableViewCell.swift; sourceTree = "<group>"; };
 		7354B1A324EF9835001903AF /* ColorPiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPiker.swift; sourceTree = "<group>"; };
 		7354B1A524EFA91B001903AF /* FontModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontModel.swift; path = ../ViewController/ViewControllers/HomeVC/Byun/FontModel.swift; sourceTree = "<group>"; };
+		739A42C924F5F7F300A51BE0 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		739A42CC24F626DB00A51BE0 /* ShareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVC.swift; sourceTree = "<group>"; };
+		739A42CE24F63A0300A51BE0 /* CancelBt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBt.swift; sourceTree = "<group>"; };
 		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D303B41824F17C04001701F0 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				7306254F24F53AD200DC70C1 /* CostView.swift */,
+				739A42C924F5F7F300A51BE0 /* ShareView.swift */,
+				739A42CE24F63A0300A51BE0 /* CancelBt.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -225,6 +233,15 @@
 				7306256924F53D1B00DC70C1 /* BuyLastTableViewCell.swift */,
 			);
 			path = Section4;
+			sourceTree = "<group>";
+		};
+		739A42CB24F6269300A51BE0 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */,
+				739A42CC24F626DB00A51BE0 /* ShareVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		8E9DD74491D6B090A37CFBB5 /* Frameworks */ = {
@@ -375,9 +392,9 @@
 		D33768D824ECCBF200E0C27A /* Byun */ = {
 			isa = PBXGroup;
 			children = (
-				D33768DD24ECCD0B00E0C27A /* DetailMenuVC.swift */,
-				7306254924F53A5E00DC70C1 /* NilCell.swift */,
+				739A42CB24F6269300A51BE0 /* VC */,
 				7306254E24F53AA400DC70C1 /* Extention */,
+				7306254924F53A5E00DC70C1 /* NilCell.swift */,
 				7306254B24F53A6800DC70C1 /* Section0 */,
 				7306255924F53BB400DC70C1 /* Section1 */,
 				7306255C24F53C2D00DC70C1 /* Section2 */,
@@ -689,6 +706,7 @@
 				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
 				D371D16A24F60CA900EB1D2A /* AcceptVC.swift in Sources */,
 				6E373A8924F105C400BF5678 /* CategoryCustomCell.swift in Sources */,
+				739A42CA24F5F7F300A51BE0 /* ShareView.swift in Sources */,
 				DE21FA7124F55B77004D8A56 /* TotalListVC.swift in Sources */,
 				D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */,
 				D368064924F3690600A7E59D /* LogoImageCell.swift in Sources */,
@@ -737,6 +755,8 @@
 				7306256824F53D0300DC70C1 /* BuyTableViewCell.swift in Sources */,
 				7306255224F53B3D00DC70C1 /* SaleTableViewCell.swift in Sources */,
 				7306256024F53C6F00DC70C1 /* ListMenuTableViewCell.swift in Sources */,
+				739A42CD24F626DB00A51BE0 /* ShareVC.swift in Sources */,
+
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
 				DE21FA7824F60435004D8A56 /* StoreListCell.swift in Sources */,
 				7306255424F53B5D00DC70C1 /* NameTableViewCell.swift in Sources */,
@@ -747,6 +767,7 @@
 				D371D16D24F613CC00EB1D2A /* LogoImageView.swift in Sources */,
 				6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */,
 				D303B41924F17C04001701F0 /* FooterView.swift in Sources */,
+				739A42CF24F63A0400A51BE0 /* CancelBt.swift in Sources */,
 				7306256324F53CA800DC70C1 /* OptionTableViewCell.swift in Sources */,
 				D307AAE124F268E400225E6A /* SignCell.swift in Sources */,
 			);
