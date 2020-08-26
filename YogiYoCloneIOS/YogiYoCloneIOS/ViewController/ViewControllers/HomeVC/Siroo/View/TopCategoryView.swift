@@ -21,9 +21,9 @@ class CustomTopCategoryView: UIView {
     private var selectorView : UIView!
 
     
-    var textColor: UIColor = .systemGray2
-    var selectorViewColor: UIColor = .red
-    var selectorTextColor : UIColor = .red
+    var textColor: UIColor = ColorPiker.customDarkGray
+    var selectorViewColor: UIColor = ColorPiker.customMainRed
+    var selectorTextColor : UIColor = ColorPiker.customMainRed
     
     weak var delegate: CustomTopCategoryViewDelegate?
     
@@ -33,6 +33,7 @@ class CustomTopCategoryView: UIView {
     convenience init(frame: CGRect, categoryTitles: [String]) {
         self.init(frame: frame)
         self.categoryTitles = categoryTitles
+        setButtonTitles(categoryTitles: categoryTitles)
     }
     
     func setButtonTitles(categoryTitles: [String]) {
@@ -64,6 +65,7 @@ class CustomTopCategoryView: UIView {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 btn.setTitleColor(selectorTextColor, for: .normal)
+                delegate?.change(to: buttonIndex)
             }
         }
     }
@@ -85,8 +87,9 @@ extension CustomTopCategoryView {
       private func configStackView() {
           let stack = UIStackView(arrangedSubviews: buttons)
           stack.axis = .horizontal
-          stack.distribution = .fill
+          stack.distribution = .fillEqually
           stack.alignment = .fill
+        
           
           addSubview(stack)
           stack.snp.makeConstraints { (make) in
