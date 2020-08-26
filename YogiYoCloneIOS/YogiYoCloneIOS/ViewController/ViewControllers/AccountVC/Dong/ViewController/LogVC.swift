@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class LogVC: UIViewController {
     
@@ -36,6 +38,18 @@ class LogVC: UIViewController {
     // MARK: @Objc
     @objc private func didTapDismissButton() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func didTapKakaoButton() {
+        if (AuthApi.isKakaoTalkLoginAvailable()) {
+            AuthApi.shared.loginWithKakaoTalk { (oAuthToken, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                guard let token = oAuthToken else { return }
+                print("Login With Kakao Suc And Token is \(token)")
+            }
+        }
     }
     
     // MARK: Configure
@@ -99,6 +113,7 @@ extension LogVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SocialLogCell.cellID, for: indexPath) as? SocialLogCell else { return UITableViewCell() }
+            cell.kakaoButton.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
             return cell
         }
     }

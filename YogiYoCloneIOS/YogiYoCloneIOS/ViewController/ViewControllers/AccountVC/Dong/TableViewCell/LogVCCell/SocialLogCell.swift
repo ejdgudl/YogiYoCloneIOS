@@ -13,7 +13,7 @@ class SocialLogCell: UITableViewCell {
     // MARK: Properties
     static let cellID = "SocialLogCellID"
     
-    private let kakaoButton: UIButton = {
+    let kakaoButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Kakao"), for: .normal)
         button.layer.borderColor = UIColor.lightGray.cgColor
