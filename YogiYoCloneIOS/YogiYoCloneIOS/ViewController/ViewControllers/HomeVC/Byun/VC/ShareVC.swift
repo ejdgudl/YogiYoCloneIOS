@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//
 class ShareVC: UIViewController {
 
   let shareView = ShareView()
