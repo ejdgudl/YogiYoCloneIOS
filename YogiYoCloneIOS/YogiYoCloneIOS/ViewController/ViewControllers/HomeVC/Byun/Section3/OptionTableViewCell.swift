@@ -19,21 +19,37 @@ class OptionTableViewCell: UITableViewCell {
     return l
   }()
   
+  let optionsubLable: UILabel = {
+     let l = UILabel()
+     l.font = UIFont(name: FontModel.customLight, size: 15)
+     l.text = "(추가 옵션)"
+     l.textColor = ColorPiker.customMainRed
+     return l
+   }()
+  
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    contentView.addSubview(optionLable)
+    [optionLable, optionsubLable].forEach{
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      contentView.addSubview($0)
+
+    }
     setConstrain()
   }
   
   
   func setConstrain(){
-    optionLable.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       optionLable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
       optionLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
       optionLable.heightAnchor.constraint(equalToConstant: 30),
+      
+      
+      optionsubLable.leadingAnchor.constraint(equalTo: optionLable.trailingAnchor, constant: 4),
+      optionsubLable.bottomAnchor.constraint(equalTo: optionLable.bottomAnchor, constant: -4)
+      
     ])
   }
   
