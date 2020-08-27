@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PhoneAcceptVC: UIViewController {
     
@@ -25,6 +26,7 @@ class PhoneAcceptVC: UIViewController {
         tf.layer.cornerRadius = 0
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.layer.borderWidth = 0.5
+        tf.keyboardType = .numberPad
         return tf
     }()
     
@@ -35,6 +37,7 @@ class PhoneAcceptVC: UIViewController {
         button.setTitle("인증번호 받기", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.addTarget(self, action: #selector(didTapGetCodeButton), for: .touchUpInside)
         return button
     }()
     
@@ -93,6 +96,19 @@ class PhoneAcceptVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func didTapGetCodeButton() {
+        guard let phoneNum = phoneNumTextField.text, phoneNum.count == 11 else { return print("no번호")}
+        let number = "+82\(phoneNum)"
+        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
+          if let error = error {
+            debugPrint("에러는\(error)")
+            return
+          }
+            print(verificationID)
+            
+        }
+    }
+    
     // MARK: Helpers
     private func configureNavi() {
         navigationController?.navigationBar.tintColor = .black
@@ -104,7 +120,7 @@ class PhoneAcceptVC: UIViewController {
     
     // MARK: Configure
     private func configure() {
-        
+        Auth.auth().languageCode = "kr"
     }
     
     // MARK: ConfigureViews

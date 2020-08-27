@@ -12,4 +12,5 @@ target 'YogiYoCloneIOS' do
     pod 'Cosmos'
     pod 'KakaoSDK'
     pod 'Firebase/Auth'
+    pod 'Firebase/Messaging'
 end
