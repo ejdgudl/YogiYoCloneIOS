@@ -12,31 +12,20 @@ import Firebase
 class PhoneAcceptVC: UIViewController {
     
     // MARK: Properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "휴대전화 등록"
-        label.font = UIFont.systemFont(ofSize: 22)
+    private let titleLabel: TitleLabel = {
+        let label = TitleLabel()
         return label
     }()
     
-    private let phoneNumTextField: UITextField = {
-        let tf = UITextField()
-        tf.addLeftPadding()
+    private let phoneNumTextField: TextField = {
+        let tf = TextField()
         tf.placeholder = "전화번호 입력('-'제외)"
-        tf.layer.cornerRadius = 0
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        tf.layer.borderWidth = 0.5
         tf.keyboardType = .numberPad
         return tf
     }()
     
-    private let getCodeButton: UIButton = {
-        let button = UIButton()
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.setTitle("인증번호 받기", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+    private let getCodeButton: GetCodeButton = {
+        let button = GetCodeButton()
         button.addTarget(self, action: #selector(didTapGetCodeButton), for: .touchUpInside)
         return button
     }()
@@ -56,30 +45,20 @@ class PhoneAcceptVC: UIViewController {
         return view
     }()
     
-    private let codeTextField: UITextField = {
-        let tf = UITextField()
-        tf.addLeftPadding()
+    private let codeTextField: TextField = {
+        let tf = TextField()
         tf.placeholder = "4자리 인증번호 입력"
         tf.textContentType = .oneTimeCode
-        tf.layer.cornerRadius = 0
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        tf.layer.borderWidth = 0.5
         return tf
     }()
     
-    private let helpTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "인증번호가 도착하지 않았을 경우 '인증번호 받기' 버튼을 다시 눌러주세요."
-        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        label.numberOfLines = 0
-        label.textColor = .brown
+    private let helpTitleLabel: HelpTitleLabel = {
+        let label = HelpTitleLabel()
         return label
     }()
     
-    private let finishButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("회원가입 완료", for: .normal)
-        button.backgroundColor = .lightGray
+    private let finishButton: FinishButton = {
+        let button = FinishButton()
         return button
     }()
     
@@ -104,8 +83,7 @@ class PhoneAcceptVC: UIViewController {
             debugPrint("에러는\(error)")
             return
           }
-            print(verificationID)
-            
+//            print(verificationID)
         }
     }
     
