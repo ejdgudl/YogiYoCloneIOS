@@ -16,6 +16,7 @@ class TextField: UITextField {
         layer.cornerRadius = 0
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
+        keyboardType = .numberPad
         addLeftPadding()
     }
     

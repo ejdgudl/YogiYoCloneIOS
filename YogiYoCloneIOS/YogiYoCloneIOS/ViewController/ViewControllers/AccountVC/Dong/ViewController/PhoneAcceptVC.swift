@@ -20,7 +20,6 @@ class PhoneAcceptVC: UIViewController {
     private let phoneNumTextField: TextField = {
         let tf = TextField()
         tf.placeholder = "전화번호 입력('-'제외)"
-        tf.keyboardType = .numberPad
         return tf
     }()
     
