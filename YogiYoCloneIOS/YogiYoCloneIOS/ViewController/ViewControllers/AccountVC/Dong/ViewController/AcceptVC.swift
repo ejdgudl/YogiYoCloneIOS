@@ -143,6 +143,13 @@ class AcceptVC: UIViewController {
                 }
             }
         } else {
+            if titleCheckBoxButton.isSelected {
+                titleCheckBoxButton.setImage(UIImage(named: "EmptyBox"), for: .normal)
+                titleCheckBoxButton.isSelected = false
+            } else {
+                titleCheckBoxButton.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
+                titleCheckBoxButton.isSelected = true
+            }
             switch sender.isSelected {
             case false:
                 sender.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
