@@ -29,6 +29,7 @@ class StoreListCell: UITableViewCell {
     private let starImage : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
+        imageView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
         return imageView
     }()
     
@@ -36,7 +37,7 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.text = "5.0"
         label.font = FontModel.toSize.customSmallFont
-        label.textColor = ColorPiker.customrightGray
+        label.textColor = .systemGray
         return label
     }()
     
@@ -44,7 +45,7 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.text = "리뷰 9"
         label.font = FontModel.toSize.customSmallFont
-        label.textColor = ColorPiker.customrightGray
+        label.textColor = .systemGray
 
         return label
     }()
@@ -105,7 +106,7 @@ class StoreListCell: UITableViewCell {
 //    MARK: SetUIConstraints
     
     func setUIConstraints () {
-        [storeImage,storeNameLabel,bestMenuLabel,estimatedTime].forEach({
+        [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage].forEach({
             self.addSubview($0)
         })
         
@@ -116,38 +117,44 @@ class StoreListCell: UITableViewCell {
         }
         
         storeNameLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(5)
+            make.top.equalToSuperview().inset(5)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
-            make.trailing.equalToSuperview().offset(-100)
+            make.trailing.equalToSuperview().inset(100)
             make.bottom.equalToSuperview().offset(-40)
         }
+        
+//        starImage.snp.makeConstraints { (make) in
+//            make.top.equalToSuperview().inset(30)
+//            make.leading.equalTo(storeNameLabel.snp.leading)
+//            make.trailing.equalToSuperview().inset(50)
+//            make.bottom.equalToSuperview().inset(35)
+//        }
             
-        let stack = UIStackView(arrangedSubviews: [starImage,storeRateLabel,reviewLabel])
+        let stack = UIStackView(arrangedSubviews: [storeRateLabel,reviewLabel])
         stack.axis = .horizontal
         stack.distribution = .fillEqually
-        stack.spacing = 4
+        stack.spacing = 2
         
         addSubview(stack)
         stack.snp.makeConstraints { (make) in
-            make.top.equalTo(storeNameLabel.snp.bottom).offset(5)
+            make.top.equalToSuperview().inset(40)
             make.leading.equalTo(storeNameLabel.snp.leading)
-            make.trailing.equalToSuperview().offset(-100)
-            make.bottom.equalToSuperview().offset(-35)
+            make.trailing.equalToSuperview().inset(200)
+            make.bottom.equalToSuperview().inset(35)
         }
         
-        
-        
+
         bestMenuLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(stack.snp.bottom).offset(5)
+            make.top.equalTo(stack.snp.bottom).inset(1)
             make.leading.equalTo(stack.snp.leading)
-            make.trailing.equalToSuperview().offset(-50)
-            make.bottom.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().inset(50)
+            make.bottom.equalToSuperview().inset(15)
         }
         
         estimatedTime.snp.makeConstraints { (make) in
             make.top.equalTo(bestMenuLabel.snp.top)
             make.leading.equalTo(bestMenuLabel.snp.trailing).offset(50)
-            make.trailing.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(bestMenuLabel.snp.bottom)
         }
 
