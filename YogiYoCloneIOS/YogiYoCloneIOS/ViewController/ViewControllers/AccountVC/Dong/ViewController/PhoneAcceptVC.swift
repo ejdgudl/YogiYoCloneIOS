@@ -34,6 +34,7 @@ class PhoneAcceptVC: UIViewController {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.setTitle("인증번호 받기", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         return button
     }()
     
