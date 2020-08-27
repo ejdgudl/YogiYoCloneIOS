@@ -25,17 +25,10 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
     
     private let containerView: UIView = {
         let view = UIView()
-//        view.backgroundColor = .systemPink
+        view.backgroundColor = .white
         
         return view
     }()
-    
-    private let containerlabel: UILabel = {
-        let view = UILabel()
-        view.text = "안녕"
-        return view
-    }()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,16 +62,8 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
 //        configureTableView()
         
         view.addSubview(containerView)
-        
-        containerView.addSubview(containerlabel)
-        containerlabel.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-        }
-        
-        
-        
         containerView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(60)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).offset(0)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(0)
         }
@@ -93,7 +78,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
         tableView.dataSource = self
         
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.rowHeight = 100
+        tableView.rowHeight = 120
         
         tableView.tableFooterView = UIView()
         
@@ -115,16 +100,13 @@ extension StoreListVC : UITableViewDelegate, UITableViewDataSource {
         return "슈퍼레드위크"
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }
-    
+    //헤더뷰
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = .red
-//        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .black
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+            headerView.backgroundView?.backgroundColor = .white
+            headerView.textLabel?.textColor = .black
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
