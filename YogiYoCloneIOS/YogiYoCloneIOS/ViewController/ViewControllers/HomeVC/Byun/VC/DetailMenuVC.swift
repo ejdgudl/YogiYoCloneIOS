@@ -13,7 +13,7 @@ class DetailMenuVC: UIViewController {
   let tableView = UITableView()
   
   lazy var rightButton = UIBarButtonItem(image: UIImage(systemName: "tray.and.arrow.up"), style: .plain, target: self, action: #selector(shareButton))
-  lazy var DeleteItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissButton))
+  lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissButton))
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -66,8 +66,10 @@ class DetailMenuVC: UIViewController {
     tableView.register(NilCell.self, forCellReuseIdentifier: "NilCell")
   }
   
+  //MARK: -navigation
+  
   func setNaviBar(){
-    navigationItem.leftBarButtonItem = DeleteItem
+    navigationItem.leftBarButtonItem = leftButton
     navigationItem.rightBarButtonItems = [rightButton]
   }
   
@@ -78,14 +80,16 @@ class DetailMenuVC: UIViewController {
     navigationController?.navigationBar.backgroundColor = UIColor.clear
   }
  
+//MARK: -Action
   
   @objc func dismissButton(sender : UIBarButtonItem){
-    dismiss(animated: true, completion: nil)
+   // dismiss(animated: true, completion: nil)
     print("ee")
   }
   
   @objc func shareButton(sender : UIBarButtonItem){
     let vc = ShareVC()
+    vc.modalTransitionStyle = .crossDissolve
     vc.modalPresentationStyle = .overFullScreen
     present(vc, animated: true, completion: nil)
     print("dd")
@@ -269,13 +273,13 @@ extension DetailMenuVC: UIScrollViewDelegate{
     if scrollView.contentOffset.y >= 260 {
       title = "메뉴명"
       self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
-      [DeleteItem,rightButton].forEach{
+      [leftButton,rightButton].forEach{
         $0.tintColor = .black
       }
     }else {
       navigationBarLess()
       title = ""
-      [DeleteItem,rightButton].forEach{ $0.tintColor = .white }
+      [leftButton,rightButton].forEach{ $0.tintColor = .white }
     }
       print(scrollView.contentOffset.y)
     }
