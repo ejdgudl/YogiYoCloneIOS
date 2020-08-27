@@ -110,6 +110,7 @@ class AcceptVC: UIViewController {
         button.setTitle("다음", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         button.backgroundColor = .red
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -151,6 +152,11 @@ class AcceptVC: UIViewController {
                 sender.isSelected = false
             }
         }
+    }
+    
+    @objc private func didTapNextButton() {
+        let phoneAcceptVC = PhoneAcceptVC()
+        navigationController?.pushViewController(phoneAcceptVC, animated: true)
     }
     
     // MARK: Helpers
