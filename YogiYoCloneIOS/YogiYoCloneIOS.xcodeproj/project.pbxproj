@@ -56,8 +56,16 @@
 		D371D17324F61BB400EB1D2A /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371D17224F61BB400EB1D2A /* CheckBoxButton.swift */; };
 		D371D17524F62D9600EB1D2A /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371D17424F62D9600EB1D2A /* ButtonExtension.swift */; };
 		D371D17724F62F6800EB1D2A /* ShowContentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371D17624F62F6800EB1D2A /* ShowContentButton.swift */; };
+		D37DC88A24F7E02C00EFD6A0 /* PhoneAcceptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DC88924F7E02C00EFD6A0 /* PhoneAcceptVC.swift */; };
+		D37DC88D24F7EA0E00EFD6A0 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DC88C24F7EA0E00EFD6A0 /* TextFieldExtension.swift */; };
 		D392C64B24F273D400210829 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D392C64A24F273D400210829 /* WalletCell.swift */; };
 		D3969B5A24F2660C0093ACE7 /* ConfigureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */; };
+		D3B0636224F7FDE500FF37BA /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636124F7FDE500FF37BA /* TextField.swift */; };
+		D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */; };
+		D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */; };
+		D3B0636824F7FEFF00FF37BA /* FinishButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636724F7FEFF00FF37BA /* FinishButton.swift */; };
+		D3B86E1524F7F0D300044A27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3B86E1424F7F0D300044A27 /* GoogleService-Info.plist */; };
+		D3B86E1724F7FC1700044A27 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B86E1624F7FC1700044A27 /* TitleLabel.swift */; };
 		D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2672724F36C3500FB29A6 /* LogCell.swift */; };
 		D3C2672A24F386F600FB29A6 /* SocialLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2672924F386F600FB29A6 /* SocialLogCell.swift */; };
 		D3C9D54E24F1833000D8E93C /* MenuListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C9D54D24F1833000D8E93C /* MenuListCell.swift */; };
@@ -130,8 +138,17 @@
 		D371D17224F61BB400EB1D2A /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		D371D17424F62D9600EB1D2A /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		D371D17624F62F6800EB1D2A /* ShowContentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowContentButton.swift; sourceTree = "<group>"; };
+		D37DC88924F7E02C00EFD6A0 /* PhoneAcceptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAcceptVC.swift; sourceTree = "<group>"; };
+		D37DC88C24F7EA0E00EFD6A0 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		D392C64A24F273D400210829 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureVC.swift; sourceTree = "<group>"; };
+		D3B0636124F7FDE500FF37BA /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCodeButton.swift; sourceTree = "<group>"; };
+		D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTitleLabel.swift; sourceTree = "<group>"; };
+		D3B0636724F7FEFF00FF37BA /* FinishButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishButton.swift; sourceTree = "<group>"; };
+		D3B86E1324F7EEF200044A27 /* YogiYoCloneIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YogiYoCloneIOS.entitlements; sourceTree = "<group>"; };
+		D3B86E1424F7F0D300044A27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D3B86E1624F7FC1700044A27 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		D3C2672724F36C3500FB29A6 /* LogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		D3C2672924F386F600FB29A6 /* SocialLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLogCell.swift; sourceTree = "<group>"; };
 		D3C9D54D24F1833000D8E93C /* MenuListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListCell.swift; sourceTree = "<group>"; };
@@ -432,6 +449,11 @@
 				D371D16E24F614BF00EB1D2A /* DescriptionLabel.swift */,
 				D371D17224F61BB400EB1D2A /* CheckBoxButton.swift */,
 				D371D17624F62F6800EB1D2A /* ShowContentButton.swift */,
+				D3B86E1624F7FC1700044A27 /* TitleLabel.swift */,
+				D3B0636124F7FDE500FF37BA /* TextField.swift */,
+				D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */,
+				D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */,
+				D3B0636724F7FEFF00FF37BA /* FinishButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,6 +476,7 @@
 				D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */,
 				D368064424F34F5500A7E59D /* LogVC.swift */,
 				D371D16924F60CA900EB1D2A /* AcceptVC.swift */,
+				D37DC88924F7E02C00EFD6A0 /* PhoneAcceptVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -494,6 +517,7 @@
 				D35349C924EFFD4A007DA461 /* LabelExtension.swift */,
 				D32F4F2D24F128DE00375DB2 /* SegmentedExtension.swift */,
 				D371D17424F62D9600EB1D2A /* ButtonExtension.swift */,
+				D37DC88C24F7EA0E00EFD6A0 /* TextFieldExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -519,12 +543,14 @@
 		D3E5F78624EAAFC6001BB6B2 /* YogiYoCloneIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D3B86E1324F7EEF200044A27 /* YogiYoCloneIOS.entitlements */,
 				D32F4F2F24F12C4500375DB2 /* Utills */,
 				D33768CF24ECCA0D00E0C27A /* Extension */,
 				D33768CA24ECC9FA00E0C27A /* Model */,
 				D33768BD24ECC54E00E0C27A /* ViewController */,
 				D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */,
 				D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */,
+				D3B86E1424F7F0D300044A27 /* GoogleService-Info.plist */,
 				D3E5F79224EAAFC7001BB6B2 /* LaunchScreen.storyboard */,
 				D3E5F79524EAAFC7001BB6B2 /* Info.plist */,
 			);
@@ -650,6 +676,7 @@
 			files = (
 				D3E5F79424EAAFC7001BB6B2 /* LaunchScreen.storyboard in Resources */,
 				D3E5F79124EAAFC7001BB6B2 /* Assets.xcassets in Resources */,
+				D3B86E1524F7F0D300044A27 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +742,7 @@
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
 				D371D17724F62F6800EB1D2A /* ShowContentButton.swift in Sources */,
 				D371D16F24F614BF00EB1D2A /* DescriptionLabel.swift in Sources */,
+				D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
 				7306256A24F53D1B00DC70C1 /* BuyLastTableViewCell.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
@@ -723,9 +751,11 @@
 				D3969B5A24F2660C0093ACE7 /* ConfigureVC.swift in Sources */,
 				D33768C324ECC78300E0C27A /* SearchVC.swift in Sources */,
 				D33EDF2924F27D870033330E /* BannerCell.swift in Sources */,
+				D3B0636824F7FEFF00FF37BA /* FinishButton.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
 				D371D17324F61BB400EB1D2A /* CheckBoxButton.swift in Sources */,
 				7354B1A624EFA91B001903AF /* FontModel.swift in Sources */,
+				D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */,
 				D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */,
 				7306255624F53B7E00DC70C1 /* DetailTableViewCell.swift in Sources */,
 				7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */,
@@ -753,8 +783,12 @@
 				7306254D24F53A8000DC70C1 /* ImageTableViewCell.swift in Sources */,
 				D307AAE324F26A6B00225E6A /* YoFeedVC.swift in Sources */,
 				7306256824F53D0300DC70C1 /* BuyTableViewCell.swift in Sources */,
+				D37DC88D24F7EA0E00EFD6A0 /* TextFieldExtension.swift in Sources */,
 				7306255224F53B3D00DC70C1 /* SaleTableViewCell.swift in Sources */,
+				D3B86E1724F7FC1700044A27 /* TitleLabel.swift in Sources */,
 				7306256024F53C6F00DC70C1 /* ListMenuTableViewCell.swift in Sources */,
+				D3B0636224F7FDE500FF37BA /* TextField.swift in Sources */,
+				D37DC88A24F7E02C00EFD6A0 /* PhoneAcceptVC.swift in Sources */,
 				739A42CD24F626DB00A51BE0 /* ShareVC.swift in Sources */,
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
 				DE21FA7824F60435004D8A56 /* StoreListCell.swift in Sources */,
@@ -905,16 +939,17 @@
 			baseConfigurationReference = 74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RA99PDU87Z;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneTeamIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -927,15 +962,16 @@
 			baseConfigurationReference = 8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QL936YF39M;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneTeamIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -39,8 +39,9 @@ class AccountVC: UIViewController {
     
     @objc private func didTapSignInButton() {
         let logVC = LogVC()
-        logVC.modalPresentationStyle = .fullScreen
-        present(logVC, animated: true)
+        let nav = UINavigationController(rootViewController: logVC)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     // MARK: Helpers
