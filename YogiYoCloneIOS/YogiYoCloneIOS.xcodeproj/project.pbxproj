@@ -11,6 +11,7 @@
 		6E373A8B24F10DF600BF5678 /* CollectionEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E373A8A24F10DF600BF5678 /* CollectionEdge.swift */; };
 		6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E373A8C24F410D600BF5678 /* RestaurantCustomCell.swift */; };
 		6EE8C08724F6654400A55413 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8C08624F6654400A55413 /* PaddingLabel.swift */; };
+		6EE8C08924F8FFB000A55413 /* TripleRestaurantCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */; };
 		7306254A24F53A5E00DC70C1 /* NilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306254924F53A5E00DC70C1 /* NilCell.swift */; };
 		7306254D24F53A8000DC70C1 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306254C24F53A8000DC70C1 /* ImageTableViewCell.swift */; };
 		7306255024F53AD200DC70C1 /* CostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306254F24F53AD200DC70C1 /* CostView.swift */; };
@@ -92,6 +93,7 @@
 		6E373A8A24F10DF600BF5678 /* CollectionEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEdge.swift; sourceTree = "<group>"; };
 		6E373A8C24F410D600BF5678 /* RestaurantCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCustomCell.swift; sourceTree = "<group>"; };
 		6EE8C08624F6654400A55413 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleRestaurantCustomCell.swift; sourceTree = "<group>"; };
 		7306254924F53A5E00DC70C1 /* NilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilCell.swift; sourceTree = "<group>"; };
 		7306254C24F53A8000DC70C1 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		7306254F24F53AD200DC70C1 /* CostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				6E373A8824F105C400BF5678 /* CategoryCustomCell.swift */,
 				6E373A8C24F410D600BF5678 /* RestaurantCustomCell.swift */,
+				6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */,
 				6EE8C08624F6654400A55413 /* PaddingLabel.swift */,
 			);
 			path = Custom;
@@ -621,15 +624,13 @@
 				D3E5F78024EAAFC6001BB6B2 /* Sources */,
 				D3E5F78124EAAFC6001BB6B2 /* Frameworks */,
 				D3E5F78224EAAFC6001BB6B2 /* Resources */,
-				1A7795CF5ECE3DFD9DFD5B36 /* [CP] Embed Pods Frameworks */,
+				BFB8B7C77B2E9A7D5E59663A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = YogiYoCloneIOS;
-			packageProductDependencies = (
-			);
 			productName = YogiYoCloneIOS;
 			productReference = D3E5F78424EAAFC6001BB6B2 /* YogiYoCloneIOS.app */;
 			productType = "com.apple.product-type.application";
@@ -658,8 +659,6 @@
 				Base,
 			);
 			mainGroup = D3E5F77B24EAAFC6001BB6B2;
-			packageReferences = (
-			);
 			productRefGroup = D3E5F78524EAAFC6001BB6B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -683,23 +682,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A7795CF5ECE3DFD9DFD5B36 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BBF023B12A0EA314382A265C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -720,6 +702,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFB8B7C77B2E9A7D5E59663A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -769,6 +768,7 @@
 				D33EDF2B24F281E90033330E /* BottomListCell.swift in Sources */,
 				D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
+				6EE8C08924F8FFB000A55413 /* TripleRestaurantCustomCell.swift in Sources */,
 				DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */,
 				D392C64B24F273D400210829 /* WalletCell.swift in Sources */,
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
@@ -942,7 +942,7 @@
 				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RA99PDU87Z;
+				DEVELOPMENT_TEAM = 3799SNND63;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -964,7 +964,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+
 				DEVELOPMENT_TEAM = QL936YF39M;
+
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 struct CollectionDesign {
-    static let CateLineCount: CGFloat = 2
+    static let cateLineCount: CGFloat = 2
+    static let tripleLineCount: CGFloat = 3
     
     static let padding: CGFloat = 15
     static let edge = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
