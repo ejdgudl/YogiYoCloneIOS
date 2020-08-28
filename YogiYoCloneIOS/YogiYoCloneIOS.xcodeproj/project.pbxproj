@@ -64,6 +64,7 @@
 		D392C64B24F273D400210829 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D392C64A24F273D400210829 /* WalletCell.swift */; };
 		D3969B5A24F2660C0093ACE7 /* ConfigureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */; };
 		D3A27B9124F9564F006FCE70 /* SmallBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */; };
+		D3A27B9324F95C1F006FCE70 /* ObserveKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9224F95C1F006FCE70 /* ObserveKey.swift */; };
 		D3B0636224F7FDE500FF37BA /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636124F7FDE500FF37BA /* TextField.swift */; };
 		D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */; };
 		D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */; };
@@ -151,6 +152,7 @@
 		D392C64A24F273D400210829 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureVC.swift; sourceTree = "<group>"; };
 		D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBannerCell.swift; sourceTree = "<group>"; };
+		D3A27B9224F95C1F006FCE70 /* ObserveKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveKey.swift; sourceTree = "<group>"; };
 		D3B0636124F7FDE500FF37BA /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCodeButton.swift; sourceTree = "<group>"; };
 		D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTitleLabel.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				D32F4F2D24F128DE00375DB2 /* SegmentedExtension.swift */,
 				D371D17424F62D9600EB1D2A /* ButtonExtension.swift */,
 				D37DC88C24F7EA0E00EFD6A0 /* TextFieldExtension.swift */,
+				D3A27B9224F95C1F006FCE70 /* ObserveKey.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */,
 				D371D16D24F613CC00EB1D2A /* LogoImageView.swift in Sources */,
 				6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */,
+				D3A27B9324F95C1F006FCE70 /* ObserveKey.swift in Sources */,
 				D303B41924F17C04001701F0 /* FooterView.swift in Sources */,
 				739A42CF24F63A0400A51BE0 /* CancelBt.swift in Sources */,
 				D3A27B9124F9564F006FCE70 /* SmallBannerCell.swift in Sources */,

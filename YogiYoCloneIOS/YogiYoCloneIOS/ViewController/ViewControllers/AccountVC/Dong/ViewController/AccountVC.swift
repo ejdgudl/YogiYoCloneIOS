@@ -44,6 +44,13 @@ class AccountVC: UIViewController {
         present(nav, animated: true)
     }
     
+    @objc private func presentLoggedAccountVC() {
+        let loggedAccountVC = LoggedAccountVC()
+        let nav = UINavigationController(rootViewController: loggedAccountVC)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: false)
+    }
+    
     // MARK: Helpers
     private func configureNavi() {
         navigationController?.navigationBar.tintColor = .black
@@ -63,6 +70,7 @@ class AccountVC: UIViewController {
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(BannerCell.self, forCellReuseIdentifier: BannerCell.cellID)
         tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: name, object: nil)
     }
     
     // MARK: ConfigureViews
@@ -74,6 +82,10 @@ class AccountVC: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
