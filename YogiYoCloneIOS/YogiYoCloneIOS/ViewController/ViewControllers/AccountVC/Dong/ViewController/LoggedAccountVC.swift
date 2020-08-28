@@ -61,6 +61,7 @@ class LoggedAccountVC: UIViewController {
         
         tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.cellID)
         tableView.register(BenefitCell.self, forCellReuseIdentifier: BenefitCell.cellID)
+        tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -83,8 +84,8 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
             return 90
         case 1:
             return 48
-//        case 2:
-//            return 85
+        case 2:
+            return 85
 //        case 3:
 //            return 60
 //        default:
@@ -99,7 +100,7 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,9 +111,12 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.cellID, for: indexPath) as? BenefitCell else { return UITableViewCell() }
             return cell
-//        case 2:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerCell.cellID, for: indexPath) as? BannerCell else { return UITableViewCell() }
-//            return cell
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletCell.cellID, for: indexPath) as? WalletCell else { return UITableViewCell() }
+                cell.myCouponButton.setTitle("쿠폰함\n3장", for: .normal)
+            cell.myPointButton.setTitle("포인트\n0원", for: .normal)
+            cell.myReviewButton.setTitle("리뷰관리\n0건", for: .normal)
+            return cell
 //        case 3:
 //            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
 //            cell.titleLabel.text = "요기서 1초 결제 관리"

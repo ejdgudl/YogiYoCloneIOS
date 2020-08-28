@@ -32,12 +32,17 @@ class BenefitCell: UITableViewCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.setTitle("회원 혜택 보기  ", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.textColor = .red
+        button.setTitleColor(.red, for: .normal)
         button.imageView?.tintColor = .black
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.imageToRight()
         return button
+    }()
+    
+    private let deviderView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
     }()
     
     // MARK: Init
@@ -61,7 +66,7 @@ class BenefitCell: UITableViewCell {
         backgroundColor = .white
         
         addSubview(redDotView)
-        [redDotView, subtitleLabel, goToUserBenefitButton].forEach {
+        [redDotView, subtitleLabel, goToUserBenefitButton, deviderView].forEach {
             addSubview($0)
         }
         
@@ -79,6 +84,11 @@ class BenefitCell: UITableViewCell {
         goToUserBenefitButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(15)
+        }
+        
+        deviderView.snp.makeConstraints { (make) in
+            make.height.equalTo(0.5)
+            make.top.width.equalToSuperview()
         }
     }
 }

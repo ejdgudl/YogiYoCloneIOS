@@ -13,30 +13,27 @@ class WalletCell: UITableViewCell {
     // MARK: Properties
     static let cellID = "WalletCellID"
     
-    private let myCouponButton: UIButton = {
+    var myCouponButton: UIButton = {
         let button = UIButton()
-        button.setTitle("쿠폰함\n-",
-            for: .normal)
+        button.setTitle("쿠폰함\n-",for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.setTitleColor(.black, for: .normal)
         return button
     }()
     
-    private let myPointButton: UIButton = {
+    var myPointButton: UIButton = {
         let button = UIButton()
-        button.setTitle("포인트\n-",
-            for: .normal)
+        button.setTitle("포인트\n-",for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.setTitleColor(.black, for: .normal)
         return button
     }()
     
-    private let myReviewButton: UIButton = {
+    var myReviewButton: UIButton = {
         let button = UIButton()
-        button.setTitle("리뷰관리\n0건",
-            for: .normal)
+        button.setTitle("리뷰관리\n0건",for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.setTitleColor(.black, for: .normal)

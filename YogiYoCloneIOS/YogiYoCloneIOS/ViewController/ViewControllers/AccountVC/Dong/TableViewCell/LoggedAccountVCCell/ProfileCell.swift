@@ -84,7 +84,7 @@ class ProfileCell: UITableViewCell {
         }
         
         goToProfileEditButton.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().inset(15)
+            make.right.equalToSuperview().inset(4)
             make.centerY.equalToSuperview()
             make.width.height.equalTo(35)
         }
