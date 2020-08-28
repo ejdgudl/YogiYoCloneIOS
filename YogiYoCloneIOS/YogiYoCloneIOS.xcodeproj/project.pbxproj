@@ -63,6 +63,7 @@
 		D3847ECE24F9406F00C34792 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3847ECD24F9406F00C34792 /* ProfileCell.swift */; };
 		D392C64B24F273D400210829 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D392C64A24F273D400210829 /* WalletCell.swift */; };
 		D3969B5A24F2660C0093ACE7 /* ConfigureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */; };
+		D3A27B9124F9564F006FCE70 /* SmallBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */; };
 		D3B0636224F7FDE500FF37BA /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636124F7FDE500FF37BA /* TextField.swift */; };
 		D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */; };
 		D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */; };
@@ -149,6 +150,7 @@
 		D3847ECD24F9406F00C34792 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		D392C64A24F273D400210829 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		D3969B5924F2660C0093ACE7 /* ConfigureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureVC.swift; sourceTree = "<group>"; };
+		D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBannerCell.swift; sourceTree = "<group>"; };
 		D3B0636124F7FDE500FF37BA /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCodeButton.swift; sourceTree = "<group>"; };
 		D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTitleLabel.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 			children = (
 				D3847ECD24F9406F00C34792 /* ProfileCell.swift */,
 				D3E6EC4924F94560005C4B32 /* BenefitCell.swift */,
+				D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */,
 			);
 			path = LoggedAccountVCCell;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */,
 				D303B41924F17C04001701F0 /* FooterView.swift in Sources */,
 				739A42CF24F63A0400A51BE0 /* CancelBt.swift in Sources */,
+				D3A27B9124F9564F006FCE70 /* SmallBannerCell.swift in Sources */,
 				7306256324F53CA800DC70C1 /* OptionTableViewCell.swift in Sources */,
 				D307AAE124F268E400225E6A /* SignCell.swift in Sources */,
 			);

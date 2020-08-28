@@ -62,6 +62,8 @@ class LoggedAccountVC: UIViewController {
         tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.cellID)
         tableView.register(BenefitCell.self, forCellReuseIdentifier: BenefitCell.cellID)
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
+        tableView.register(SmallBannerCell.self, forCellReuseIdentifier: SmallBannerCell.cellID)
+        tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -86,12 +88,10 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
             return 48
         case 2:
             return 85
-//        case 3:
-//            return 60
-//        default:
-//            return 50
+        case 3:
+            return 70
         default:
-            return CGFloat()
+            return 50
         }
     }
     
@@ -100,7 +100,7 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,23 +117,26 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
             cell.myPointButton.setTitle("포인트\n0원", for: .normal)
             cell.myReviewButton.setTitle("리뷰관리\n0건", for: .normal)
             return cell
-//        case 3:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
-//            cell.titleLabel.text = "요기서 1초 결제 관리"
-//            return cell
-//        case 4:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
-//            cell.titleLabel.text = "이벤트 및 공지사항"
-//            cell.newImageView.backgroundColor = .red
-//            return cell
-//        case 5:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
-//            cell.titleLabel.text = "요기요 안내"
-//            return cell
-//        case 6:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
-//            cell.titleLabel.text = "고객만족센터"
-//            return cell
+        case 3:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SmallBannerCell.cellID, for: indexPath) as? SmallBannerCell else { return UITableViewCell() }
+            return cell
+        case 4:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "요기서 1초 결제 관리"
+            return cell
+        case 5:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "이벤트 및 공지사항"
+            cell.newImageView.backgroundColor = .red
+            return cell
+        case 6:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "요기요 안내"
+            return cell
+        case 7:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
+            cell.titleLabel.text = "고객만족센터"
+            return cell
         default:
             return UITableViewCell()
         }
