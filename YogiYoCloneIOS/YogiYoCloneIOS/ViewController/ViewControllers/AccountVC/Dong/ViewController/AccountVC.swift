@@ -46,9 +46,7 @@ class AccountVC: UIViewController {
     
     @objc private func presentLoggedAccountVC() {
         let loggedAccountVC = LoggedAccountVC()
-        let nav = UINavigationController(rootViewController: loggedAccountVC)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: false)
+        navigationController?.pushViewController(loggedAccountVC, animated: true)
     }
     
     // MARK: Helpers
