@@ -39,11 +39,10 @@ class ShareVC: UIViewController {
       print("윌")
     })
   }
-  
+  //MARK: -UI
   func setUI(){
     view.addSubview(cancelButton)
     view.addSubview(clipButton)
-    view.addSubview(clipLable)
   }
   
    let cancelButton : UIButton = {
@@ -59,17 +58,6 @@ class ShareVC: UIViewController {
     b.adjustsImageWhenHighlighted = false 
     b.contentMode = .scaleAspectFit
     return b
-  }()
-  let clipLable : UILabel = {
-    let l = UILabel()
-    l.backgroundColor = .black
-    l.textColor = .white
-    l.text = "URL복사가 완료되었습니다."
-    l.layer.borderWidth = 1
-    l.layer.borderColor = ColorPiker.customSystem.cgColor
-    l.layer.cornerRadius = 15
-    l.alpha = 0
-    return l
   }()
   
   
@@ -88,10 +76,12 @@ class ShareVC: UIViewController {
     UIPasteboard.general.string = "https://apps.apple.com/us/app/kakaotalk/id362057947"
     print("클립이 복사되었습니다.")
     cancelAnimation()
+    
+    if let navi = self.presentingViewController as? UINavigationController, let vc = navi.viewControllers[0] as? DetailMenuVC {
+          vc.clipAnimation()
+    }
     dismiss(animated: true, completion: nil)
   }
-  
-  
   
   func cancelAnimation(){
      UIView.animate(withDuration: 0.4, animations: {
@@ -101,8 +91,7 @@ class ShareVC: UIViewController {
   
   //MARK: -constrain
   func constrain(){
-    
-    [cancelButton,clipButton,clipLable].forEach{
+    [cancelButton,clipButton].forEach{
       $0.translatesAutoresizingMaskIntoConstraints = false
     }
    
@@ -116,28 +105,7 @@ class ShareVC: UIViewController {
       clipButton.widthAnchor.constraint(equalToConstant: 120),
       clipButton.heightAnchor.constraint(equalToConstant: 120),
       clipButton.centerYAnchor.constraint(equalTo: shareView.centerYAnchor),
-      
-      clipLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      clipLable.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
     ])
   }
-  
-  func clipAnimation(){
-    UIView.animate(withDuration: 0.7, animations: {
-      self.clipLable.alpha = 1
-    })
-  }
-  
 }
-/*
-extension CATransition {
-    func fadeTransition() -> CATransition {
-        let transition = CATransition()
-        transition.duration = 0.4
-        transition.type = CATransitionType.fade
-        transition.subtype = CATransitionSubtype.fromRight
 
-        return transition
-    }
-}
-*/

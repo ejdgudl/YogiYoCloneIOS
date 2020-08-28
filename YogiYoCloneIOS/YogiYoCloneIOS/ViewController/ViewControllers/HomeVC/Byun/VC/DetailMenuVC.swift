@@ -9,6 +9,20 @@ import UIKit
 
 class DetailMenuVC: UIViewController {
   
+  let clipLable : UILabel = {
+    let l = UILabel()
+    l.backgroundColor = .black
+    l.textColor = .white
+    l.text = "URL복사가 완료되었습니다."
+    l.textAlignment = .center
+    l.layer.borderWidth = 3
+    l.layer.borderColor = ColorPiker.customSystem.cgColor
+    l.layer.cornerRadius = 15
+    l.layer.masksToBounds = true
+    l.alpha = 0
+    return l
+  }()
+  
   let costView = CostView()
   let tableView = UITableView()
   
@@ -20,15 +34,34 @@ class DetailMenuVC: UIViewController {
     
     setTableView()
     costViewFrame()
+    clipboradMessag()
     setNaviBar()
+
     
     self.view.layoutIfNeeded()
     enum FeedItem {
       //  case status(Status)
       //  case photo(Photo)
     }
-    
   }
+  
+  func clipboradMessag(){
+    clipLable.frame = CGRect(x: 40, y: 700, width: view.frame.width - 80, height: 44)
+    view.addSubview(clipLable)
+  }
+  
+  func clipAnimation(){
+    UIView.animate(withDuration: 1, animations: {
+      self.clipLable.alpha = 1
+      self.clipAnimationLess()
+    })
+  }
+  func clipAnimationLess(){
+    UIView.animate(withDuration: 0.7, animations: {
+      self.clipLable.alpha = 0
+    })
+  }
+  
   
   func costViewFrame(){
     costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
@@ -50,21 +83,25 @@ class DetailMenuVC: UIViewController {
     tableView.backgroundColor = .white
     tableView.separatorStyle = .none
     view.addSubview(tableView)
+    register()
     
-    tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")//0
-    tableView.register(SaleTableViewCell.self, forCellReuseIdentifier: "SaleTableViewCell")//1
-    tableView.register(NameTableViewCell.self, forCellReuseIdentifier: "NameTableViewCell")//2
-    tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailTableViewCell")//3
-    tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: "ReviewTableViewCell")//4
-    tableView.register(CostTableViewCell.self, forCellReuseIdentifier: "CostTableViewCell")//5
-    tableView.register(ListMenuTableViewCell.self, forCellReuseIdentifier: "ListMenuTableViewCell")//5-1
-    tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")//6
-    tableView.register(ListOptionTableViewCell.self, forCellReuseIdentifier: "ListOptionTableViewCell")//6-1
-    tableView.register(OptionTableViewCell.self, forCellReuseIdentifier: "OptionTableViewCell")//7
-    tableView.register(BuyTableViewCell.self, forCellReuseIdentifier: "BuyTableViewCell")//8
-    tableView.register(BuyLastTableViewCell.self, forCellReuseIdentifier: "BuyLastTableViewCell")//8-1
-    tableView.register(NilCell.self, forCellReuseIdentifier: "NilCell")
   }
+    func register(){
+      tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")//0
+      tableView.register(SaleTableViewCell.self, forCellReuseIdentifier: "SaleTableViewCell")//1
+      tableView.register(NameTableViewCell.self, forCellReuseIdentifier: "NameTableViewCell")//2
+      tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailTableViewCell")//3
+      tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: "ReviewTableViewCell")//4
+      tableView.register(CostTableViewCell.self, forCellReuseIdentifier: "CostTableViewCell")//5
+      tableView.register(ListMenuTableViewCell.self, forCellReuseIdentifier: "ListMenuTableViewCell")//5-1
+      tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")//6
+      tableView.register(ListOptionTableViewCell.self, forCellReuseIdentifier: "ListOptionTableViewCell")//6-1
+      tableView.register(OptionTableViewCell.self, forCellReuseIdentifier: "OptionTableViewCell")//7
+      tableView.register(BuyTableViewCell.self, forCellReuseIdentifier: "BuyTableViewCell")//8
+      tableView.register(BuyLastTableViewCell.self, forCellReuseIdentifier: "BuyLastTableViewCell")//8-1
+      tableView.register(NilCell.self, forCellReuseIdentifier: "NilCell")
+    }
+    
   
   //MARK: -navigation
   
@@ -271,7 +308,7 @@ extension DetailMenuVC: UIScrollViewDelegate{
       scrollView.contentOffset.y = 1
     }
     if scrollView.contentOffset.y >= 260 {
-      title = "메뉴명"
+      title = "순살 새우치킨 반반(콤보)우이우이"
       self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
       [leftButton,rightButton].forEach{
         $0.tintColor = .black
@@ -283,9 +320,6 @@ extension DetailMenuVC: UIScrollViewDelegate{
     }
       print(scrollView.contentOffset.y)
     }
-
-
-
 }
 
 
