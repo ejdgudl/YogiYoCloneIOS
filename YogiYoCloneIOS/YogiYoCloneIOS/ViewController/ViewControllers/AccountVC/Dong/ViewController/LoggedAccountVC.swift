@@ -25,6 +25,8 @@ class LoggedAccountVC: UIViewController {
         return tableView
     }()
     
+    let profileEditVC = ProfileEditVC()
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +76,10 @@ class LoggedAccountVC: UIViewController {
                 self.user = user
             }
         }
+    }
+    
+    @objc private func goToEditVC() {
+        navigationController?.pushViewController(profileEditVC, animated: true)
     }
     
     // MARK: Configure
@@ -130,6 +136,7 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.cellID, for: indexPath) as? ProfileCell else { return UITableViewCell() }
             cell.userName.text = self.user?.nickName
+            cell.goToProfileEditButton.addTarget(self, action: #selector(goToEditVC), for: .touchUpInside)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.cellID, for: indexPath) as? BenefitCell else { return UITableViewCell() }
@@ -162,6 +169,12 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            navigationController?.pushViewController(profileEditVC, animated: true)
         }
     }
 }

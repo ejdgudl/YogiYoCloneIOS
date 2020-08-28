@@ -34,7 +34,7 @@ class ProfileCell: UITableViewCell {
         return label
     }()
     
-    private let goToProfileEditButton: UIButton = {
+    let goToProfileEditButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.contentMode = .scaleAspectFit

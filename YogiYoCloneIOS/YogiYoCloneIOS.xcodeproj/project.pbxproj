@@ -66,6 +66,7 @@
 		D3A27B9124F9564F006FCE70 /* SmallBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */; };
 		D3A27B9324F95C1F006FCE70 /* ObserveKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9224F95C1F006FCE70 /* ObserveKey.swift */; };
 		D3A27B9524F97B8D006FCE70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9424F97B8D006FCE70 /* User.swift */; };
+		D3A27B9724F98324006FCE70 /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A27B9624F98324006FCE70 /* ProfileEditVC.swift */; };
 		D3B0636224F7FDE500FF37BA /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636124F7FDE500FF37BA /* TextField.swift */; };
 		D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */; };
 		D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */; };
@@ -155,6 +156,7 @@
 		D3A27B9024F9564F006FCE70 /* SmallBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBannerCell.swift; sourceTree = "<group>"; };
 		D3A27B9224F95C1F006FCE70 /* ObserveKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveKey.swift; sourceTree = "<group>"; };
 		D3A27B9424F97B8D006FCE70 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D3A27B9624F98324006FCE70 /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
 		D3B0636124F7FDE500FF37BA /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D3B0636324F7FE6100FF37BA /* GetCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCodeButton.swift; sourceTree = "<group>"; };
 		D3B0636524F7FEB800FF37BA /* HelpTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTitleLabel.swift; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 				D368064424F34F5500A7E59D /* LogVC.swift */,
 				D371D16924F60CA900EB1D2A /* AcceptVC.swift */,
 				D37DC88924F7E02C00EFD6A0 /* PhoneAcceptVC.swift */,
+				D3A27B9624F98324006FCE70 /* ProfileEditVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 			files = (
 				D33768BF24ECC55C00E0C27A /* HomeVC.swift in Sources */,
 				D33768C524ECC83300E0C27A /* HistoryVC.swift in Sources */,
+				D3A27B9724F98324006FCE70 /* ProfileEditVC.swift in Sources */,
 				D371D16A24F60CA900EB1D2A /* AcceptVC.swift in Sources */,
 				6E373A8924F105C400BF5678 /* CategoryCustomCell.swift in Sources */,
 				739A42CA24F5F7F300A51BE0 /* ShareView.swift in Sources */,
