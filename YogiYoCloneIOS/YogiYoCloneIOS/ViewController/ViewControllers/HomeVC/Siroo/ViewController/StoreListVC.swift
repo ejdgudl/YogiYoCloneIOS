@@ -106,15 +106,31 @@ extension StoreListVC : UITableViewDelegate, UITableViewDataSource {
             headerView.contentView.backgroundColor = .white
             headerView.backgroundView?.backgroundColor = .white
             headerView.textLabel?.textColor = .black
+//            headerView.snp.makeConstraints { (make) in
+//                make.top.equalTo(headerView.snp.top).offset(100)
+//            }
         }
     }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerFrame = tableView.frame
+//
+//        let title = UILabel()
+//        title.font = UIFont(name: FontModel.customSemibold, size: 15)
+//        title.text = self.tableView(tableView, titleForHeaderInSection: "슈퍼레드위크")
+//        title.textColor = .red
+//
+//        let headerView : UIView = UIView(frame: CGRect(x: 0, y: 5, width: headerFrame.size.width, height: headerFrame.size.height))
+//
+//        return headerView
+//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
