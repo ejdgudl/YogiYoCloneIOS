@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>553760411964-1h03gjeer6p6ctqefntarr8hb1k5gla7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.553760411964-1h03gjeer6p6ctqefntarr8hb1k5gla7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC1Rs31Q61AVTv0_K1OYANPJOlfQB5pz_k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>553760411964</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kr.YogiYoCloneTeamIOS</string>
+	<key>PROJECT_ID</key>
+	<string>yogiyocloneios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yogiyocloneios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:553760411964:ios:a7f2acf3f8e8c24a650e39</string>
+	<key>DATABASE_URL</key>
+	<string>https://yogiyocloneios.firebaseio.com</string>
+</dict>
+</plist>

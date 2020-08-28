@@ -110,6 +110,7 @@ class AcceptVC: UIViewController {
         button.setTitle("다음", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         button.backgroundColor = .red
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -127,14 +128,42 @@ class AcceptVC: UIViewController {
     }
 
     @objc private func didTapCheckBoxButton(_ sender: UIButton) {
-        switch sender.isSelected {
-        case false:
-            sender.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
-            sender.isSelected = true
-        case true:
-            sender.setImage(UIImage(named: "EmptyBox"), for: .normal)
-            sender.isSelected = false
+        let elements = [titleCheckBoxButton, firstCheckBoxButton, secondCheckBoxButton, thirdCheckBoxButton, fourthCheckBoxButton, fiffthCheckBoxButton]
+        if sender == titleCheckBoxButton {
+            switch sender.isSelected {
+            case false:
+                elements.forEach {
+                    $0.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
+                    $0.isSelected = true
+                }
+            case true:
+                elements.forEach {
+                    $0.setImage(UIImage(named: "EmptyBox"), for: .normal)
+                    $0.isSelected = false
+                }
+            }
+        } else {
+            if titleCheckBoxButton.isSelected {
+                titleCheckBoxButton.setImage(UIImage(named: "EmptyBox"), for: .normal)
+                titleCheckBoxButton.isSelected = false
+            } else {
+                titleCheckBoxButton.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
+                titleCheckBoxButton.isSelected = true
+            }
+            switch sender.isSelected {
+            case false:
+                sender.setImage(UIImage(named: "NonEmptyBox"), for: .normal)
+                sender.isSelected = true
+            case true:
+                sender.setImage(UIImage(named: "EmptyBox"), for: .normal)
+                sender.isSelected = false
+            }
         }
+    }
+    
+    @objc private func didTapNextButton() {
+        let phoneAcceptVC = PhoneAcceptVC()
+        navigationController?.pushViewController(phoneAcceptVC, animated: true)
     }
     
     // MARK: Helpers
