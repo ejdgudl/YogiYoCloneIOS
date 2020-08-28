@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Google
+ * Copyright 2017 Google
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,32 @@
  * limitations under the License.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX
+
 #import <Foundation/Foundation.h>
 
-/** The list of targets supported by the shared transport infrastructure. If adding a new target,
- * please use the previous value +1.
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ *  @brief The APNs token type for the app.
  */
-typedef NS_ENUM(NSInteger, GDTCORTarget) {
+typedef NS_ENUM(NSInteger, FIRAuthAPNSTokenType) {
 
-  /** A target only used in testing. */
-  kGDTCORTargetTest = 999,
-
-  /** The CCT target. */
-  kGDTCORTargetCCT = 1000,
-
-  /** The FLL target. */
-  kGDTCORTargetFLL = 1001,
-
-  /** The CSH target. The CSH target is a special-purpose backend. Please do not use it without
-   * permission.
+  /** Unknown token type.
+      The actual token type will be detected from the provisioning profile in the app's bundle.
    */
-  kGDTCORTargetCSH = 1002
-};
+  FIRAuthAPNSTokenTypeUnknown,
+
+  /** Sandbox token type.
+   */
+  FIRAuthAPNSTokenTypeSandbox,
+
+  /** Production token type.
+   */
+  FIRAuthAPNSTokenTypeProd,
+} NS_SWIFT_NAME(AuthAPNSTokenType);
+
+NS_ASSUME_NONNULL_END
+
+#endif
