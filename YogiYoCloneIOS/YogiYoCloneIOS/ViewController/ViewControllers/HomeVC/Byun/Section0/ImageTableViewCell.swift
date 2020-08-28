@@ -48,10 +48,8 @@ class ImageTableViewCell: UITableViewCell {
     //Full
     NSLayoutConstraint.activate([
       detailmenuImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-      detailmenuImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      detailmenuImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       detailmenuImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      detailmenuImage.widthAnchor.constraint(equalToConstant: frame.width),
+      detailmenuImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
       detailmenuImage.heightAnchor.constraint(equalToConstant: 280)
     ])
   }

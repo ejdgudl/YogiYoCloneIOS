@@ -17,22 +17,33 @@ class MenuTableViewCell: UITableViewCell {
     l.textColor = .black //ColorPiker.customDarkGray
     return l
   }()
+  let menusubLable: UILabel = {
+    let l = UILabel()
+    l.font = UIFont(name: FontModel.customLight, size: 15)
+    l.text = "(추가선택 가능)"
+    l.textColor = .black
+    return l
+  }()
   
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    contentView.addSubview(menuLable)
+    [menusubLable,menuLable].forEach {
+      contentView.addSubview($0)
+      $0.translatesAutoresizingMaskIntoConstraints = false
+
+    }
     setConstrain()
   }
-  
-  
   func setConstrain(){
-    menuLable.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([
       menuLable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
       menuLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
       menuLable.heightAnchor.constraint(equalToConstant: 30),
+      
+      menusubLable.leadingAnchor.constraint(equalTo: menuLable.trailingAnchor, constant: 4),
+      menusubLable.bottomAnchor.constraint(equalTo: menuLable.bottomAnchor, constant: -4)
     ])
   }
   

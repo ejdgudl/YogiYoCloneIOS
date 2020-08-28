@@ -9,6 +9,7 @@
 import UIKit
 import KakaoSDKCommon
 import KakaoSDKAuth
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,10 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        FirebaseApp.configure()
         KakaoSDKCommon.initSDK(appKey: "4885bdd8a886942a7d87a2767de2b999")
         
         window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = UINavigationController(rootViewController: AcceptVC())
+
 //        window?.rootViewController = LogVC()
         window?.rootViewController = MainTabVC()
         window?.makeKeyAndVisible()
@@ -38,4 +40,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
