@@ -207,14 +207,14 @@
 			path = Section0;
 			sourceTree = "<group>";
 		};
-		7306254E24F53AA400DC70C1 /* Extention */ = {
+		7306254E24F53AA400DC70C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				7306254F24F53AD200DC70C1 /* CostView.swift */,
 				739A42C924F5F7F300A51BE0 /* ShareView.swift */,
 				739A42CE24F63A0300A51BE0 /* CancelBt.swift */,
 			);
-			path = Extention;
+			path = View;
 			sourceTree = "<group>";
 		};
 		7306255924F53BB400DC70C1 /* Section1 */ = {
@@ -410,7 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				739A42CB24F6269300A51BE0 /* VC */,
-				7306254E24F53AA400DC70C1 /* Extention */,
+				7306254E24F53AA400DC70C1 /* View */,
 				7306254924F53A5E00DC70C1 /* NilCell.swift */,
 				7306254B24F53A6800DC70C1 /* Section0 */,
 				7306255924F53BB400DC70C1 /* Section1 */,
@@ -964,7 +964,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RA99PDU87Z;
+				DEVELOPMENT_TEAM = QL936YF39M;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
