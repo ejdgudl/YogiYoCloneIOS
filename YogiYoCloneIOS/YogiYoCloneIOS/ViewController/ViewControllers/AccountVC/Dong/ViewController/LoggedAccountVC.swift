@@ -60,7 +60,7 @@ class LoggedAccountVC: UIViewController {
         tableView.dataSource = self
         
         tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.cellID)
-//        tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)5
+        tableView.register(BenefitCell.self, forCellReuseIdentifier: BenefitCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -81,8 +81,8 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             return 90
-//        case 1:
-//            return 40
+        case 1:
+            return 48
 //        case 2:
 //            return 85
 //        case 3:
@@ -99,7 +99,7 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,9 +107,9 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.cellID, for: indexPath) as? ProfileCell else { return UITableViewCell() }
             return cell
-//        case 1:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletCell.cellID, for: indexPath) as? WalletCell else { return UITableViewCell() }
-//            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.cellID, for: indexPath) as? BenefitCell else { return UITableViewCell() }
+            return cell
 //        case 2:
 //            guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerCell.cellID, for: indexPath) as? BannerCell else { return UITableViewCell() }
 //            return cell
