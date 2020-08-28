@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import KakaoSDKUser
 
 class LoggedAccountVC: UIViewController {
     
     // MARK: Properties
+    var user: User? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray
@@ -24,6 +31,7 @@ class LoggedAccountVC: UIViewController {
         configureNavi()
         configure()
         configureViews()
+        configureUser()
     }
     
     // MARK: @Objc
@@ -52,6 +60,20 @@ class LoggedAccountVC: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(didTapBellButton))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .plain, target: self, action: #selector(didTapconfigButton))
+    }
+    
+    private func configureUser() {
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                guard let nickName = user?.kakaoAccount?.profile?.nickname else { return }
+                let user = User(nickName: nickName)
+                self.user = user
+            }
+        }
     }
     
     // MARK: Configure
@@ -107,6 +129,7 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.cellID, for: indexPath) as? ProfileCell else { return UITableViewCell() }
+            cell.userName.text = self.user?.nickName
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.cellID, for: indexPath) as? BenefitCell else { return UITableViewCell() }

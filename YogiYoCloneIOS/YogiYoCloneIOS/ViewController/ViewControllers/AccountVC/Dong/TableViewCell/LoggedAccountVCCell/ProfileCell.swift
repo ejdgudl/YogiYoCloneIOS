@@ -28,7 +28,7 @@ class ProfileCell: UITableViewCell {
         return label
     }()
     
-    private var userName: UILabel = {
+    var userName: UILabel = {
        let label = UILabel()
         label.text = "유저이름"
         return label
