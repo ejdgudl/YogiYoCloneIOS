@@ -89,7 +89,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         }
     }
     private func setReviewLabel() {
-        reviewLabel.font = UIFont(name: FontModel.customLight, size: 14)
+        reviewLabel.font = UIFont(name: FontModel.customLight, size: 13)
         reviewLabel.textAlignment = .center
         reviewLabel.textColor = .darkGray
         contentView.addSubview(reviewLabel)
@@ -100,7 +100,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         }
     }
     private func setExplainLabel() {
-        explanLabel.font = UIFont(name: FontModel.customLight, size: 14)
+        explanLabel.font = UIFont(name: FontModel.customLight, size: 13)
         explanLabel.textAlignment = .left
         explanLabel.textColor = .gray
         contentView.addSubview(explanLabel)
