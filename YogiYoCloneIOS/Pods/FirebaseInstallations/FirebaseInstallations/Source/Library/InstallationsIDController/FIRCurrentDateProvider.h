@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,14 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if TARGET_OS_IOS
-
 #import <Foundation/Foundation.h>
-
-#import "FIRAuthCredential.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** @class FIRPhoneAuthCredential
-    @brief Implementation of FIRAuthCredential for Phone Auth credentials.
- */
-NS_SWIFT_NAME(PhoneAuthCredential)
-@interface FIRPhoneAuthCredential : FIRAuthCredential <NSSecureCoding>
+/** A block returning current date. */
+typedef NSDate *_Nonnull (^FIRCurrentDateProvider)(void);
 
-/** @fn init
-    @brief This class is not supposed to be instantiated directly.
- */
-- (instancetype)init NS_UNAVAILABLE;
-
-@end
+/** The function returns a `FIRCurrentDateProvider` block that returns a real current date. */
+FIRCurrentDateProvider FIRRealCurrentDateProvider(void);
 
 NS_ASSUME_NONNULL_END
-
-#endif
