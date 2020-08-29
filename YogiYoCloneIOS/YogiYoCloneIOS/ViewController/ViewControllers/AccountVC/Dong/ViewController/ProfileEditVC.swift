@@ -19,6 +19,7 @@ class ProfileEditVC: UIViewController {
     
     private let tableView: UITableView = {
        let tableView = UITableView()
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -52,6 +53,7 @@ class ProfileEditVC: UIViewController {
         tableView.register(PasswordCell.self, forCellReuseIdentifier: PasswordCell.cellID)
         tableView.register(PhoneInfoCell.self, forCellReuseIdentifier: PhoneInfoCell.cellID)
         tableView.register(NickNameCell.self, forCellReuseIdentifier: NickNameCell.cellID)
+        tableView.register(BottomCell.self, forCellReuseIdentifier: BottomCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -68,7 +70,10 @@ class ProfileEditVC: UIViewController {
 extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        65
+        if indexPath.row == 4 {
+            return 100
+        }
+        return 65
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,7 +81,7 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,6 +97,9 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NickNameCell.cellID, for: indexPath) as? NickNameCell else { return UITableViewCell() }
+            return cell
+        case 4:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomCell.cellID, for: indexPath) as? BottomCell else { return UITableViewCell() }
             return cell
         default:
             return UITableViewCell()

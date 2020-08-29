@@ -13,6 +13,12 @@ class PasswordCell: UITableViewCell {
     // MARK: Properties
     static let cellID = "PasswordCellID"
     
+    private let topDeviderView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     var passordTitle: UILabel = {
        let label = UILabel()
         label.text = "비밀번호"
@@ -46,7 +52,7 @@ class PasswordCell: UITableViewCell {
     private func configureViews() {
         backgroundColor = .white
         
-        [passordTitle, passord].forEach {
+        [passordTitle, passord, topDeviderView].forEach {
             addSubview($0)
         }
         
@@ -60,5 +66,9 @@ class PasswordCell: UITableViewCell {
             make.left.equalToSuperview().inset(15)
         }
         
+        topDeviderView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(0.3)
+        }
     }
 }

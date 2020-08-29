@@ -13,6 +13,12 @@ class NickNameCell: UITableViewCell {
     // MARK: Properties
     static let cellID = "NickNameCellID"
     
+    private let topDeviderView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     var nickNameTitle: UILabel = {
        let label = UILabel()
         label.text = "닉네임"
@@ -56,7 +62,7 @@ class NickNameCell: UITableViewCell {
     private func configureViews() {
         backgroundColor = .white
         
-        [nickNameTitle, nickName, changeButton].forEach {
+        [nickNameTitle, nickName, changeButton, topDeviderView].forEach {
             addSubview($0)
         }
         
@@ -75,6 +81,11 @@ class NickNameCell: UITableViewCell {
             make.right.equalToSuperview().inset(15)
             make.height.equalTo(30)
             make.width.equalTo(55)
+        }
+        
+        topDeviderView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(0.3)
         }
     }
 }
