@@ -94,6 +94,7 @@
 		D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */; };
 		D3E6EC4A24F94560005C4B32 /* BenefitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6EC4924F94560005C4B32 /* BenefitCell.swift */; };
 		D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5326524F18FF300C25B58 /* TestModel.swift */; };
+		D3F9EA8E24FA868C0058E501 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9EA8D24FA868C0058E501 /* AlertExtension.swift */; };
 		DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */; };
 		DE21FA7124F55B77004D8A56 /* TotalListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7024F55B77004D8A56 /* TotalListVC.swift */; };
 		DE21FA7424F55BCB004D8A56 /* OderForOnePersonListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7324F55BCB004D8A56 /* OderForOnePersonListVC.swift */; };
@@ -193,6 +194,7 @@
 		D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuItemCell.swift; sourceTree = "<group>"; };
 		D3E6EC4924F94560005C4B32 /* BenefitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitCell.swift; sourceTree = "<group>"; };
 		D3F5326524F18FF300C25B58 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		D3F9EA8D24FA868C0058E501 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryView.swift; sourceTree = "<group>"; };
 		DE21FA7024F55B77004D8A56 /* TotalListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalListVC.swift; sourceTree = "<group>"; };
 		DE21FA7324F55BCB004D8A56 /* OderForOnePersonListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OderForOnePersonListVC.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Siroo/ViewController/OderForOnePersonListVC.swift; sourceTree = SOURCE_ROOT; };
@@ -576,6 +578,7 @@
 				D371D17424F62D9600EB1D2A /* ButtonExtension.swift */,
 				D37DC88C24F7EA0E00EFD6A0 /* TextFieldExtension.swift */,
 				D3A27B9224F95C1F006FCE70 /* ObserveKey.swift */,
+				D3F9EA8D24FA868C0058E501 /* AlertExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				DE21FA7624F55BF4004D8A56 /* ChickenListVC.swift in Sources */,
 				7306256524F53CC200DC70C1 /* ListOptionTableViewCell.swift in Sources */,
 				D32F4F2E24F128DE00375DB2 /* SegmentedExtension.swift in Sources */,
+				D3F9EA8E24FA868C0058E501 /* AlertExtension.swift in Sources */,
 				D37C9DA624FA5C6E00A7C9F2 /* NickNameCell.swift in Sources */,
 				D3847ECE24F9406F00C34792 /* ProfileCell.swift in Sources */,
 				D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */,
