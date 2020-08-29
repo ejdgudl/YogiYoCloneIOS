@@ -90,7 +90,11 @@ class PhoneAcceptVC: UIViewController {
     // 코드의 정확성 여부 조건 만들지 못함(메시지로 수신한 코드를 긁어오는 방법을 모름)
     @objc private func didTapFinishButton() {
         guard codeTextField.text?.count == 6 else { return }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            guard let phoneNum = self.phoneNumTextField.text else { return }
+            let userPhoneNum: [String: String] = ["phoneNum": phoneNum]
+            NotificationCenter.default.post(name: name, object: nil, userInfo: userPhoneNum)
+        }
     }
     
     // MARK: Helpers
