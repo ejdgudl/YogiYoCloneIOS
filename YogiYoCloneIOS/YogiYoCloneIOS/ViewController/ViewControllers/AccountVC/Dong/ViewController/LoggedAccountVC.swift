@@ -86,6 +86,11 @@ class LoggedAccountVC: UIViewController {
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
     
+    @objc private func dissmissWhenLogout() {
+        self.user = nil
+        navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: Configure
     private func configure() {
         tableView.delegate = self
@@ -96,6 +101,8 @@ class LoggedAccountVC: UIViewController {
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(SmallBannerCell.self, forCellReuseIdentifier: SmallBannerCell.cellID)
         tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dissmissWhenLogout), name: logoutObserveName, object: nil)
     }
     
     // MARK: ConfigureViews
@@ -107,6 +114,10 @@ class LoggedAccountVC: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

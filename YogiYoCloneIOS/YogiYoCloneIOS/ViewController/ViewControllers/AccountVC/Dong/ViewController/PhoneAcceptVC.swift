@@ -93,7 +93,7 @@ class PhoneAcceptVC: UIViewController {
         dismiss(animated: true) {
             guard let phoneNum = self.phoneNumTextField.text else { return }
             let userPhoneNum: [String: String] = ["phoneNum": phoneNum]
-            NotificationCenter.default.post(name: name, object: nil, userInfo: userPhoneNum)
+            NotificationCenter.default.post(name: presentLoggedAccountVCObserveName, object: nil, userInfo: userPhoneNum)
         }
     }
     

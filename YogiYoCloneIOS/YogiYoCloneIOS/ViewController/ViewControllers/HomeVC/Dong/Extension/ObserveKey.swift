@@ -8,4 +8,5 @@
 
 import Foundation
 
-let name = Notification.Name(rawValue: "presentLoggedAccountVC")
+let presentLoggedAccountVCObserveName = Notification.Name(rawValue: "presentLoggedAccountVC")
+let logoutObserveName = Notification.Name(rawValue: "logout")

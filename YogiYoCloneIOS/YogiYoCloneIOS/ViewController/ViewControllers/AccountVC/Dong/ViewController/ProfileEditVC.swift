@@ -40,6 +40,8 @@ class ProfileEditVC: UIViewController {
     @objc private func didTapLogoutButton() {
         UserApi.shared.logout { (_) in
             print("Kakao Logout")
+            NotificationCenter.default.post(name: logoutObserveName, object: nil, userInfo: nil)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
