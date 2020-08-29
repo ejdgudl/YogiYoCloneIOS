@@ -219,6 +219,86 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
+    private let sixthCollectionHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    private let sixthHeaderTitle: UILabel = {
+        let label = UILabel()
+        label.text = "최근 7일 동안 리뷰가 많아요!"
+        label.font = UIFont(name: FontModel.customSemibold, size: 20)
+        return label
+    }()
+    private let sixthQueryButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "testQ"), for: .normal)
+        return button
+    }()
+    private lazy var sixthCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        return collectionView
+    }()
+    
+    private let seventhCollectionHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    private let seventhHeaderTitle: UILabel = {
+        let label = UILabel()
+        label.text = "요기요플러스 맛집!"
+        label.font = UIFont(name: FontModel.customSemibold, size: 20)
+        return label
+    }()
+    private let seventhQueryButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("더보기 〉", for: .normal)
+        button.titleLabel?.textColor = .darkGray
+        return button
+    }()
+    private lazy var seventhCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(RestaurantPlusCustomCell.self, forCellWithReuseIdentifier: RestaurantPlusCustomCell.identifier)
+        return collectionView
+    }()
+    
+    private let eighthCollectionHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    private let eighthHeaderTitle: UILabel = {
+        let label = UILabel()
+        label.text = "가장 빨리 배달돼요~"
+        label.font = UIFont(name: FontModel.customSemibold, size: 20)
+        return label
+    }()
+    private lazy var eighthCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        return collectionView
+    }()
+    
     private let testCategory = ["전체보기", "1인분주문", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트", "족발/보쌈", "일식/돈가스"]
     
     override func viewDidAppear(_ animated: Bool) {
@@ -226,7 +306,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .systemBackground
         
         motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: fifthCollection.frame.maxY)
+                                              height: eighthCollection.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
                                                  height: topBannerView.frame.height)
@@ -290,6 +370,20 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.addSubview(fifthCollectionHeader)
         fifthCollectionHeader.addSubview(fifthHeaderTitle)
         motherScrollView.addSubview(fifthCollection)
+        
+        motherScrollView.addSubview(sixthCollectionHeader)
+        sixthCollectionHeader.addSubview(sixthHeaderTitle)
+        sixthCollectionHeader.addSubview(sixthQueryButton)
+        motherScrollView.addSubview(sixthCollection)
+        
+        motherScrollView.addSubview(seventhCollectionHeader)
+        seventhCollectionHeader.addSubview(seventhHeaderTitle)
+        seventhCollectionHeader.addSubview(seventhQueryButton)
+        motherScrollView.addSubview(seventhCollection)
+        
+        motherScrollView.addSubview(eighthCollectionHeader)
+        eighthCollectionHeader.addSubview(eighthHeaderTitle)
+        motherScrollView.addSubview(eighthCollection)
     }
     
     // MARK: Auto Layout
@@ -414,6 +508,59 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(fifthCollection.snp.width).multipliedBy(0.63)
         }
+        
+        sixthCollectionHeader.snp.makeConstraints {
+            $0.top.equalTo(fifthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(sixthCollection.snp.width).multipliedBy(0.15)
+        }
+        sixthHeaderTitle.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
+        }
+        sixthQueryButton.snp.makeConstraints {
+            $0.centerY.equalTo(sixthHeaderTitle)
+            $0.leading.equalTo(sixthHeaderTitle.snp.trailing).offset(2)
+        }
+        sixthCollection.snp.makeConstraints {
+            $0.top.equalTo(sixthCollectionHeader.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(sixthCollection.snp.width).multipliedBy(0.63)
+        }
+        
+        seventhCollectionHeader.snp.makeConstraints {
+            $0.top.equalTo(sixthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.15)
+        }
+        seventhHeaderTitle.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
+        }
+        seventhQueryButton.snp.makeConstraints {
+            $0.centerY.equalTo(seventhHeaderTitle)
+            $0.trailing.equalToSuperview().inset(CollectionDesign.padding)
+        }
+        seventhCollection.snp.makeConstraints {
+            $0.top.equalTo(seventhCollectionHeader.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.63)
+        }
+        
+        eighthCollectionHeader.snp.makeConstraints {
+            $0.top.equalTo(seventhCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(eighthCollectionHeader.snp.width).multipliedBy(0.15)
+        }
+        eighthHeaderTitle.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
+        }
+        eighthCollection.snp.makeConstraints {
+            $0.top.equalTo(eighthCollectionHeader.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(eighthCollection.snp.width).multipliedBy(0.63)
+        }
     }
 }
 // MARK: Collection Data, Delegate
@@ -486,6 +633,38 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
                           starPoint: 4.4,
                           review: 895,
                           explain: "최소주문 24,000원")
+            
+            return item
+        case sixthCollection:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
+                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
+            item.setValue(image: "testRestaurant",
+                          imageText: nil,
+                          title: "버거킹-건대입구역점",
+                          starPoint: 4.4,
+                          review: 895,
+                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            
+            return item
+        case seventhCollection:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
+                                                                for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
+            item.setValue(image: "testRestaurant",
+                          title: "버거킹",
+                          starPoint: 4.4,
+                          review: 895,
+                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            return item
+            case eighthCollection:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
+                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
+            item.setValue(image: "testRestaurant",
+                          imageText: "15~25분",
+                          title: "버거킹",
+                          starPoint: 4.4,
+                          review: 895,
+                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            item.imageLabel.backgroundColor = .systemGreen
             return item
         default:
             fatalError()
