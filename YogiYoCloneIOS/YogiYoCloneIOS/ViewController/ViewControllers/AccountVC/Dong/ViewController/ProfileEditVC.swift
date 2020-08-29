@@ -11,6 +11,12 @@ import UIKit
 class ProfileEditVC: UIViewController {
     
     // MARK: Properties
+    var user: User? {
+        didSet {
+            print(user)
+        }
+    }
+    
     private let tableView: UITableView = {
        let tableView = UITableView()
         return tableView
@@ -40,7 +46,12 @@ class ProfileEditVC: UIViewController {
     
     // MARK: Configure
     private func configure() {
-        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(EmailIDCell.self, forCellReuseIdentifier: EmailIDCell.cellID)
+        tableView.register(PasswordCell.self, forCellReuseIdentifier: PasswordCell.cellID)
+        tableView.register(PhoneInfoCell.self, forCellReuseIdentifier: PhoneInfoCell.cellID)
+        tableView.register(NickNameCell.self, forCellReuseIdentifier: NickNameCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -50,6 +61,40 @@ class ProfileEditVC: UIViewController {
         
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+    }
+}
+
+extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        65
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmailIDCell.cellID, for: indexPath) as? EmailIDCell else { return UITableViewCell() }
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PasswordCell.cellID, for: indexPath) as? PasswordCell else { return UITableViewCell() }
+            return cell
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneInfoCell.cellID, for: indexPath) as? PhoneInfoCell else { return UITableViewCell() }
+            return cell
+        case 3:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NickNameCell.cellID, for: indexPath) as? NickNameCell else { return UITableViewCell() }
+            return cell
+        default:
+            return UITableViewCell()
         }
     }
 }
