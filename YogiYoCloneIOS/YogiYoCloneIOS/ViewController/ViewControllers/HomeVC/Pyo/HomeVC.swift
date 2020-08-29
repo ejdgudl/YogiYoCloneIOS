@@ -276,6 +276,29 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
+    private let eighthCollectionHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    private let eighthHeaderTitle: UILabel = {
+        let label = UILabel()
+        label.text = "가장 빨리 배달돼요~"
+        label.font = UIFont(name: FontModel.customSemibold, size: 20)
+        return label
+    }()
+    private lazy var eighthCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        return collectionView
+    }()
+    
     private let testCategory = ["전체보기", "1인분주문", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트", "족발/보쌈", "일식/돈가스"]
     
     override func viewDidAppear(_ animated: Bool) {
@@ -283,7 +306,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .systemBackground
         
         motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: seventhCollection.frame.maxY)
+                                              height: eighthCollection.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
                                                  height: topBannerView.frame.height)
@@ -357,6 +380,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         seventhCollectionHeader.addSubview(seventhHeaderTitle)
         seventhCollectionHeader.addSubview(seventhQueryButton)
         motherScrollView.addSubview(seventhCollection)
+        
+        motherScrollView.addSubview(eighthCollectionHeader)
+        eighthCollectionHeader.addSubview(eighthHeaderTitle)
+        motherScrollView.addSubview(eighthCollection)
     }
     
     // MARK: Auto Layout
@@ -519,6 +546,21 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.63)
         }
+        
+        eighthCollectionHeader.snp.makeConstraints {
+            $0.top.equalTo(seventhCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(eighthCollectionHeader.snp.width).multipliedBy(0.15)
+        }
+        eighthHeaderTitle.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
+        }
+        eighthCollection.snp.makeConstraints {
+            $0.top.equalTo(eighthCollectionHeader.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(eighthCollection.snp.width).multipliedBy(0.63)
+        }
     }
 }
 // MARK: Collection Data, Delegate
@@ -612,6 +654,17 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
                           starPoint: 4.4,
                           review: 895,
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
+            return item
+            case eighthCollection:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
+                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
+            item.setValue(image: "testRestaurant",
+                          imageText: "15~25분",
+                          title: "버거킹",
+                          starPoint: 4.4,
+                          review: 895,
+                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            item.imageLabel.backgroundColor = .systemGreen
             return item
         default:
             fatalError()
