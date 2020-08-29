@@ -272,7 +272,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        collectionView.register(RestaurantPlusCustomCell.self, forCellWithReuseIdentifier: RestaurantPlusCustomCell.identifier)
         return collectionView
     }()
     
@@ -517,7 +517,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         seventhCollection.snp.makeConstraints {
             $0.top.equalTo(seventhCollectionHeader.snp.bottom)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.71)
+            $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.63)
         }
     }
 }
@@ -605,18 +605,13 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
             
             return item
         case seventhCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
+                                                                for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
-                          imageText: nil,
-                          title: "버거킹-건대입구역점",
+                          title: "버거킹",
                           starPoint: 4.4,
                           review: 895,
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
-            item.layer.cornerRadius = 5
-//            item.imageView.snp.updateConstraints { $0.height.equalTo(item.contentView.snp.height).multipliedBy(0.64) }
-            item.titleLabel.snp.updateConstraints { $0.leading.equalToSuperview().offset(CollectionDesign.padding) }
-            item.explanLabel.snp.updateConstraints { $0.bottom.equalToSuperview().inset(CollectionDesign.collectionPadding) }
             return item
         default:
             fatalError()
@@ -644,8 +639,6 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
             return categorySize(collectionView: collectionView)
         case fourthCollection:
             return restaurantTripleSize(collectionView: collectionView)
-        case seventhCollection:
-            return restaurantPlusSize(collectionView: collectionView)
         default:
             return restaurantSize(collectionView: collectionView)
         }
@@ -661,9 +654,5 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     private func restaurantTripleSize(collectionView: UICollectionView) -> CGSize {
         let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom) - (CollectionDesign.padding * (CollectionDesign.tripleLineCount - 1))) / CollectionDesign.tripleLineCount
         return CGSize(width: size * 3.7, height: size)
-    }
-    private func restaurantPlusSize(collectionView: UICollectionView) -> CGSize {
-        let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom))
-        return CGSize(width: size * 0.63, height: size)
     }
 }

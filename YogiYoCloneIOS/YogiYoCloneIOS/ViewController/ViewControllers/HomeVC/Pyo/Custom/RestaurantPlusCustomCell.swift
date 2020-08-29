@@ -1,21 +1,18 @@
 //
-//  RestaurantCustomCell.swift
+//  RestaurantPlusCustomCell.swift
 //  YogiYoCloneIOS
 //
-//  Created by 표건욱 on 2020/08/25.
+//  Created by 표건욱 on 2020/08/29.
 //  Copyright © 2020 김동현. All rights reserved.
 //
 
 import UIKit
 
-class RestaurantCustomCell: UICollectionViewCell {
+class RestaurantPlusCustomCell: UICollectionViewCell {
     
-    static let identifier = "RestaurantCustomItem"
+    static let identifier = "RestaurantPlusCustomCell"
     
     let imageView = UIImageView()
-    let imageLabel = PaddingLabel()
-    let truePadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    let falsePadding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     
     let titleLabel = UILabel()
     
@@ -28,8 +25,11 @@ class RestaurantCustomCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .systemBackground
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        
         setImageView()
-        setImageLabel()
         setTitle()
         setStarImage()
         setStarPoint()
@@ -43,18 +43,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(contentView)
-            $0.height.equalTo(imageView.snp.width)
-        }
-    }
-    private func setImageLabel() {
-        imageLabel.font = UIFont(name: FontModel.customMedium, size: 14)
-        imageLabel.textAlignment = .center
-        imageLabel.backgroundColor = .red
-        imageLabel.textColor = .white
-        imageView.addSubview(imageLabel)
-        
-        imageLabel.snp.makeConstraints {
-            $0.leading.bottom.equalTo(imageView)
+            $0.height.equalTo(contentView.snp.height).multipliedBy(0.64)
         }
     }
     private func setTitle() {
@@ -64,7 +53,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(CollectionDesign.collectionPadding)
-            $0.leading.trailing.equalTo(contentView)
+            $0.leading.trailing.equalToSuperview().inset(CollectionDesign.padding)
         }
     }
     private func setStarImage() {
@@ -109,13 +98,11 @@ class RestaurantCustomCell: UICollectionViewCell {
         explanLabel.snp.makeConstraints {
             $0.top.equalTo(starImage.snp.bottom).offset(CollectionDesign.collectionPadding)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.bottom.equalTo(contentView.snp.bottom)
+            $0.bottom.equalTo(contentView.snp.bottom).inset(CollectionDesign.collectionPadding)
         }
     }
-    func setValue(image: String, imageText: String? ,title: String, starPoint: Double, review: Int, explain: String) {
-        imageText == nil ? (imageLabel.padding = truePadding) : (imageLabel.padding = falsePadding)
+    func setValue(image: String ,title: String, starPoint: Double, review: Int, explain: String) {
         imageView.image = UIImage(named: image)
-        imageLabel.text = imageText
         titleLabel.text = title
         starPointLabel.text = "\(starPoint)"
         reviewLabel.text = " · 리뷰 \(review)"
@@ -125,5 +112,5 @@ class RestaurantCustomCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
+}
