@@ -91,7 +91,9 @@ class PhoneAcceptVC: UIViewController {
     @objc private func didTapFinishButton() {
         guard codeTextField.text?.count == 6 else { return }
         dismiss(animated: true) {
-            NotificationCenter.default.post(name: name, object: nil)
+            guard let phoneNum = self.phoneNumTextField.text else { return }
+            let userPhoneNum: [String: String] = ["phoneNum": phoneNum]
+            NotificationCenter.default.post(name: name, object: nil, userInfo: userPhoneNum)
         }
     }
     

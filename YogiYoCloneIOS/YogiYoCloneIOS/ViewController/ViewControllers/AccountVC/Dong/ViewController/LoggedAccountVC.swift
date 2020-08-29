@@ -18,6 +18,8 @@ class LoggedAccountVC: UIViewController {
         }
     }
     
+    var userPhoneNum: String?
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray
@@ -72,7 +74,8 @@ class LoggedAccountVC: UIViewController {
             else {
                 print("me() success.")
                 guard let nickName = user?.kakaoAccount?.profile?.nickname else { return }
-                let user = User(nickName: nickName)
+                guard let userPhoneNum = self.userPhoneNum else { return }
+                let user = User(nickName: nickName, phoneNum: userPhoneNum)
                 self.user = user
             }
         }

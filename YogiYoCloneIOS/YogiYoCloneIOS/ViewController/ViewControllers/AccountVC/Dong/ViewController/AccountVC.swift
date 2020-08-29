@@ -44,8 +44,9 @@ class AccountVC: UIViewController {
         present(nav, animated: true)
     }
     
-    @objc private func presentLoggedAccountVC() {
+    @objc private func presentLoggedAccountVC(notification: Notification) {
         let loggedAccountVC = LoggedAccountVC()
+        loggedAccountVC.userPhoneNum = notification.userInfo?["phoneNum"] as? String
         navigationController?.pushViewController(loggedAccountVC, animated: true)
     }
     

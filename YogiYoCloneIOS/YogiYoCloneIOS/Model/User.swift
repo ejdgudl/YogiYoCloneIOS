@@ -11,8 +11,10 @@ import Foundation
 struct User {
     
     var nickName: String?
+    var phoneNum: String?
     
-    init(nickName: String) {
+    init(nickName: String, phoneNum: String) {
         self.nickName = nickName
+        self.phoneNum = phoneNum
     }
 }
