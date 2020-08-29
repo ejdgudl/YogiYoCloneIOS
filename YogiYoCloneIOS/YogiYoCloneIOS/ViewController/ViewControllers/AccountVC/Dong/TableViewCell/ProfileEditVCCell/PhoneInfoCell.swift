@@ -14,6 +14,7 @@ class PhoneInfoCell: UITableViewCell {
     var user: User? {
         didSet {
             phoneNum.text = user?.phoneNum
+            print("in phonenum\(phoneNum.text)")
         }
     }
     

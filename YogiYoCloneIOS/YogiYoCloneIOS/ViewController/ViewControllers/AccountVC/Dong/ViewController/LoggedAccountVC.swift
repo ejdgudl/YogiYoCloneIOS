@@ -82,6 +82,7 @@ class LoggedAccountVC: UIViewController {
     }
     
     @objc private func goToEditVC() {
+        profileEditVC.user = self.user
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
     
