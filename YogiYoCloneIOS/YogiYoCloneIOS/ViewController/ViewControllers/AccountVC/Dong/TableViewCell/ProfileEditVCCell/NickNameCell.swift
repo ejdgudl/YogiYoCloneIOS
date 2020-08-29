@@ -14,6 +14,7 @@ class NickNameCell: UITableViewCell {
     var user: User? {
         didSet {
             nickName.text = user?.nickName
+            print("in NickName\(nickName.text)")
         }
     }
     

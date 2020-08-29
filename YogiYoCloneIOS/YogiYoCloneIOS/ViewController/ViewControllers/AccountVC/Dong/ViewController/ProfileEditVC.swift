@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import KakaoSDKUser
 
 class ProfileEditVC: UIViewController {
     
     // MARK: Properties
     var user: User? {
         didSet {
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -34,6 +35,12 @@ class ProfileEditVC: UIViewController {
     // MARK: @Objc
     @objc private func didTapDismissButton() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func didTapLogoutButton() {
+        UserApi.shared.logout { (_) in
+            print("Kakao Logout")
+        }
     }
     
     // MARK: Helpers
@@ -102,6 +109,7 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomCell.cellID, for: indexPath) as? BottomCell else { return UITableViewCell() }
+            cell.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
             return cell
         default:
             return UITableViewCell()
