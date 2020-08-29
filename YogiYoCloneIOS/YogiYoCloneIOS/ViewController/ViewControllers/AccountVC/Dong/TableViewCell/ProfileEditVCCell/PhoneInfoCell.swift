@@ -11,6 +11,12 @@ import UIKit
 class PhoneInfoCell: UITableViewCell {
     
     // MARK: Properties
+    var user: User? {
+        didSet {
+            phoneNum.text = user?.phoneNum
+        }
+    }
+    
     static let cellID = "PhoneInfoCellID"
     
     private let topDeviderView: UIView = {

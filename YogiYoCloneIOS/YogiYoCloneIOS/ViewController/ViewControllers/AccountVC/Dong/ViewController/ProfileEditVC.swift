@@ -13,7 +13,7 @@ class ProfileEditVC: UIViewController {
     // MARK: Properties
     var user: User? {
         didSet {
-            print(user)
+            tableView.reloadData()
         }
     }
     
@@ -94,9 +94,11 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneInfoCell.cellID, for: indexPath) as? PhoneInfoCell else { return UITableViewCell() }
+            cell.user = self.user
             return cell
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NickNameCell.cellID, for: indexPath) as? NickNameCell else { return UITableViewCell() }
+            cell.user = self.user
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomCell.cellID, for: indexPath) as? BottomCell else { return UITableViewCell() }
