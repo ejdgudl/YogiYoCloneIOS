@@ -14,4 +14,5 @@ target 'YogiYoCloneIOS' do
     pod 'Firebase/Auth'
     pod 'Firebase/Messaging'
     pod 'Firebase/Analytics'
+    pod 'naveridlogin-sdk-ios'
 end
