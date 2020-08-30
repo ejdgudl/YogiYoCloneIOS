@@ -8,6 +8,8 @@
 
 import UIKit
 import KakaoSDKUser
+import NaverThirdPartyLogin
+import Alamofire
 
 class LoggedAccountVC: UIViewController {
     
@@ -19,6 +21,8 @@ class LoggedAccountVC: UIViewController {
     }
     
     var userPhoneNum: String?
+    
+    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -35,7 +39,8 @@ class LoggedAccountVC: UIViewController {
         configureNavi()
         configure()
         configureViews()
-        configureUser()
+        configureKakaoUser()
+        configureNaverUser()
     }
     
     // MARK: @Objc
@@ -66,7 +71,7 @@ class LoggedAccountVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .plain, target: self, action: #selector(didTapconfigButton))
     }
     
-    private func configureUser() {
+    private func configureKakaoUser() {
         UserApi.shared.me() {(user, error) in
             if let error = error {
                 print(error)
@@ -79,6 +84,29 @@ class LoggedAccountVC: UIViewController {
                 self.user = user
             }
         }
+    }
+    
+    private func configureNaverUser() {
+        guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+        
+        if !isValidAccessToken { return }
+        guard let tokenType = loginInstance?.tokenType else { return }
+        guard let accessToken = loginInstance?.accessToken else { return }
+        let urlStr = "https://openapi.naver.com/v1/nid/me"
+        let url = URL(string: urlStr)!
+        
+        let authorization = "\(tokenType) \(accessToken)"
+        
+        let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+        req.responseJSON { response in
+            guard let result = response.value as? [String: Any] else { return }
+            guard let object = result["response"] as? [String: Any] else { return }
+            guard let name = object["name"] as? String else { return }
+            guard let email = object["email"] as? String else { return }
+            print(name)
+            print(email)
+        }
+        print("[Success] : Success Naver Login And Token is \(accessToken)")
     }
     
     @objc private func goToEditVC() {

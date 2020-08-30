@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
         }
-        kServiceAppUrlScheme
         return false
     }
 
