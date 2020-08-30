@@ -299,6 +299,29 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
+    private let ninthCollectionHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    private let ninthHeaderTitle: UILabel = {
+        let label = UILabel()
+        label.text = "새로 오픈했어요!"
+        label.font = UIFont(name: FontModel.customSemibold, size: 20)
+        return label
+    }()
+    private lazy var ninthCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(RestaurantNewCustomCell.self, forCellWithReuseIdentifier: RestaurantNewCustomCell.identifier)
+        return collectionView
+    }()
+    
     private let testCategory = ["전체보기", "1인분주문", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트", "족발/보쌈", "일식/돈가스"]
     
     override func viewDidAppear(_ animated: Bool) {
@@ -306,7 +329,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .systemBackground
         
         motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: eighthCollection.frame.maxY)
+                                              height: ninthCollection.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
                                                  height: topBannerView.frame.height)
@@ -384,6 +407,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.addSubview(eighthCollectionHeader)
         eighthCollectionHeader.addSubview(eighthHeaderTitle)
         motherScrollView.addSubview(eighthCollection)
+        
+        motherScrollView.addSubview(ninthCollectionHeader)
+        ninthCollectionHeader.addSubview(ninthHeaderTitle)
+        motherScrollView.addSubview(ninthCollection)
     }
     
     // MARK: Auto Layout
@@ -561,6 +588,21 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(eighthCollection.snp.width).multipliedBy(0.63)
         }
+        
+        ninthCollectionHeader.snp.makeConstraints {
+            $0.top.equalTo(eighthCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(ninthCollectionHeader.snp.width).multipliedBy(0.15)
+        }
+        ninthHeaderTitle.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
+        }
+        ninthCollection.snp.makeConstraints {
+            $0.top.equalTo(ninthCollectionHeader.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(ninthCollection.snp.width).multipliedBy(0.59)
+        }
     }
 }
 // MARK: Collection Data, Delegate
@@ -654,8 +696,9 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
                           starPoint: 4.4,
                           review: 895,
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
+            
             return item
-            case eighthCollection:
+        case eighthCollection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -665,6 +708,16 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
                           review: 895,
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
             item.imageLabel.backgroundColor = .systemGreen
+            
+            return item
+        case ninthCollection:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantNewCustomCell.identifier,
+                                                                for: indexPath) as? RestaurantNewCustomCell else { fatalError() }
+            item.setValue(image: "testRestaurant",
+                          imageText: "NEW",
+                          title: "버거킹",
+                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            
             return item
         default:
             fatalError()
@@ -692,6 +745,8 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
             return categorySize(collectionView: collectionView)
         case fourthCollection:
             return restaurantTripleSize(collectionView: collectionView)
+        case ninthCollection:
+            return restaurantNewSize(collectionView: collectionView)
         default:
             return restaurantSize(collectionView: collectionView)
         }
@@ -707,5 +762,9 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     private func restaurantTripleSize(collectionView: UICollectionView) -> CGSize {
         let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom) - (CollectionDesign.padding * (CollectionDesign.tripleLineCount - 1))) / CollectionDesign.tripleLineCount
         return CGSize(width: size * 3.7, height: size)
+    }
+    private func restaurantNewSize(collectionView: UICollectionView) -> CGSize {
+        let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom))
+        return CGSize(width: size * 0.76, height: size)
     }
 }
