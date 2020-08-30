@@ -8,6 +8,7 @@
 
 import UIKit
 import KakaoSDKUser
+import NaverThirdPartyLogin
 
 class ProfileEditVC: UIViewController {
     
@@ -17,6 +18,8 @@ class ProfileEditVC: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     private let tableView: UITableView = {
        let tableView = UITableView()
@@ -44,6 +47,9 @@ class ProfileEditVC: UIViewController {
                 NotificationCenter.default.post(name: logoutObserveName, object: nil, userInfo: nil)
                 self.navigationController?.popViewController(animated: true)
             }
+            
+            self.loginInstance?.requestDeleteToken()
+            print("Naver Logout")
         }
     }
     
