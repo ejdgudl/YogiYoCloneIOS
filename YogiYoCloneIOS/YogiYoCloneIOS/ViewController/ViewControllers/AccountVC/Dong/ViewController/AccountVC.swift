@@ -69,7 +69,7 @@ class AccountVC: UIViewController {
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(BannerCell.self, forCellReuseIdentifier: BannerCell.cellID)
         tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
-        NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
     }
     
     // MARK: ConfigureViews

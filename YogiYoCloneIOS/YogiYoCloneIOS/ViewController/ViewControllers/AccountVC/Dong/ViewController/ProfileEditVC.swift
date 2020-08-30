@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import KakaoSDKUser
 
 class ProfileEditVC: UIViewController {
     
     // MARK: Properties
     var user: User? {
         didSet {
-            print(user)
+            self.tableView.reloadData()
         }
     }
     
@@ -34,6 +35,16 @@ class ProfileEditVC: UIViewController {
     // MARK: @Objc
     @objc private func didTapDismissButton() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func didTapLogoutButton() {
+        alertNormal(title: "요기요", message: "로그아웃 하시겠어요?") { (_) in
+            UserApi.shared.logout { (_) in
+                print("Kakao Logout")
+                NotificationCenter.default.post(name: logoutObserveName, object: nil, userInfo: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     // MARK: Helpers
@@ -88,18 +99,22 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmailIDCell.cellID, for: indexPath) as? EmailIDCell else { return UITableViewCell() }
+            cell.user = self.user
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PasswordCell.cellID, for: indexPath) as? PasswordCell else { return UITableViewCell() }
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneInfoCell.cellID, for: indexPath) as? PhoneInfoCell else { return UITableViewCell() }
+            cell.user = self.user
             return cell
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NickNameCell.cellID, for: indexPath) as? NickNameCell else { return UITableViewCell() }
+            cell.user = self.user
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomCell.cellID, for: indexPath) as? BottomCell else { return UITableViewCell() }
+            cell.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
             return cell
         default:
             return UITableViewCell()

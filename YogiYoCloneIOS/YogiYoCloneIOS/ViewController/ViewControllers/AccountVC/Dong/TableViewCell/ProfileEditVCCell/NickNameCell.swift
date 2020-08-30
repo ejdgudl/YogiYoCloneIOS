@@ -11,6 +11,12 @@ import UIKit
 class NickNameCell: UITableViewCell {
     
     // MARK: Properties
+    var user: User? {
+        didSet {
+            nickName.text = user?.nickName
+        }
+    }
+    
     static let cellID = "NickNameCellID"
     
     private let topDeviderView: UIView = {

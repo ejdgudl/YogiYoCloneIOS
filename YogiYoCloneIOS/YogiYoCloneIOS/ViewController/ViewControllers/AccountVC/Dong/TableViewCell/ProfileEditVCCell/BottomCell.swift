@@ -19,7 +19,7 @@ class BottomCell: UITableViewCell {
         return view
     }()
     
-    private let logoutButton: UIButton = {
+    let logoutButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그아웃", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)

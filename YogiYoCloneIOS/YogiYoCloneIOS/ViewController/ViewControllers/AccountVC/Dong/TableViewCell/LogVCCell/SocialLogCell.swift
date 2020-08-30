@@ -22,7 +22,7 @@ class SocialLogCell: UITableViewCell {
         return button
     }()
     
-    private let naverButton: UIButton = {
+    let naverButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Naver"), for: .normal)
         button.layer.borderColor = UIColor.lightGray.cgColor
