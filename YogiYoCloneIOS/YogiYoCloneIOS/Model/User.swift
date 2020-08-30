@@ -12,9 +12,11 @@ struct User {
     
     var nickName: String?
     var phoneNum: String?
+    var email: String?
     
-    init(nickName: String, phoneNum: String) {
+    init(nickName: String, phoneNum: String, email: String = " ") {
         self.nickName = nickName
         self.phoneNum = phoneNum
+        self.email = email
     }
 }

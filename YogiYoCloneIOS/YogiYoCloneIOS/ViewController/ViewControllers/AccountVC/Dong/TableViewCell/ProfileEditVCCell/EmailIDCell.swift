@@ -11,6 +11,12 @@ import UIKit
 class EmailIDCell: UITableViewCell {
     
     // MARK: Properties
+    var user: User? {
+        didSet {
+            emailID.text = user?.email
+        }
+    }
+    
     static let cellID = "EmailIDCellID"
     
     var emailIDTitle: UILabel = {

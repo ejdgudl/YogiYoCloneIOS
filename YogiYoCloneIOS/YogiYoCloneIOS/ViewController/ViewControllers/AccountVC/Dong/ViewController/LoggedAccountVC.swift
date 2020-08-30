@@ -103,8 +103,10 @@ class LoggedAccountVC: UIViewController {
             guard let object = result["response"] as? [String: Any] else { return }
             guard let name = object["name"] as? String else { return }
             guard let email = object["email"] as? String else { return }
-            print(name)
-            print(email)
+            guard let userPhoneNum = self.userPhoneNum else { return }
+
+            let user = User(nickName: name, phoneNum: userPhoneNum, email: email)
+            self.user = user
         }
         print("[Success] : Success Naver Login And Token is \(accessToken)")
     }
