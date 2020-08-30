@@ -11,6 +11,7 @@ import KakaoSDKAuth
 import KakaoSDKUser
 import NaverThirdPartyLogin
 import Alamofire
+import AuthenticationServices
 
 class LogVC: UIViewController {
     
@@ -53,6 +54,15 @@ class LogVC: UIViewController {
     
     @objc private func didTapNaverButton(_ sender: UIButton) {
         loginInstance?.requestThirdPartyLogin()
+    }
+    
+    @objc private func didTapAppleButton(_ sender: UIButton) {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
     }
     
     // MARK: Helpers
@@ -121,6 +131,7 @@ extension LogVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SocialLogCell.cellID, for: indexPath) as? SocialLogCell else { return UITableViewCell() }
             cell.kakaoButton.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
             cell.naverButton.addTarget(self, action: #selector(didTapNaverButton), for: .touchUpInside)
+            cell.appleButton.addTarget(self, action: #selector(didTapAppleButton), for: .touchUpInside)
             return cell
         }
     }
@@ -152,5 +163,30 @@ extension LogVC: NaverThirdPartyLoginConnectionDelegate {
     // 모든 Error
     func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
         print("[Error] :", error.localizedDescription)
+    }
+}
+
+extension LogVC: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let givName = credential.fullName?.givenName else { return }
+            guard let famName = credential.fullName?.familyName else { return }
+            let strName = famName + givName
+            guard let email = credential.email else { return }
+            let info: [String : String] = ["fullName": strName, "email": email]
+            UserDefaults.standard.set(info, forKey: "appleUserInfo")
+            self.navigationController?.pushViewController(self.acceptVC, animated: true)
+            print("Login With apple Suc And fullname is \(strName)")
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error.localizedDescription)
+    }
+}
+
+extension LogVC: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }
