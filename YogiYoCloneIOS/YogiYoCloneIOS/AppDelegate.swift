@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         instance?.isNaverAppOauthEnable = true
         instance?.isInAppOauthEnable = true
-//        instance?.isOnlyPortraitSupportedInIphone()
         instance?.serviceUrlScheme = kServiceAppUrlScheme
         instance?.consumerKey = kConsumerKey
         instance?.consumerSecret = kConsumerSecret
