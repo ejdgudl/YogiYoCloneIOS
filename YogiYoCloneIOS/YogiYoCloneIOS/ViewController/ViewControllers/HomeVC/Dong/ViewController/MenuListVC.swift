@@ -25,17 +25,18 @@ class MenuListVC: UIViewController {
         return view
     }()
     
+    private lazy var statusView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureNavi()
         configureViews()
-    }
-    
-    // MARK: Override
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     // MARK: @Objc
@@ -47,11 +48,17 @@ class MenuListVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    lazy var bar:UINavigationBar! =  self.navigationController?.navigationBar
+    
     // MARK: Helpers
     private func configureNavi() {
-        navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.tintColor = .black
-        title = "가게 명"
+        UIApplication.shared.statusBarStyle = .lightContent
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
     }
@@ -72,12 +79,17 @@ class MenuListVC: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
-        [collectionView].forEach {
+        [collectionView, statusView].forEach {
             view.addSubview($0)
         }
         
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+        
+        statusView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
     }
 }
@@ -154,6 +166,28 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }else {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.cellID, for: indexPath) as? FooterView else { return UICollectionReusableView() }
             return footer
+        }
+    }
+}
+
+extension MenuListVC: UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y)
+        if scrollView.contentOffset.y > 100 {
+            UIView.animate(withDuration: 0.15) {
+                self.navigationController?.navigationBar.tintColor = .black
+                self.statusView.backgroundColor = .white
+                self.view.window?.windowScene?.statusBarManager?.statusBarStyle
+                UIApplication.shared.statusBarStyle = .darkContent
+                self.title = "가게 이름"
+            }
+        } else if scrollView.contentOffset.y < 100{
+            UIView.animate(withDuration: 0.15) {
+                self.navigationController?.navigationBar.tintColor = .white
+                self.statusView.backgroundColor = .clear
+                UIApplication.shared.statusBarStyle = .lightContent
+                self.title = " "
+            }
         }
     }
 }
