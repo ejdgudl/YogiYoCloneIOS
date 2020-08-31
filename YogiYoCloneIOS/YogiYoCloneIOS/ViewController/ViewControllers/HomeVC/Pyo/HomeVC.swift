@@ -48,7 +48,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     private let topBannerScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .red
         scrollView.isPagingEnabled = true
         scrollView.alwaysBounceHorizontal = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -61,7 +60,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return imageView
     }()
     
-    private lazy var categoryCollection: UICollectionView = {
+    lazy var categoryCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -89,7 +88,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         button.setImage(UIImage(named: "testQ"), for: .normal)
         return button
     }()
-    private lazy var firstCollection: UICollectionView = {
+    lazy var firstCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -112,7 +111,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         label.font = UIFont(name: FontModel.customSemibold, size: 20)
         return label
     }()
-    private lazy var twiceCollection: UICollectionView = {
+    lazy var twiceCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -138,7 +137,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    private let middleBannerImageView: UIImageView = {
+    let middleBannerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.image = UIImage(named: "MyAccountVCImage")
@@ -156,7 +155,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         label.font = UIFont(name: FontModel.customSemibold, size: 20)
         return label
     }()
-    private lazy var thirdCollection: UICollectionView = {
+    lazy var thirdCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -184,7 +183,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         button.setImage(UIImage(named: "testQ"), for: .normal)
         return button
     }()
-    private lazy var fourthCollection: UICollectionView = {
+    lazy var fourthCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -207,7 +206,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         label.font = UIFont(name: FontModel.customSemibold, size: 20)
         return label
     }()
-    private lazy var fifthCollection: UICollectionView = {
+    lazy var fifthCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -235,7 +234,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         button.setImage(UIImage(named: "testQ"), for: .normal)
         return button
     }()
-    private lazy var sixthCollection: UICollectionView = {
+    lazy var sixthCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -264,7 +263,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         button.titleLabel?.textColor = .darkGray
         return button
     }()
-    private lazy var seventhCollection: UICollectionView = {
+    lazy var seventhCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -287,7 +286,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         label.font = UIFont(name: FontModel.customSemibold, size: 20)
         return label
     }()
-    private lazy var eighthCollection: UICollectionView = {
+    lazy var eighthCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -310,7 +309,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         label.font = UIFont(name: FontModel.customSemibold, size: 20)
         return label
     }()
-    private lazy var ninthCollection: UICollectionView = {
+    lazy var ninthCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -322,7 +321,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
-    private let testCategory = ["전체보기", "1인분주문", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트", "족발/보쌈", "일식/돈가스"]
+    let testCategory = ["전체보기", "테이크아웃", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트","1인분주문", "일식/돈가스", "족발/보쌈", "프랜차이즈", "야식", "편의점/마트"]
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -339,6 +338,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         setUI()
         setLayout()
@@ -604,167 +604,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.height.equalTo(ninthCollection.snp.width).multipliedBy(0.59)
         }
     }
-}
-// MARK: Collection Data, Delegate
-extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testCategory.count
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-        case categoryCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCustomCell.identifier,
-                                                                for: indexPath) as? CategoryCustomCell else { fatalError() }
-            item.setValue(image: "testCate",
-                          title: testCategory[indexPath.item])
-            
-            return item
-        case firstCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: nil,
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            
-            return item
-        case twiceCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "♡ \(117)",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            
-            return item
-        case thirdCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "5,000원 할인",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "배달비 무료")
-            item.explanLabel.textColor = .systemRed
-            
-            return item
-        case fourthCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TripleRestaurantCustomCell.identifier,
-                                                                for: indexPath) as? TripleRestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          countText: "\(indexPath.item + 1)",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지",
-                          discountText: "2,000원 할인")
-            
-            return item
-        case fifthCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "배달비 무료",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "최소주문 24,000원")
-            
-            return item
-        case sixthCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: nil,
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            
-            return item
-        case seventhCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          title: "버거킹",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            
-            return item
-        case eighthCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "15~25분",
-                          title: "버거킹",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            item.imageLabel.backgroundColor = .systemGreen
-            
-            return item
-        case ninthCollection:
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantNewCustomCell.identifier,
-                                                                for: indexPath) as? RestaurantNewCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "NEW",
-                          title: "버거킹",
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            
-            return item
-        default:
-            fatalError()
-        }
-    }
-}
-// MARK: Collection FlowLayout
-extension HomeVC: UICollectionViewDelegateFlowLayout {
-    // 줄 간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CollectionDesign.padding
-    }
-    // 행 간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CollectionDesign.padding
-    }
-    // 테두리
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return CollectionDesign.edge
-    }
-    // 아이템 사이즈
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch collectionView {
-        case categoryCollection:
-            return categorySize(collectionView: collectionView)
-        case fourthCollection:
-            return restaurantTripleSize(collectionView: collectionView)
-        case ninthCollection:
-            return restaurantNewSize(collectionView: collectionView)
-        default:
-            return restaurantSize(collectionView: collectionView)
-        }
-    }
-    private func categorySize(collectionView: UICollectionView) -> CGSize {
-        let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom) - (CollectionDesign.padding * (CollectionDesign.cateLineCount - 1))) / CollectionDesign.cateLineCount
-        return CGSize(width: size * 0.78, height: size)
-    }
-    private func restaurantSize(collectionView: UICollectionView) -> CGSize {
-        let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom))
-        return CGSize(width: size * 0.7, height: size)
-    }
-    private func restaurantTripleSize(collectionView: UICollectionView) -> CGSize {
-        let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom) - (CollectionDesign.padding * (CollectionDesign.tripleLineCount - 1))) / CollectionDesign.tripleLineCount
-        return CGSize(width: size * 3.7, height: size)
-    }
-    private func restaurantNewSize(collectionView: UICollectionView) -> CGSize {
-        let size = (collectionView.frame.height - (CollectionDesign.edge.top + CollectionDesign.edge.bottom))
-        return CGSize(width: size * 0.76, height: size)
+    // MARK: Stack Button
+    private func creatButtonStack() {
+        
     }
 }
