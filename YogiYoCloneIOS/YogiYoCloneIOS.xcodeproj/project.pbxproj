@@ -94,6 +94,8 @@
 		D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */; };
 		D3E641C524F14A500019B9AC /* SegMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */; };
 		D3E6EC4A24F94560005C4B32 /* BenefitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6EC4924F94560005C4B32 /* BenefitCell.swift */; };
+		D3ECDB7324FDCE2B00DAD53C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECDB7224FDCE2B00DAD53C /* StatusView.swift */; };
+		D3ECDB7524FDCE9200DAD53C /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECDB7424FDCE9200DAD53C /* BottomView.swift */; };
 		D3F5326624F18FF300C25B58 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5326524F18FF300C25B58 /* TestModel.swift */; };
 		D3F9EA8E24FA868C0058E501 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9EA8D24FA868C0058E501 /* AlertExtension.swift */; };
 		DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */; };
@@ -196,6 +198,8 @@
 		D3E641C224F13AEA0019B9AC /* SegMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuCell.swift; sourceTree = "<group>"; };
 		D3E641C424F14A500019B9AC /* SegMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegMenuItemCell.swift; sourceTree = "<group>"; };
 		D3E6EC4924F94560005C4B32 /* BenefitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitCell.swift; sourceTree = "<group>"; };
+		D3ECDB7224FDCE2B00DAD53C /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		D3ECDB7424FDCE9200DAD53C /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		D3F5326524F18FF300C25B58 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		D3F9EA8D24FA868C0058E501 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryView.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 		D33768D624ECCBDF00E0C27A /* Dong */ = {
 			isa = PBXGroup;
 			children = (
+				D3ECDB7124FDCE2200DAD53C /* View */,
 				D3F5326424F18FE800C25B58 /* Model */,
 				D3D6C43624EF9CC700B2873B /* Extension */,
 				D3EFBAB824EECA6D00E08196 /* ViewController */,
@@ -622,6 +627,15 @@
 				D3E5F79524EAAFC7001BB6B2 /* Info.plist */,
 			);
 			path = YogiYoCloneIOS;
+			sourceTree = "<group>";
+		};
+		D3ECDB7124FDCE2200DAD53C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3ECDB7224FDCE2B00DAD53C /* StatusView.swift */,
+				D3ECDB7424FDCE9200DAD53C /* BottomView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D3EFBAB824EECA6D00E08196 /* ViewController */ = {
@@ -846,6 +860,7 @@
 				D3E5F78C24EAAFC6001BB6B2 /* MainTabVC.swift in Sources */,
 				6E91215B24FAC301003D86F0 /* RestaurantNewCustomCell.swift in Sources */,
 				7306255024F53AD200DC70C1 /* CostView.swift in Sources */,
+				D3ECDB7324FDCE2B00DAD53C /* StatusView.swift in Sources */,
 				6E373A8B24F10DF600BF5678 /* CollectionEdge.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
 				6EE8C08724F6654400A55413 /* PaddingLabel.swift in Sources */,
@@ -875,6 +890,7 @@
 				D37C9DA624FA5C6E00A7C9F2 /* NickNameCell.swift in Sources */,
 				D3847ECE24F9406F00C34792 /* ProfileCell.swift in Sources */,
 				D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */,
+				D3ECDB7524FDCE9200DAD53C /* BottomView.swift in Sources */,
 				D371D16D24F613CC00EB1D2A /* LogoImageView.swift in Sources */,
 				6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */,
 				D3A27B9324F95C1F006FCE70 /* ObserveKey.swift in Sources */,

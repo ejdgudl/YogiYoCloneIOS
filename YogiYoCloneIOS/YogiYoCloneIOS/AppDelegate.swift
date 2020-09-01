@@ -27,14 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         instance?.isNaverAppOauthEnable = true
         instance?.isInAppOauthEnable = true
-//        instance?.isOnlyPortraitSupportedInIphone()
         instance?.serviceUrlScheme = kServiceAppUrlScheme
         instance?.consumerKey = kConsumerKey
         instance?.consumerSecret = kConsumerSecret
         instance?.appName = kServiceAppName
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: DetailMenuVC())
+        window?.rootViewController = UINavigationController(rootViewController: MenuListVC())
 //        window?.rootViewController = MainTabVC()
         window?.makeKeyAndVisible()
         return true
