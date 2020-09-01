@@ -8,8 +8,11 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 private let reuseIdentifier = "StoreListCell"
+
+
 
 
 class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
@@ -22,6 +25,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
     
     private let tableView = UITableView()
     private let storeListCell = StoreListCell()
+    private let pageView = UIPageViewController()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -89,6 +93,22 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
         containerView.addSubview(tableView)
     }
     
+//    func congigurePageView() {
+//        pageView.delegate = self
+//        pageView.dataSource = self
+//
+//        view.addSubview(pageView)
+//        pageView.snp.makeConstraints { (make) in
+//            make.top.equalTo(view.safeAreaLayoutGuide).offset(60)
+//            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).offset(0)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(0)
+//        }
+//
+//
+//
+//
+//    }
+    
     
     
     
@@ -146,3 +166,23 @@ extension StoreListVC : UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+//extension StoreListVC : UIPageViewControllerDelegate,UIPageViewControllerDataSource {
+//
+//
+//
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+//        <#code#>
+//    }
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+//        <#code#>
+//    }
+    
+    
+    
+    
+    
+    
+
