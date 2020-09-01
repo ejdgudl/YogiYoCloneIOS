@@ -25,9 +25,13 @@ class MenuListVC: UIViewController {
         return view
     }()
     
-    private lazy var statusView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .clear
+    private lazy var statusView: StatusView = {
+       let view = StatusView()
+        return view
+    }()
+    
+    private lazy var bottomView: BottomView = {
+        let view = BottomView()
         return view
     }()
     
@@ -79,7 +83,7 @@ class MenuListVC: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
-        [collectionView, statusView].forEach {
+        [collectionView, statusView, bottomView].forEach {
             view.addSubview($0)
         }
         
@@ -90,6 +94,11 @@ class MenuListVC: UIViewController {
         statusView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
+        
+        bottomView.snp.makeConstraints { (make) in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(85)
         }
     }
 }
@@ -177,7 +186,6 @@ extension MenuListVC: UIScrollViewDelegate{
             UIView.animate(withDuration: 0.15) {
                 self.navigationController?.navigationBar.tintColor = .black
                 self.statusView.backgroundColor = .white
-                self.view.window?.windowScene?.statusBarManager?.statusBarStyle
                 UIApplication.shared.statusBarStyle = .darkContent
                 self.title = "가게 이름"
             }
