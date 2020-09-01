@@ -41,6 +41,7 @@ class LoggedAccountVC: UIViewController {
         configureViews()
         configureKakaoUser()
         configureNaverUser()
+        configureAppleUser()
     }
     
     // MARK: @Objc
@@ -109,6 +110,15 @@ class LoggedAccountVC: UIViewController {
             self.user = user
         }
         print("[Success] : Success Naver Login And Token is \(accessToken)")
+    }
+    
+    private func configureAppleUser() {
+        guard let dic = UserDefaults.standard.dictionary(forKey: "appleUserInfo") else { return }
+        guard let name = dic["fullName"] as? String else { return }
+        guard let email = dic["email"] as? String else { return }
+        guard let phoneNum = self.userPhoneNum else { return }
+        let user = User(nickName: name, phoneNum: phoneNum, email: email)
+        self.user = user
     }
     
     @objc private func goToEditVC() {
