@@ -103,6 +103,7 @@
 		DE21FA7424F55BCB004D8A56 /* OderForOnePersonListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7324F55BCB004D8A56 /* OderForOnePersonListVC.swift */; };
 		DE21FA7624F55BF4004D8A56 /* ChickenListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7524F55BF4004D8A56 /* ChickenListVC.swift */; };
 		DE21FA7824F60435004D8A56 /* StoreListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7724F60435004D8A56 /* StoreListCell.swift */; };
+		DE21FA7A24FCD9A9004D8A56 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7924FCD9A9004D8A56 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +207,7 @@
 		DE21FA7324F55BCB004D8A56 /* OderForOnePersonListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OderForOnePersonListVC.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Siroo/ViewController/OderForOnePersonListVC.swift; sourceTree = SOURCE_ROOT; };
 		DE21FA7524F55BF4004D8A56 /* ChickenListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChickenListVC.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Siroo/ViewController/ChickenListVC.swift; sourceTree = SOURCE_ROOT; };
 		DE21FA7724F60435004D8A56 /* StoreListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreListCell.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Siroo/ViewController/StoreListCell.swift; sourceTree = SOURCE_ROOT; };
+		DE21FA7924FCD9A9004D8A56 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -443,6 +445,7 @@
 		D33768D724ECCBED00E0C27A /* Siroo */ = {
 			isa = PBXGroup;
 			children = (
+				DE21FA7924FCD9A9004D8A56 /* Network.swift */,
 				DE21FA6D24F4AC14004D8A56 /* View */,
 				DE21FA6C24F4AC08004D8A56 /* ViewController */,
 			);
@@ -829,6 +832,7 @@
 				D3B0636824F7FEFF00FF37BA /* FinishButton.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
 				D3847ECB24F93F6F00C34792 /* LoggedAccountVC.swift in Sources */,
+				DE21FA7A24FCD9A9004D8A56 /* Network.swift in Sources */,
 				D371D17324F61BB400EB1D2A /* CheckBoxButton.swift in Sources */,
 				7354B1A624EFA91B001903AF /* FontModel.swift in Sources */,
 				D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */,
