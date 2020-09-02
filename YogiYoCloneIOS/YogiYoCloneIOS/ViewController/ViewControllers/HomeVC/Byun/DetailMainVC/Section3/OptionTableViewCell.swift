@@ -48,8 +48,7 @@ class OptionTableViewCell: UITableViewCell {
       
       
       optionsubLable.leadingAnchor.constraint(equalTo: optionLable.trailingAnchor, constant: 4),
-      optionsubLable.bottomAnchor.constraint(equalTo: optionLable.bottomAnchor, constant: -4)
-      
+      optionsubLable.bottomAnchor.constraint(equalTo: optionLable.bottomAnchor, constant: -4),
     ])
   }
   

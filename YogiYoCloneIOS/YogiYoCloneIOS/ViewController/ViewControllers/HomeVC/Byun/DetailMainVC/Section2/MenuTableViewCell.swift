@@ -14,7 +14,7 @@ class MenuTableViewCell: UITableViewCell {
     let l = UILabel()
     l.font = FontModel.toSize.customFont
     l.text = "추가 / 변경 선택"
-    l.textColor = .black //ColorPiker.customDarkGray
+    l.textColor = .black //ColorPiker.customDarkGray\
     return l
   }()
   let menusubLable: UILabel = {
@@ -43,7 +43,8 @@ class MenuTableViewCell: UITableViewCell {
       menuLable.heightAnchor.constraint(equalToConstant: 30),
       
       menusubLable.leadingAnchor.constraint(equalTo: menuLable.trailingAnchor, constant: 4),
-      menusubLable.bottomAnchor.constraint(equalTo: menuLable.bottomAnchor, constant: -4)
+      menusubLable.bottomAnchor.constraint(equalTo: menuLable.bottomAnchor, constant: -4),
+      menusubLable.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
     ])
   }
   

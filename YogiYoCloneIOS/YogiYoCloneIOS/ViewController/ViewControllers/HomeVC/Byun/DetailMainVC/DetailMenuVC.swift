@@ -69,18 +69,23 @@ class DetailMenuVC: UIViewController {
   }
   
 
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-  }
+//  override func viewDidLayoutSubviews() {
+//    super.viewDidLayoutSubviews()
+//  }
   
   func setTableView(){
     tableView.dataSource = self
     tableView.delegate = self
     
+    if tableView.window != nil {
+        tableView.superview?.layoutIfNeeded()
+    }
+    
     tableView.frame = view.frame
     tableView.rowHeight = UITableView.automaticDimension //동적높이
     // tableView.estimatedRowHeight = 0
     tableView.backgroundColor = .white
+    tableView.clipsToBounds = true
     tableView.separatorStyle = .none
     view.addSubview(tableView)
     register()
