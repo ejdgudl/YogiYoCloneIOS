@@ -27,11 +27,11 @@ class OderVC : UIViewController {
     //tableView2.separatorStyle = .none
     tableView2.clipsToBounds = true
     view.addSubview(tableView2)
-
+    
     tableView2.register(loginCell.self, forCellReuseIdentifier: "loginCell")//0
     tableView2.register(InformationCell.self, forCellReuseIdentifier: "InformationCell")//1
     tableView2.register(PaywithCell.self, forCellReuseIdentifier: "PaywithCell")//2
-
+    tableView2.register(MembershipCell.self, forCellReuseIdentifier: "MembershipCell")//3
   }
   
 }
@@ -70,8 +70,8 @@ extension OderVC : UITableViewDataSource{
       let PaywithCell = tableView.dequeueReusableCell(withIdentifier: "PaywithCell", for: indexPath) as! PaywithCell
       return PaywithCell
     case 3:
-      let loginCell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! loginCell
-      return loginCell
+      let MembershipCell = tableView.dequeueReusableCell(withIdentifier: "MembershipCell", for: indexPath) as! MembershipCell
+      return MembershipCell
     case 4:
       let loginCell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! loginCell
       return loginCell
@@ -81,40 +81,40 @@ extension OderVC : UITableViewDataSource{
     }
   }
   /*
-  func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-     switch section {
-     case 0:
-       return " "
-     case 1:
-       return " "
-     case 2:
-       return " "
-     case 3:
-       return " "
-     case 4:
-       return " "
-     default:
-       return " "
-     }
+   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+   switch section {
+   case 0:
+   return " "
+   case 1:
+   return " "
+   case 2:
+   return " "
+   case 3:
+   return " "
+   case 4:
+   return " "
+   default:
+   return " "
+   }
    }
    */
-    /*
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-      switch section {
-       case 0:
-         return 1
-       case 1:
-         return 1
-       case 2:
-         return 1
-       case 3:
-         return 1
-       case 4:
-         return 1
-       default:
-         return 0
-       }
-     }*/
-  
+  /*
+   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+   switch section {
+   case 0:
+   return 1
+   case 1:
+   return 1
+   case 2:
+   return 1
+   case 3:
+   return 1
+   case 4:
+   return 1
+   default:
+   return 0
    }
+   }*/
+  
+}
 

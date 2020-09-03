@@ -23,17 +23,9 @@ class PaywithCell : UITableViewCell {
      l.font = UIFont.boldSystemFont(ofSize: 24)
      return l
    }()
+  
+  let payView = Paywith()
    
-//   let yogiseoPay: UILabel = {
-//     let l = UILabel()
-//     l.text = "요기서 결제"
-//     l.layer.borderColor = ColorPiker.customGray.cgColor
-//     l.layer.borderWidth = 1
-//     l.font = FontModel.toSize.customSmallFont
-//     l.textAlignment = .center
-//     return l
-//   }()
-//
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
@@ -48,11 +40,12 @@ class PaywithCell : UITableViewCell {
       $0.translatesAutoresizingMaskIntoConstraints = false
       contentView.addSubview($0)
     }
-    [numberImage,].forEach{
+    [numberImage,payView].forEach{
          contentView.addSubview($0)
          $0.translatesAutoresizingMaskIntoConstraints = false
          $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
        }
+    
   }
   
   func setConstraint(){
@@ -65,12 +58,10 @@ class PaywithCell : UITableViewCell {
          paywithLable.centerYAnchor.constraint(equalTo: numberImage.centerYAnchor),
          paywithLable.leadingAnchor.constraint(equalTo: numberImage.trailingAnchor, constant: 8),
          paywithLable.widthAnchor.constraint(equalToConstant: 150),
-         
-         paywithLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-
-//         informationView.topAnchor.constraint(equalTo: numberImage.bottomAnchor, constant: 18),
-//         informationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-//         informationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+        
+         payView.topAnchor.constraint(equalTo: paywithLable.bottomAnchor, constant: 18),
+         payView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+         payView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
        ])
   }
 
