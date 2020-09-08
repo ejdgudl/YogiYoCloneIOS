@@ -321,14 +321,83 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return collectionView
     }()
     
-    let testCategory = ["전체보기", "테이크아웃", "요기요플러스", "치킨", "중국집", "피자/양식", "한식", "분식", "카페/디저트","1인분주문", "일식/돈가스", "족발/보쌈", "프랜차이즈", "야식", "편의점/마트"]
+    private let motherStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.axis = .vertical
+        stack.spacing = 1
+        return stack
+    }()
+    
+    private let firstStack: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 1
+        return stack
+    }()
+    private let button1 = UIButton()
+    private let button2 = UIButton()
+    private let button3 = UIButton()
+    
+    private let twiceStack: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 1
+        return stack
+    }()
+    private let button4 = UIButton()
+    private let button5 = UIButton()
+    private let button6 = UIButton()
+    
+    private let thirdStack: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 1
+        return stack
+    }()
+    private let button7 = UIButton()
+    private let button8 = UIButton()
+    private let button9 = UIButton()
+    
+    private let fourthStack: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 1
+        return stack
+    }()
+    private let button10 = UIButton()
+    private let button11 = UIButton()
+    private let button12 = UIButton()
+    
+    private let fifthStack: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 1
+        return stack
+    }()
+    private let button13 = UIButton()
+    private let button14 = UIButton()
+    private let button15 = UIButton()
+    
+    let testCategory = ["전체보기", "요기요플러스", "테이크아웃", "중국집", "치킨", "한식", "피자/양식", "카페/디저트", "분식", "1인분주문", "일식/돈가스", "야식", "족발/보쌈", "프랜차이즈", "편의점/마트"]
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.backgroundColor = .systemBackground
         
         motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: ninthCollection.frame.maxY)
+                                              height: motherStackView.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
                                                  height: topBannerView.frame.height)
@@ -338,7 +407,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         setUI()
         setLayout()
@@ -411,6 +479,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.addSubview(ninthCollectionHeader)
         ninthCollectionHeader.addSubview(ninthHeaderTitle)
         motherScrollView.addSubview(ninthCollection)
+        
+        setStackUI()
     }
     
     // MARK: Auto Layout
@@ -474,7 +544,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         
         middleBannerView.snp.makeConstraints {
-            $0.top.equalTo(twiceCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.top.equalTo(twiceCollection.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.equalTo(CollectionDesign.padding)
             $0.width.equalTo(motherScrollView).offset(-CollectionDesign.padding * 2)
             $0.height.equalTo(middleBannerView.snp.width).multipliedBy(0.31)
@@ -488,7 +558,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         
         thirdCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(middleBannerView.snp.bottom).offset(CollectionDesign.padding)
+            $0.top.equalTo(middleBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(thirdCollection.snp.width).multipliedBy(0.15)
         }
@@ -522,7 +592,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         
         fifthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(fourthCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.top.equalTo(fourthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(fifthCollectionHeader.snp.width).multipliedBy(0.15)
         }
@@ -575,7 +645,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         
         eighthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(seventhCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.top.equalTo(seventhCollection.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(eighthCollectionHeader.snp.width).multipliedBy(0.15)
         }
@@ -590,7 +660,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         
         ninthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(eighthCollection.snp.bottom).offset(CollectionDesign.padding)
+            $0.top.equalTo(eighthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(ninthCollectionHeader.snp.width).multipliedBy(0.15)
         }
@@ -603,10 +673,53 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(ninthCollection.snp.width).multipliedBy(0.59)
         }
+        
+        motherStackView.snp.makeConstraints {
+            $0.top.equalTo(ninthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(motherStackView.snp.width).multipliedBy(0.58)
+        }
     }
     
-    // MARK: Stack Button
-    private func creatButtonStack() {
+    // MARK: Stack UI
+    private func setStackUI() {
         
+        motherScrollView.addSubview(motherStackView)
+        
+        var index = 0
+        [button1, button2, button3, button4, button5,
+         button6, button7, button8, button9, button10,
+         button11, button12, button13, button14, button15].forEach {
+            $0.setTitle(testCategory[index], for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
+            $0.backgroundColor = .systemBackground
+            index += 1
+        }
+        
+        [button1, button2, button3].forEach {
+            firstStack.addArrangedSubview($0)
+        }
+        motherStackView.addArrangedSubview(firstStack)
+        
+        [button4, button5, button6].forEach {
+            twiceStack.addArrangedSubview($0)
+        }
+        motherStackView.addArrangedSubview(twiceStack)
+        
+        [button7, button8, button9].forEach {
+            thirdStack.addArrangedSubview($0)
+        }
+        motherStackView.addArrangedSubview(thirdStack)
+        
+        [button10, button11, button12].forEach {
+            fourthStack.addArrangedSubview($0)
+        }
+        motherStackView.addArrangedSubview(fourthStack)
+        
+        [button13, button14, button15].forEach {
+            fifthStack.addArrangedSubview($0)
+        }
+        motherStackView.addArrangedSubview(fifthStack)
     }
 }
