@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KakaoSDKCommon.initSDK(appKey: "4885bdd8a886942a7d87a2767de2b999")
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: OderVC())
-//        window?.rootViewController = LogVC()//AccountVC
+        window?.rootViewController = UINavigationController(rootViewController: AccountVC())
+//        window?.rootViewController = LogVC()
         window?.makeKeyAndVisible()
         return true
     }

@@ -13,4 +13,7 @@ target 'YogiYoCloneIOS' do
     pod 'KakaoSDK'
     pod 'Firebase/Auth'
     pod 'Firebase/Messaging'
+
+    pod 'SwiftyJSON', '~> 4.0'
+
 end

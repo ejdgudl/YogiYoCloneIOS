@@ -275,10 +275,10 @@
 		7387BE5925009A82002ECFC1 /* Section3 */ = {
 			isa = PBXGroup;
 			children = (
+				7387BE622500A164002ECFC1 /* unMembershipCell.swift */,
 				7387BE5A25009AC2002ECFC1 /* MembershipCell.swift */,
 				7387BE5C25009AEC002ECFC1 /* MembershipView.swift */,
 				7387BE5E25009B20002ECFC1 /* PointView.swift */,
-				7387BE622500A164002ECFC1 /* unMembershipCell.swift */,
 			);
 			path = Section3;
 			sourceTree = "<group>";
