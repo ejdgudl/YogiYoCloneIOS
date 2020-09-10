@@ -390,6 +390,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     private let button14 = UIButton()
     private let button15 = UIButton()
     
+    private let bottomView = BottomView()
+    
     let testCategory = ["전체보기", "요기요플러스", "테이크아웃", "중국집", "치킨", "한식", "피자/양식", "카페/디저트", "분식", "1인분주문", "일식/돈가스", "야식", "족발/보쌈", "프랜차이즈", "편의점/마트"]
     
     override func viewDidAppear(_ animated: Bool) {
@@ -397,7 +399,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .systemBackground
         
         motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: motherStackView.frame.maxY)
+                                              height: bottomView.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
                                                  height: topBannerView.frame.height)
@@ -481,6 +483,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.addSubview(ninthCollection)
         
         setStackUI()
+        
+        motherScrollView.addSubview(bottomView)
     }
     
     // MARK: Auto Layout
@@ -678,6 +682,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.top.equalTo(ninthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(motherStackView.snp.width).multipliedBy(0.58)
+        }
+        
+        bottomView.snp.makeConstraints {
+            $0.top.equalTo(motherStackView.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45)
         }
     }
     
