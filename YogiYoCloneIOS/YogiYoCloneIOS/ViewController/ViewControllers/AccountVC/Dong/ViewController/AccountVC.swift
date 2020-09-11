@@ -44,6 +44,12 @@ class AccountVC: UIViewController {
         present(nav, animated: true)
     }
     
+    @objc private func presentLoggedAccountVC(notification: Notification) {
+        let loggedAccountVC = LoggedAccountVC()
+        loggedAccountVC.userPhoneNum = notification.userInfo?["phoneNum"] as? String
+        navigationController?.pushViewController(loggedAccountVC, animated: true)
+    }
+    
     // MARK: Helpers
     private func configureNavi() {
         navigationController?.navigationBar.tintColor = .black
@@ -63,6 +69,7 @@ class AccountVC: UIViewController {
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(BannerCell.self, forCellReuseIdentifier: BannerCell.cellID)
         tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
     }
     
     // MARK: ConfigureViews
@@ -74,6 +81,10 @@ class AccountVC: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

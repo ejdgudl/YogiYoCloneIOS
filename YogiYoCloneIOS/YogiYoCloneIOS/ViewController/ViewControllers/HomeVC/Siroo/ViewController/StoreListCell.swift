@@ -60,7 +60,7 @@ class StoreListCell: UITableViewCell {
     private let reviewLabel : UILabel = {
         let label = UILabel()
         label.text = "리뷰 1000"
-        label.textAlignment = .center
+//        label.textAlignment = .center
 //        label.backgroundColor = .yellow
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
@@ -178,7 +178,7 @@ class StoreListCell: UITableViewCell {
         
         reviewLabel.snp.makeConstraints { (make) in
             make.top.equalTo(pointLabel.snp.top)
-            make.leading.equalTo(pointLabel.snp.trailing).offset(3)
+            make.leading.equalTo(pointLabel.snp.trailing).offset(2)
             make.trailing.equalToSuperview().inset(150)
             make.bottom.equalTo(pointLabel.snp.bottom)
         }

@@ -58,6 +58,7 @@ class PhoneAcceptVC: UIViewController {
     
     private let finishButton: FinishButton = {
         let button = FinishButton()
+        button.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
         return button
     }()
     
@@ -83,6 +84,16 @@ class PhoneAcceptVC: UIViewController {
             return
           }
 //            print(verificationID)
+        }
+    }
+    
+    // 코드의 정확성 여부 조건 만들지 못함(메시지로 수신한 코드를 긁어오는 방법을 모름)
+    @objc private func didTapFinishButton() {
+        guard codeTextField.text?.count == 6 else { return }
+        dismiss(animated: true) {
+            guard let phoneNum = self.phoneNumTextField.text else { return }
+            let userPhoneNum: [String: String] = ["phoneNum": phoneNum]
+            NotificationCenter.default.post(name: presentLoggedAccountVCObserveName, object: nil, userInfo: userPhoneNum)
         }
     }
     
