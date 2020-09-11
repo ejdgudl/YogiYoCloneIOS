@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BottomView: UIView {
+class MenuListVCBottomView: UIView {
     
     // MARK: Properties
     let touchOrderButton: UIButton = {
