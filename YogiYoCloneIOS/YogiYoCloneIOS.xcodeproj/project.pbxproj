@@ -101,7 +101,9 @@
 		DE21FA6F24F4AC5B004D8A56 /* TopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */; };
 		DE21FA7424F55BCB004D8A56 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7324F55BCB004D8A56 /* CategoryVC.swift */; };
 		DE21FA7824F60435004D8A56 /* StoreListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7724F60435004D8A56 /* StoreListCell.swift */; };
-		DE21FA7A24FCD9A9004D8A56 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7924FCD9A9004D8A56 /* Network.swift */; };
+		DE21FA7A24FCD9A9004D8A56 /* StoreinfoFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FA7924FCD9A9004D8A56 /* StoreinfoFetch.swift */; };
+		DE8202F2250B378F008537B1 /* YogiyoPlusStoreListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8202F1250B378F008537B1 /* YogiyoPlusStoreListVC.swift */; };
+		DE8202F6250B4610008537B1 /* StoreListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8202F5250B4610008537B1 /* StoreListModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,7 +205,9 @@
 		DE21FA6E24F4AC5B004D8A56 /* TopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryView.swift; sourceTree = "<group>"; };
 		DE21FA7324F55BCB004D8A56 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryVC.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Siroo/ViewController/CategoryVC.swift; sourceTree = SOURCE_ROOT; };
 		DE21FA7724F60435004D8A56 /* StoreListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreListCell.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Siroo/ViewController/StoreListCell.swift; sourceTree = SOURCE_ROOT; };
-		DE21FA7924FCD9A9004D8A56 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		DE21FA7924FCD9A9004D8A56 /* StoreinfoFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreinfoFetch.swift; sourceTree = "<group>"; };
+		DE8202F1250B378F008537B1 /* YogiyoPlusStoreListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogiyoPlusStoreListVC.swift; sourceTree = "<group>"; };
+		DE8202F5250B4610008537B1 /* StoreListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListModel.swift; sourceTree = "<group>"; };
 		E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogiYoCloneIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -441,9 +445,10 @@
 		D33768D724ECCBED00E0C27A /* Siroo */ = {
 			isa = PBXGroup;
 			children = (
-				DE21FA7924FCD9A9004D8A56 /* Network.swift */,
+				DE8202F4250B45AE008537B1 /* Model */,
 				DE21FA6D24F4AC14004D8A56 /* View */,
 				DE21FA6C24F4AC08004D8A56 /* ViewController */,
+				DE8202F3250B4591008537B1 /* Service */,
 			);
 			path = Siroo;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				D33768D924ECCC3100E0C27A /* StoreListVC.swift */,
+				DE8202F1250B378F008537B1 /* YogiyoPlusStoreListVC.swift */,
 				DE21FA7224F55B8B004D8A56 /* CategoryVC */,
 			);
 			path = ViewController;
@@ -674,6 +680,22 @@
 				DE21FA7324F55BCB004D8A56 /* CategoryVC.swift */,
 			);
 			path = CategoryVC;
+			sourceTree = "<group>";
+		};
+		DE8202F3250B4591008537B1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DE21FA7924FCD9A9004D8A56 /* StoreinfoFetch.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DE8202F4250B45AE008537B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE8202F5250B4610008537B1 /* StoreListModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FA341AF98EB3983C322BD832 /* Pods */ = {
@@ -812,6 +834,7 @@
 				D3D6C3F024EF561900B2873B /* StoreInfoCell.swift in Sources */,
 				D3D6C3F524EF6ED600B2873B /* StretchHeaderLayout.swift in Sources */,
 				D371D17724F62F6800EB1D2A /* ShowContentButton.swift in Sources */,
+				DE8202F2250B378F008537B1 /* YogiyoPlusStoreListVC.swift in Sources */,
 				D371D16F24F614BF00EB1D2A /* DescriptionLabel.swift in Sources */,
 				D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */,
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
@@ -825,7 +848,7 @@
 				D3B0636824F7FEFF00FF37BA /* FinishButton.swift in Sources */,
 				D33768C724ECC87700E0C27A /* AccountVC.swift in Sources */,
 				D3847ECB24F93F6F00C34792 /* LoggedAccountVC.swift in Sources */,
-				DE21FA7A24FCD9A9004D8A56 /* Network.swift in Sources */,
+				DE21FA7A24FCD9A9004D8A56 /* StoreinfoFetch.swift in Sources */,
 				D371D17324F61BB400EB1D2A /* CheckBoxButton.swift in Sources */,
 				7354B1A624EFA91B001903AF /* FontModel.swift in Sources */,
 				D3B0636624F7FEB800FF37BA /* HelpTitleLabel.swift in Sources */,
@@ -855,6 +878,7 @@
 				7306255024F53AD200DC70C1 /* CostView.swift in Sources */,
 				D3ECDB7324FDCE2B00DAD53C /* StatusView.swift in Sources */,
 				6E373A8B24F10DF600BF5678 /* CollectionEdge.swift in Sources */,
+				DE8202F6250B4610008537B1 /* StoreListModel.swift in Sources */,
 				D33768DA24ECCC3100E0C27A /* StoreListVC.swift in Sources */,
 				6EE8C08724F6654400A55413 /* PaddingLabel.swift in Sources */,
 				D371D17524F62D9600EB1D2A /* ButtonExtension.swift in Sources */,

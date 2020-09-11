@@ -8,6 +8,8 @@
 
 
 import Alamofire
+import SwiftyJSON
+
 
 struct Congig {
     static let baseURL = "http://54.180.126.71/restaurants"
