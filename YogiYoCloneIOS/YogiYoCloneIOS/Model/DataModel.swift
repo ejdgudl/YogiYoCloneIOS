@@ -14,7 +14,6 @@ struct RestaurantListData: Codable {
     let previous: String?
     let results: [Results]
     
-    
     struct Results: Codable {
         
         let id: Int
@@ -22,9 +21,16 @@ struct RestaurantListData: Codable {
         let star: Double
         let image: String
         
-        let delivery_discount: Int
-        let delivery_charge: Int
+        let deliveryDiscount: Int?
+        let deliveryCharge: Int
         let categories: [String]
+        
+        enum CodingKeys: String, CodingKey {
+            case id, name, star, image, categories
+            case deliveryDiscount = "delivery_discount"
+            case deliveryCharge = "delivery_charge"
+        }
+
     }
 }
 
@@ -38,34 +44,54 @@ struct RestaurantInstanceData: Codable {
     let image: String
     
     let notification: String
-    let opening_hours: String
-    let tel_number: String
+    let openingHours: String
+    let telNumber: String
     let address: String
     
-    let min_order: Int
-    let payment_methods: [String]
+    let minOrder: Int
+    let paymentMethods: [String]
     
-    let business_name: String
-    let company_registration_number: String
-    let origin_information: String
+    let businessName: String
+    let companyRegistrationNumber: String
+    let originInformation: String
     
-    let delivery_discount: Int
-    let delivery_charge: Int
-    let delivery_time: String
+    let deliveryDiscount: Int
+    let deliveryCharge: Int
+    let deliveryTime: String
     
-    let back_image: String
+    let backImage: String
     let lat: Double
     let lng: Double
     
-    let menu_group: [Menu_group]
+    let menuGroup: [Menu_group]
     
+    enum CodingKeys: String, CodingKey {
+        case id, name, star, image, notification, address, lat, lng
+        case openingHours = "opening_hours"
+        case telNumber = "tel_number"
+        case minOrder = "min_order"
+        case paymentMethods = "payment_methods"
+        case businessName = "business_name"
+        case companyRegistrationNumber = "company_registration_number"
+        case originInformation = "origin_information"
+        case deliveryDiscount = "delivery_discount"
+        case deliveryCharge = "delivery_charge"
+        case deliveryTime = "delivery_time"
+        case backImage = "back_image"
+        case menuGroup = "menu_group"
+    }
     
     struct Menu_group: Codable {
         
         let id: Int
         let name: String
-        let restaurant_id: Int
+        let restaurantId: Int
         let menu: [Menu]
+        
+        enum CodingKeys: String, CodingKey {
+            case id, name, menu
+            case restaurantId = "restaurant_id"
+        }
         
         
         struct Menu: Codable {
@@ -75,8 +101,13 @@ struct RestaurantInstanceData: Codable {
             let image: String?
             
             let caption: String
-            let menu_group_id: Int
+            let menuGroupId: Int
             let price: Int
+            
+            enum CodingKeys: String, CodingKey {
+                case id, name, image, caption, price
+                case menuGroupId = "menu_group_id"
+            }
         }
     }
 }
@@ -90,25 +121,39 @@ struct MenuInstanceData: Codable {
     let image: String
     let caption: String
     let price: Int
-    let option_group: [Option_group?]
+    let optionGroup: [Option_group?]
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, image, caption, price
+        case optionGroup = "option_group"
+    }
     
     
     struct Option_group: Codable {
         
         let id: Int
         let name: String
-        let menu_id: Int
+        let menuId: Int
         
         let mandatory: Bool
         let option: [Option]
         
+        enum CodingKeys: String, CodingKey {
+            case id, name, mandatory, option
+            case menuId = "menu_id"
+        }
         
         struct Option: Codable {
             
             let id: Int
             let name: String
             let price: Int
-            let option_group_id: Int
+            let optionGroupId: Int
+            
+            enum CodingKeys: String, CodingKey {
+                case id, name, price
+                case optionGroupId = "option_group_id"
+            }
         }
     }
 }
