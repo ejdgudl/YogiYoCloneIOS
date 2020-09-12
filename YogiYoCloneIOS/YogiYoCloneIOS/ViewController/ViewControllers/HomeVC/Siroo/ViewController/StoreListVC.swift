@@ -32,19 +32,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
     private let fourth = CategoryVC()
     private let fifth = CategoryVC()
 
-    private let testLabel : UILabel = {
-        let label = UILabel(frame: CGRect(x: 20, y: 20, width: 100, height: 100))
-        label.backgroundColor = .systemBlue
-        return label
-    }()
-    
-    private let containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        
-        return view
-    }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPiker.customSystem
