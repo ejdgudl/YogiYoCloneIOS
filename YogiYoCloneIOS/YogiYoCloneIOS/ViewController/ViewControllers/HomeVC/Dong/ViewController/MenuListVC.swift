@@ -30,8 +30,8 @@ class MenuListVC: UIViewController {
         return view
     }()
     
-    private lazy var bottomView: BottomView = {
-        let view = BottomView()
+    private lazy var bottomView: MenuListVCBottomView = {
+        let view = MenuListVCBottomView()
         return view
     }()
     
