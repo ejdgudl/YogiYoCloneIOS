@@ -12,15 +12,12 @@ import Alamofire
 
 private let reuseIdentifier = "StoreListCell"
 
-
-
-
-class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
+class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol {
+    
     func change(to index: Int) {
         print("click \(index)")
     }
     
-
 //    MARK: Properties
     
     private let storeListCell = StoreListCell()
@@ -31,17 +28,17 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
     private let third = CategoryVC()
     private let fourth = CategoryVC()
     private let fifth = CategoryVC()
-
-
+    
+    private let fetchModel = StoreinfoFetch()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPiker.customSystem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "임시 next", style: .plain, target: self, action: #selector(didTapNext))
         
+        fetchModel.delegate = self
         configure()
         configureScrollView()
-//        configureTableView()
-
 
     }
     
@@ -55,7 +52,11 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
         navigationController?.pushViewController(menuListVC, animated: true)
     }
     
-    
+//    MARK: fetch event
+    func restaurantRetrived(restaurants: [RestaurantListData.Results]) {
+        first.restaurants = restaurants
+        first.reload()
+    }
 //    MARK: Configure
     func configure() {
         let codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: ["전체보기","1인주문","치킨","중국집","디저트"])
@@ -63,18 +64,15 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate{
         codeSegmented.delegate = self
 
         view.addSubview(codeSegmented)
-        configureTableView()
-                
+        self.configureTableView()
     }
     
     func configureTableView() {
-        
-        scrollView.addSubview(first.configureTableView(index: 0))
-        scrollView.addSubview(second.configureTableView(index: 1))
-        scrollView.addSubview(third.configureTableView(index: 2))
-        scrollView.addSubview(fourth.configureTableView(index: 3))
-        scrollView.addSubview(fifth.configureTableView(index: 4))
-        
+        self.scrollView.addSubview(self.first.configureTableView(index: 0))
+        self.scrollView.addSubview(self.second.configureTableView(index: 1))
+        self.scrollView.addSubview(self.third.configureTableView(index: 2))
+        self.scrollView.addSubview(self.fourth.configureTableView(index: 3))
+        self.scrollView.addSubview(self.fifth.configureTableView(index: 4))
     }
     
     func configureScrollView() {

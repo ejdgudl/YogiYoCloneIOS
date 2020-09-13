@@ -36,6 +36,7 @@ struct RestaurantListData: Codable {
 
 
 
+
 struct RestaurantInstanceData: Codable {
     
     let id: Int
