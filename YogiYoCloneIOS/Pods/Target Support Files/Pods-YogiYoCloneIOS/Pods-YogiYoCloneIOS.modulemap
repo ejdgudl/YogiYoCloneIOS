@@ -1,0 +1,6 @@
+framework module Pods_YogiYoCloneIOS {
+  umbrella header "Pods-YogiYoCloneIOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
