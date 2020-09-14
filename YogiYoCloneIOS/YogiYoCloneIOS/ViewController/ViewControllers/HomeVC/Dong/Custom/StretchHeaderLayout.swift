@@ -18,7 +18,6 @@ class StretchHeaderLayout: UICollectionViewFlowLayout {
                 guard let collectionView = collectionView else {return}
                 
                 let contentOffsetY = collectionView.contentOffset.y
-                print(contentOffsetY)
                 
                 if contentOffsetY > 0 {
                     return

@@ -58,7 +58,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         }
     }
     private func setTitle() {
-        titleLabel.font = UIFont(name: FontModel.customLight, size: 18)
+        titleLabel.font = UIFont(name: FontModel.customLight, size: 17)
         titleLabel.textAlignment = .left
         contentView.addSubview(titleLabel)
         
@@ -73,7 +73,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         
         starImage.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
-            $0.leading.equalTo(contentView)
+            $0.leading.equalTo(titleLabel)
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.1)
             $0.height.equalTo(starImage.snp.width)
         }
@@ -89,29 +89,30 @@ class RestaurantCustomCell: UICollectionViewCell {
         }
     }
     private func setReviewLabel() {
-        reviewLabel.font = UIFont(name: FontModel.customLight, size: 14)
-        reviewLabel.textAlignment = .center
+        reviewLabel.font = UIFont(name: FontModel.customLight, size: 13)
+        reviewLabel.textAlignment = .left
         reviewLabel.textColor = .darkGray
         contentView.addSubview(reviewLabel)
         
         reviewLabel.snp.makeConstraints {
             $0.centerY.equalTo(starPointLabel.snp.centerY)
             $0.leading.equalTo(starPointLabel.snp.trailing)
+            $0.trailing.equalTo(titleLabel.snp.trailing)
         }
     }
     private func setExplainLabel() {
-        explanLabel.font = UIFont(name: FontModel.customLight, size: 14)
+        explanLabel.font = UIFont(name: FontModel.customLight, size: 12)
         explanLabel.textAlignment = .left
         explanLabel.textColor = .gray
         contentView.addSubview(explanLabel)
         
         explanLabel.snp.makeConstraints {
             $0.top.equalTo(starImage.snp.bottom).offset(CollectionDesign.collectionPadding)
-            $0.leading.trailing.equalTo(contentView)
+            $0.leading.trailing.equalTo(titleLabel)
             $0.bottom.equalTo(contentView.snp.bottom)
         }
     }
-    func setValue(image: String,imageText: String? ,title: String, starPoint: Double, review: Int, explain: String) {
+    func setValue(image: String, imageText: String? ,title: String, starPoint: Double, review: Int, explain: String) {
         imageText == nil ? (imageLabel.padding = truePadding) : (imageLabel.padding = falsePadding)
         imageView.image = UIImage(named: image)
         imageLabel.text = imageText

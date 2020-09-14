@@ -14,3 +14,10 @@ struct CellData {
     var title: String
     var sectionData: [String]
 }
+
+
+
+//http://54.180.126.71/restaurants
+//http://54.180.126.71/restaurants/2
+//http://54.180.126.71/menu/2
+//http://54.180.126.71/order

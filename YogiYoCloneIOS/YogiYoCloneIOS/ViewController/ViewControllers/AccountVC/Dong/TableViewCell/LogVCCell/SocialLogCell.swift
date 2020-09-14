@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class SocialLogCell: UITableViewCell {
     
@@ -22,7 +23,7 @@ class SocialLogCell: UITableViewCell {
         return button
     }()
     
-    private let naverButton: UIButton = {
+    let naverButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Naver"), for: .normal)
         button.layer.borderColor = UIColor.lightGray.cgColor
@@ -32,13 +33,10 @@ class SocialLogCell: UITableViewCell {
         return button
     }()
     
-    private let appleButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "Apple"), for: .normal)
+    let appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(type: .signIn, style: .white)
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
-        button.contentMode = .scaleAspectFit
-        button.backgroundColor = .blue
         return button
     }()
     
