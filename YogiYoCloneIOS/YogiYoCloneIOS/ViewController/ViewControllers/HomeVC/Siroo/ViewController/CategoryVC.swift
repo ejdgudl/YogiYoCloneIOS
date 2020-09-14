@@ -12,10 +12,16 @@ private let reuseIdentifier = "StoreListCell"
 
 class CategoryVC: UIViewController {
     
+    public var restaurants: [RestaurantListData.Results] = []
+    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func reload() {
+        self.tableView.reloadData()
     }
     
     func configureTableView(index: Int) -> UIView {
@@ -30,7 +36,7 @@ class CategoryVC: UIViewController {
         let height = view.frame.height - 200
         let xPos: Int = 415 * index
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: height)
-
+        
         view.frame = CGRect(x: CGFloat(xPos), y: 0, width: 0, height: 0)
         view.sizeToFit()
         view.addSubview(tableView)
@@ -38,11 +44,8 @@ class CategoryVC: UIViewController {
         
         print("뷰의 사이즈는 11:\(view.frame.height)")
         return view
-        
     }
-    
 }
-    
     
     extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -61,18 +64,17 @@ class CategoryVC: UIViewController {
             }
         }
         
-        
-        
         func numberOfSections(in tableView: UITableView) -> Int {
-            return 3
+            return 1
         }
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 3
+            return restaurants.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
+            cell.restaurant = self.restaurants[indexPath.row]
             //        cell.
             return cell
         }

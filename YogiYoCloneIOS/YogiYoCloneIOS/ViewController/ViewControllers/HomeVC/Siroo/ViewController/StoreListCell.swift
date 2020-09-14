@@ -8,20 +8,30 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+import SwiftyJSON
 
 class StoreListCell: UITableViewCell {
-
-//    MARK: Properties
+    var restaurant: RestaurantListData.Results? {
+        didSet {
+            storeNameLabel.text = restaurant?.name
+            storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)
+            storeImage.image = UIImage(named: restaurant!.image)
+            print(restaurant?.image)
+            
+            
+        }
+    }
     
+//    MARK: Properties
     private let storeImage : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "testRestaurant")
+//        imageView.image = UIImage(named: "testRestaurant")
         return imageView
     }()
     
     private let storeNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "버거킹-성수점"
 //        label.backgroundColor = .red
         label.font = UIFont(name: FontModel.customLight, size: 20)
         return label
@@ -35,7 +45,6 @@ class StoreListCell: UITableViewCell {
     
     private let storeRateLabel : UILabel = {
         let label = UILabel()
-        label.text = "5.0"
 //        label.backgroundColor = .blue
         label.textAlignment = .center
         label.font = UIFont(name: FontModel.customSemibold, size: 13)
