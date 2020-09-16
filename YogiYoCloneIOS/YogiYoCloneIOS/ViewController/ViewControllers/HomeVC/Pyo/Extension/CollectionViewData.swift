@@ -11,7 +11,7 @@ import UIKit
 extension HomeVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testCategory.count
+        return category.item.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -19,8 +19,8 @@ extension HomeVC: UICollectionViewDataSource {
         case categoryCollection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCustomCell.identifier,
                                                                 for: indexPath) as? CategoryCustomCell else { fatalError() }
-            item.setValue(image: "testCate",
-                          title: testCategory[indexPath.item])
+            item.setValue(image: category.item[indexPath.item].image,
+                          title: category.item[indexPath.item].name)
             
             return item
         case firstCollection:

@@ -393,8 +393,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private let bottomView = BottomView()
     
-    let testCategory = ["전체보기", "요기요플러스", "테이크아웃", "중국집", "치킨", "한식", "피자/양식", "카페/디저트", "분식", "1인분주문", "일식/돈가스", "야식", "족발/보쌈", "프랜차이즈", "편의점/마트"]
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.backgroundColor = .systemBackground
@@ -402,10 +400,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.contentSize = CGSize(width: view.frame.width,
                                               height: bottomView.frame.maxY)
 
-        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
+        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(category.item.count),
                                                  height: topBannerView.frame.height)
         
-        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(testCategory.count),
+        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(category.item.count),
                                                     height: middleBannerView.frame.height)
     }
     
@@ -704,7 +702,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         [button1, button2, button3, button4, button5,
          button6, button7, button8, button9, button10,
          button11, button12, button13, button14, button15].forEach {
-            $0.setTitle(testCategory[index], for: .normal)
+            $0.setTitle(category.item[index].name, for: .normal)
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
             $0.backgroundColor = .systemBackground
