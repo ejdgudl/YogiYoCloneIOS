@@ -45,7 +45,8 @@ struct RestaurantInstanceData: Codable {
     let image: String
     
     let notification: String
-    let openingHours: String
+    let openingTime: String
+    let closingTime: String
     let telNumber: String
     let address: String
     
@@ -64,13 +65,15 @@ struct RestaurantInstanceData: Codable {
     let lat: Double
     let lng: Double
     
-    let menuGroup: [Menu_group]
+    let photoMenu: [PhotoMenu]
+    let menuGroup: [MenuGroup]
     
     enum CodingKeys: String, CodingKey {
         case id, name, star, image, notification, address, lat, lng
-        case openingHours = "opening_hours"
+        case openingTime = "opening_time"
+        case closingTime = "closing_time"
         case telNumber = "tel_number"
-        case minOrder = "min_order"
+        case minOrder = "min_order_price"
         case paymentMethods = "payment_methods"
         case businessName = "business_name"
         case companyRegistrationNumber = "company_registration_number"
@@ -79,41 +82,52 @@ struct RestaurantInstanceData: Codable {
         case deliveryCharge = "delivery_charge"
         case deliveryTime = "delivery_time"
         case backImage = "back_image"
+        case photoMenu = "photo_menu"
         case menuGroup = "menu_group"
     }
     
-    struct Menu_group: Codable {
-        
-        let id: Int
-        let name: String
-        let restaurantId: Int
-        let menu: [Menu]
-        
-        enum CodingKeys: String, CodingKey {
-            case id, name, menu
-            case restaurantId = "restaurant_id"
-        }
-        
-        
-        struct Menu: Codable {
-            
-            let id: Int
-            let name: String
-            let image: String?
-            
-            let caption: String
-            let menuGroupId: Int
-            let price: Int
-            
-            enum CodingKeys: String, CodingKey {
-                case id, name, image, caption, price
-                case menuGroupId = "menu_group_id"
-            }
-        }
-    }
 }
 
+struct PhotoMenu: Codable {
+    
+    let id: Int
+    let name: String
+    let image: String
+    let caption: String
+    let menuGroupID: Int
+    let price: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, image, caption, price
+        case menuGroupID = "menu_group_id"
+    }
+    
+}
 
+struct MenuGroup: Codable {
+    
+    let name: String
+    let menu: [Menu]
+    var oppend: Bool
+    
+}
+
+struct Menu: Codable {
+     
+     let id: Int
+     let name: String
+     let image: String?
+     
+     let caption: String
+     let menuGroupId: Int
+     let price: Int
+     
+     enum CodingKeys: String, CodingKey {
+         case id, name, image, caption, price
+         case menuGroupId = "menu_group_id"
+     }
+
+ }
 
 struct MenuInstanceData: Codable {
     
@@ -169,8 +183,9 @@ struct OrderData: Codable {
 
 struct UrlBase {
     
-    static let restaurantList = "http://52.79.251.125/restaurants"
-    static let restaurantInstance = "http://54.180.126.71/restaurants/2"
+
+    static let restaurantList = "http://54.180.126.71/restaurants"
+    static let restaurantInstance = "http://52.79.251.125/restaurants/2"
     static let menuInstance = "http://54.180.126.71/menu/2"
     static let order = "http://54.180.126.71/order"
     

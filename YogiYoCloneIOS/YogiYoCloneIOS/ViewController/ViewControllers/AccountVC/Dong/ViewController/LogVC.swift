@@ -165,10 +165,11 @@ extension LogVC: NaverThirdPartyLoginConnectionDelegate {
         print("[Error] :", error.localizedDescription)
     }
 }
-
+//001413.f6da7c6632bf44a6a3af1ac21579cc08.1142
 extension LogVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            print(credential.user)
             guard let givName = credential.fullName?.givenName else { return }
             guard let famName = credential.fullName?.familyName else { return }
             let strName = famName + givName

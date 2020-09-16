@@ -11,6 +11,13 @@ import UIKit
 class SegMenuCell: UICollectionViewCell {
     
     // MARK: Properties
+    var photoMenus: [PhotoMenu]? {
+        didSet {
+            guard let photoMenus = photoMenus else { return }
+            collectionView.reloadData()
+        }
+    }
+    
     static let cellID = "SegMenuCellID"
     
     private let collectionView: UICollectionView = {
@@ -65,11 +72,14 @@ extension SegMenuCell: UICollectionViewDelegateFlowLayout {
 
 extension SegMenuCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        guard let photoMenus = self.photoMenus else { return 0 }
+        return photoMenus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegMenuItemCell.cellID, for: indexPath) as? SegMenuItemCell else { return UICollectionViewCell() }
+        guard let photoMenus = self.photoMenus else { return cell }
+        cell.photoMenu = photoMenus[indexPath.row]
         return cell
     }
 }
