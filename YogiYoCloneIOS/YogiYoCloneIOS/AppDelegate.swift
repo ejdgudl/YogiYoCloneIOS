@@ -34,8 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: HomeVC())
-
-
 //        window?.rootViewController = MainTabVC()
         window?.makeKeyAndVisible()
         return true

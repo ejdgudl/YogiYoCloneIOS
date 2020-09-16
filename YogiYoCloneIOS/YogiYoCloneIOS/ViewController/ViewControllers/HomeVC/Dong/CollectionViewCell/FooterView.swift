@@ -9,12 +9,26 @@
 import UIKit
 import Cosmos
 
+struct cellData {
+    var opened: Bool
+    var title: String
+    var sectionData: [String]
+}
+
 class FooterView: UICollectionReusableView {
     
+    var tableViewData = [cellData]()
     // TEST
-    var tableViewData = [CellData]()
+//    var tableViewData: [MenuGroup]? {
+//        didSet {
+//            tableView.reloadData()
+//            print(tableView.dataSource)
+//        }
+//    }
     
     // MARK: Priperties
+    var id: String?
+    
     static let cellID = "FooterViewCellID"
     
     let tableView: UITableView = {
@@ -28,10 +42,9 @@ class FooterView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         tableViewData = [
-            CellData(opened: false, title: "title1", sectionData: ["Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3"]),
-            CellData(opened: false, title: "title2", sectionData: ["Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3"]),
-            CellData(opened: false, title: "title3", sectionData: ["Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3"]),
-            CellData(opened: false, title: "title4", sectionData: ["Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3", "Cell1", "Cell2", "Cell3"])
+            cellData(opened: false, title: "Title1", sectionData: ["Cell1", "Cell2", "Cell3"]),
+            cellData(opened: false, title: "Title2", sectionData: ["Cell1", "Cell2", "Cell3"]),
+            cellData(opened: false, title: "Title3", sectionData: ["Cell1", "Cell2", "Cell3"])
         ]
         configure()
         configureViews()
@@ -64,7 +77,7 @@ class FooterView: UICollectionReusableView {
 extension FooterView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 30
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,7 +86,7 @@ extension FooterView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableViewData[section].opened == true {
-            return tableViewData[section].sectionData.count + 1
+            return tableViewData[section].sectionData.count
         } else {
             return 1
         }
@@ -86,22 +99,31 @@ extension FooterView: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuListCell.cellID, for: indexPath) as? MenuListCell else { return UITableViewCell() }
-            cell.listTitle.text = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
+            cell.listTitle.text = tableViewData[indexPath.section].sectionData[indexPath.row]
             return cell
         }
     }
     
+    //header
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//        return UIView()
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 34
+//    }
+    
+    //didSelect
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            if tableViewData[indexPath.section].opened == true {
-                tableViewData[indexPath.section].opened = false
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .automatic)
-            } else {
-                tableViewData[indexPath.section].opened = true
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .automatic)
-            }
+        if tableViewData[indexPath.section].opened == true {
+            tableViewData[indexPath.section].opened = false
+            let sections = IndexSet.init(integer: indexPath.section)
+            tableView.reloadSections(sections, with: .none)
+        } else {
+            tableViewData[indexPath.section].opened = true
+            let sections = IndexSet.init(integer: indexPath.section)
+            tableView.reloadSections(sections, with: .none)
         }
     }
 }

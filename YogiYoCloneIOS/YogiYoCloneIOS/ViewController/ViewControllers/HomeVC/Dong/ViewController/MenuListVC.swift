@@ -12,6 +12,14 @@ import SnapKit
 class MenuListVC: UIViewController {
     
     // MARK: Properties
+    var storeInfo: RestaurantInstanceData? {
+        didSet {
+            guard let storeInfo = storeInfo else { return }
+            collectionView.reloadData()
+            
+        }
+    }
+    
     fileprivate let padding: CGFloat = 16
     
     private var imageVIewOption = true
@@ -40,6 +48,7 @@ class MenuListVC: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureStoreInfo()
         configure()
         configureNavi()
         configureViews()
@@ -67,6 +76,10 @@ class MenuListVC: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+    }
+    
+    private func configureStoreInfo() {
+        storeInfoService(selfVC: self)
     }
     
     // MARK: Configure
@@ -113,7 +126,7 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 500)
+        return .init(width: view.frame.width, height: 900)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -123,7 +136,7 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
         case 1:
             return .init(width: view.frame.width - 2 * padding, height: 50)
         case 2:
-            return .init(width: view.frame.width, height: 170)
+            return .init(width: view.frame.width, height: 200)
         default:
             break
         }
@@ -155,12 +168,14 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         switch indexPath.row {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreInfoCell.cellID, for: indexPath) as? StoreInfoCell else { return UICollectionViewCell() }
+            cell.storeInfo = self.storeInfo
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegmentCell.cellID, for: indexPath) as? SegmentCell else { return UICollectionViewCell() }
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegMenuCell.cellID, for: indexPath) as? SegMenuCell else { return UICollectionViewCell() }
+            cell.photoMenus = self.storeInfo?.photoMenu
             return cell
         default:
             break
@@ -173,9 +188,12 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         
         if kind == UICollectionView.elementKindSectionHeader {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.cellID, for: indexPath) as? HeaderView else { return UICollectionReusableView()}
+            header.storeInfo = self.storeInfo
             return header
         }else {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.cellID, for: indexPath) as? FooterView else { return UICollectionReusableView() }
+            guard let storeInfo = storeInfo else { return footer }
+//            footer.tableViewData = storeInfo.menuGroup
             return footer
         }
     }
@@ -189,7 +207,8 @@ extension MenuListVC: UIScrollViewDelegate{
                 self.navigationController?.navigationBar.tintColor = .black
                 self.statusView.backgroundColor = .white
                 UIApplication.shared.statusBarStyle = .darkContent
-                self.title = "가게 이름"
+                guard let storeInfoName = self.storeInfo?.name else { return }
+                self.title = storeInfoName
             }
         } else if scrollView.contentOffset.y < 100{
             UIView.animate(withDuration: 0.15) {
