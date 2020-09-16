@@ -11,6 +11,13 @@ import UIKit
 class MenuListCell: UITableViewCell {
     
     // MARK: Properties
+//    var tableViewData: Menu? {
+//        didSet {
+//            guard let tableViewData = tableViewData else { return }
+//            
+//        }
+//    }
+    
     static let cellID = "MenuListCellID"
     
     private let baseView: UIView = {
@@ -61,7 +68,7 @@ class MenuListCell: UITableViewCell {
             make.left.right.equalToSuperview()
         }
         
-        [listTitle, buttonImage].forEach {
+        [listTitle].forEach {
             baseView.addSubview($0)
         }
         
@@ -70,9 +77,9 @@ class MenuListCell: UITableViewCell {
             make.left.equalToSuperview().inset(15)
         }
         
-        buttonImage.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.top.right.equalToSuperview().inset(15)
-        }
+//        buttonImage.snp.makeConstraints { (make) in
+//            make.centerY.equalToSuperview()
+//            make.top.right.equalToSuperview().inset(15)
+//        }
     }
 }
