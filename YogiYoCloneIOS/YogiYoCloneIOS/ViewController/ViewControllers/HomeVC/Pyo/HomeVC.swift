@@ -30,6 +30,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     private let titleButton: UIButton = {
         let button = UIButton(type: .system)
+        button.setTitleColor(.black, for: .normal)
         button.setTitle("성수동2가 277-17 ▼", for: .normal)
         return button
     }()
@@ -407,6 +408,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(testCategory.count),
                                                     height: middleBannerView.frame.height)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -420,6 +423,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
                                                            style: .plain,
                                                            target: self,
                                                            action: nil)
+        navigationItem.leftBarButtonItem?.tintColor = .black
         
         titleStack.addArrangedSubview(titleLogo)
         titleStack.addArrangedSubview(titleButton)
@@ -685,7 +689,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         
         bottomView.snp.makeConstraints {
-            $0.top.equalTo(motherStackView.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.top.equalTo(motherStackView.snp.bottom)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45)
         }
