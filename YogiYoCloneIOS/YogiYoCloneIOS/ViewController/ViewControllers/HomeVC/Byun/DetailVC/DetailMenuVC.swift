@@ -8,6 +8,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Kingfisher
+
 
 class DetailMenuVC: UIViewController {
   
@@ -19,6 +21,7 @@ class DetailMenuVC: UIViewController {
   var mainName = String()
   var menuCation = String()
   var menuCost = String()
+  var menuImage = String()
   
   //section2
   var optionGroupCount = Int()
@@ -30,9 +33,14 @@ class DetailMenuVC: UIViewController {
   var optionsName = String()
   var optionsPrice = Int()
   
+  
   //arr
   var arrMenu = [String]()
-  var arrOption = [String]()
+  
+  var arrOptionfalse = [String]()
+  var arrPricefalse = [Int]()
+  var arrMenutrue = [String]()
+  var arrOptiontrue = [String]()
   
   //tset
   var arrtest = [String]()
@@ -115,12 +123,14 @@ class DetailMenuVC: UIViewController {
           let nameData = json["name"].stringValue//가져오고자 하는 데이터
           let captionData = json["caption"].stringValue
           let costData = json["price"].stringValue
+          let imageurl = json["image"].stringValue
           
           //section0-1
           self.mainName.append(nameData)
           self.menuCation.append(captionData)
           self.menuCost.append(costData)
-          
+          self.menuImage.append(imageurl)
+          print(self.menuImage)
           //section2
           let optionGroupe = json["option_group"].arrayValue
           print(optionGroupe.count)
@@ -139,33 +149,52 @@ class DetailMenuVC: UIViewController {
             self.menuName.append(name)
             self.optionsCount = option.count
             self.arrMenu.append(name)
+
             // self.arrMenu.append(menuName[i])
             
             print(self.optionsCount)
             print("arr데이타 : \(self.arrMenu)")
             
-            //section3
+            //optionData
             let optionData = option
-            if optionData == option {
+            if optionData == option && self.menuMandatory == false{
               for i in optionData {
                 let optionName = i["name"].stringValue
                 let optionPrice = i["price"].intValue
                 print("나와라 오바 ! : \(optionName)")
                 print("추가금액 : \(optionPrice)")
                 
-                self.optionsName.append(optionName)
-                self.optionsPrice = optionPrice
-                self.arrOption.append(optionName)
+                self.optionsName.append(optionName) //옵션이름
+                self.optionsPrice = optionPrice  //가격
+                self.arrOptionfalse.append(optionName) //배열 옵션이름
+                self.arrPricefalse.append(optionPrice) //배열 가격
                 self.arrtest.append(String(self.optionsPrice))
+                print("fffffffff : \(self.arrOptionfalse)")
                 // self.arrtest.append(optionsPrice)
               }
+
             }
-          }
+            if optionData == option && self.menuMandatory == true{
+              for i in optionData {
+              let optionName = i["name"].stringValue
+                let optionPrice = i["price"].intValue
+                print("나와라 오바 !222 : \(optionName)")
+                print("추가금액 222: \(optionPrice)")
+
+                self.optionsName.append(optionName)
+                self.optionsPrice = optionPrice
+                self.arrOptiontrue.append(optionName)
+                self.arrtest.append(String(self.optionsPrice))
+              print("ttttttttttt: \(self.arrOptiontrue)")
+                print("ppppppppp: \(self.optionsPrice)")
+              }
+        }
+        }
         }
         self.tableView.reloadData()
-        print("arr데이타2 :\(self.arrMenu)")
-        print("arroption데이타3 : \(self.arrOption)")
-        print("arrtest데이타4: \(self.arrtest)")
+//        print("arr데이타2 :\(self.arrMenufalse)")
+//        print("arroption데이타3 : \(self.arrOptionfalse)")
+//        print("arrtest데이타4: \(self.arrtest)")
      
      //실패시
       case .failure(let error):
@@ -237,24 +266,26 @@ class DetailMenuVC: UIViewController {
 //MARK: -numberOfRowsInSection
 
 extension DetailMenuVC: UITableViewDataSource{
+  //섹션갯수
   func numberOfSections(in tableView: UITableView) -> Int {
-    4 + optionGroupCount
+    4 + optionGroupCount// + optionsCount
   }
-  
+  //셀갯수
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     if section == 0 { //이미지,할인,메뉴명,상세,리뷰
       return 5
     }else if section == 1 { //가격
       return 1
     }else if section == 2 { //변경&추가 메뉴 옵션들
       return optionsCount + optionGroupCount
-    }else if section == 3  { //커스텀 옵션들
-      return optionsCount + optionGroupCount
-    } else if section == 4  { //수량
+//    }else if section == 3 { //커스텀 옵션들
+//      return optionsCount// + optionGroupCount
+    } else if section == 3+optionGroupCount  { //수량
       return 2
     }else {
-      return optionGroupCount+optionsCount
+     // print("optionsCount : \(optionsCount)")
+     // print("optionGroupCount : \(optionGroupCount)")
+      return optionsCount//optionsCount//optionGroupCount+optionsCount
     }
   }
   
@@ -267,6 +298,8 @@ extension DetailMenuVC: UITableViewDataSource{
     case 0:
       if indexPath.row == 0 {
         let imageCell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell", for: indexPath) as! ImageTableViewCell
+        let images = ["\(menuImage)"]
+     imageCell.detailmenuImage.kf.setImage(with: URL(string: images[0]))
         return imageCell
       } else if indexPath.row == 1 {
         let saleCell = tableView.dequeueReusableCell(withIdentifier: "SaleTableViewCell", for: indexPath) as! SaleTableViewCell
@@ -290,20 +323,35 @@ extension DetailMenuVC: UITableViewDataSource{
       let costCell = tableView.dequeueReusableCell(withIdentifier: "CostTableViewCell", for: indexPath) as! CostTableViewCell
       costCell.costLableWon.text = "\(menuCost)원"
       return costCell
+     
+    case 2 :
+      if indexPath.row == 0 {
+      let MenuCell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
+//          MenuCell.selectLable.text = "\(arrOptionfalse[indexPath.row])"
+//          MenuCell.costLabel.text = "+ \(arrPricefalse[indexPath.row])"
+                   return MenuCell
+      }else if indexPath.row > 0 {
+        let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
+//                   ListMCell.selectLable.text = "\(arrOptionfalse[indexPath.row])"
+//                   ListMCell.costLabel.text = "+ \(arrPricefalse[indexPath.row])"
+                    return ListMCell
+      }
       
-    case 2+optionGroupCount :
-          let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
-          return ListMCell
-    
-    case 3+optionGroupCount :
+//    case 2+optionGroupCount - 2:
+//          let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
+//            ListMCell.selectLable.text = "\(arrOption[indexPath.row])"
+//            ListMCell.costLabel.text = "+ \(arrtest[indexPath.row])"
+//          return ListMCell
+//
+ //   case 3+optionGroupCount - 1:
 //      if indexPath.row == 0 {
 //        let optionCell = tableView.dequeueReusableCell(withIdentifier: "OptionTableViewCell", for: indexPath) as! OptionTableViewCell
 //        return optionCell
 //      }else if indexPath.row == 1{
-        let listOPCell = tableView.dequeueReusableCell(withIdentifier: "ListOptionTableViewCell", for: indexPath) as! ListOptionTableViewCell
-        return listOPCell
-      
-    case 4+optionGroupCount:
+//        let listOPCell = tableView.dequeueReusableCell(withIdentifier: "ListOptionTableViewCell", for: indexPath) as! ListOptionTableViewCell
+//        return listOPCell
+//
+    case 3+optionGroupCount:
       if indexPath.row == 0 {
         let buyCell = tableView.dequeueReusableCell(withIdentifier: "BuyTableViewCell", for: indexPath) as! BuyTableViewCell
         return buyCell
@@ -313,11 +361,30 @@ extension DetailMenuVC: UITableViewDataSource{
       }
     default:
       //선택사항
-      let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
-        ListMCell.selectLable.text = "\(arrOption[indexPath.row])"
-        ListMCell.costLabel.text = "+ \(arrtest[indexPath.row])"
-
-         return ListMCell
+//        let nilCell = tableView.dequeueReusableCell(withIdentifier: "NilCell", for: indexPath) as! NilCell
+//               return nilCell
+//    }
+      //let men = false
+      switch menuMandatory {
+      case false:
+          let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
+              ListMCell.selectLable.text = "\(arrOptionfalse[indexPath.row])"
+              ListMCell.costLabel.text = "+ \(arrPricefalse[indexPath.row])"
+               return ListMCell
+      case true :
+        let listOPCell = tableView.dequeueReusableCell(withIdentifier: "ListOptionTableViewCell", for: indexPath) as! ListOptionTableViewCell
+//        listOPCell.selectLable.text = "\(arrOptiontrue[indexPath.row])"
+//        listOPCell.costLabel.text = "+ \(arrtest[indexPath.row])"
+//
+        return listOPCell
+      }
+      
+      
+//      let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
+//        ListMCell.selectLable.text = "\(arrOption[indexPath.row])"
+//        ListMCell.costLabel.text = "+ \(arrtest[indexPath.row])"
+//
+//         return ListMCell
         }
     return nilCell
   }
@@ -373,35 +440,36 @@ extension DetailMenuVC: UITableViewDataSource{
 
 //MARK:-UITableViewDelegate
 extension DetailMenuVC: UITableViewDelegate{
+  //헤더뷰 타이틀
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
    switch section {
     case 0:
       return " "
     case 1:
       return " "
-    case 2 + optionGroupCount-1:
-      return "2+option"// menuData[section].category
-    case 3 + optionGroupCount-2:
-      return "3+option"
-    case 4 + optionGroupCount:
+//    case 2+optionGroupCount-2:
+//      return "2+option"// menuData[section].category
+//    case 3+optionGroupCount-1:
+//      return "3+option"
+    case 3+optionGroupCount:
       return "4+option"
     default:
-      return "keeekkk"//arrMenu[section]//menuData[section].category//"keeekkk"
+      return "keeeㄸㄸㄸkkk"// arrMenufalse[section] + "dd" //"keeekkk"//arrMenu[section]//menuData[section].category//"keeekkk"
     }
   }
-  
+  //헤더뷰 높이
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     switch section {
     case 0:
       return 0
     case 1:
       return 0
-    case 2+optionGroupCount:
+    case 2+optionGroupCount-2:
       return 44
-    case 3+optionGroupCount:
-      return 0
+    case 3+optionGroupCount-1:
+      return 44
     case 4+optionGroupCount:
-      return 0
+      return 44
     default:
       return 44
     }
@@ -420,7 +488,7 @@ extension DetailMenuVC: UIScrollViewDelegate{
       scrollView.contentOffset.y = 1
     }
     if scrollView.contentOffset.y >= 260 {
-      title = "순살 새우치킨 반반(콤보)우이우이"
+      title = "\(mainName)"
       self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
       [leftButton,rightButton].forEach{
         $0.tintColor = .black
