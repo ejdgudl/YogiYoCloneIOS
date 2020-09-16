@@ -59,15 +59,10 @@ class OrderListCell : UITableViewCell {
       listTableView.topAnchor.constraint(equalTo: orderlable.bottomAnchor, constant: 20),
       listTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       listTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-     //listTableView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -50),
+ 
       listTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
       listTableView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8)
-      
-//      shapelayerView.topAnchor.constraint(equalTo: orderlable.bottomAnchor, constant: 20),
-//      shapelayerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//      shapelayerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width-40),
-//      shapelayerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-      
+
     ])
     
   }
@@ -85,6 +80,8 @@ extension OrderListCell : UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let miniListCell = tableView.dequeueReusableCell(withIdentifier: "miniListCell", for: indexPath) as! miniListCell
+   // miniListCell.configure(name: [], price: <#T##String?#>, option: <#T##String?#>)
+    
          return miniListCell
   }
   

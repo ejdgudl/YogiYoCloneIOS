@@ -58,7 +58,7 @@ class miniListCell : UITableViewCell{
   func setConstraint(){
     NSLayoutConstraint.activate([
     
-      miniMenuLable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      miniMenuLable.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -8),
       miniMenuLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
       miniMenuLable.trailingAnchor.constraint(equalTo: miniPriseLable.leadingAnchor),
       
@@ -69,12 +69,17 @@ class miniListCell : UITableViewCell{
       miniSubMenuLable.topAnchor.constraint(equalTo: miniMenuLable.bottomAnchor),
       miniSubMenuLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
       miniSubMenuLable.trailingAnchor.constraint(equalTo: miniPriseLable.leadingAnchor),
-      miniSubMenuLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+      miniSubMenuLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
       
       
     ])
   }
   
+  func configure(name: String?, price: String?, option: String?){
+    miniMenuLable.text = name
+    miniSubMenuLable.text = option
+    miniPriseLable.text = price
+  }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
