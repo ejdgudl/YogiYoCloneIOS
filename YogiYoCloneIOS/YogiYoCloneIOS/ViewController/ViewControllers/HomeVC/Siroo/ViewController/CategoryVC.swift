@@ -12,10 +12,16 @@ private let reuseIdentifier = "StoreListCell"
 
 class CategoryVC: UIViewController {
     
+    public var restaurants: [RestaurantListData.Results] = []
+    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func reload() {
+        self.tableView.reloadData()
     }
     
     func configureTableView(index: Int) -> UIView {
@@ -24,29 +30,26 @@ class CategoryVC: UIViewController {
 
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 120
+        
 
         tableView.tableFooterView = UIView()
 
         let height = view.frame.height - 200
-        let xPos: Int = 415 * index
+        let xPos: CGFloat = view.frame.width * CGFloat(index)
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: height)
-
-        view.frame = CGRect(x: CGFloat(xPos), y: 0, width: 0, height: 0)
+        view.frame = CGRect(x: xPos, y: 0, width: 0, height: 0)
         view.sizeToFit()
         view.addSubview(tableView)
         
         
         print("뷰의 사이즈는 11:\(view.frame.height)")
         return view
-        
     }
-    
 }
-    
     
     extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return "슈퍼레드위크"
+            return "슈퍼레드위크 추천"
         }
         
         //헤더뷰
@@ -61,18 +64,32 @@ class CategoryVC: UIViewController {
             }
         }
         
-        
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView()
+            let tableView = UITableView()
+            headerView.backgroundColor = .white
+            let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            
+            headerLabel.textColor = .black
+            headerLabel.font = UIFont(name: FontModel.customSemibold, size: 18)
+            headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+            headerLabel.sizeToFit()
+            headerView.addSubview(headerLabel)
+            
+            return headerView
+        }
         
         func numberOfSections(in tableView: UITableView) -> Int {
-            return 3
+            return 1
         }
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 3
+            return restaurants.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
+            cell.restaurant = self.restaurants[indexPath.row]
             //        cell.
             return cell
         }

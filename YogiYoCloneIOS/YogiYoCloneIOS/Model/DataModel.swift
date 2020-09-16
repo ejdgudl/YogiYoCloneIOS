@@ -36,6 +36,7 @@ struct RestaurantListData: Codable {
 
 
 
+
 struct RestaurantInstanceData: Codable {
     
     let id: Int
@@ -182,6 +183,7 @@ struct OrderData: Codable {
 
 struct UrlBase {
     
+
     static let restaurantList = "http://54.180.126.71/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
     static let menuInstance = "http://54.180.126.71/menu/2"

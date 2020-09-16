@@ -9,16 +9,23 @@
 import UIKit
 
 protocol CustomTopCategoryViewDelegate : class {
-    func change(to index: Int)
+    func categoryButtonScrollAction(to index: Int)
 }
 
-class CustomTopCategoryView: UIView {
+
+
+class CustomTopCategoryView: UIView , StoreListVCDelegate {
+    func scrollViewAction(to index: Int) {
+        print("Scroll: \(index)")
+    }
+    
 
 //    MARK: Properties
     
     private var categoryTitles: [String]!
     private var buttons : [UIButton] = []
     private var selectorView : UIView!
+ 
 
     
     var textColor: UIColor = ColorPiker.customDarkGray
@@ -52,24 +59,46 @@ class CustomTopCategoryView: UIView {
             self.selectorView.frame.origin.x = selectorPosition
         }
     }
+    
+
 
 //    MARK: Objc func
     
     @objc func buttonAction(sender: UIButton) {
+//        self.storeVC.scrollViewMoveAction()
         for (buttonIndex, btn) in buttons.enumerated() {
             btn.setTitleColor(textColor, for: .normal)
             if btn == sender {
+                let selectorPosition =
+                    frame.width/CGFloat(categoryTitles.count) * CGFloat(buttonIndex)
+                UIView.animate(withDuration: 0.4) {
+                    self.selectorView.frame.origin.x = selectorPosition
+                }
+                btn.setTitleColor(selectorTextColor, for: .normal)
+                delegate?.categoryButtonScrollAction(to: buttonIndex)
+ 
+            }
+        }
+    }
+    
+    func indexChangedListener(_ index: Int) {
+    //        self.storeVC.scrollViewMoveAction()
+        for (buttonIndex, btn) in buttons.enumerated() {
+            btn.setTitleColor(textColor, for: .normal)
+            if buttonIndex == index {
                 let selectorPosition =
                     frame.width/CGFloat(categoryTitles.count) * CGFloat(buttonIndex)
                 UIView.animate(withDuration: 0.3) {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 btn.setTitleColor(selectorTextColor, for: .normal)
-                delegate?.change(to: buttonIndex)
             }
         }
     }
+
 }
+
+
 
 //    MARK: configure extension
 
