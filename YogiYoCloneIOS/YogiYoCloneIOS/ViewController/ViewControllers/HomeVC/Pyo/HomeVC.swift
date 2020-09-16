@@ -408,6 +408,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(testCategory.count),
                                                     height: middleBannerView.frame.height)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

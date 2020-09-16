@@ -169,7 +169,7 @@ struct OrderData: Codable {
 
 struct UrlBase {
     
-    static let restaurantList = "http://54.180.126.71/restaurants"
+    static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://54.180.126.71/restaurants/2"
     static let menuInstance = "http://54.180.126.71/menu/2"
     static let order = "http://54.180.126.71/order"

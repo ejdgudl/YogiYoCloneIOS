@@ -9,9 +9,11 @@
 import UIKit
 
 class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate {
-    func change(to index: Int) {
+    func categoryButtonScrollAction(to index: Int) {
         print("click \(index)")
     }
+    
+
     
 //    MARK: Properties
     
@@ -26,8 +28,10 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemPink
+        view.backgroundColor = ColorPiker.customSystem
         view.addSubview(testTextLabel)
+        
+        configure()
         
         
     }
@@ -35,6 +39,16 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func configure() {
+        let codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: ["전체","한식","피자/양식","분식","카페/디저트"])
+        codeSegmented.backgroundColor = .white
+        codeSegmented.delegate = self
+
+        view.addSubview(codeSegmented)
+  
+    }
+
 
     
 

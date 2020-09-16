@@ -16,8 +16,8 @@ class StoreListCell: UITableViewCell {
         didSet {
             storeNameLabel.text = restaurant?.name
             storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)
-            storeImage.image = UIImage(named: restaurant!.image)
-            print(restaurant?.image)
+//            storeImage.image = UIImage(named: restaurant!.image)
+//            print(restaurant?.image)
             
             
         }
@@ -26,7 +26,7 @@ class StoreListCell: UITableViewCell {
 //    MARK: Properties
     private let storeImage : UIImageView = {
         let imageView = UIImageView()
-//        imageView.image = UIImage(named: "testRestaurant")
+        imageView.image = UIImage(named: "testRestaurant")
         return imageView
     }()
     
@@ -102,13 +102,15 @@ class StoreListCell: UITableViewCell {
     
     private let cescoMark : UIImageView = {
        let imageView = UIImageView()
+        imageView.image = UIImage(named: "cesco")
         return imageView
     }()
     
     private let deliveryDiscountLabel : UILabel = {
         let label = UILabel()
-        label.textColor = ColorPiker.customMainRed
-        label.text = "배달할인 2000원"
+        label.font = FontModel.toSize.customSmallFont
+        label.textColor = .red
+        label.text = "배달할인 2,000원"
         return label
     }()
     
@@ -136,7 +138,7 @@ class StoreListCell: UITableViewCell {
 //    MARK: SetUIConstraints
     
     func setUIConstraints () {
-        [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel].forEach({
+        [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
             contentView.addSubview($0)
         })
         
@@ -149,29 +151,25 @@ class StoreListCell: UITableViewCell {
         storeNameLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(5)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
-            make.trailing.equalToSuperview().inset(100)
+            make.trailing.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(67)
         }
         
+        cescoMark.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(16)
+            make.leading.equalTo(storeNameLabel.snp.trailing).inset(20)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.1)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.2)
+            make.bottom.equalTo(storeNameLabel.snp.bottom)
+        }
+        
         starImage.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(48)
+            make.top.equalToSuperview().inset(42)
             make.leading.equalToSuperview().offset(132)
             make.width.height.equalTo(contentView.snp.width).multipliedBy(0.05)
             make.bottom.equalToSuperview().inset(40)
         }
             
-//        let stack = UIStackView(arrangedSubviews: [storeRateLabel,reviewLabel])
-//        stack.axis = .horizontal
-//        stack.distribution = .fillEqually
-//        stack.spacing = 0
-//
-//        contentView.addSubview(stack)
-//        stack.snp.makeConstraints { (make) in
-//            make.top.equalToSuperview().inset(40)
-//            make.leading.equalTo(starImage.snp.leading).offset(40)
-//            make.trailing.equalToSuperview().inset(100)
-//            make.bottom.equalToSuperview().inset(40)
-//        }
         
         storeRateLabel.snp.makeConstraints { (make) in
             make.top.equalTo(starImage.snp.top)
@@ -192,10 +190,16 @@ class StoreListCell: UITableViewCell {
             make.bottom.equalTo(pointLabel.snp.bottom)
         }
         
-        bestMenuLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(pointLabel.snp.bottom).inset(1)
+        deliveryDiscountLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(pointLabel.snp.bottom).offset(-20)
             make.leading.equalTo(storeNameLabel.snp.leading)
             make.bottom.equalToSuperview().inset(15)
+        }
+        
+        bestMenuLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(pointLabel.snp.bottom).offset(15)
+            make.leading.equalTo(storeNameLabel.snp.leading)
+            make.bottom.equalToSuperview().inset(10)
         }
         
         estimatedTime.snp.makeConstraints { (make) in
