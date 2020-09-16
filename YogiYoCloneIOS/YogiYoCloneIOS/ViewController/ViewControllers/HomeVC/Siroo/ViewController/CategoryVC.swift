@@ -30,14 +30,14 @@ class CategoryVC: UIViewController {
 
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 120
+        
 
         tableView.tableFooterView = UIView()
 
         let height = view.frame.height - 200
-        let xPos: Int = 415 * index
+        let xPos: CGFloat = view.frame.width * CGFloat(index)
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: height)
-        
-        view.frame = CGRect(x: CGFloat(xPos), y: 0, width: 0, height: 0)
+        view.frame = CGRect(x: xPos, y: 0, width: 0, height: 0)
         view.sizeToFit()
         view.addSubview(tableView)
         
@@ -49,7 +49,7 @@ class CategoryVC: UIViewController {
     
     extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return "슈퍼레드위크"
+            return "슈퍼레드위크 추천"
         }
         
         //헤더뷰
@@ -62,6 +62,21 @@ class CategoryVC: UIViewController {
                 //                make.top.equalTo(headerView.snp.top).offset(100)
                 //            }
             }
+        }
+        
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView()
+            let tableView = UITableView()
+            headerView.backgroundColor = .white
+            let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            
+            headerLabel.textColor = .black
+            headerLabel.font = UIFont(name: FontModel.customSemibold, size: 18)
+            headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+            headerLabel.sizeToFit()
+            headerView.addSubview(headerLabel)
+            
+            return headerView
         }
         
         func numberOfSections(in tableView: UITableView) -> Int {
