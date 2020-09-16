@@ -8,7 +8,10 @@
 
 import UIKit
 
+
 class OderVC : UIViewController {
+  
+  var post = [Oders]()
   
   let tableView2 = UITableView()
   let pikerView = UIPickerView()
@@ -39,13 +42,14 @@ class OderVC : UIViewController {
     view.addSubview(tableView2)
     
     //CustomOderCell
-    tableView2.register(loginCell.self, forCellReuseIdentifier: "loginCell")//0
+    tableView2.register(loginCell.self, forCellReuseIdentifier: "loginCell")//0-비회원
     tableView2.register(InformationCell.self, forCellReuseIdentifier: "InformationCell")//1-0
     tableView2.register(CustomOrderCell.self, forCellReuseIdentifier: "CustomOrderCell")//1-1
-    
     tableView2.register(PaywithCell.self, forCellReuseIdentifier: "PaywithCell")//2
-    tableView2.register(MembershipCell.self, forCellReuseIdentifier: "MembershipCell")//3
-    tableView2.register(unMembershipCell.self, forCellReuseIdentifier: "unMembershipCell")//4
+    tableView2.register(MembershipCell.self, forCellReuseIdentifier: "MembershipCell")//3-회원
+    tableView2.register(unMembershipCell.self, forCellReuseIdentifier: "unMembershipCell")//3-비회원
+    //OrderListCell
+    tableView2.register(OrderListCell.self, forCellReuseIdentifier: "OrderListCell") //주문결제내역
     
   }
   
@@ -106,8 +110,8 @@ extension OderVC : UITableViewDataSource{
       let MembershipCell = tableView.dequeueReusableCell(withIdentifier: "MembershipCell", for: indexPath) as! MembershipCell
       return MembershipCell
     case 4:
-      let unMembershipCell = tableView.dequeueReusableCell(withIdentifier: "unMembershipCell", for: indexPath) as! unMembershipCell
-      return unMembershipCell
+      let OrderListCell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
+      return OrderListCell
     default:
       let loginCell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! loginCell
       return loginCell
