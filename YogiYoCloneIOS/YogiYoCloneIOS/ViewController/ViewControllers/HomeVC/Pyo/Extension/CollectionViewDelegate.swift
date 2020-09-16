@@ -11,7 +11,8 @@ import UIKit
 extension HomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listVC = StoreListVC()
-        listVC.categoryIndex = indexPath.row
+        
+        indexPath.row < 3 ? (listVC.categoryIndex = indexPath.row) : (listVC.categoryIndex = indexPath.row - 2)
         navigationController?.pushViewController(listVC, animated: true)
     }
 }
