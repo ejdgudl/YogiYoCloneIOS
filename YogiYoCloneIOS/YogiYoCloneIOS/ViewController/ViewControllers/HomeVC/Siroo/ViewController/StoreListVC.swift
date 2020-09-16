@@ -26,7 +26,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     
     private let storeListCell = StoreListCell()
     private let scrollView = UIScrollView()
-    private var categoryIndex : Int = 0
+    public var categoryIndex : Int = 0
     
     private var scrollViewIndex : Int  = 0
 
@@ -82,7 +82,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
 //    MARK: Configure
     func configure() {
-        codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: 50), categoryTitles: ["전체보기","1인주문","치킨","중국집","디저트"])
+        codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: 50), categoryTitles: ["전체보기","중국집","치킨","한식","피자/양식","카페/디저트"])
         codeSegmented?.backgroundColor = .white
         codeSegmented?.delegate = self
         view.addSubview(codeSegmented!)
