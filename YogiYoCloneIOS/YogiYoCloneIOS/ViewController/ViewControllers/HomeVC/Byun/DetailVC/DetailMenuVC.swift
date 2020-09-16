@@ -110,7 +110,7 @@ class DetailMenuVC: UIViewController {
   //MARK:-AlamofireRequest
   func AlamofireRequest() {
     
-    AF.request("http://52.79.251.125/menu/10", method: .get).validate().responseJSON { response in
+    AF.request("http://52.79.251.125/menu/111", method: .get).validate().responseJSON { response in
       
       switch response.result {
       //성공시
@@ -276,8 +276,8 @@ extension DetailMenuVC: UITableViewDataSource{
       return 5
     }else if section == 1 { //가격
       return 1
-    }else if section == 2 { //변경&추가 메뉴 옵션들
-      return optionsCount + optionGroupCount
+//    }else if section == 2 { //변경&추가 메뉴 옵션들
+//      return optionsCount + optionGroupCount
 //    }else if section == 3 { //커스텀 옵션들
 //      return optionsCount// + optionGroupCount
     } else if section == 3+optionGroupCount  { //수량
@@ -324,18 +324,18 @@ extension DetailMenuVC: UITableViewDataSource{
       costCell.costLableWon.text = "\(menuCost)원"
       return costCell
      
-    case 2 :
-      if indexPath.row == 0 {
-      let MenuCell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
+//    case 2 :
+//      if indexPath.row == 0 {
+//      let MenuCell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
 //          MenuCell.selectLable.text = "\(arrOptionfalse[indexPath.row])"
 //          MenuCell.costLabel.text = "+ \(arrPricefalse[indexPath.row])"
-                   return MenuCell
-      }else if indexPath.row > 0 {
-        let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
+//                   return MenuCell
+//      }else if indexPath.row > 0 {
+//        let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
 //                   ListMCell.selectLable.text = "\(arrOptionfalse[indexPath.row])"
 //                   ListMCell.costLabel.text = "+ \(arrPricefalse[indexPath.row])"
-                    return ListMCell
-      }
+//                    return ListMCell
+//      }
       
 //    case 2+optionGroupCount - 2:
 //          let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
@@ -357,6 +357,7 @@ extension DetailMenuVC: UITableViewDataSource{
         return buyCell
       }else if indexPath.row == 1{
         let buyLastCell = tableView.dequeueReusableCell(withIdentifier: "BuyLastTableViewCell", for: indexPath) as! BuyLastTableViewCell
+        buyLastCell.costLable.text = "\(menuCost)원"
         return buyLastCell
       }
     default:
@@ -364,13 +365,21 @@ extension DetailMenuVC: UITableViewDataSource{
 //        let nilCell = tableView.dequeueReusableCell(withIdentifier: "NilCell", for: indexPath) as! NilCell
 //               return nilCell
 //    }
-      //let men = false
+//      let mandatory = menuMandatory
+//      var menuMandatory = true
       switch menuMandatory {
       case false:
+        if indexPath.row == 0 {
+          let MenuCell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
+          MenuCell.menuLable.text = "\(arrMenu[indexPath.row])"
+      return MenuCell
+          
+        }else if indexPath.row > 0 {
           let ListMCell = tableView.dequeueReusableCell(withIdentifier: "ListMenuTableViewCell", for: indexPath) as! ListMenuTableViewCell
               ListMCell.selectLable.text = "\(arrOptionfalse[indexPath.row])"
               ListMCell.costLabel.text = "+ \(arrPricefalse[indexPath.row])"
                return ListMCell
+        }
       case true :
         let listOPCell = tableView.dequeueReusableCell(withIdentifier: "ListOptionTableViewCell", for: indexPath) as! ListOptionTableViewCell
 //        listOPCell.selectLable.text = "\(arrOptiontrue[indexPath.row])"
@@ -496,7 +505,7 @@ extension DetailMenuVC: UIScrollViewDelegate{
     }else {
       navigationBarLess()
       title = ""
-      [leftButton,rightButton].forEach{ $0.tintColor = .white }
+      [leftButton,rightButton].forEach{ $0.tintColor = .lightGray }
     }
     // print(scrollView.contentOffset.y)
   }

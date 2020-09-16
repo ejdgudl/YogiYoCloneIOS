@@ -128,7 +128,6 @@ extension OderVC : UITableViewDelegate {
 
         var open = true
         print(open)
-
         if open == true {
           let open = false
           let section = IndexSet.init(integer: indexPath.section)
