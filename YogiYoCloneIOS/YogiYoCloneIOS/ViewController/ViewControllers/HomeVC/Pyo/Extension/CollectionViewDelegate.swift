@@ -28,5 +28,4 @@ extension HomeVC: UICollectionViewDelegate {
             fatalError()
         }
     }
-    
 }

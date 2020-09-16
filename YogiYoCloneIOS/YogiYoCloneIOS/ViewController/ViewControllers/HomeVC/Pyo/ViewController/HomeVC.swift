@@ -424,7 +424,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         navigationItem.leftBarButtonItem?.tintColor = .black
         
         titleStack.addArrangedSubview(titleLogo)
+        
+        titleButton.addTarget(self, action: #selector(mapPresent(_:)), for: .touchUpInside)
         titleStack.addArrangedSubview(titleButton)
+        
         navigationItem.titleView = titleStack
         
         motherScrollView.delegate = self
@@ -702,10 +705,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         [button1, button2, button3, button4, button5,
          button6, button7, button8, button9, button10,
          button11, button12, button13, button14, button15].forEach {
-            $0.setTitle(category.item[index].name, for: .normal)
-            $0.setTitleColor(.black, for: .normal)
-            $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
             $0.backgroundColor = .systemBackground
+            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle(category.item[index].name, for: .normal)
+            $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
+            $0.addTarget(self, action: #selector(stackToggle(_:)), for: .touchUpInside)
+            $0.tag = index
             index += 1
         }
         
@@ -733,5 +738,28 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             fifthStack.addArrangedSubview($0)
         }
         motherStackView.addArrangedSubview(fifthStack)
+    }
+    @objc func mapPresent(_ sender: UIButton) {
+        let mapVC = MapVC()
+        mapVC.modalPresentationStyle = .fullScreen
+        present(mapVC, animated: true)
+    }
+    @objc func stackToggle(_ sender: UIButton) {
+        guard sender.tag == 1 || sender.tag == 2 else {
+            let listVC = StoreListVC()
+            sender.tag < 3 ? (listVC.categoryIndex = sender.tag) : (listVC.categoryIndex = sender.tag - 2)
+            navigationController?.pushViewController(listVC, animated: true)
+            return
+        }
+        
+        switch sender.tag {
+        case 1:
+            let plusVC = YogiyoPlusStoreListVC()
+            navigationController?.pushViewController(plusVC, animated: true)
+        case 2:
+            print("take out")
+        default:
+            fatalError()
+        }
     }
 }
