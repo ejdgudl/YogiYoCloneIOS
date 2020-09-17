@@ -11,10 +11,28 @@ import UIKit
 class SegMenuItemCell: UICollectionViewCell {
     
     // MARK: Properties
+    var photoMenu: PhotoMenu? {
+        didSet {
+            guard let photoMenu = photoMenu else { return }
+            guard let imageURL = URL(string: photoMenu.image) else { return }
+            menuImageButotn.kf.setImage(with: imageURL, for: .normal)
+            menuTitleLabel.text = photoMenu.name
+            menuPrice = photoMenu.price
+        }
+    }
+    
+    private var menuPrice: Int? {
+        didSet {
+            guard let minPrice = menuPrice else { return }
+            guard let price = numberFormatter.string(from: NSNumber(value: minPrice)) else { return }
+            menuPriceLabel.text = "\(price)원"
+        }
+    }
+    
     static let cellID = "SegMenuItemCellID"
     
     private var menuTitle = "육쌈 냉면"
-    private var menuPrice = 10000
+    //    private var menuPrice = 10000
     
     let numberFormatter = NumberFormatter()
     
@@ -34,18 +52,8 @@ class SegMenuItemCell: UICollectionViewCell {
     
     private lazy var menuPriceLabel: UILabel = {
         let label = UILabel()
-        let price = numberFormatter.string(from: NSNumber(value: menuPrice))
-        label.text = "\(price ?? "")원"
         label.font = UIFont.systemFont(ofSize: 13)
         return label
-    }()
-    
-    private lazy var menuStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [menuTitleLabel, menuPriceLabel])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .leading
-        return stackView
     }()
     
     // MARK: Init
@@ -68,18 +76,25 @@ class SegMenuItemCell: UICollectionViewCell {
     private func configureViews() {
         backgroundColor = .white
         
-        [menuImageButotn, menuStackView].forEach {
+        [menuImageButotn, menuTitleLabel, menuPriceLabel].forEach {
             addSubview($0)
         }
         
         menuImageButotn.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().multipliedBy(0.6)
+            make.height.equalTo(115)
         }
         
-        menuStackView.snp.makeConstraints { (make) in
+        menuTitleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(menuImageButotn.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(8)
+            make.height.equalTo(25)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview().inset(10)
+        }
+        
+        menuPriceLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(menuTitleLabel.snp.bottom).offset(2)
+            make.height.equalTo(25)
             make.right.equalToSuperview()
             make.left.equalToSuperview().inset(10)
         }

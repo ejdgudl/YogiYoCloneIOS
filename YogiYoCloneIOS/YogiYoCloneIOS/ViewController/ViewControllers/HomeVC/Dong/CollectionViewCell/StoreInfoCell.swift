@@ -11,35 +11,57 @@ import UIKit
 class StoreInfoCell: UICollectionViewCell {
     
     // MARK: Properties
+    var storeInfo: RestaurantInstanceData? {
+        didSet {
+            guard let storeInfo = storeInfo else { return }
+            minPrice = storeInfo.minOrder
+            payMent = storeInfo.paymentMethods.joined(separator: ",")
+            deliPrice = storeInfo.deliveryCharge
+            notiTextLabel.text = storeInfo.notification
+        }
+    }
+    
     static let cellID = "StoreInfoCellID"
     
-    private var minPrice = 10000
-    private var deliPrice = 10000
-    private var payMent = "요기서 결제"
+    private var minPrice: Int? {
+        didSet {
+            guard let minPrice = minPrice else { return }
+            let price = numberFormatter.string(from: NSNumber(value: minPrice))
+            let string = "·최소주문  " + "\(price ?? "")" + "원"
+            minOrderPrice.setAttribute(label: minOrderPrice, string: string)
+        }
+    }
+    private var deliPrice: Int? {
+        didSet {
+            guard let deliPrice = deliPrice else { return }
+            let price = numberFormatter.string(from: NSNumber(value: deliPrice))
+            let string = "·배달요금  " + "\(price ?? "")" + "원"
+            deliveryPrice.setAttribute(label: deliveryPrice, string: string)
+        }
+    }
+    private var payMent: String? {
+        didSet {
+            guard let payMent = payMent else { return }
+            let string = "·결제방법  \(payMent)"
+            payMentLbl.setAttribute(label: payMentLbl, string: string)
+        }
+    }
     private var heartCount = 52
     
     let numberFormatter = NumberFormatter()
     
     private lazy var minOrderPrice: UILabel = {
         let label = UILabel()
-        let price = numberFormatter.string(from: NSNumber(value: minPrice))
-        let string = "·최소주문  " + "\(price ?? "")" + "원"
-        label.setAttribute(label: label, string: string)
         return label
     }()
     
     private lazy var payMentLbl: UILabel = {
         let label = UILabel()
-        let string = "·결제방법  \(payMent)"
-        label.setAttribute(label: label, string: string)
         return label
     }()
     
     private lazy var deliveryPrice: UILabel = {
         let label = UILabel()
-        let price = numberFormatter.string(from: NSNumber(value: deliPrice))
-        let string = "·배달요금  " + "\(price ?? "")" + "원"
-        label.setAttribute(label: label, string: string)
         return label
     }()
     
@@ -69,7 +91,7 @@ class StoreInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 2
-        label.text = "aslkdfl;kasdf;akjsdhf;lashdf;lasadfasdfalsdfhalsjkdflasdflkasjdflkasdjflkjsdhf;lahsjdf;lkajsd;fiansugafnsjkglnafslgna;slkfgn;alskdjfg;laksdjf;lasdjf;laisdjflijsdjfli"
+        label.text = "as"
         return label
     }()
     
