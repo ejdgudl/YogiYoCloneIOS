@@ -10,11 +10,20 @@ import UIKit
 
 private let reuseIdentifier = "StoreListCell"
 
+protocol categoryVCdelegate: class {
+    func categoryDelegate(id: Int)
+    
+}
+
 class CategoryVC: UIViewController {
+    
     
     public var restaurants: [RestaurantListData.Results] = []
     
     private let tableView = UITableView()
+    weak var categoryDelegate : categoryVCdelegate?
+    
+    //    MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +33,21 @@ class CategoryVC: UIViewController {
         self.tableView.reloadData()
     }
     
+    
+    //    MARK: Config
     func configureTableView(index: Int) -> UIView {
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        
+        
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 120
+        tableView.allowsSelection = true
         
-
+        
         tableView.tableFooterView = UIView()
-
+        
         let height = view.frame.height - 200
         let xPos: CGFloat = view.frame.width * CGFloat(index)
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: height)
@@ -46,59 +60,62 @@ class CategoryVC: UIViewController {
         return view
     }
 }
+
+extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
     
-    extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
-        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return "슈퍼레드위크 추천"
-        }
-        
-        //헤더뷰
-        func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-            if let headerView = view as? UITableViewHeaderFooterView {
-                headerView.contentView.backgroundColor = .white
-                headerView.backgroundView?.backgroundColor = .white
-                headerView.textLabel?.textColor = .black
-                //            headerView.snp.makeConstraints { (make) in
-                //                make.top.equalTo(headerView.snp.top).offset(100)
-                //            }
-            }
-        }
-        
-        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerView = UIView()
-            let tableView = UITableView()
-            headerView.backgroundColor = .white
-            let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            
-            headerLabel.textColor = .black
-            headerLabel.font = UIFont(name: FontModel.customSemibold, size: 18)
-            headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-            headerLabel.sizeToFit()
-            headerView.addSubview(headerLabel)
-            
-            return headerView
-        }
-        
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return 1
-        }
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return restaurants.count
-        }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
-            cell.restaurant = self.restaurants[indexPath.row]
-            //        cell.
-            return cell
-        }
-        
-        // 셀이 선택되었을때 실행할 액션
-        //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        <#code#>
-        //    }
-        
-        
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "슈퍼레드위크 추천"
     }
+    
+    //헤더뷰
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+            headerView.backgroundView?.backgroundColor = .white
+            headerView.textLabel?.textColor = .black
+            //            headerView.snp.makeConstraints { (make) in
+            //                make.top.equalTo(headerView.snp.top).offset(100)
+            //            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let tableView = UITableView()
+        headerView.backgroundColor = .white
+        let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        
+        headerLabel.textColor = .black
+        headerLabel.font = UIFont(name: FontModel.customSemibold, size: 18)
+        headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return restaurants.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
+        cell.restaurant = self.restaurants[indexPath.row]
+        //        cell.
+        return cell
+    }
+    
+    //셀이 선택되었을때 실행할 액션
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("안되나..")
+        categoryDelegate?.categoryDelegate(id: self.restaurants[indexPath.row].id)
+    }
+    
+    
+}
 
