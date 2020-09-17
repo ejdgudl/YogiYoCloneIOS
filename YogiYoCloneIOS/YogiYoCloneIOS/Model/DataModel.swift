@@ -8,9 +8,10 @@
 
 import Foundation
 
-struct RestaurantListData: Codable {
+
+struct AllListData: Codable {
     
-    let next: String
+    let next: String?
     let previous: String?
     let results: [Results]
     
@@ -23,21 +24,24 @@ struct RestaurantListData: Codable {
         
         let deliveryDiscount: Int?
         let deliveryCharge: Int
-        let categories: [String]
+        let deliveryTime: String
+        let reviewCount: Int
+        let representativeMenus: [String]
         
         enum CodingKeys: String, CodingKey {
-            case id, name, star, image, categories
+            case id, name, star, image
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
+            case deliveryTime = "delivery_time"
+            case reviewCount = "review_count"
+            case representativeMenus = "representative_menus"
         }
 
     }
 }
 
 
-
-
-struct RestaurantInstanceData: Codable {
+struct ListInstanceData: Codable {
     
     let id: Int
     let name: String
@@ -64,7 +68,7 @@ struct RestaurantInstanceData: Codable {
     let lat: Double
     let lng: Double
     
-    let menuGroup: [Menu_group]
+    let menuGroup: [MenuGroup]
     
     enum CodingKeys: String, CodingKey {
         case id, name, star, image, notification, address, lat, lng
@@ -82,7 +86,7 @@ struct RestaurantInstanceData: Codable {
         case menuGroup = "menu_group"
     }
     
-    struct Menu_group: Codable {
+    struct MenuGroup: Codable {
         
         let id: Int
         let name: String
@@ -115,14 +119,14 @@ struct RestaurantInstanceData: Codable {
 
 
 
-struct MenuInstanceData: Codable {
+struct MenuData: Codable {
     
     let id: Int
     let name: String
     let image: String
     let caption: String
     let price: Int
-    let optionGroup: [Option_group?]
+    let optionGroup: [OptionGroup?]
     
     enum CodingKeys: String, CodingKey {
         case id, name, image, caption, price
@@ -130,7 +134,7 @@ struct MenuInstanceData: Codable {
     }
     
     
-    struct Option_group: Codable {
+    struct OptionGroup: Codable {
         
         let id: Int
         let name: String
@@ -207,18 +211,19 @@ struct UrlBase {
  
 // MARK: 결제방식 필터링
  
- ip주소/restuarants?payment_methods=현금
+ ip주소/restaurants?payment_methods=현금
  현금
  신용카드
  요기서결제
  
 // MARK: 오더링
  
- ip주소/restuarants?order_by=delivery_charge
+ ip주소/restaurants?order_by=delivery_charge
  delivery_charge
  star
  review
  min_order_price
- 쿼리파라미터 두개 이상 쓸 때
+ 
+// MARK: 쿼리파라미터 두개 이상 쓸 때
  ex) ip주소/restaurants?category=치킨&order_by=star
  */
