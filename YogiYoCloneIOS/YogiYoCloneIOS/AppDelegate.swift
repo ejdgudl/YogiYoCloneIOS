@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         instance?.appName = kServiceAppName
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: MainTabVC())
+        window?.rootViewController = UINavigationController(rootViewController: DetailMenuVC())
 //        window?.rootViewController = MainTabVC()
         window?.makeKeyAndVisible()
         return true

@@ -74,7 +74,7 @@ class DetailMenuVC: UIViewController {
     AlamofireRequest()
     setTableView()
   //  costViewFrame()
-   // buttonFrame()
+    buttonFrame()
     clipboradMessag()
     setNaviBar()
     
@@ -83,6 +83,7 @@ class DetailMenuVC: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
       buttonFrame()
+ //   costViewFrame()
   }
   
   //MARK:- Popup Options
@@ -104,10 +105,10 @@ class DetailMenuVC: UIViewController {
   }
   
   //MARK:- Frame
-//  func costViewFrame(){
-//    costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
-//    view.addSubview(costView)
-//  }
+  func costViewFrame(){
+    costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
+    view.addSubview(costView)
+  }
   
   func buttonFrame(){
     orderButton.frame = CGRect(x: view.frame.width/2, y: view.frame.maxY, width: view.frame.width/2, height: -50)
@@ -553,6 +554,7 @@ extension DetailMenuVC: UIScrollViewDelegate{
       navigationBarLess()
       title = ""
       [leftButton,rightButton].forEach{ $0.tintColor = .lightGray }
+      
     }
     // print(scrollView.contentOffset.y)
   }

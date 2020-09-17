@@ -25,18 +25,52 @@ class OderVC : UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setTableView2()
-    
+    buttonFrame()
+  //  navigation()
     title = "배달 주문 결제"
-    navigationItem.leftBarButtonItem = leftButton
-//    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(didTapButton))
+   // self.navigationItem.leftBarButtonItem?.tintColor = .black
+
+  }
+  
+  func viewDidappear(_ animated: Bool) {
+  //  super.viewDidappear(true)
+    buttonFrame()
   }
 
+  let paymentButton : UIButton = {
+  let b = UIButton()
+  b.backgroundColor = ColorPiker.customMainRed
+  b.setTitle("결제 하기", for: .normal)
+  b.setTitleColor(.white, for: .normal)
+    b.titleLabel?.font = UIFont(name: FontModel.customRegular, size: 23)
+  b.addTarget(self, action: #selector(paymentDidTapButton(_:)), for: .touchUpInside)
+    b.isHidden = true
+  return b
+  }()
+  
+  //MARK: -Navi
+  func navigation(){
+  title = "배달 주문 결제"
+    navigationItem.leftBarButtonItem = leftButton
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
+    navigationController?.navigationBar.backgroundColor = UIColor.white
+  }
   
   //MARK:- Action
   @objc func didTapButton(_ sender : UIButton){
     navigationController?.popViewController(animated: true)
 
   }
+  @objc func paymentDidTapButton(_ sender : UIButton){
+     navigationController?.popViewController(animated: true)
+   }
+  
+    func buttonFrame(){
+      paymentButton.frame = CGRect(x: view.frame.minX + 20, y: view.frame.maxY - 20, width: view.frame.width - 40, height: -50)
+    //  paymentButton.center = view.center
+     view.addSubview(paymentButton)
+  }
+  
   
   //MARK:- UITableView
   func setTableView2(){
@@ -62,6 +96,7 @@ class OderVC : UIViewController {
     tableView2.register(unMembershipCell.self, forCellReuseIdentifier: "unMembershipCell")//3-비회원
     //OrderListCell
     tableView2.register(OrderListCell.self, forCellReuseIdentifier: "OrderListCell") //주문결제내역
+    tableView2.register(paymentCell.self, forCellReuseIdentifier: "paymentCell")
     
   }
   
@@ -69,7 +104,7 @@ class OderVC : UIViewController {
 //MARK:-UITableViewDataSource
 extension OderVC : UITableViewDataSource{
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    return 6
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,6 +159,9 @@ extension OderVC : UITableViewDataSource{
     case 4:
       let OrderListCell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
       return OrderListCell
+    case 5 :
+      let paymentCell = tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath) as! paymentCell
+           return paymentCell
     default:
       let loginCell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! loginCell
       return loginCell
@@ -174,4 +212,53 @@ extension OderVC : UITableViewDelegate {
     pikerView.removeFromSuperview()
 
   }
+  
+  //헤더
+     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       switch section {
+       case 0:
+         return " "
+       case 1:
+         return " "
+       case 2:
+         return " "
+       case 3:
+         return " "
+       case 4:
+         return " "
+       default:
+         return " "
+       }
+     }
+     
+     //푸터뷰 높이
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section{
+         case 0:
+           return 1
+         case 1:
+           return 10
+         case 2:
+           return 0
+         case 3:
+           return 10
+         case 4:
+           return 10
+         default:
+           return 0
+         }
+     
+   }
+}
+
+
+extension OderVC : UISceneDelegate {
+func scrollViewDidScroll(_ scrollView: UIScrollView) {
+   if scrollView.contentOffset.y > 800 {
+     scrollView.contentOffset.y = 800
+    paymentButton.isHidden = false
+   }else{
+    paymentButton.isHidden = true
+  }
+}
 }

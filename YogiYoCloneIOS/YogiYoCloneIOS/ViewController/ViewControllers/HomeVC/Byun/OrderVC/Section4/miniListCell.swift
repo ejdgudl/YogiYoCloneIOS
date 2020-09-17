@@ -20,16 +20,16 @@ class miniListCell : UITableViewCell{
   }
   let miniMenuLable : UILabel = {
     let l = UILabel()
-    l.text = "메뉴명"
+    l.text = "토핑킹 치즈 포켓L X1"
     l.numberOfLines = 0
-    l.font = FontModel.toSize.customFont
+    l.font = FontModel.toSize.customLargeFont
     l.textAlignment = .left
     return l
   }()
   
   let miniSubMenuLable : UILabel = {
     let l = UILabel()
-    l.text = "어쩌구저쩌구"
+    l.text = "콜라(펩시)1.25L"
     l.numberOfLines = 0
     l.font = FontModel.toSize.customSmallFont
     l.textColor = ColorPiker.customDarkGray
@@ -39,8 +39,8 @@ class miniListCell : UITableViewCell{
   
   let miniPriseLable : UILabel = {
     let l = UILabel()
-    l.text = "000원"
-    l.font = FontModel.toSize.customMediumFont
+    l.text = "27,130원"
+    l.font = FontModel.toSize.customLargeFont
     l.textAlignment = .right
     return l
   }()

@@ -25,8 +25,7 @@ class OrderListCell : UITableViewCell {
     return t
   }()
   
-  let shapelayerView = layerView()
-
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUI()
@@ -36,37 +35,137 @@ class OrderListCell : UITableViewCell {
   let orderlable : UILabel = {
      let l = UILabel()
      l.text = "배달 주문 내역"
+     l.font = UIFont(name: FontModel.customMedium, size: 24)
+     l.textAlignment = .center
+     return l
+   }()
+  
+  let deliveryPriceLable : UILabel = {
+    let l = UILabel()
+    l.text = "배달 요금"
+    l.font = FontModel.toSize.customLargeFont
+    l.textAlignment = .center
+    return l
+  }()
+  let deliveryPriceWon : UILabel = {
+    let l = UILabel()
+    l.text = "1,500원"
+    l.font = FontModel.toSize.customLargeFont
+    l.textAlignment = .center
+    return l
+  }()
+  
+  let deliverySalePriceLable : UILabel = {
+    let l = UILabel()
+    l.text = " ・ 배달 할인"
+    l.font = FontModel.toSize.customLargeFont
+    l.textAlignment = .center
+    return l
+  }()
+  let deliverySalePriceWon : UILabel = {
+    let l = UILabel()
+    l.text = "-2,000원"
+    l.textColor = .orange
+    l.font = FontModel.toSize.customLargeFont
+    l.textAlignment = .center
+    return l
+  }()
+  let totalOrderPrice : UILabel = {
+    let l = UILabel()
+    l.text = "결제 금액"
+    l.textColor = ColorPiker.customMainRed
+    l.font = FontModel.toSize.customLargeFont
+    l.textAlignment = .center
+    return l
+  }()
+  
+  let totalOrderPriceWon : UILabel = {
+     let l = UILabel()
+     l.text = "26,630원"
+     l.textColor = ColorPiker.customMainRed
+    l.font = UIFont(name: FontModel.customSemibold, size: 24)
+     l.textAlignment = .center
+     return l
+   }()
+  
+  let salePriceLableMessag : UILabel = {
+     let l = UILabel()
+    l.layer.borderColor = ColorPiker.customAlpha2.cgColor
+    l.layer.borderWidth = 0.8
+    l.text = "2,000원 할인 혜택을 받으셨습니다."
+    l.textColor = .orange
      l.font = FontModel.toSize.customLargeFont
      l.textAlignment = .center
      return l
    }()
    
+  let uiLable1 : UILabel = {
+    let l = UILabel()
+    l.backgroundColor = ColorPiker.customAlpha2
+    l.textAlignment = .center
+    return l
+  }()
+  let uiLable2 : UILabel = {
+    let l = UILabel()
+    l.backgroundColor = ColorPiker.customAlpha2
+    l.textAlignment = .center
+    return l
+  }()
   
   func setUI(){
     
     listTableView.dataSource = self
   //  listTableView.delegate = self
-    
     listTableView.register(miniListCell.self, forCellReuseIdentifier: "miniListCell")
     
-    [orderlable,listTableView].forEach {
+    
+    [orderlable,listTableView,deliveryPriceLable,deliveryPriceWon,deliverySalePriceLable,deliverySalePriceWon,uiLable1,totalOrderPrice,totalOrderPriceWon,uiLable2,salePriceLableMessag].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       contentView.addSubview($0)
     }
+    //레이블
+    [deliveryPriceLable,deliverySalePriceLable,totalOrderPrice,salePriceLableMessag,uiLable1,uiLable2].forEach {
+      $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+    }
+    //원
+  [deliveryPriceWon,deliverySalePriceWon,totalOrderPriceWon,salePriceLableMessag,uiLable1,uiLable2].forEach {
+        $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+      }
   }
 
   func setConstraint(){
     NSLayoutConstraint.activate([
+      
       orderlable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
       orderlable.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
      
       listTableView.topAnchor.constraint(equalTo: orderlable.bottomAnchor, constant: 20),
       listTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       listTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
- 
-      listTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-      listTableView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8)
+      listTableView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
+     // listTableView.heightAnchor.constraint(equalTo: listTableView.heightAnchor),
+      
+      deliveryPriceLable.topAnchor.constraint(equalTo: listTableView.bottomAnchor, constant: 12),
+      deliveryPriceWon.topAnchor.constraint(equalTo: listTableView.bottomAnchor, constant: 12),
+    
+      
+      uiLable1.topAnchor.constraint(equalTo: deliveryPriceLable.bottomAnchor, constant: 12),
+      uiLable1.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+      uiLable1.heightAnchor.constraint(equalToConstant: 0.8),
+      
+      deliverySalePriceLable.topAnchor.constraint(equalTo: uiLable1.bottomAnchor, constant: 12),
+      deliverySalePriceWon.topAnchor.constraint(equalTo: uiLable1.bottomAnchor, constant: 12),
+      
+      uiLable2.topAnchor.constraint(equalTo: deliverySalePriceWon.bottomAnchor, constant: 12),
+      uiLable2.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+      uiLable2.heightAnchor.constraint(equalToConstant: 0.8),
+      
+      totalOrderPrice.topAnchor.constraint(equalTo: uiLable2.bottomAnchor, constant: 12),
+      totalOrderPriceWon.centerYAnchor.constraint(equalTo: totalOrderPrice.centerYAnchor),
 
+      salePriceLableMessag.topAnchor.constraint(equalTo: totalOrderPriceWon.bottomAnchor, constant: 12),
+      salePriceLableMessag.heightAnchor.constraint(equalToConstant: 50),
+      salePriceLableMessag.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
     ])
     
   }
