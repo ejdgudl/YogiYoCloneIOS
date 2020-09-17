@@ -62,14 +62,14 @@ struct RestaurantInstanceData: Codable {
     let deliveryTime: String
     
     let backImage: String
-    let lat: Double
-    let lng: Double
+//    let lat: Double
+//    let lng: Double
     
     let photoMenu: [PhotoMenu]
     let menuGroup: [MenuGroup]
     
     enum CodingKeys: String, CodingKey {
-        case id, name, star, image, notification, address, lat, lng
+        case id, name, star, image, notification, address
         case openingTime = "opening_time"
         case closingTime = "closing_time"
         case telNumber = "tel_number"
@@ -107,8 +107,8 @@ struct PhotoMenu: Codable {
 struct MenuGroup: Codable {
     
     let name: String
-    let menu: [Menu]
-    var oppend: Bool
+    var menu: [Menu]
+ 
     
 }
 

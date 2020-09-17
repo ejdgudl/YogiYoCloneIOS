@@ -13,7 +13,6 @@ class SegMenuCell: UICollectionViewCell {
     // MARK: Properties
     var photoMenus: [PhotoMenu]? {
         didSet {
-            guard let photoMenus = photoMenus else { return }
             collectionView.reloadData()
         }
     }
