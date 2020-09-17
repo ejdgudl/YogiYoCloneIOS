@@ -37,11 +37,13 @@ class StoreinfoFetch {
                     let star = restaurant["star"].doubleValue
                     let image = restaurant["image"].stringValue
                     let deliveryDiscount = restaurant["deliveryDiscount"].intValue
-                    let categories = restaurant["categories"].stringValue
+                    let deliveryTime = restaurant["deliveryTime"].stringValue
+                    let reviewCount = restaurant["reviewCount"].intValue
+                    let representativeMenus = restaurant["representativeMenus"].stringValue
+                    let deliveryCharge = restaurant["deliveryCharge"].intValue
+//                    let categories = restaurant["categories"].stringValue
                     
-                    
-                    
-//                rs.append(AllListData.Results(id: id, name: name, star: star, image: image, deliveryDiscount: deliveryDiscount, deliveryCharge: 4000, categories: [categories]))
+                    rs.append(AllListData.Results(id: id, name: name, star: star, image: image, deliveryDiscount: deliveryDiscount, deliveryCharge: deliveryCharge, deliveryTime: deliveryTime, reviewCount: reviewCount, representativeMenus: [representativeMenus]))
                 }
                 
                 self.restaurantListData = AllListData(next: result["next"].stringValue, previous: result["privious"].stringValue, results: rs)
