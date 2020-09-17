@@ -74,10 +74,15 @@ class DetailMenuVC: UIViewController {
     AlamofireRequest()
     setTableView()
   //  costViewFrame()
-    buttonFrame()
+   // buttonFrame()
     clipboradMessag()
     setNaviBar()
     
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(true)
+      buttonFrame()
   }
   
   //MARK:- Popup Options
@@ -135,12 +140,13 @@ class DetailMenuVC: UIViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+    buttonFrame()
   }
   
   //MARK:-AlamofireRequest
   func AlamofireRequest() {
     
-    AF.request("http://52.79.251.125/menu/111", method: .get).validate().responseJSON { response in
+    AF.request("http://52.79.251.125/menu/20", method: .get).validate().responseJSON { response in
       
       switch response.result {
       //성공시
@@ -161,7 +167,7 @@ class DetailMenuVC: UIViewController {
           self.menuCost.append(costData)
           self.menuImage.append(imageurl)
           print(self.menuImage)
-          //section2
+          //section 2
           let optionGroupe = json["option_group"].arrayValue
           print(optionGroupe.count)
           self.optionGroupCount = optionGroupe.count
@@ -462,15 +468,15 @@ extension DetailMenuVC: UITableViewDataSource{
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     switch section{
     case 0:
-      return 1
+      return 0
     case 1:
-      return 1
+      return 0
     case 2:
-      return 1
+      return 0
     case 3:
-      return 1
+      return 0
     case 4:
-      return 2
+      return 0
     default:
       return 0
     }
@@ -504,7 +510,7 @@ extension DetailMenuVC: UITableViewDelegate{
     case 3+optionGroupCount:
       return "4+option"
     default:
-      return "keeeㄸㄸㄸkkk"// arrMenufalse[section] + "dd" //"keeekkk"//arrMenu[section]//menuData[section].category//"keeekkk"
+      return " "// arrMenufalse[section] + "dd" //"keeekkk"//arrMenu[section]//menuData[section].category//"keeekkk"
     }
   }
   //헤더뷰 높이
@@ -513,15 +519,15 @@ extension DetailMenuVC: UITableViewDelegate{
     case 0:
       return 0
     case 1:
-      return 0
+      return 1
     case 2+optionGroupCount-2:
-      return 44
+      return 1
     case 3+optionGroupCount-1:
-      return 44
+      return 1
     case 4+optionGroupCount:
-      return 44
+      return 1
     default:
-      return 44
+      return 1
     }
   }
   
