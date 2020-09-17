@@ -12,12 +12,12 @@ import SwiftyJSON
 import Foundation
 
 protocol RestaurantModelProtocol {
-    func restaurantRetrived(restaurants: [RestaurantListData.Results])
+    func restaurantRetrived(restaurants: [AllListData.Results])
 }
 
 class StoreinfoFetch {
     
-    var restaurantListData: RestaurantListData?
+    var restaurantListData: AllListData?
     var delegate: RestaurantModelProtocol?
     
     init() {
@@ -29,7 +29,7 @@ class StoreinfoFetch {
         ).response { response in
             if response.data != nil {
                 let result = JSON(response.data!)
-                var rs: [RestaurantListData.Results] = []
+                var rs: [AllListData.Results] = []
                 let restaurants = result["results"]
                 for (_, restaurant) in restaurants {
                     let id = restaurant["id"].intValue
@@ -41,10 +41,10 @@ class StoreinfoFetch {
                     
                     
                     
-                rs.append(RestaurantListData.Results(id: id, name: name, star: star, image: image, deliveryDiscount: deliveryDiscount, deliveryCharge: 4000, categories: [categories]))
+//                rs.append(AllListData.Results(id: id, name: name, star: star, image: image, deliveryDiscount: deliveryDiscount, deliveryCharge: 4000, categories: [categories]))
                 }
                 
-                self.restaurantListData = RestaurantListData(next: result["next"].stringValue, previous: result["privious"].stringValue, results: rs)
+                self.restaurantListData = AllListData(next: result["next"].stringValue, previous: result["privious"].stringValue, results: rs)
                 self.delegate?.restaurantRetrived(restaurants: rs)
                 
             }

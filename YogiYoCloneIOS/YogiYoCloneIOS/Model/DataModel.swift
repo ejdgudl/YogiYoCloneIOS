@@ -8,9 +8,10 @@
 
 import Foundation
 
-struct RestaurantListData: Codable {
+
+struct AllListData: Codable {
     
-    let next: String
+    let next: String?
     let previous: String?
     let results: [Results]
     
@@ -23,18 +24,21 @@ struct RestaurantListData: Codable {
         
         let deliveryDiscount: Int?
         let deliveryCharge: Int
-        let categories: [String]
+        let deliveryTime: String
+        let reviewCount: Int
+        let representativeMenus: [String]
         
         enum CodingKeys: String, CodingKey {
-            case id, name, star, image, categories
+            case id, name, star, image
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
+            case deliveryTime = "delivery_time"
+            case reviewCount = "review_count"
+            case representativeMenus = "representative_menus"
         }
 
     }
 }
-
-
 
 
 struct RestaurantInstanceData: Codable {
@@ -45,7 +49,8 @@ struct RestaurantInstanceData: Codable {
     let image: String
     
     let notification: String
-    let openingHours: String
+    let openingTime: String
+    let closingTime: String
     let telNumber: String
     let address: String
     
@@ -61,16 +66,19 @@ struct RestaurantInstanceData: Codable {
     let deliveryTime: String
     
     let backImage: String
-    let lat: Double
-    let lng: Double
+//    let lat: Double
+//    let lng: Double
     
-    let menuGroup: [Menu_group]
+
+    let photoMenu: [PhotoMenu]
+    let menuGroup: [MenuGroup]
     
     enum CodingKeys: String, CodingKey {
-        case id, name, star, image, notification, address, lat, lng
-        case openingHours = "opening_hours"
+        case id, name, star, image, notification, address
+        case openingTime = "opening_time"
+        case closingTime = "closing_time"
         case telNumber = "tel_number"
-        case minOrder = "min_order"
+        case minOrder = "min_order_price"
         case paymentMethods = "payment_methods"
         case businessName = "business_name"
         case companyRegistrationNumber = "company_registration_number"
@@ -79,50 +87,60 @@ struct RestaurantInstanceData: Codable {
         case deliveryCharge = "delivery_charge"
         case deliveryTime = "delivery_time"
         case backImage = "back_image"
+        case photoMenu = "photo_menu"
         case menuGroup = "menu_group"
     }
+}
     
-    struct Menu_group: Codable {
-        
-        let id: Int
-        let name: String
-        let restaurantId: Int
-        let menu: [Menu]
-        
-        enum CodingKeys: String, CodingKey {
-            case id, name, menu
-            case restaurantId = "restaurant_id"
-        }
-        
-        
-        struct Menu: Codable {
-            
-            let id: Int
-            let name: String
-            let image: String?
-            
-            let caption: String
-            let menuGroupId: Int
-            let price: Int
-            
-            enum CodingKeys: String, CodingKey {
-                case id, name, image, caption, price
-                case menuGroupId = "menu_group_id"
-            }
-        }
+struct PhotoMenu: Codable {
+    
+    let id: Int
+    let name: String
+    let image: String
+    let caption: String
+    let menuGroupID: Int
+    let price: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, image, caption, price
+        case menuGroupID = "menu_group_id"
     }
+    
 }
 
+struct MenuGroup: Codable {
+    
+    let name: String
+    var menu: [Menu]
+ 
+    
+}
 
+struct Menu: Codable {
+     
+     let id: Int
+     let name: String
+     let image: String?
+     
+     let caption: String
+     let menuGroupId: Int
+     let price: Int
+     
+     enum CodingKeys: String, CodingKey {
+         case id, name, image, caption, price
+         case menuGroupId = "menu_group_id"
+     }
 
-struct MenuInstanceData: Codable {
+ }
+
+struct MenuData: Codable {
     
     let id: Int
     let name: String
     let image: String
     let caption: String
     let price: Int
-    let optionGroup: [Option_group?]
+    let optionGroup: [OptionGroup?]
     
     enum CodingKeys: String, CodingKey {
         case id, name, image, caption, price
@@ -130,7 +148,7 @@ struct MenuInstanceData: Codable {
     }
     
     
-    struct Option_group: Codable {
+    struct OptionGroup: Codable {
         
         let id: Int
         let name: String
@@ -169,11 +187,29 @@ struct OrderData: Codable {
 
 struct UrlBase {
     
+
+    static let ip = "http://52.79.251.125/"
+    
+    static let listAll = "restaurants"
+    static let category = "?category="
+    static let instance = "restaurants/"
+    
+    static let menu = "menu/"
+    
+    static let payment = "?payment_methods="
+    
+//    static let order = "order"
+    static let ordering = "_by="
+
+
     static let restaurantList = "http://52.79.251.125/restaurants"
-    static let restaurantInstance = "http://54.180.126.71/restaurants/2"
+    static let restaurantInstance = "http://52.79.251.125/restaurants/2"
     static let menuInstance = "http://54.180.126.71/menu/2"
     static let order = "http://54.180.126.71/order"
+
     
     static var lat = "37.545258"
     static var lon = "127.057174"
 }
+
+

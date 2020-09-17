@@ -19,12 +19,13 @@ private let reuseIdentifier = "StoreListCell"
 public let scrollView = UIScrollView()
 
 
-class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate{
+class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate , categoryVCdelegate {
     
     
 //    MARK: Properties
     
     private let storeListCell = StoreListCell()
+    private let menuList = MenuListVC()
     private let scrollView = UIScrollView()
     public var categoryIndex : Int = 0
     
@@ -46,6 +47,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = ColorPiker.customSystem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "임시 next", style: .plain, target: self, action: #selector(didTapNext))
         
@@ -54,6 +56,13 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         configureScrollView()
         categoryButtonScrollAction(to: categoryIndex)
         codeSegmented?.indexChangedListener(categoryIndex)
+        
+        first.categoryDelegate = self
+        second.categoryDelegate = self
+        third.categoryDelegate = self
+        fourth.categoryDelegate = self
+        fifth.categoryDelegate = self
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,7 +76,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
     
 //    MARK: fetch event
-    func restaurantRetrived(restaurants: [RestaurantListData.Results]) {
+    func restaurantRetrived(restaurants: [AllListData.Results]) {
         first.restaurants = restaurants
         first.reload()
         second.restaurants = restaurants
@@ -82,11 +91,12 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
 //    MARK: Configure
     func configure() {
-        codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: 50), categoryTitles: ["전체보기","중국집","치킨","한식","피자/양식","카페/디저트"])
+        codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: 50), categoryTitles: ["전체보기","중국집","치킨","한식","피자/양식"])
         codeSegmented?.backgroundColor = .white
         codeSegmented?.delegate = self
         view.addSubview(codeSegmented!)
         self.configureTableView()
+        
     }
     
     func configureTableView() {
@@ -95,7 +105,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         self.scrollView.addSubview(self.third.configureTableView(index: 2))
         self.scrollView.addSubview(self.fourth.configureTableView(index: 3))
         self.scrollView.addSubview(self.fifth.configureTableView(index: 4))
-            }
+    }
     
     @objc func testButtonAction(sender: UIButton) {
         scrollView.setContentOffset(CGPoint(x: self.view.frame.width, y: 0), animated: true)
@@ -119,6 +129,8 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         print("table 뷰의 \(scrollView.frame.height)")
         scrollView.isPagingEnabled = true
         scrollView.alwaysBounceVertical = false
+        scrollView.showsHorizontalScrollIndicator = false
+        
     }
     
     
@@ -142,9 +154,15 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
             codeSegmented?.indexChangedListener(categoryIndex)
         }
     }
-    
-    // 스크롤의 인덱스 값을 categoryView에 델리게이트로 넘겨 받은 후, 구현.
+//    MARK: Category delegate
+    func categoryDelegate(id: Int) {
+//        let menuList = MenuListVC()
+//        menuList.id = id
+//        navigationController?.pushViewController(menuList, animated: true)
+//        navigationController?.navigationBar.tintColor = .gray
+    }
     
 }
+
             
 
