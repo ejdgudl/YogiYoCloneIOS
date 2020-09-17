@@ -10,8 +10,12 @@ import UIKit
 
 class OrderListCell : UITableViewCell {
 
-  //var post = [Oders]()
-
+  var post = [Post]()
+  var orderData = [Product]()
+  
+  var orderName = [String]()
+  var orderOption = [String]()
+  var orderPrice = Int()
   
   let listTableView :UITableView = {
     let t = UITableView()
@@ -75,13 +79,14 @@ class OrderListCell : UITableViewCell {
 
 extension OrderListCell : UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    4
+  //  orderData.count
+  1
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let miniListCell = tableView.dequeueReusableCell(withIdentifier: "miniListCell", for: indexPath) as! miniListCell
-   // miniListCell.configure(name: [], price: <#T##String?#>, option: <#T##String?#>)
-    
+  
+  //  miniListCell.configure(data: orderData[indexPath.row])
          return miniListCell
   }
   

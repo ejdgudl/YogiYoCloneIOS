@@ -73,7 +73,8 @@ class DetailMenuVC: UIViewController {
     
     AlamofireRequest()
     setTableView()
-    costViewFrame()
+  //  costViewFrame()
+    buttonFrame()
     clipboradMessag()
     setNaviBar()
     
@@ -97,11 +98,40 @@ class DetailMenuVC: UIViewController {
     })
   }
   
-  func costViewFrame(){
-    costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
-    view.addSubview(costView)
+  //MARK:- Frame
+//  func costViewFrame(){
+//    costView.frame = CGRect(x: 0, y: view.frame.maxY - 50, width: view.frame.width, height: 50)
+//    view.addSubview(costView)
+//  }
+  
+  func buttonFrame(){
+    orderButton.frame = CGRect(x: view.frame.width/2, y: view.frame.maxY, width: view.frame.width/2, height: -50)
+    view.addSubview(orderButton)
+    
+    orderaddButton.frame = CGRect(x: 0, y: view.frame.maxY, width: view.frame.width/2, height: -50)
+    view.addSubview(orderaddButton)
   }
   
+  
+ let orderaddButton : UIButton = {
+    let b = UIButton()
+    b.backgroundColor = .darkGray
+    b.setTitle("주문표에 추가", for: .normal)
+    b.setTitleColor(.white, for: .normal)
+    b.titleLabel?.font = FontModel.toSize.customFont
+    return b
+  }()
+  
+  let orderButton : UIButton = {
+    let b = UIButton()
+    b.backgroundColor = ColorPiker.customMainRed
+    b.setTitle("주문 하기", for: .normal)
+    b.setTitleColor(.white, for: .normal)
+    b.titleLabel?.font = FontModel.toSize.customFont
+    b.addTarget(self, action: #selector(orderDidTab(_:)), for: .touchUpInside)
+    return b
+  }()
+    
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
@@ -251,17 +281,28 @@ class DetailMenuVC: UIViewController {
   }
   
   //MARK: -Action
-  
+  //닫기
   @objc func dismissButton(sender : UIBarButtonItem){
     // dismiss(animated: true, completion: nil)
+    navigationController?.popViewController(animated: true)
   }
-  
+  //공유하기
   @objc func shareButton(sender : UIBarButtonItem){
     let vc = ShareVC()
     vc.modalTransitionStyle = .crossDissolve
     vc.modalPresentationStyle = .overFullScreen
     present(vc, animated: true, completion: nil)
   }
+  //주문하기
+  @objc func orderDidTab(_ sender : UIButton){
+    let vc = OderVC()
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  //주문표에 추가
+  @objc func orderaddDidTab(){
+
+  }
+  
 }
 //MARK: -numberOfRowsInSection
 
@@ -398,7 +439,7 @@ extension DetailMenuVC: UITableViewDataSource{
     return nilCell
   }
   
-  
+//MARK:-Footer
   //푸터뷰title
   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
     switch section {

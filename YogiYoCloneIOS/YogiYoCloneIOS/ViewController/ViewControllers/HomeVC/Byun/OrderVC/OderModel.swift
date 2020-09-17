@@ -8,8 +8,7 @@
 
 import UIKit
 
-struct Oders {
-        
+struct Post {
  // var results: [restaurant]
   var restaurant : Int
   var order_menu : [orderMenu?]
@@ -38,3 +37,26 @@ struct orderOptionGroup {
 }
   
 }
+
+
+
+struct Orders {
+  //  let category: String
+    let products: [Product]
+  }
+
+  struct Product {
+    let name: String
+    let price: Int
+    let options : String
+  }
+
+  let menuData: [Orders] = [
+    Orders(products: [
+      Product(name: "3333", price: 3, options: "dd"),
+      Product(name: "배달요금", price: 2000,options: "dd"),
+      Product(name: "추가할인(10%)", price: 5000,options: "dd"),
+      Product(name: "결제금액", price: 33333,options: "dd"),
+    ])
+]
+

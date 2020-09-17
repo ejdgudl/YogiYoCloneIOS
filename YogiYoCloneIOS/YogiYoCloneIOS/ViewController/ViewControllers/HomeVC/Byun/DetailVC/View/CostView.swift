@@ -25,6 +25,7 @@ class CostView: UIView {
     b.setTitle("주문하기", for: .normal)
     b.setTitleColor(.white, for: .normal)
     b.titleLabel?.font = FontModel.toSize.customFont
+    b.addTarget(self, action: #selector(orderDidTap(_:)), for: .touchUpInside)
     return b
   }()
   
@@ -32,6 +33,11 @@ class CostView: UIView {
     super.init(frame: frame)
     setUI()
     setConstraint()
+  }
+  
+  @objc func orderDidTap(_ sender: UIButton){
+   // navigationController?.pushViewController(animated: true)
+
   }
   
   func setUI(){

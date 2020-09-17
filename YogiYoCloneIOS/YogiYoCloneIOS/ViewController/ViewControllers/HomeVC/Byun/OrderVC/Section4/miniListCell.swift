@@ -75,10 +75,10 @@ class miniListCell : UITableViewCell{
     ])
   }
   
-  func configure(name: String?, price: String?, option: String?){
-    miniMenuLable.text = name
-    miniSubMenuLable.text = option
-    miniPriseLable.text = price
+  func configure(data: Product){//(name: String?, price: String?, option: String?){
+    miniMenuLable.text = data.name
+    miniSubMenuLable.text = data.options
+    miniPriseLable.text = String(data.price)
   }
   
   required init?(coder: NSCoder) {

@@ -11,7 +11,9 @@ import UIKit
 
 class OderVC : UIViewController {
   
-  var post = [Oders]()
+  var post = [Post]()
+  
+  lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapButton))
   
   let tableView2 = UITableView()
   let pikerView = UIPickerView()
@@ -24,9 +26,19 @@ class OderVC : UIViewController {
     super.viewDidLoad()
     setTableView2()
     
+    title = "배달 주문 결제"
+    navigationItem.leftBarButtonItem = leftButton
+//    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(didTapButton))
   }
 
   
+  //MARK:- Action
+  @objc func didTapButton(_ sender : UIButton){
+    navigationController?.popViewController(animated: true)
+
+  }
+  
+  //MARK:- UITableView
   func setTableView2(){
     
     pikerView.delegate = self
@@ -54,7 +66,7 @@ class OderVC : UIViewController {
   }
   
 }
-
+//MARK:-UITableViewDataSource
 extension OderVC : UITableViewDataSource{
   func numberOfSections(in tableView: UITableView) -> Int {
     return 5
@@ -118,7 +130,7 @@ extension OderVC : UITableViewDataSource{
     }
   }
 }
-
+//MARK:-UITableViewDelegate
 extension OderVC : UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.cellForRow(at: indexPath)
@@ -143,6 +155,7 @@ extension OderVC : UITableViewDelegate {
       }
     }
     
+    //MARK:- pikerView
     if indexPath.section == 1 && indexPath.row == 1 {
       pikerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
       pikerView.backgroundColor = .white
