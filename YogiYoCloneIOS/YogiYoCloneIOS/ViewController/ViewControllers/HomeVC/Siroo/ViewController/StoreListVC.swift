@@ -28,6 +28,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     private let storeListCell = StoreListCell()
     private let menuList = MenuListVC()
     private let scrollView = UIScrollView()
+    private let storeFilterView = StoreListFilterView()
     public var categoryIndex : Int = 0
     
     private var scrollViewIndex : Int  = 0
@@ -83,7 +84,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = ColorPiker.customSystem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "임시 next", style: .plain, target: self, action: #selector(didTapNext))
         
@@ -91,6 +92,12 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         configure()
         configureScrollView()
         configureFilterButton()
+        view.addSubview(storeFilterView)
+        
+        self.storeFilterView.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(800)
+            make.leading.trailing.equalToSuperview()
+        }
         
         categoryButtonScrollAction(to: categoryIndex)
         codeSegmented?.indexChangedListener(categoryIndex)
@@ -115,11 +122,20 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
     
     
-    @objc func filterButtonTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(filterButtoncolorChange))
-
-        print("필터 터치")
+    @objc func filterButtonTap(_ sender: UIButton) {
+        UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn],
+                               animations: {
+                                self.storeFilterView.center.y -= 500
+//                                self.storeFilterView.layoutIfNeeded()
+                }, completion: nil)
+//                self.storeFilterView.isHidden = false
+        
     }
+
+//self.storeFilterView.snp.makeConstraints { (make) in
+//    make.top.bottom.equalTo(0)
+//    make.leading.trailing.equalToSuperview()
+
     
     // Button Gesture 했을때 색상하는 Selector
     @objc func filterButtoncolorChange() {
@@ -226,6 +242,14 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         menuList.id = id
         navigationController?.pushViewController(menuList, animated: true)
         navigationController?.navigationBar.tintColor = .gray
+    }
+    
+    
+}
+
+extension StoreListVC : StoreListFilterViewDelegate {
+    func presentStorefilterView() {
+        print("d")
     }
     
     

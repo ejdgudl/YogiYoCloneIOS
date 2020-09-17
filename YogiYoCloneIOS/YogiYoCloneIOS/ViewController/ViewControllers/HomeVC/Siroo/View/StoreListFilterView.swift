@@ -14,12 +14,13 @@ protocol StoreListFilterViewDelegate : class {
     func presentStorefilterView()
 }
 
-class FilterButton: UIView {
+class StoreListFilterView: UIView {
 
 //    MARK:  Properties
     private let filterLabel : UILabel = {
         let label = UILabel()
         label.text = "필터"
+        label.backgroundColor = .red
         return label
     }()
     
@@ -51,14 +52,16 @@ class FilterButton: UIView {
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(10)
         }
         
+        delegate?.presentStorefilterView()
+        
         
  }
 
     
 //    MARK: Selector
 
-    @objc func presentingfilterView() {
-        delegate?.presentStorefilterView()
-    }
+//    @objc func presentingfilterView() {
+//        delegate?.presentStorefilterView()
+//    }
 
 }
