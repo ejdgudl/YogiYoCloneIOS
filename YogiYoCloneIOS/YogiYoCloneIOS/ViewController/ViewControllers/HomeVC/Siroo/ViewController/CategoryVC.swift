@@ -18,7 +18,7 @@ protocol categoryVCdelegate: class {
 class CategoryVC: UIViewController {
     
     
-    public var restaurants: [RestaurantListData.Results] = []
+    public var restaurants: [AllListData.Results] = []
     
     private let tableView = UITableView()
     weak var categoryDelegate : categoryVCdelegate?
