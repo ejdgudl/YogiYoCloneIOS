@@ -709,7 +709,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.setTitleColor(.black, for: .normal)
             $0.setTitle(category.item[index].name, for: .normal)
             $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
-            $0.addTarget(self, action: #selector(stackToggle(_:)), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(stackPush(_:)), for: .touchUpInside)
             $0.tag = index
             index += 1
         }
@@ -739,12 +739,14 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         }
         motherStackView.addArrangedSubview(fifthStack)
     }
+    
+    // MARK: Present, Push func
     @objc func mapPresent(_ sender: UIButton) {
         let mapVC = MapVC()
         mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
     }
-    @objc func stackToggle(_ sender: UIButton) {
+    @objc func stackPush(_ sender: UIButton) {
         guard sender.tag == 1 || sender.tag == 2 else {
             let listVC = StoreListVC()
             sender.tag < 3 ? (listVC.categoryIndex = sender.tag) : (listVC.categoryIndex = sender.tag - 2)

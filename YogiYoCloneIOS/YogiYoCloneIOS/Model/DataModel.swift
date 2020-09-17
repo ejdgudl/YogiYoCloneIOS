@@ -169,11 +169,56 @@ struct OrderData: Codable {
 
 struct UrlBase {
     
-    static let restaurantList = "http://52.79.251.125/restaurants"
-    static let restaurantInstance = "http://54.180.126.71/restaurants/2"
-    static let menuInstance = "http://54.180.126.71/menu/2"
-    static let order = "http://54.180.126.71/order"
+    static let ip = "http://52.79.251.125/"
+    
+    static let listAll = "restaurants"
+    static let category = "?category="
+    static let instance = "restaurants/"
+    
+    static let menu = "menu/"
+    
+    static let payment = "?payment_methods="
+    
+    static let order = "order"
+    static let ordering = "_by="
     
     static var lat = "37.545258"
     static var lon = "127.057174"
 }
+
+/*
+// MARK: category
+ 
+ ip주소/restaurants?category=치킨
+ 카테고리는 아래와 같이 요청을 보내주시면 됩니다
+ 1인분주문
+ 프랜차이즈
+ 치킨
+ 피자양식
+ 중식
+ 한식
+ 일식돈까스
+ 족발보쌈
+ 야식
+ 분식
+ 카페디저트
+ 편의점
+ 테이크아웃
+ 
+// MARK: 결제방식 필터링
+ 
+ ip주소/restuarants?payment_methods=현금
+ 현금
+ 신용카드
+ 요기서결제
+ 
+// MARK: 오더링
+ 
+ ip주소/restuarants?order_by=delivery_charge
+ delivery_charge
+ star
+ review
+ min_order_price
+ 쿼리파라미터 두개 이상 쓸 때
+ ex) ip주소/restaurants?category=치킨&order_by=star
+ */
