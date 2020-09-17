@@ -20,6 +20,8 @@ class MenuListVC: UIViewController {
         }
     }
     
+    public var id : Int = 0
+    
     fileprivate let padding: CGFloat = 16
     
     private var imageVIewOption = true
