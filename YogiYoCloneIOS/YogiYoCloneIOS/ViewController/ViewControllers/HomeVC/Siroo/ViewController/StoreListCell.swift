@@ -13,7 +13,7 @@ import SwiftyJSON
 import Kingfisher
 
 class StoreListCell: UITableViewCell {
-    var restaurant: RestaurantListData.Results? {
+    var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
             storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)

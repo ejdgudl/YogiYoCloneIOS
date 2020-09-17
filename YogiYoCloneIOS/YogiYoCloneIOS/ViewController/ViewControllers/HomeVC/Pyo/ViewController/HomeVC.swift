@@ -393,8 +393,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private let bottomView = BottomView()
     
-    let testCategory = ["전체보기", "요기요플러스", "테이크아웃", "중국집", "치킨", "한식", "피자/양식", "카페/디저트", "분식", "1인분주문", "일식/돈가스", "야식", "족발/보쌈", "프랜차이즈", "편의점/마트"]
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.backgroundColor = .systemBackground
@@ -402,10 +400,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.contentSize = CGSize(width: view.frame.width,
                                               height: bottomView.frame.maxY)
 
-        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(testCategory.count),
+        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(category.item.count),
                                                  height: topBannerView.frame.height)
         
-        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(testCategory.count),
+        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(category.item.count),
                                                     height: middleBannerView.frame.height)
     }
     
@@ -426,7 +424,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         navigationItem.leftBarButtonItem?.tintColor = .black
         
         titleStack.addArrangedSubview(titleLogo)
+        
+        titleButton.addTarget(self, action: #selector(mapPresent(_:)), for: .touchUpInside)
         titleStack.addArrangedSubview(titleButton)
+        
         navigationItem.titleView = titleStack
         
         motherScrollView.delegate = self
@@ -704,10 +705,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         [button1, button2, button3, button4, button5,
          button6, button7, button8, button9, button10,
          button11, button12, button13, button14, button15].forEach {
-            $0.setTitle(testCategory[index], for: .normal)
-            $0.setTitleColor(.black, for: .normal)
-            $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
             $0.backgroundColor = .systemBackground
+            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle(category.item[index].name, for: .normal)
+            $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
+            $0.addTarget(self, action: #selector(stackPush(_:)), for: .touchUpInside)
+            $0.tag = index
             index += 1
         }
         
@@ -735,5 +738,30 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             fifthStack.addArrangedSubview($0)
         }
         motherStackView.addArrangedSubview(fifthStack)
+    }
+    
+    // MARK: Present, Push func
+    @objc func mapPresent(_ sender: UIButton) {
+        let mapVC = MapVC()
+        mapVC.modalPresentationStyle = .fullScreen
+        present(mapVC, animated: true)
+    }
+    @objc func stackPush(_ sender: UIButton) {
+        guard sender.tag == 1 || sender.tag == 2 else {
+            let listVC = StoreListVC()
+            sender.tag < 3 ? (listVC.categoryIndex = sender.tag) : (listVC.categoryIndex = sender.tag - 2)
+            navigationController?.pushViewController(listVC, animated: true)
+            return
+        }
+        
+        switch sender.tag {
+        case 1:
+            let plusVC = YogiyoPlusStoreListVC()
+            navigationController?.pushViewController(plusVC, animated: true)
+        case 2:
+            print("take out")
+        default:
+            fatalError()
+        }
     }
 }

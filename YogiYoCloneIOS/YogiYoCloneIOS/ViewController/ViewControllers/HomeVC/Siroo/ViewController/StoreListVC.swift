@@ -129,7 +129,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     
     
 //    MARK: fetch event
-    func restaurantRetrived(restaurants: [RestaurantListData.Results]) {
+    func restaurantRetrived(restaurants: [AllListData.Results]) {
         first.restaurants = restaurants
         first.reload()
         second.restaurants = restaurants

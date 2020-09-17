@@ -10,21 +10,15 @@ import UIKit
 import Alamofire
 
 extension MenuListVC {
-
+    
     func storeInfoService(selfVC: MenuListVC) {
         AF.request("http://52.79.251.125/restaurants/2", method: .get, encoding: URLEncoding.default).response { (response) in
+            print(response)
             guard let data = response.data else {return}
-            do {
-                let json = try? JSONDecoder().decode(RestaurantInstanceData.self, from: data)
-                guard let storeInfo = json else { return }
-                self.storeInfo = storeInfo
-            } catch {
-                print(error.localizedDescription)
-            }
-
+            
+            let json = try? JSONDecoder().decode(RestaurantInstanceData.self, from: data)
+            guard let storeInfo = json else { return }
+            self.storeInfo = storeInfo
         }
     }
-    
-    
-    
 }

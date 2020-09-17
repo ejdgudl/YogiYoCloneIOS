@@ -32,7 +32,7 @@ class SegMenuItemCell: UICollectionViewCell {
     static let cellID = "SegMenuItemCellID"
     
     private var menuTitle = "육쌈 냉면"
-//    private var menuPrice = 10000
+    //    private var menuPrice = 10000
     
     let numberFormatter = NumberFormatter()
     
