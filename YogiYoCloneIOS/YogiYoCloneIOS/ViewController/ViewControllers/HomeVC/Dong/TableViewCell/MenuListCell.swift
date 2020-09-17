@@ -11,13 +11,6 @@ import UIKit
 class MenuListCell: UITableViewCell {
     
     // MARK: Properties
-//    var tableViewData: Menu? {
-//        didSet {
-//            guard let tableViewData = tableViewData else { return }
-//            
-//        }
-//    }
-    
     static let cellID = "MenuListCellID"
     
     private let baseView: UIView = {
@@ -30,14 +23,6 @@ class MenuListCell: UITableViewCell {
         let label = UILabel()
         label.text = "인기메뉴"
         return label
-    }()
-    
-    private let buttonImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.down")
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .black
-        return imageView
     }()
     
     // MARK: Init
@@ -76,10 +61,5 @@ class MenuListCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(15)
         }
-        
-//        buttonImage.snp.makeConstraints { (make) in
-//            make.centerY.equalToSuperview()
-//            make.top.right.equalToSuperview().inset(15)
-//        }
     }
 }

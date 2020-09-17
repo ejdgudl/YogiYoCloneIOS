@@ -9,43 +9,42 @@
 import UIKit
 import Cosmos
 
-struct cellData {
+struct CellData {
     var opened: Bool
     var title: String
-    var sectionData: [String]
+    var sectionData: [Menu]
 }
 
 class FooterView: UICollectionReusableView {
     
-    var tableViewData = [cellData]()
-    // TEST
-//    var tableViewData: [MenuGroup]? {
-//        didSet {
-//            tableView.reloadData()
-//            print(tableView.dataSource)
-//        }
-//    }
+    var tableViewData: [MenuGroup]? {
+        didSet {
+            guard let tableViewData = tableViewData else { return }
+            for data in tableViewData {
+                self.data.append(CellData(opened: false, title: data.name, sectionData: data.menu))
+                if tableViewData.count == self.data.count {
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
     
-    // MARK: Priperties
-    var id: String?
+    var data = [CellData]()
+    
+    // MARK: Properties
     
     static let cellID = "FooterViewCellID"
     
     let tableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         return tableView
     }()
-
+    
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableViewData = [
-            cellData(opened: false, title: "Title1", sectionData: ["Cell1", "Cell2", "Cell3"]),
-            cellData(opened: false, title: "Title2", sectionData: ["Cell1", "Cell2", "Cell3"]),
-            cellData(opened: false, title: "Title3", sectionData: ["Cell1", "Cell2", "Cell3"])
-        ]
         configure()
         configureViews()
     }
@@ -59,6 +58,7 @@ class FooterView: UICollectionReusableView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MenuListCell.self, forCellReuseIdentifier: MenuListCell.cellID)
+        tableView.register(DetailMenuListCell.self, forCellReuseIdentifier: DetailMenuListCell.cellID)
     }
     
     // MARK: ConfigureViews
@@ -70,23 +70,27 @@ class FooterView: UICollectionReusableView {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-
+        
     }
 }
 
 extension FooterView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
+        if indexPath.row == 0 {
+            return 50
+        } else {
+            return 130
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tableViewData.count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableViewData[section].opened == true {
-            return tableViewData[section].sectionData.count
+        if data[section].opened == true {
+            return data[section].sectionData.count + 1
         } else {
             return 1
         }
@@ -95,35 +99,30 @@ extension FooterView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuListCell.cellID, for: indexPath) as? MenuListCell else { return UITableViewCell() }
-            cell.listTitle.text = tableViewData[indexPath.section].title
+            cell.listTitle.text = data[indexPath.section].title
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuListCell.cellID, for: indexPath) as? MenuListCell else { return UITableViewCell() }
-            cell.listTitle.text = tableViewData[indexPath.section].sectionData[indexPath.row]
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailMenuListCell.cellID, for: indexPath) as? DetailMenuListCell else { return UITableViewCell() }
+            guard let strImageurl = data[indexPath.section].sectionData[indexPath.row - 1].image else { return cell }
+            guard let imageURL = URL(string: strImageurl) else { return cell }
+            cell.menuImageView.kf.setImage(with: imageURL)
             return cell
         }
     }
     
-    //header
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        return UIView()
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 34
-//    }
-    
-    //didSelect
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableViewData[indexPath.section].opened == true {
-            tableViewData[indexPath.section].opened = false
-            let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
+        if indexPath.row == 0 {
+            if data[indexPath.section].opened == true {
+                data[indexPath.section].opened = false
+                let sections = IndexSet.init(integer: indexPath.section)
+                tableView.reloadSections(sections, with: .fade)
+            } else {
+                data[indexPath.section].opened = true
+                let sections = IndexSet.init(integer: indexPath.section)
+                tableView.reloadSections(sections, with: .fade)
+            }
         } else {
-            tableViewData[indexPath.section].opened = true
-            let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
+            print(indexPath)
         }
     }
 }

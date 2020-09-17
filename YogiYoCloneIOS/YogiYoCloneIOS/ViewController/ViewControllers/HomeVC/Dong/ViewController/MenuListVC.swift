@@ -14,7 +14,6 @@ class MenuListVC: UIViewController {
     // MARK: Properties
     var storeInfo: RestaurantInstanceData? {
         didSet {
-            guard let storeInfo = storeInfo else { return }
             collectionView.reloadData()
             
         }
@@ -126,7 +125,7 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 900)
+        return .init(width: view.frame.width, height: 2000)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -193,7 +192,7 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }else {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.cellID, for: indexPath) as? FooterView else { return UICollectionReusableView() }
             guard let storeInfo = storeInfo else { return footer }
-//            footer.tableViewData = storeInfo.menuGroup
+            footer.tableViewData = storeInfo.menuGroup
             return footer
         }
     }
