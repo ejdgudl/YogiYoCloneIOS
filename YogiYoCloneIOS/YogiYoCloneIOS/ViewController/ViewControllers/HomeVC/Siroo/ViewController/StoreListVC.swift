@@ -156,10 +156,10 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
 //    MARK: Category delegate
     func categoryDelegate(id: Int) {
-        print("categoryDelegate id \(id)")
-        let menuList = MenuListVC()
-        menuList.id = id
-        navigationController?.pushViewController(menuList, animated: true)
+//        let menuList = MenuListVC()
+//        menuList.id = id
+//        navigationController?.pushViewController(menuList, animated: true)
+//        navigationController?.navigationBar.tintColor = .gray
     }
     
 }
