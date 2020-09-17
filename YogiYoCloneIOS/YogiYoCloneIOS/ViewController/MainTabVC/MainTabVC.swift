@@ -20,22 +20,27 @@ class MainTabVC: UITabBarController {
         
         // homeVC
         let homeVC = constructNavController(tabBarImage: "house", rootViewController: HomeVC())
+        homeVC.title = "홈"
         
         // likeVC
         let likeVC = constructNavController(tabBarImage: "suit.heart", rootViewController: LikeVC())
+        likeVC.title = "찜"
         
         // searchVC
         let searchVC = constructNavController(tabBarImage: "magnifyingglass", rootViewController: SearchVC())
-
+        searchVC.title = "검색"
+        
         // historyVC
         let historyVC = constructNavController(tabBarImage: "doc", rootViewController: HistoryVC())
+        historyVC.title = "주문내역"
         
         // accountVC
         let accountVC = constructNavController(tabBarImage: "person", rootViewController: AccountVC())
+        accountVC.title = "마이요기요"
         
         viewControllers = [homeVC, likeVC, searchVC, historyVC, accountVC]
         
-        tabBar.tintColor = .black
+        tabBar.tintColor = .red
     }
     
     func constructNavController(tabBarImage: String, rootViewController: UIViewController = UIViewController()) -> UINavigationController {

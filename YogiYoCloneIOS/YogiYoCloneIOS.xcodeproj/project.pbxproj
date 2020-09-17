@@ -10,6 +10,8 @@
 		6E165609250A92A800DE7786 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E165608250A92A800DE7786 /* BottomView.swift */; };
 		6E16560B250AC73900DE7786 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16560A250AC73900DE7786 /* DataModel.swift */; };
 		6E16560D251217EF00DE7786 /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16560C251217EF00DE7786 /* CollectionViewDelegate.swift */; };
+		6E1656152512337600DE7786 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1656142512337600DE7786 /* CategoryModel.swift */; };
+		6E16561725123C7B00DE7786 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16561625123C7B00DE7786 /* MapVC.swift */; };
 		6E373A8924F105C400BF5678 /* CategoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E373A8824F105C400BF5678 /* CategoryCustomCell.swift */; };
 		6E373A8B24F10DF600BF5678 /* CollectionEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E373A8A24F10DF600BF5678 /* CollectionEdge.swift */; };
 		6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E373A8C24F410D600BF5678 /* RestaurantCustomCell.swift */; };
@@ -129,6 +131,8 @@
 		6E165608250A92A800DE7786 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		6E16560A250AC73900DE7786 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		6E16560C251217EF00DE7786 /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
+		6E1656142512337600DE7786 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		6E16561625123C7B00DE7786 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		6E373A8824F105C400BF5678 /* CategoryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomCell.swift; sourceTree = "<group>"; };
 		6E373A8A24F10DF600BF5678 /* CollectionEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEdge.swift; sourceTree = "<group>"; };
 		6E373A8C24F410D600BF5678 /* RestaurantCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCustomCell.swift; sourceTree = "<group>"; };
@@ -261,6 +265,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E16560E251232BD00DE7786 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D33768BE24ECC55C00E0C27A /* HomeVC.swift */,
+				6E16561625123C7B00DE7786 /* MapVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6E16560F251232DC00DE7786 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E1656142512337600DE7786 /* CategoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6E373A8724EFDA3900BF5678 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,7 +559,8 @@
 		D33768D524ECCBC600E0C27A /* Pyo */ = {
 			isa = PBXGroup;
 			children = (
-				D33768BE24ECC55C00E0C27A /* HomeVC.swift */,
+				6E16560F251232DC00DE7786 /* Model */,
+				6E16560E251232BD00DE7786 /* ViewController */,
 				6E91215C24FD060E003D86F0 /* Extension */,
 				6E373A8724EFDA3900BF5678 /* Custom */,
 			);
@@ -981,6 +1003,7 @@
 				D368064524F34F5500A7E59D /* LogVC.swift in Sources */,
 				D3B30D54250DF1E4004BEA40 /* MenListService.swift in Sources */,
 				D37C9DA224FA595A00A7C9F2 /* PasswordCell.swift in Sources */,
+				6E1656152512337600DE7786 /* CategoryModel.swift in Sources */,
 				7306255B24F53C1200DC70C1 /* CostTableViewCell.swift in Sources */,
 				D3C9D54E24F1833000D8E93C /* MenuListCell.swift in Sources */,
 				D3C2672A24F386F600FB29A6 /* SocialLogCell.swift in Sources */,
@@ -1041,6 +1064,7 @@
 				D3D6C3F224EF5D8300B2873B /* HeaderView.swift in Sources */,
 				D3ECDB7524FDCE9200DAD53C /* MenuListVCBottomView.swift in Sources */,
 				D371D16D24F613CC00EB1D2A /* LogoImageView.swift in Sources */,
+				6E16561725123C7B00DE7786 /* MapVC.swift in Sources */,
 				6E373A8D24F410D600BF5678 /* RestaurantCustomCell.swift in Sources */,
 				731B059B2510E8DD005BC1DC /* PointView.swift in Sources */,
 				D3A27B9324F95C1F006FCE70 /* ObserveKey.swift in Sources */,

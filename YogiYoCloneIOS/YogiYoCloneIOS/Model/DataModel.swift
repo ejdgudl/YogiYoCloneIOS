@@ -8,9 +8,10 @@
 
 import Foundation
 
-struct RestaurantListData: Codable {
+
+struct AllListData: Codable {
     
-    let next: String
+    let next: String?
     let previous: String?
     let results: [Results]
     
@@ -23,18 +24,21 @@ struct RestaurantListData: Codable {
         
         let deliveryDiscount: Int?
         let deliveryCharge: Int
-        let categories: [String]
+        let deliveryTime: String
+        let reviewCount: Int
+        let representativeMenus: [String]
         
         enum CodingKeys: String, CodingKey {
-            case id, name, star, image, categories
+            case id, name, star, image
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
+            case deliveryTime = "delivery_time"
+            case reviewCount = "review_count"
+            case representativeMenus = "representative_menus"
         }
 
     }
 }
-
-
 
 
 struct RestaurantInstanceData: Codable {
@@ -65,6 +69,7 @@ struct RestaurantInstanceData: Codable {
 //    let lat: Double
 //    let lng: Double
     
+
     let photoMenu: [PhotoMenu]
     let menuGroup: [MenuGroup]
     
@@ -86,8 +91,6 @@ struct RestaurantInstanceData: Codable {
         case menuGroup = "menu_group"
     }
     
-}
-
 struct PhotoMenu: Codable {
     
     let id: Int
@@ -129,14 +132,14 @@ struct Menu: Codable {
 
  }
 
-struct MenuInstanceData: Codable {
+struct MenuData: Codable {
     
     let id: Int
     let name: String
     let image: String
     let caption: String
     let price: Int
-    let optionGroup: [Option_group?]
+    let optionGroup: [OptionGroup?]
     
     enum CodingKeys: String, CodingKey {
         case id, name, image, caption, price
@@ -144,7 +147,7 @@ struct MenuInstanceData: Codable {
     }
     
     
-    struct Option_group: Codable {
+    struct OptionGroup: Codable {
         
         let id: Int
         let name: String
@@ -184,11 +187,64 @@ struct OrderData: Codable {
 struct UrlBase {
     
 
+    static let ip = "http://52.79.251.125/"
+    
+    static let listAll = "restaurants"
+    static let category = "?category="
+    static let instance = "restaurants/"
+    
+    static let menu = "menu/"
+    
+    static let payment = "?payment_methods="
+    
+    static let order = "order"
+    static let ordering = "_by="
+
+
     static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
     static let menuInstance = "http://54.180.126.71/menu/2"
     static let order = "http://54.180.126.71/order"
+
     
     static var lat = "37.545258"
     static var lon = "127.057174"
 }
+
+/*
+// MARK: category
+ 
+ ip주소/restaurants?category=치킨
+ 카테고리는 아래와 같이 요청을 보내주시면 됩니다
+ 1인분주문
+ 프랜차이즈
+ 치킨
+ 피자양식
+ 중식
+ 한식
+ 일식돈까스
+ 족발보쌈
+ 야식
+ 분식
+ 카페디저트
+ 편의점
+ 테이크아웃
+ 
+// MARK: 결제방식 필터링
+ 
+ ip주소/restaurants?payment_methods=현금
+ 현금
+ 신용카드
+ 요기서결제
+ 
+// MARK: 오더링
+ 
+ ip주소/restaurants?order_by=delivery_charge
+ delivery_charge
+ star
+ review
+ min_order_price
+ 
+// MARK: 쿼리파라미터 두개 이상 쓸 때
+ ex) ip주소/restaurants?category=치킨&order_by=star
+ */
