@@ -19,6 +19,8 @@ class MenuListVC: UIViewController {
         }
     }
     
+    public var id : Int = 1
+    
     fileprivate let padding: CGFloat = 16
     
     private var imageVIewOption = true
@@ -78,7 +80,7 @@ class MenuListVC: UIViewController {
     }
     
     private func configureStoreInfo() {
-        storeInfoService(selfVC: self)
+        storeInfoService(selfVC: self, id: self.id)
     }
     
     // MARK: Configure

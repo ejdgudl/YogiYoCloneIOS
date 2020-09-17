@@ -18,11 +18,27 @@ class DetailMenuListCell: UITableViewCell {
         return label
     }()
     
+    var menuPrice: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     var menuImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
         return imageView
     }()
+    
+    var menu: Menu? {
+        didSet {
+            menuImageView.kf.setImage(with: URL(string: menu?.image ?? " "))
+            menuName.text = menu?.name
+            guard let intPrice = menu?.price else { return }
+            let string = "\(numberFormatter.string(from: NSNumber(value: intPrice)) ?? "")" + "원"
+            menuPrice.text = string
+        }
+    }
+    
+    let numberFormatter = NumberFormatter()
     
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,12 +53,12 @@ class DetailMenuListCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        backgroundColor = .blue
+        numberFormatter.numberStyle = .decimal
     }
     
     // MARK: ConfigureViews
     private func configureViews() {
-        [menuImageView, menuName].forEach {
+        [menuImageView, menuName, menuPrice].forEach {
             addSubview($0)
         }
         
@@ -53,6 +69,14 @@ class DetailMenuListCell: UITableViewCell {
             make.height.equalTo(100)
         }
         
-//        menuName
+        menuName.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.centerY).inset(3)
+            make.left.equalToSuperview().inset(18)
+        }
+        
+        menuPrice.snp.makeConstraints { (make) in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.centerY).offset(3)
+            make.left.equalToSuperview().inset(18)
+        }
     }
 }
