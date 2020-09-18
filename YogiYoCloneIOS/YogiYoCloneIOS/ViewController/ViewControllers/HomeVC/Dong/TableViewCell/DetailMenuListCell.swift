@@ -15,17 +15,42 @@ class DetailMenuListCell: UITableViewCell {
     
     var menuName: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        return label
+    }()
+    
+    var caption: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .lightGray
         return label
     }()
     
     var menuPrice: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return label
     }()
     
     var menuImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
+    }()
+    
+    private let deviderView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [menuName, caption, menuPrice])
+        stackView.axis = .vertical
+        stackView.spacing = 3
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .leading
+//        stackView.addBackgroundWithShadow(color: .white)
+        return stackView
     }()
     
     var menu: Menu? {
@@ -35,6 +60,7 @@ class DetailMenuListCell: UITableViewCell {
             guard let intPrice = menu?.price else { return }
             let string = "\(numberFormatter.string(from: NSNumber(value: intPrice)) ?? "")" + "원"
             menuPrice.text = string
+            caption.text = menu?.caption
         }
     }
     
@@ -58,25 +84,37 @@ class DetailMenuListCell: UITableViewCell {
     
     // MARK: ConfigureViews
     private func configureViews() {
-        [menuImageView, menuName, menuPrice].forEach {
+        [menuImageView, stackView, deviderView].forEach {
             addSubview($0)
         }
         
         menuImageView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(10)
-            make.width.equalTo(170)
-            make.height.equalTo(100)
+            make.width.equalTo(125)
+            make.height.equalTo(75)
         }
         
-        menuName.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.centerY).inset(3)
+        stackView.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.right.equalTo(self.menuImageView.snp.left)
             make.left.equalToSuperview().inset(18)
         }
         
-        menuPrice.snp.makeConstraints { (make) in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.centerY).offset(3)
-            make.left.equalToSuperview().inset(18)
+        deviderView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(0.5)
         }
+        
+//
+//        menuName.snp.makeConstraints { (make) in
+//            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.centerY).inset(3)
+//            make.left.equalToSuperview().inset(18)
+//        }
+//
+//        menuPrice.snp.makeConstraints { (make) in
+//            make.top.equalTo(self.safeAreaLayoutGuide.snp.centerY).offset(3)
+//            make.left.equalToSuperview().inset(18)
+//        }
     }
 }

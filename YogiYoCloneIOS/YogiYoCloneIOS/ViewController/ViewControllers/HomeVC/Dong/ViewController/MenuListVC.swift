@@ -31,6 +31,7 @@ class MenuListVC: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.contentInsetAdjustmentBehavior = .never
         view.backgroundColor = .white
+        view.showsVerticalScrollIndicator = false
         return view
     }()
     
