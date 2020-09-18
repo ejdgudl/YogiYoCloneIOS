@@ -13,6 +13,8 @@ import Kingfisher
 
 class DetailMenuVC: UIViewController {
   
+  public var id : Int = 1
+
   var details = [Detail]()
   var detail = [MenuData]()
   
