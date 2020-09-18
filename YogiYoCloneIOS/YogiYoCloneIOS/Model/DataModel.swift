@@ -204,8 +204,8 @@ struct UrlBase {
 
     static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
-    static let menuInstance = "http://54.180.126.71/menu/2"
-    static let order = "http://54.180.126.71/ordering"
+    static let menuInstance = "http://52.79.251.125/menu/2"
+    static let order = "http://52.79.251.125/ordering"
 
     
     static var lat = "37.545258"

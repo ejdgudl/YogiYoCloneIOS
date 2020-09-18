@@ -8,8 +8,14 @@
 
 import UIKit
 
+
 class OderVC : UIViewController {
   
+  var post = [Post]()
+  
+  lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapButton))
+  
+  public var id : Int = 1
   let tableView2 = UITableView()
   let pikerView = UIPickerView()
   var toolBar = UIToolbar()
@@ -20,10 +26,54 @@ class OderVC : UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setTableView2()
-    
+    buttonFrame()
+  //  navigation()
+    title = "배달 주문 결제"
+   // self.navigationItem.leftBarButtonItem?.tintColor = .black
+
+  }
+  
+  func viewDidappear(_ animated: Bool) {
+  //  super.viewDidappear(true)
+    buttonFrame()
   }
 
+  let paymentButton : UIButton = {
+  let b = UIButton()
+  b.backgroundColor = ColorPiker.customMainRed
+  b.setTitle("결제 하기", for: .normal)
+  b.setTitleColor(.white, for: .normal)
+    b.titleLabel?.font = UIFont(name: FontModel.customRegular, size: 23)
+  b.addTarget(self, action: #selector(paymentDidTapButton(_:)), for: .touchUpInside)
+    b.isHidden = true
+  return b
+  }()
   
+  //MARK: -Navi
+  func navigation(){
+  title = "배달 주문 결제"
+    navigationItem.leftBarButtonItem = leftButton
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
+    navigationController?.navigationBar.backgroundColor = UIColor.white
+  }
+  
+  //MARK:- Action
+  @objc func didTapButton(_ sender : UIButton){
+    navigationController?.popViewController(animated: true)
+
+  }
+  @objc func paymentDidTapButton(_ sender : UIButton){
+     navigationController?.popViewController(animated: true)
+   }
+  
+    func buttonFrame(){
+      paymentButton.frame = CGRect(x: view.frame.minX + 20, y: view.frame.maxY - 20, width: view.frame.width - 40, height: -50)
+    //  paymentButton.center = view.center
+     view.addSubview(paymentButton)
+  }
+  
+  
+  //MARK:- UITableView
   func setTableView2(){
     
     pikerView.delegate = self
@@ -39,21 +89,23 @@ class OderVC : UIViewController {
     view.addSubview(tableView2)
     
     //CustomOderCell
-    tableView2.register(loginCell.self, forCellReuseIdentifier: "loginCell")//0
+    tableView2.register(loginCell.self, forCellReuseIdentifier: "loginCell")//0-비회원
     tableView2.register(InformationCell.self, forCellReuseIdentifier: "InformationCell")//1-0
     tableView2.register(CustomOrderCell.self, forCellReuseIdentifier: "CustomOrderCell")//1-1
-    
     tableView2.register(PaywithCell.self, forCellReuseIdentifier: "PaywithCell")//2
-    tableView2.register(MembershipCell.self, forCellReuseIdentifier: "MembershipCell")//3
-    tableView2.register(unMembershipCell.self, forCellReuseIdentifier: "unMembershipCell")//4
+    tableView2.register(MembershipCell.self, forCellReuseIdentifier: "MembershipCell")//3-회원
+    tableView2.register(unMembershipCell.self, forCellReuseIdentifier: "unMembershipCell")//3-비회원
+    //OrderListCell
+    tableView2.register(OrderListCell.self, forCellReuseIdentifier: "OrderListCell") //주문결제내역
+    tableView2.register(paymentCell.self, forCellReuseIdentifier: "paymentCell")
     
   }
   
 }
-
+//MARK:-UITableViewDataSource
 extension OderVC : UITableViewDataSource{
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    return 6
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,15 +158,18 @@ extension OderVC : UITableViewDataSource{
       let MembershipCell = tableView.dequeueReusableCell(withIdentifier: "MembershipCell", for: indexPath) as! MembershipCell
       return MembershipCell
     case 4:
-      let unMembershipCell = tableView.dequeueReusableCell(withIdentifier: "unMembershipCell", for: indexPath) as! unMembershipCell
-      return unMembershipCell
+      let OrderListCell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
+      return OrderListCell
+    case 5 :
+      let paymentCell = tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath) as! paymentCell
+           return paymentCell
     default:
       let loginCell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! loginCell
       return loginCell
     }
   }
 }
-
+//MARK:-UITableViewDelegate
 extension OderVC : UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.cellForRow(at: indexPath)
@@ -139,6 +194,7 @@ extension OderVC : UITableViewDelegate {
       }
     }
     
+    //MARK:- pikerView
     if indexPath.section == 1 && indexPath.row == 1 {
       pikerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
       pikerView.backgroundColor = .white
@@ -157,4 +213,53 @@ extension OderVC : UITableViewDelegate {
     pikerView.removeFromSuperview()
 
   }
+  
+  //헤더
+     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       switch section {
+       case 0:
+         return " "
+       case 1:
+         return " "
+       case 2:
+         return " "
+       case 3:
+         return " "
+       case 4:
+         return " "
+       default:
+         return " "
+       }
+     }
+     
+     //푸터뷰 높이
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section{
+         case 0:
+           return 1
+         case 1:
+           return 10
+         case 2:
+           return 0
+         case 3:
+           return 10
+         case 4:
+           return 10
+         default:
+           return 0
+         }
+     
+   }
+}
+
+
+extension OderVC : UISceneDelegate {
+func scrollViewDidScroll(_ scrollView: UIScrollView) {
+   if scrollView.contentOffset.y > 800 {
+     scrollView.contentOffset.y = 800
+    paymentButton.isHidden = false
+   }else{
+    paymentButton.isHidden = true
+  }
+}
 }

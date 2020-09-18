@@ -46,7 +46,6 @@ class MenuListVC: UIViewController {
     }()
     
     
-    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +61,7 @@ class MenuListVC: UIViewController {
     }
     
     @objc private func didTapBackButton() {
-        navigationController?.popViewController(animated: true)
+      navigationController?.popViewController(animated: true)
     }
     
     lazy var bar:UINavigationBar! =  self.navigationController?.navigationBar

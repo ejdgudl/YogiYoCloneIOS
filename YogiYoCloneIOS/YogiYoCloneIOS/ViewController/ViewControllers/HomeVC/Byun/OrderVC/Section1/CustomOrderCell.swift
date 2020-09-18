@@ -41,7 +41,7 @@ class CustomOrderCell : UITableViewCell{
       userCustomMasseg2.topAnchor.constraint(equalTo: contentView.topAnchor),
       userCustomMasseg2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       userCustomMasseg2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      userCustomMasseg2.heightAnchor.constraint(equalToConstant: 50),
+     userCustomMasseg2.heightAnchor.constraint(equalToConstant: 50),
       userCustomMasseg2.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
   }
