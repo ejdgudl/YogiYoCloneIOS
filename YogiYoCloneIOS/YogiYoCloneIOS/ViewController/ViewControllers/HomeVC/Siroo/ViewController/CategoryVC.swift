@@ -13,8 +13,7 @@ private let reuseIdentifier = "StoreListCell"
 protocol categoryVCdelegate: class {
     func categoryDelegate(id: Int)
     func scrolltableviewreload()
-    
-    
+
 }
 
 class CategoryVC: UIViewController {
