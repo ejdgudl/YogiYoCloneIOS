@@ -12,16 +12,19 @@ private let reuseIdentifier = "StoreListCell"
 
 protocol categoryVCdelegate: class {
     func categoryDelegate(id: Int)
-    
+    func scrolltableviewreload()
+
 }
 
 class CategoryVC: UIViewController {
     
     
     public var restaurants: [AllListData.Results] = []
-    
+//    private var categoryindex: Int?
     private let tableView = UITableView()
     weak var categoryDelegate : categoryVCdelegate?
+    private var addDataCallCount: Int = 0
+
     
     //    MARK: LifeCycle
     
@@ -115,6 +118,20 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         print("안되나..")
         categoryDelegate?.categoryDelegate(id: self.restaurants[indexPath.row].id)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+      let height: CGFloat = scrollView.frame.size.height
+      let contentYOffset: CGFloat = scrollView.contentOffset.y
+      let scrollViewHeight: CGFloat = scrollView.contentSize.height
+      let distanceFromBottom: CGFloat = scrollViewHeight - contentYOffset
+                
+      if distanceFromBottom < height {
+        categoryDelegate?.scrolltableviewreload()
+      }
+    }
+
+    
+
     
     
 }

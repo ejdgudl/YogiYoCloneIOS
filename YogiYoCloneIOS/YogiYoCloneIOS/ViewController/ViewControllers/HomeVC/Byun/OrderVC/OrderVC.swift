@@ -15,6 +15,7 @@ class OderVC : UIViewController {
   
   lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapButton))
   
+  public var id : Int = 1
   let tableView2 = UITableView()
   let pikerView = UIPickerView()
   var toolBar = UIToolbar()

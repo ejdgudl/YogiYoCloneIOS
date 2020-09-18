@@ -33,7 +33,7 @@ struct AllListData: Codable {
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
             case deliveryTime = "delivery_time"
-            case reviewCount = "review_count"
+            case reviewCount = "-review_count"
             case representativeMenus = "representative_menus"
         }
 
@@ -191,7 +191,7 @@ struct UrlBase {
     static let ip = "http://52.79.251.125/"
     
     static let listAll = "restaurants"
-    static let category = "?category="
+    static let category = "?categories="
     static let instance = "restaurants/"
     
     static let menu = "menu/"
@@ -205,7 +205,7 @@ struct UrlBase {
     static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
     static let menuInstance = "http://54.180.126.71/menu/2"
-    static let order = "http://54.180.126.71/order"
+    static let order = "http://54.180.126.71/ordering"
 
     
     static var lat = "37.545258"

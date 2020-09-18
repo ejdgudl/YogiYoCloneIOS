@@ -18,7 +18,9 @@ class MenuListVC: UIViewController {
             
         }
     }
-    
+
+    public var id : Int = 1
+
     fileprivate let padding: CGFloat = 16
     
     private var imageVIewOption = true
@@ -29,6 +31,7 @@ class MenuListVC: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.contentInsetAdjustmentBehavior = .never
         view.backgroundColor = .white
+        view.showsVerticalScrollIndicator = false
         return view
     }()
     
@@ -78,7 +81,7 @@ class MenuListVC: UIViewController {
     }
     
     private func configureStoreInfo() {
-        storeInfoService(selfVC: self)
+        storeInfoService(selfVC: self, id: self.id)
     }
     
     // MARK: Configure
@@ -193,6 +196,7 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.cellID, for: indexPath) as? FooterView else { return UICollectionReusableView() }
             guard let storeInfo = storeInfo else { return footer }
             footer.tableViewData = storeInfo.menuGroup
+            footer.delegate = self
             return footer
         }
     }
@@ -217,5 +221,13 @@ extension MenuListVC: UIScrollViewDelegate{
                 self.title = " "
             }
         }
+    }
+}
+extension MenuListVC: PushOrderVCDelegate {
+    func pushOrderVCDelegate(id: Int) {
+        let oderVC = OderVC()
+        oderVC.id = id
+        navigationController?.pushViewController(oderVC, animated: true)
+        print("----------------------\(id)")
     }
 }
