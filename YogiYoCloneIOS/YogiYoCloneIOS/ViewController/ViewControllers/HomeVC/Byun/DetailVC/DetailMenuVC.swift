@@ -14,7 +14,7 @@ import Kingfisher
 class DetailMenuVC: UIViewController {
   
   var details = [Detail]()
-  
+  public var id : Int = 1
   
   //section0-1
   var imageName = String()
