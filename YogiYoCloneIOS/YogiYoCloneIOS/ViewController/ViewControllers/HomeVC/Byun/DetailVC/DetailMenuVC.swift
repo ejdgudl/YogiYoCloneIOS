@@ -13,7 +13,7 @@ import Kingfisher
 
 class DetailMenuVC: UIViewController {
   
-  var id : Int = 1
+  public var id : Int = 1
 
   var details = [Detail]()
   var detail = [MenuData]()
@@ -171,7 +171,7 @@ class DetailMenuVC: UIViewController {
   
   //MARK:-AlamofireRequest
   func AlamofireRequest() {
-    
+    //\(String(id))
     AF.request("http://52.79.251.125/menu/\(String(id))", method: .get).validate().responseJSON { response in
       
       switch response.result {
