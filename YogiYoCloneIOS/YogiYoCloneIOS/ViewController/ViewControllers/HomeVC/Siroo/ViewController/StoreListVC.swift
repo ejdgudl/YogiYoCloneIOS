@@ -21,6 +21,10 @@ public let scrollView = UIScrollView()
 //
 
 class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate , categoryVCdelegate {
+    func scrolltableviewreload() {
+        print("111")
+    }
+    
     
     
     //    MARK: Properties
