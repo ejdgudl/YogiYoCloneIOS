@@ -103,9 +103,7 @@ extension FooterView: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailMenuListCell.cellID, for: indexPath) as? DetailMenuListCell else { return UITableViewCell() }
-            guard let strImageurl = data[indexPath.section].sectionData[indexPath.row - 1].image else { return cell }
-            guard let imageURL = URL(string: strImageurl) else { return cell }
-            cell.menuImageView.kf.setImage(with: imageURL)
+            cell.menu = data[indexPath.section].sectionData[indexPath.row - 1]
             return cell
         }
     }

@@ -48,8 +48,8 @@ class MenuListCell: UITableViewCell {
         addSubview(baseView)
         
         baseView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview().inset(5)
+            make.top.equalToSuperview().inset(5)
+            make.bottom.equalToSuperview()
             make.left.right.equalToSuperview()
         }
         
