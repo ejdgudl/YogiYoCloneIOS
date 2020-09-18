@@ -82,12 +82,23 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         return labal
     }()
     
+    private let titleNavigationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("성수동2가 277-17 ▼", for: .normal)
+        return button
+    }()
+
+    
     //    MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPiker.customSystem
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "임시 next", style: .plain, target: self, action: #selector(didTapNext))
+        
+        navigationController?.navigationBar.topItem?.title = ""
+        title = "성수동2가 277-17 ▼"
+        
         
         fetchModel.delegate = self
         configure()

@@ -225,9 +225,9 @@ extension MenuListVC: UIScrollViewDelegate{
 }
 extension MenuListVC: PushOrderVCDelegate {
     func pushOrderVCDelegate(id: Int) {
-        let oderVC = OderVC()
-        oderVC.id = id
-        navigationController?.pushViewController(oderVC, animated: true)
+        let detailMenuVC = DetailMenuVC()
+        detailMenuVC.id = id
+        navigationController?.pushViewController(detailMenuVC, animated: true)
         print("----------------------\(id)")
     }
 }
