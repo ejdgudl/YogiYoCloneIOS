@@ -11,8 +11,8 @@ import Alamofire
 
 extension MenuListVC {
     
-    func storeInfoService(selfVC: MenuListVC) {
-        AF.request("http://52.79.251.125/restaurants/2", method: .get, encoding: URLEncoding.default).response { (response) in
+    func storeInfoService(selfVC: MenuListVC, id: Int) {
+        AF.request("http://52.79.251.125/restaurants/\(String(id))", method: .get, encoding: URLEncoding.default).response { (response) in
             print(response)
             guard let data = response.data else {return}
             
