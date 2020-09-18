@@ -9,10 +9,25 @@
 import UIKit
 import SnapKit
 import Cosmos
+import Kingfisher
 
 class HeaderView: UICollectionReusableView {
     
     // MARK: Priperties
+    var storeInfo: RestaurantInstanceData? {
+        didSet {
+            guard let storeInfo = storeInfo else { return }
+            if let image = storeInfo.backImage {
+                let url = URL(string: image)
+                imageView.kf.setImage(with: url)
+            }
+            storeLabel.text = storeInfo.name
+            cosmosView.rating = storeInfo.star
+            discountLabel.text = String(storeInfo.deliveryDiscount)
+            deliveryTime.text = storeInfo.deliveryTime
+        }
+    }
+    
     static let cellID = "HeaderViewCellID"
     
     let imageView: UIImageView = {

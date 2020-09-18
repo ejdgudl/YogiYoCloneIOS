@@ -10,29 +10,32 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftyJSON
+import Kingfisher
 
 class StoreListCell: UITableViewCell {
-    var restaurant: RestaurantListData.Results? {
+    var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
             storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)
-//            storeImage.image = UIImage(named: restaurant!.image)
-//            print(restaurant?.image)
-            
+            setImage(from: restaurant!.image)
+            reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
+            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))"
+            estimatedTime.text = restaurant?.deliveryTime
+            bestMenuLabel.text = restaurant?.representativeMenus.joined()
             
         }
     }
     
-//    MARK: Properties
+    //    MARK: Properties
     private let storeImage : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "testRestaurant")
+        //        imageView.image = UIImage(named: "testRestaurant")
         return imageView
     }()
     
     private let storeNameLabel : UILabel = {
         let label = UILabel()
-//        label.backgroundColor = .red
+        //        label.backgroundColor = .red
         label.font = UIFont(name: FontModel.customLight, size: 20)
         return label
     }()
@@ -45,7 +48,7 @@ class StoreListCell: UITableViewCell {
     
     private let storeRateLabel : UILabel = {
         let label = UILabel()
-//        label.backgroundColor = .blue
+        //        label.backgroundColor = .blue
         label.textAlignment = .center
         label.font = UIFont(name: FontModel.customSemibold, size: 13)
         label.textColor = .black
@@ -68,40 +71,34 @@ class StoreListCell: UITableViewCell {
     
     private let reviewLabel : UILabel = {
         let label = UILabel()
-        label.text = "리뷰 1000"
-//        label.textAlignment = .center
-//        label.backgroundColor = .yellow
+        //        label.textAlignment = .center
+        //        label.backgroundColor = .yellow
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
-
+        
         return label
     }()
     
-    private let reviewNumber : Int = 9
-    
     private let bestMenuLabel : UILabel = {
         let label = UILabel()
-        label.text = "불고기 와퍼 , 트러플 머쉬룸 와퍼"
-//        label.backgroundColor = .red
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
-
         return label
     }()
     
     private let estimatedTime : UILabel = {
-       let label = UILabel()
-        label.text = " 30~40분"
-//        label.backgroundColor = .systemPink
+        let label = UILabel()
+//        label.text = " 30~40분"
+        //        label.backgroundColor = .systemPink
         label.textAlignment = .center
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .black
-
+        
         return label
     }()
     
     private let cescoMark : UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "cesco")
         return imageView
     }()
@@ -110,32 +107,26 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .red
-        label.text = "배달할인 2,000원"
+   
         return label
     }()
     
-    private let deliveryDiscountPrice : Int = 2000
-    
-    
-
-//    MARK:  LifeCycle
+    //    MARK:  LifeCycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
         setUIConstraints()
-        
-        
-        
-        
+        print("deliveryDiscountLabel :\(String(describing: restaurant?.deliveryDiscount))")
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: SetUIConstraints
+    //    MARK: SetUIConstraints
     
     func setUIConstraints () {
         [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
@@ -144,20 +135,20 @@ class StoreListCell: UITableViewCell {
         
         storeImage.snp.makeConstraints { (make) in
             make.top.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-300)
+            make.trailing.equalToSuperview().offset(-310)
             make.bottom.equalToSuperview().offset(-20)
         }
         
         storeNameLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(5)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
-            make.trailing.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(67)
         }
         
         cescoMark.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(16)
-            make.leading.equalTo(storeNameLabel.snp.trailing).inset(20)
+            make.top.equalTo(storeImage.snp.top)
+            make.leading.equalTo(storeNameLabel.snp.trailing)
+            make.trailing.equalToSuperview().offset(-30)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.1)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.2)
             make.bottom.equalTo(storeNameLabel.snp.bottom)
@@ -165,11 +156,11 @@ class StoreListCell: UITableViewCell {
         
         starImage.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(42)
-            make.leading.equalToSuperview().offset(132)
+            make.leading.equalTo(storeNameLabel.snp.leading)
             make.width.height.equalTo(contentView.snp.width).multipliedBy(0.05)
             make.bottom.equalToSuperview().inset(40)
         }
-            
+        
         
         storeRateLabel.snp.makeConstraints { (make) in
             make.top.equalTo(starImage.snp.top)
@@ -199,16 +190,22 @@ class StoreListCell: UITableViewCell {
         bestMenuLabel.snp.makeConstraints { (make) in
             make.top.equalTo(pointLabel.snp.bottom).offset(15)
             make.leading.equalTo(storeNameLabel.snp.leading)
+            make.trailing.equalToSuperview().inset(50)
             make.bottom.equalToSuperview().inset(10)
         }
         
         estimatedTime.snp.makeConstraints { (make) in
             make.top.equalTo(bestMenuLabel.snp.top)
-            make.leading.equalTo(bestMenuLabel.snp.trailing).offset(40)
+            make.leading.equalTo(bestMenuLabel.snp.trailing).offset(-20)
             make.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(bestMenuLabel.snp.bottom)
         }
-
     }
-
+//    MARK:  Store Image Set
+    
+    func setImage(from url: String) {
+        guard let imageURL = URL(string: url) else { return }
+        
+        storeImage.kf.setImage(with: imageURL)
+    }
 }

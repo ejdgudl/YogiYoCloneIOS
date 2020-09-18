@@ -11,6 +11,12 @@ import UIKit
 class SegMenuCell: UICollectionViewCell {
     
     // MARK: Properties
+    var photoMenus: [PhotoMenu]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     static let cellID = "SegMenuCellID"
     
     private let collectionView: UICollectionView = {
@@ -59,17 +65,20 @@ extension SegMenuCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 0, left: 16, bottom: -5, right: 0)
     }
 }
 
 extension SegMenuCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        guard let photoMenus = self.photoMenus else { return 0 }
+        return photoMenus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegMenuItemCell.cellID, for: indexPath) as? SegMenuItemCell else { return UICollectionViewCell() }
+        guard let photoMenus = self.photoMenus else { return cell }
+        cell.photoMenu = photoMenus[indexPath.row]
         return cell
     }
 }
