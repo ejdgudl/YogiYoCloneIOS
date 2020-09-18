@@ -280,6 +280,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6E1656182513484500DE7786 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E165608250A92A800DE7786 /* BottomView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6E373A8724EFDA3900BF5678 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +297,6 @@
 				6E91215A24FAC301003D86F0 /* RestaurantNewCustomCell.swift */,
 				6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */,
 				6EE8C08624F6654400A55413 /* PaddingLabel.swift */,
-				6E165608250A92A800DE7786 /* BottomView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -557,6 +564,7 @@
 		D33768D524ECCBC600E0C27A /* Pyo */ = {
 			isa = PBXGroup;
 			children = (
+				6E1656182513484500DE7786 /* View */,
 				6E16560F251232DC00DE7786 /* Model */,
 				6E16560E251232BD00DE7786 /* ViewController */,
 				6E91215C24FD060E003D86F0 /* Extension */,
@@ -1202,7 +1210,7 @@
 				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RA99PDU87Z;
+				DEVELOPMENT_TEAM = 3799SNND63;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1224,7 +1232,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YogiYoCloneIOS/YogiYoCloneIOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QL936YF39M;
+				DEVELOPMENT_TEAM = 3799SNND63;
 				INFOPLIST_FILE = YogiYoCloneIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
