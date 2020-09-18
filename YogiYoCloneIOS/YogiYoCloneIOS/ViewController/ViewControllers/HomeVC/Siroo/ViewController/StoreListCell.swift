@@ -18,6 +18,11 @@ class StoreListCell: UITableViewCell {
             storeNameLabel.text = restaurant?.name
             storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)
             setImage(from: restaurant!.image)
+            reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
+            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))"
+            estimatedTime.text = restaurant?.deliveryTime
+            bestMenuLabel.text = restaurant?.representativeMenus.joined()
+            
         }
     }
     
@@ -66,7 +71,6 @@ class StoreListCell: UITableViewCell {
     
     private let reviewLabel : UILabel = {
         let label = UILabel()
-        label.text = "리뷰 1000"
         //        label.textAlignment = .center
         //        label.backgroundColor = .yellow
         label.font = FontModel.toSize.customSmallFont
@@ -75,21 +79,16 @@ class StoreListCell: UITableViewCell {
         return label
     }()
     
-    private let reviewNumber : Int = 9
-    
     private let bestMenuLabel : UILabel = {
         let label = UILabel()
-        label.text = "불고기 와퍼 , 트러플 머쉬룸 와퍼"
-        //        label.backgroundColor = .red
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
-        
         return label
     }()
     
     private let estimatedTime : UILabel = {
         let label = UILabel()
-        label.text = " 30~40분"
+//        label.text = " 30~40분"
         //        label.backgroundColor = .systemPink
         label.textAlignment = .center
         label.font = FontModel.toSize.customSmallFont
@@ -108,13 +107,9 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .red
-        label.text = "배달할인 2,000원"
+   
         return label
     }()
-    
-    private let deliveryDiscountPrice : Int = 2000
-    
-    
     
     //    MARK:  LifeCycle
     
@@ -123,10 +118,8 @@ class StoreListCell: UITableViewCell {
         
         selectionStyle = .none
         setUIConstraints()
-        
-        
-        
-        
+        print("deliveryDiscountLabel :\(String(describing: restaurant?.deliveryDiscount))")
+
     }
     
     required init?(coder: NSCoder) {
@@ -197,12 +190,13 @@ class StoreListCell: UITableViewCell {
         bestMenuLabel.snp.makeConstraints { (make) in
             make.top.equalTo(pointLabel.snp.bottom).offset(15)
             make.leading.equalTo(storeNameLabel.snp.leading)
+            make.trailing.equalToSuperview().inset(50)
             make.bottom.equalToSuperview().inset(10)
         }
         
         estimatedTime.snp.makeConstraints { (make) in
             make.top.equalTo(bestMenuLabel.snp.top)
-            make.leading.equalTo(bestMenuLabel.snp.trailing).offset(40)
+            make.leading.equalTo(bestMenuLabel.snp.trailing).offset(-20)
             make.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(bestMenuLabel.snp.bottom)
         }
