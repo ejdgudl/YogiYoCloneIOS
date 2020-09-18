@@ -65,7 +65,7 @@ struct RestaurantInstanceData: Codable {
     let deliveryCharge: Int
     let deliveryTime: String
     
-    let backImage: String
+    let backImage: String?
 //    let lat: Double
 //    let lng: Double
     
