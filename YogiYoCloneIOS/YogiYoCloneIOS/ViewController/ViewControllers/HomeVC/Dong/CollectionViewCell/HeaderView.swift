@@ -17,8 +17,10 @@ class HeaderView: UICollectionReusableView {
     var storeInfo: RestaurantInstanceData? {
         didSet {
             guard let storeInfo = storeInfo else { return }
-            let url = URL(string: storeInfo.backImage)
-            imageView.kf.setImage(with: url)
+            if let image = storeInfo.backImage {
+                let url = URL(string: image)
+                imageView.kf.setImage(with: url)
+            }
             storeLabel.text = storeInfo.name
             cosmosView.rating = storeInfo.star
             discountLabel.text = String(storeInfo.deliveryDiscount)
