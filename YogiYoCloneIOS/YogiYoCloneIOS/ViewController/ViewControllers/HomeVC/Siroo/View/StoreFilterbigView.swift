@@ -9,7 +9,7 @@
 import UIKit
 
 class StoreFilterbigView: UIView {
-
+    
     private let storeFilterView = StoreListFilterView()
     
     override init(frame: CGRect) {
@@ -23,8 +23,8 @@ class StoreFilterbigView: UIView {
             make.height.equalToSuperview().multipliedBy(0.5)
             make.bottom.equalTo(self.snp.bottom)
         }
-                
-//        backgroundColor = UIColor(white: 1, alpha: 0.5)
+        
+        //        backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
     
     required init?(coder: NSCoder) {
@@ -32,11 +32,9 @@ class StoreFilterbigView: UIView {
     }
     
     func showMenu() {
-        
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: {
             self.storeFilterView.frame = CGRect(x: self.storeFilterView.frame.origin.x, y: -1000, width: self.storeFilterView.frame.width, height: self.storeFilterView.frame.height)
-                        
-        }
+        }, completion: nil)
     }
     
 }
