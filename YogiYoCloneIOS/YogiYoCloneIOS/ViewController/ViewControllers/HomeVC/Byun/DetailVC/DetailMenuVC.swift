@@ -13,7 +13,7 @@ import Kingfisher
 
 class DetailMenuVC: UIViewController {
   
-  public var id : Int = 1
+  var id : Int = 1
 
   var details = [Detail]()
   var detail = [MenuData]()
@@ -47,8 +47,9 @@ class DetailMenuVC: UIViewController {
   //tset
   var arrtest = [String]()
   var menuList = [String]()
-  
-  
+  //
+  var usd : MenuData?
+
   let clipLable : UILabel = {
     let l = UILabel()
     l.backgroundColor = .black
@@ -85,6 +86,7 @@ class DetailMenuVC: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
     buttonFrame()
+    fechData()
     //   costViewFrame()
   }
   
@@ -146,17 +148,39 @@ class DetailMenuVC: UIViewController {
     buttonFrame()
   }
   
+  
+  func fechData(){
+    let url = URL(string: UrlBase.menuInstance)
+    URLSession.shared.dataTask(with: url!) { (data, response, error) in
+      if error == nil {
+        do{
+          self.usd = try JSONDecoder().decode(MenuData.self, from: data!)
+        }catch{
+          print("catch")
+        }
+        DispatchQueue.main.async{
+          
+          print("usd?.name : \(self.usd?.name)")
+        }
+      }else{
+        print("Error")
+      }
+    }.resume()
+  }
+  
+  
   //MARK:-AlamofireRequest
   func AlamofireRequest() {
     
-    AF.request("http://52.79.251.125/menu/20", method: .get).validate().responseJSON { response in
+    AF.request("http://52.79.251.125/menu/\(String(id))", method: .get).validate().responseJSON { response in
       
       switch response.result {
       //성공시
       case .success(let value):
         let json = JSON(value)
         //  print("JSON: \(json)")
-        
+        //    //"http://52.79.251.125/restaurants/\(String(id))"
+
         if let json = try? JSON(data: response.data!){
           
           let nameData = json["name"].stringValue//가져오고자 하는 데이터
