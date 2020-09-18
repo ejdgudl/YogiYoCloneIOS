@@ -9,7 +9,7 @@
 import UIKit
 
 class OderVC : UIViewController {
-  
+  public var id : Int = 1
   let tableView2 = UITableView()
   let pikerView = UIPickerView()
   var toolBar = UIToolbar()

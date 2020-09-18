@@ -15,7 +15,13 @@ struct CellData {
     var sectionData: [Menu]
 }
 
+protocol PushOrderVCDelegate: class {
+    func pushOrderVCDelegate(id: Int)
+}
+
 class FooterView: UICollectionReusableView {
+    
+    weak var delegate: PushOrderVCDelegate?
     
     var tableViewData: [MenuGroup]? {
         didSet {
@@ -120,7 +126,7 @@ extension FooterView: UITableViewDelegate, UITableViewDataSource {
                 tableView.reloadSections(sections, with: .fade)
             }
         } else {
-            print(indexPath)
+            delegate?.pushOrderVCDelegate(id: data[indexPath.section].sectionData[indexPath.row - 1].id)
         }
     }
 }
