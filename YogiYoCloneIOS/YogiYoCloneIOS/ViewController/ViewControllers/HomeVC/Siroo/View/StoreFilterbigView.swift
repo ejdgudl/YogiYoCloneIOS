@@ -35,8 +35,10 @@ class StoreFilterbigView: UIView {
         
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear) {
             self.storeFilterView.frame = CGRect(x: self.storeFilterView.frame.origin.x, y: -1000, width: self.storeFilterView.frame.width, height: self.storeFilterView.frame.height)
-                        
+
         }
+        
+        
     }
     
 }
