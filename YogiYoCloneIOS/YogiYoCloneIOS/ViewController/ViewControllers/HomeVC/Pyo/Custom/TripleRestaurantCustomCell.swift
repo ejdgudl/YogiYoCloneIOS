@@ -55,7 +55,8 @@ class TripleRestaurantCustomCell: UICollectionViewCell {
         
         countLabel.snp.makeConstraints {
             $0.top.equalTo(contentView)
-            $0.leading.equalTo(imageView.snp.trailing).offset(CollectionDesign.textPadding)
+            $0.width.equalTo(30)
+            $0.leading.equalTo(imageView.snp.trailing)
         }
     }
     private func setTitle() {
@@ -65,7 +66,7 @@ class TripleRestaurantCustomCell: UICollectionViewCell {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(contentView)
-            $0.leading.equalTo(countLabel.snp.trailing).offset(CollectionDesign.textPadding)
+            $0.leading.equalTo(countLabel.snp.trailing)
         }
     }
     private func setStarImage() {
@@ -109,6 +110,7 @@ class TripleRestaurantCustomCell: UICollectionViewCell {
         explanLabel.snp.makeConstraints {
             $0.top.equalTo(starImage.snp.bottom)
             $0.leading.equalTo(starImage)
+            $0.trailing.equalToSuperview()
         }
     }
     private func setDiscountLabel() {

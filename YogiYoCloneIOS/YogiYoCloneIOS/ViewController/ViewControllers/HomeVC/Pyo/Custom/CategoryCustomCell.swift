@@ -30,7 +30,7 @@ class CategoryCustomCell: UICollectionViewCell {
         }
     }
     private func setTitle() {
-        label.font = UIFont(name: FontModel.customLight, size: 13)
+        label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textAlignment = .center
         contentView.addSubview(label)
         

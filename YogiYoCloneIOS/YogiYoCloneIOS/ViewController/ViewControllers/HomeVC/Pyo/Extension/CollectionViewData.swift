@@ -16,14 +16,14 @@ extension HomeVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
-        case categoryCollection:
+        case categoryCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCustomCell.identifier,
                                                                 for: indexPath) as? CategoryCustomCell else { fatalError() }
             item.setValue(image: category.item[indexPath.item].image,
                           title: category.item[indexPath.item].name)
             
             return item
-        case firstCollection:
+        case firstCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -34,7 +34,7 @@ extension HomeVC: UICollectionViewDataSource {
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
             
             return item
-        case twiceCollection:
+        case twiceCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -45,7 +45,7 @@ extension HomeVC: UICollectionViewDataSource {
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
             
             return item
-        case thirdCollection:
+        case thirdCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -57,7 +57,7 @@ extension HomeVC: UICollectionViewDataSource {
             item.explanLabel.textColor = .systemRed
             
             return item
-        case fourthCollection:
+        case fourthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TripleRestaurantCustomCell.identifier,
                                                                 for: indexPath) as? TripleRestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -69,7 +69,7 @@ extension HomeVC: UICollectionViewDataSource {
                           discountText: "2,000원 할인")
             
             return item
-        case fifthCollection:
+        case fifthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -80,7 +80,7 @@ extension HomeVC: UICollectionViewDataSource {
                           explain: "최소주문 24,000원")
             
             return item
-        case sixthCollection:
+        case sixthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -91,7 +91,7 @@ extension HomeVC: UICollectionViewDataSource {
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
             
             return item
-        case seventhCollection:
+        case seventhCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -101,7 +101,7 @@ extension HomeVC: UICollectionViewDataSource {
                           explain: "버거킹은 불고기와퍼세트가 짜세지")
             
             return item
-        case eighthCollection:
+        case eighthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",
@@ -113,7 +113,7 @@ extension HomeVC: UICollectionViewDataSource {
             item.imageLabel.backgroundColor = .systemGreen
             
             return item
-        case ninthCollection:
+        case ninthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantNewCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantNewCustomCell else { fatalError() }
             item.setValue(image: "testRestaurant",

@@ -15,7 +15,7 @@ class RestaurantCustomCell: UICollectionViewCell {
     let imageView = UIImageView()
     let imageLabel = PaddingLabel()
     let truePadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    let falsePadding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    let falsePadding = UIEdgeInsets(top: 2.5, left: 10, bottom: 2.5, right: 10)
     
     let titleLabel = UILabel()
     
@@ -47,7 +47,7 @@ class RestaurantCustomCell: UICollectionViewCell {
         }
     }
     private func setImageLabel() {
-        imageLabel.font = UIFont(name: FontModel.customMedium, size: 14)
+        imageLabel.font = .boldSystemFont(ofSize: 11)
         imageLabel.textAlignment = .center
         imageLabel.backgroundColor = .red
         imageLabel.textColor = .white

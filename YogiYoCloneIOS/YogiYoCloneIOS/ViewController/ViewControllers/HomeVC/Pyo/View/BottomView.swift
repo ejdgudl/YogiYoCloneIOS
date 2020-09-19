@@ -10,6 +10,14 @@ import UIKit
 
 class BottomView: UIView {
     
+//    private let motherStack: UIStackView = {
+//        let stack = UIStackView()
+//        stack.alignment = .center
+//        stack.axis = .vertical
+//        stack.spacing = CollectionDesign.padding
+//        return stack
+//    }()
+    
     private let companyStack: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
@@ -99,6 +107,11 @@ class BottomView: UIView {
         setCompanyMenu()
         setDutyLabel()
         
+//        self.addSubview(motherStack)
+        
+//        motherStack.snp.makeConstraints {
+//            $0.top.leading.trailing.bottom.equalToSuperview()
+//        }
     }
     @objc private func companyAction(_ sender: UIButton) {
         if !toggle {
@@ -140,6 +153,7 @@ class BottomView: UIView {
         companyStack.addArrangedSubview(companyButton)
         
         self.addSubview(companyStack)
+//        motherStack.addArrangedSubview(companyStack)
         
         companyStack.snp.makeConstraints {
             $0.top.equalToSuperview().offset(CollectionDesign.padding)
@@ -149,6 +163,7 @@ class BottomView: UIView {
     private func setCompanyInformation() {
         
         self.addSubview(companyInformation)
+//        motherStack.addArrangedSubview(companyInformation)
         
         companyInformation.snp.makeConstraints {
             $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
@@ -163,16 +178,17 @@ class BottomView: UIView {
         companyMenuStack.addArrangedSubview(companyInfoButton)
         
         self.addSubview(companyMenuStack)
+//        motherStack.addArrangedSubview(companyMenuStack)
         
         companyMenuStack.snp.makeConstraints {
             $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
-//            $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
             $0.leading.trailing.equalToSuperview().inset(CollectionDesign.padding * 2)
         }
     }
     private func setDutyLabel() {
         
         self.addSubview(dutyLabel)
+//        motherStack.addArrangedSubview(dutyLabel)
         
         dutyLabel.snp.makeConstraints {
             $0.top.equalTo(companyMenuStack.snp.bottom).offset(CollectionDesign.padding)

@@ -13,7 +13,7 @@ class RestaurantNewCustomCell: UICollectionViewCell {
     static let identifier = "RestaurantNewCustomCell"
     
     let imageView = UIImageView()
-    let imageLabel = PaddingLabel(padding: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
+    let imageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5))
     
     let titleLabel = UILabel()
     let explanLabel = UILabel()
@@ -37,7 +37,7 @@ class RestaurantNewCustomCell: UICollectionViewCell {
         }
     }
     private func setImageLabel() {
-        imageLabel.font = UIFont(name: FontModel.customMedium, size: 14)
+        imageLabel.font = .boldSystemFont(ofSize: 11)
         imageLabel.textAlignment = .center
         imageLabel.backgroundColor = .red
         imageLabel.textColor = .white
@@ -45,6 +45,7 @@ class RestaurantNewCustomCell: UICollectionViewCell {
         
         imageLabel.snp.makeConstraints {
             $0.leading.bottom.equalTo(imageView)
+            $0.width.equalToSuperview().multipliedBy(0.33)
         }
     }
     private func setTitle() {
