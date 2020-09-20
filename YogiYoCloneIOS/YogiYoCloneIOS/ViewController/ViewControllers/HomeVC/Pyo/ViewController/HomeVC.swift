@@ -42,6 +42,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
+    private let contentView = UIView()
     
     private let topBannerView: UIView = {
         let view = UIView()
@@ -100,7 +101,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    let middleBannerImageView: UIImageView = {
+    private let middleBannerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.image = UIImage(named: "MyAccountVCImage")
@@ -177,9 +178,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: bottomView.frame.maxY)
 
         topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(category.item.count),
                                                  height: topBannerView.frame.height)
@@ -216,33 +214,35 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         motherScrollView.delegate = self
         view.addSubview(motherScrollView)
         
-        motherScrollView.addSubview(topBannerView)
+        motherScrollView.addSubview(contentView)
+        
+        contentView.addSubview(topBannerView)
         
         topBannerScrollView.delegate = self
         topBannerView.addSubview(topBannerScrollView)
         topBannerScrollView.addSubview(topBannerImageView)
         
-        motherScrollView.addSubview(categoryCV)
-        motherScrollView.addSubview(firstCV)
-        motherScrollView.addSubview(twiceCV)
+        contentView.addSubview(categoryCV)
+        contentView.addSubview(firstCV)
+        contentView.addSubview(twiceCV)
         
-        motherScrollView.addSubview(middleBannerView)
+        contentView.addSubview(middleBannerView)
         
         middleBannerScrollView.delegate = self
         middleBannerView.addSubview(middleBannerScrollView)
         middleBannerScrollView.addSubview(middleBannerImageView)
         
-        motherScrollView.addSubview(thirdCV)
-        motherScrollView.addSubview(fourthCV)
-        motherScrollView.addSubview(fifthCV)
-        motherScrollView.addSubview(sixthCV)
-        motherScrollView.addSubview(seventhCV)
-        motherScrollView.addSubview(eighthCV)
-        motherScrollView.addSubview(ninthCV)
+        contentView.addSubview(thirdCV)
+        contentView.addSubview(fourthCV)
+        contentView.addSubview(fifthCV)
+        contentView.addSubview(sixthCV)
+        contentView.addSubview(seventhCV)
+        contentView.addSubview(eighthCV)
+        contentView.addSubview(ninthCV)
         
-        motherScrollView.addSubview(buttonStack)
+        contentView.addSubview(buttonStack)
         
-        motherScrollView.addSubview(bottomView)
+        contentView.addSubview(bottomView)
     }
     
     // MARK: Auto Layout
@@ -250,6 +250,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
 
         motherScrollView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.leading.centerX.trailing.bottom.equalTo(motherScrollView)
         }
         
         topBannerView.snp.makeConstraints {
@@ -301,7 +305,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
 
         thirdCV.snp.makeConstraints {
-            $0.top.equalTo(twiceCV.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.top.equalTo(middleBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(thirdCV.snp.width).multipliedBy(0.78)
         }
@@ -353,6 +357,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.top.equalTo(buttonStack.snp.bottom)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45)
+            $0.bottom.equalTo(contentView)
         }
     }
     

@@ -74,7 +74,7 @@ class RecommendCollection: UIView {
         title.text = text
         if image == "더보기 〉" {
             queryButton.setTitle(image, for: .normal)
-            queryButton.setTitleColor(.lightGray, for: .normal)
+            queryButton.setTitleColor(.gray, for: .normal)
             queryButton.snp.remakeConstraints {
                 $0.centerY.equalTo(title)
                 $0.trailing.equalToSuperview().inset(CollectionDesign.padding)

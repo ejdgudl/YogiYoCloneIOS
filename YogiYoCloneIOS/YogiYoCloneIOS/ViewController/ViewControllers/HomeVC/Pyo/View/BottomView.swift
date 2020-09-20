@@ -13,12 +13,13 @@ class BottomView: UIView {
 //    private let motherStack: UIStackView = {
 //        let stack = UIStackView()
 //        stack.alignment = .center
+//        stack.distribution = .fillEqually
 //        stack.axis = .vertical
 //        stack.spacing = CollectionDesign.padding
 //        return stack
 //    }()
     
-    private let companyStack: UIStackView = {
+    let companyStack: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
         stack.axis = .horizontal
@@ -31,15 +32,15 @@ class BottomView: UIView {
         label.font = UIFont(name: FontModel.customLight, size: 14)
         return label
     }()
-    private let companyButton: UIButton = {
+    let companyButton: UIButton = {
         let button = UIButton()
         button.tintColor = .black
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         return button
     }()
-    private var toggle = false
+    var toggle = false
     
-    private var companyInformation: PaddingLabel = {
+    var companyInformation: PaddingLabel = {
         let label = PaddingLabel()
         label.font = UIFont(name: FontModel.customLight, size: 12)
         label.backgroundColor = .systemBackground
@@ -48,7 +49,7 @@ class BottomView: UIView {
         return label
     }()
     
-    private let companyMenuStack: UIStackView = {
+    let companyMenuStack: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
         stack.axis = .horizontal
@@ -108,13 +109,14 @@ class BottomView: UIView {
         setDutyLabel()
         
 //        self.addSubview(motherStack)
-        
+//
 //        motherStack.snp.makeConstraints {
 //            $0.top.leading.trailing.bottom.equalToSuperview()
 //        }
     }
     @objc private func companyAction(_ sender: UIButton) {
         if !toggle {
+            print("true")
             sender.setImage(UIImage(systemName: "chevron.up"), for: .normal)
             companyInformation.padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
             companyInformation.text = """
@@ -127,21 +129,23 @@ class BottomView: UIView {
             호스팅 제공자 : 카페24 주식회사
             입점 문의하기
             """
-            
-//            companyMenuStack.snp.updateConstraints {
-//                $0.top.equalTo(companyInformation.snp.bottom).offset(CollectionDesign.padding)
+
+//            companyMenuStack.snp.remakeConstraints {
+//                $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
+//                $0.leading.trailing.equalToSuperview().inset(CollectionDesign.padding * 2)
 //            }
-            
+
             toggle = true
         } else {
+            print("false")
             sender.setImage(UIImage(systemName: "chevron.down"), for: .normal)
             companyInformation.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             companyInformation.text = nil
-            
+
 //            companyMenuStack.snp.updateConstraints {
 //                $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
 //            }
-            
+
             toggle = false
         }
     }
