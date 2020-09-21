@@ -35,33 +35,21 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    private let motherScrollView: UIScrollView = {
+    private lazy var motherScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = ColorPiker.customGray
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.delegate = self
         return scrollView
     }()
     private let contentView = UIView()
     
-    private let topBannerView: UIView = {
-        let view = UIView()
+    private lazy var topBannerView: BannerView = {
+        let view = BannerView()
+        view.bannerScrollView.delegate = self
         return view
     }()
-    private let topBannerScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    private let topBannerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "MyAccountVCImage")
-        return imageView
-    }()
-    
     lazy var categoryCV: CategoryCollection = {
         let category = CategoryCollection()
         category.collection.dataSource = self
@@ -87,25 +75,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return category
     }()
     
-    private let middleBannerView: UIView = {
-        let view = UIView()
+    private lazy var middleBannerView: BannerView = {
+        let view = BannerView()
+        view.bannerScrollView.delegate = self
+        view.bannerScrollView.layer.cornerRadius = 5
+        view.bannerScrollView.clipsToBounds = true
         return view
-    }()
-    private let middleBannerScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-//        scrollView.backgroundColor = .red
-        scrollView.layer.cornerRadius = 5
-        scrollView.clipsToBounds = true
-        scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    private let middleBannerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "MyAccountVCImage")
-        return imageView
     }()
     
     lazy var thirdCV: RecommendCollection = {
@@ -176,21 +151,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private let bottomView = BottomView()
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(category.item.count),
-                                                 height: topBannerView.frame.height)
-        
-        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(category.item.count),
-                                                    height: middleBannerView.frame.height)
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
         
         setUI()
         setLayout()
@@ -198,6 +161,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     // MARK: Set UI
     private func setUI() {
+        
+        view.backgroundColor = .systemBackground
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell"),
                                                            style: .plain,
                                                            target: self,
@@ -211,26 +177,17 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         navigationItem.titleView = titleStack
         
-        motherScrollView.delegate = self
         view.addSubview(motherScrollView)
         
         motherScrollView.addSubview(contentView)
         
         contentView.addSubview(topBannerView)
         
-        topBannerScrollView.delegate = self
-        topBannerView.addSubview(topBannerScrollView)
-        topBannerScrollView.addSubview(topBannerImageView)
-        
         contentView.addSubview(categoryCV)
         contentView.addSubview(firstCV)
         contentView.addSubview(twiceCV)
         
         contentView.addSubview(middleBannerView)
-        
-        middleBannerScrollView.delegate = self
-        middleBannerView.addSubview(middleBannerScrollView)
-        middleBannerScrollView.addSubview(middleBannerImageView)
         
         contentView.addSubview(thirdCV)
         contentView.addSubview(fourthCV)
@@ -247,7 +204,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     // MARK: Auto Layout
     private func setLayout() {
-
+        
         motherScrollView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -260,13 +217,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.top.leading.equalTo(motherScrollView)
             $0.width.equalTo(motherScrollView)
             $0.height.equalTo(topBannerView.snp.width).multipliedBy(0.31)
-        }
-        topBannerScrollView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(topBannerView)
-        }
-        topBannerImageView.snp.makeConstraints {
-            $0.top.leading.equalTo(topBannerScrollView)
-            $0.width.height.equalTo(topBannerView)
         }
         
         
@@ -295,15 +245,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.width.equalTo(motherScrollView).offset(-CollectionDesign.padding * 2)
             $0.height.equalTo(middleBannerView.snp.width).multipliedBy(0.31)
         }
-        middleBannerScrollView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(middleBannerView)
-        }
-        middleBannerImageView.snp.makeConstraints {
-            $0.top.leading.equalTo(middleBannerScrollView)
-            $0.width.height.equalTo(middleBannerView)
-        }
         
-
+        
         thirdCV.snp.makeConstraints {
             $0.top.equalTo(middleBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
