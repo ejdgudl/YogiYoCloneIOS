@@ -135,12 +135,22 @@ struct Menu: Codable {
 
 struct MenuData: Codable {
     
-    let id: Int
-    let name: String
-    let image: String
-    let caption: String
-    let price: Int
-    let optionGroup: [OptionGroup?]
+
+    var id: Int
+    var name: String
+    var image: String
+    var caption: String
+    var price: Int
+    var optionGroup: [OptionGroup?]
+    
+    init() {
+        id = 0
+        name = ""
+        image = ""
+        caption = ""
+        price = 0
+        optionGroup = [OptionGroup]()
+    }
     
     enum CodingKeys: String, CodingKey {
         case id, name, image, caption, price
@@ -150,12 +160,21 @@ struct MenuData: Codable {
     
     struct OptionGroup: Codable {
         
-        let id: Int
-        let name: String
-        let menuId: Int
+        var id: Int
+        var name: String
+        var menuId: Int
         
-        let mandatory: Bool
-        let option: [Option]
+        var mandatory: Bool
+        var option: [Option]
+        
+        
+        init() {
+            id = 0
+            name = ""
+            mandatory = true
+            menuId = 0
+            option = [Option]()
+        }
         
         enum CodingKeys: String, CodingKey {
             case id, name, mandatory, option
@@ -164,10 +183,17 @@ struct MenuData: Codable {
         
         struct Option: Codable {
             
-            let id: Int
-            let name: String
-            let price: Int
-            let optionGroupId: Int
+            var id: Int
+            var name: String
+            var price: Int
+            var optionGroupId: Int
+            
+            init() {
+                id = 0
+                name = ""
+                price = 0
+                optionGroupId = 0
+            }
             
             enum CodingKeys: String, CodingKey {
                 case id, name, price
@@ -204,7 +230,7 @@ struct UrlBase {
 
     static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
-    static let menuInstance = "http://52.79.251.125/menu/2"
+    static let menuInstance = "http://52.79.251.125/menu/20"
     static let order = "http://52.79.251.125/ordering"
 
     
