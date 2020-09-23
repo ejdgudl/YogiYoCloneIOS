@@ -151,6 +151,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private let bottomView = BottomView()
     
+    private var constraint: Constraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,6 +200,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         contentView.addSubview(buttonStack)
         
+        bottomView.companyButton.addTarget(self, action: #selector(companyAction(_:)), for: .touchUpInside)
         contentView.addSubview(bottomView)
     }
     
@@ -299,12 +301,13 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         bottomView.snp.makeConstraints {
             $0.top.equalTo(buttonStack.snp.bottom)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45)
-            $0.bottom.equalTo(contentView)
+            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45).priority(.medium)
+            $0.bottom.equalTo(contentView).inset(CollectionDesign.padding)
+            constraint = $0.height.equalTo(bottomView.snp.width).multipliedBy(0.85).priority(.low).constraint
         }
     }
     
-    // MARK: Present, Push func
+    // MARK: Button func
     @objc func mapPresent(_ sender: UIButton) {
         let mapVC = MapVC()
         mapVC.modalPresentationStyle = .fullScreen
@@ -331,5 +334,23 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     @objc func plusPush(_ sender: UIButton) {
         let plusVC = YogiyoPlusStoreListVC()
         navigationController?.pushViewController(plusVC, animated: true)
+    }
+    @objc private func companyAction(_ sender: UIButton) {
+        if !bottomView.toggle {
+            sender.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+            bottomView.companyInformation.padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+            bottomView.companyInformation.text = category.companyInfo
+            bottomView.constraint?.update(offset: CollectionDesign.padding)
+            constraint?.update(priority: .high)
+            bottomView.toggle = true
+            
+        } else {
+            sender.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            bottomView.companyInformation.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            bottomView.companyInformation.text = nil
+            bottomView.constraint?.update(offset: 0)
+            constraint?.update(priority: .low)
+            bottomView.toggle = false
+        }
     }
 }

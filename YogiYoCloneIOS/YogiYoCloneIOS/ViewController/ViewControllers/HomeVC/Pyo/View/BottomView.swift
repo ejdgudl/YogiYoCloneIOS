@@ -7,19 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class BottomView: UIView {
     
-//    private let motherStack: UIStackView = {
-//        let stack = UIStackView()
-//        stack.alignment = .center
-//        stack.distribution = .fillEqually
-//        stack.axis = .vertical
-//        stack.spacing = CollectionDesign.padding
-//        return stack
-//    }()
-    
-    let companyStack: UIStackView = {
+    private let companyStack: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
         stack.axis = .horizontal
@@ -98,6 +90,8 @@ class BottomView: UIView {
         return label
     }()
     
+    var constraint: Constraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -107,57 +101,14 @@ class BottomView: UIView {
         setCompanyInformation()
         setCompanyMenu()
         setDutyLabel()
-        
-//        self.addSubview(motherStack)
-//
-//        motherStack.snp.makeConstraints {
-//            $0.top.leading.trailing.bottom.equalToSuperview()
-//        }
-    }
-    @objc private func companyAction(_ sender: UIButton) {
-        if !toggle {
-            print("true")
-            sender.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-            companyInformation.padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-            companyInformation.text = """
-            주소 : 서초구 서초대로38길 12 마제스타시티 타워2 17층
-            대표자 : 강신봉 | 사업자등록번호 : 211-88-68802
-            통신판매업신고 : 제 2018-서울서초-2635호
-            개인정보담당자 : privacy@yogiyo.co.kr
-            고객만족센터 : 1661-5270 (24시간,연중무휴)
-            이메일 : support@yogiyo.co.kr
-            호스팅 제공자 : 카페24 주식회사
-            입점 문의하기
-            """
-
-//            companyMenuStack.snp.remakeConstraints {
-//                $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
-//                $0.leading.trailing.equalToSuperview().inset(CollectionDesign.padding * 2)
-//            }
-
-            toggle = true
-        } else {
-            print("false")
-            sender.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-            companyInformation.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            companyInformation.text = nil
-
-//            companyMenuStack.snp.updateConstraints {
-//                $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
-//            }
-
-            toggle = false
-        }
     }
     
     private func setCompanyStack() {
         
-        companyButton.addTarget(self, action: #selector(companyAction(_:)), for: .touchUpInside)
         companyStack.addArrangedSubview(companyLabel)
         companyStack.addArrangedSubview(companyButton)
         
         self.addSubview(companyStack)
-//        motherStack.addArrangedSubview(companyStack)
         
         companyStack.snp.makeConstraints {
             $0.top.equalToSuperview().offset(CollectionDesign.padding)
@@ -167,7 +118,6 @@ class BottomView: UIView {
     private func setCompanyInformation() {
         
         self.addSubview(companyInformation)
-//        motherStack.addArrangedSubview(companyInformation)
         
         companyInformation.snp.makeConstraints {
             $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
@@ -182,17 +132,15 @@ class BottomView: UIView {
         companyMenuStack.addArrangedSubview(companyInfoButton)
         
         self.addSubview(companyMenuStack)
-//        motherStack.addArrangedSubview(companyMenuStack)
         
         companyMenuStack.snp.makeConstraints {
-            $0.top.equalTo(companyStack.snp.bottom).offset(CollectionDesign.padding)
+            constraint = $0.top.equalTo(companyInformation.snp.bottom).constraint
             $0.leading.trailing.equalToSuperview().inset(CollectionDesign.padding * 2)
         }
     }
     private func setDutyLabel() {
         
         self.addSubview(dutyLabel)
-//        motherStack.addArrangedSubview(dutyLabel)
         
         dutyLabel.snp.makeConstraints {
             $0.top.equalTo(companyMenuStack.snp.bottom).offset(CollectionDesign.padding)
