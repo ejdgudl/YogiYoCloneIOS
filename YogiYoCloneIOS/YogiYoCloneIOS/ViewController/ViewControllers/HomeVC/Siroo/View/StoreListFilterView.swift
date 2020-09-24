@@ -18,7 +18,11 @@ class StoreListFilterView: UIView {
 
 //    MARK:  Properties
     
-
+    var selectedOrder = 0
+    var selectedPayment = 0
+    
+    private var storeFilterBigView = StoreFilterbigView()
+    
     private let indicatorView : UIView = {
         let view = UIView()
         return view
@@ -43,6 +47,7 @@ class StoreListFilterView: UIView {
         let button = UIButton()
         button.setTitle("초기화", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(setInitButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -57,90 +62,171 @@ class StoreListFilterView: UIView {
         view.backgroundColor = .systemGray
         return view
     }()
-    
-    private let checkButton : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName:"circle.fill"), for: .selected)
-        button.setImage(UIImage(systemName:"circle"), for: .normal)
-        button.imageView?.tintColor = .systemGray
-        return button
-    }()
-    
-    private let filterDetailLabel : UILabel = {
-        let label = UILabel()
-        label.text = "요기요 랭킹순"
-        return label
-    }()
-    
-    private let checkButton2 : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName:"circle.fill"), for: .selected)
-        button.setImage(UIImage(systemName:"circle"), for: .normal)
-        button.imageView?.tintColor = .systemGray
-        return button
-    }()
-    
-    private let filterDetailLabel2 : UILabel = {
-        let label = UILabel()
-        label.text = "결제수단 전체"
-        return label
-    }()
-    
-    private let checkButton3 : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName:"circle.fill"), for: .selected)
-        button.setImage(UIImage(systemName:"circle"), for: .normal)
-        button.imageView?.tintColor = .systemGray
-        return button
-    }()
-    
-    private let filterDetailLabel3 : UILabel = {
-        let label = UILabel()
-        label.text = "별점순"
-        return label
-    }()
-    
-    private let checkButton4 : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName:"circle.fill"), for: .selected)
-        button.setImage(UIImage(systemName:"circle"), for: .normal)
-        button.imageView?.tintColor = .systemGray
-        return button
-    }()
-    
-    private let filterDetailLabel4 : UILabel = {
-        let label = UILabel()
-        label.text = "리뷰 많은 순"
-        return label
-    }()
-    
-    private let checkButton5 : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName:"circle.fill"), for: .selected)
-        button.setImage(UIImage(systemName:"circle"), for: .normal)
-        button.imageView?.tintColor = .systemGray
-        return button
-    }()
-    
-    private let filterDetailLabel5 : UILabel = {
-        let label = UILabel()
-        label.text = "최소 주문 금액 순"
-        return label
-    }()
-    
+        
     private let enterButton : UIButton = {
         let button = UIButton()
         button.setTitle("적용", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorPiker.customRed
+        
+        return button
+    }()
+
+    private let filterselectedview : UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        
+        return view
+        
+    }()
+    
+    private var orderArrayButtons : [UIButton] = []
+    private var paymentArrayButtons : [UIButton] = []
+    
+    private let filterbutton : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("요기요 랭킹순", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(orderfilterButtontaped), for: .touchUpInside)
+        button.tag = 0
         return button
     }()
     
-    private let orderfiltertitle : [String] = ["요기요 랭킹순","배달비용순","별점순","리뷰 많은 순","최소 주문 금액 순"]
-    
-    private let paymentfiltertitle : [String] = ["결제수단 전체","배달비용순","별점순","리뷰 많은 순","최소 주문 금액 순"]
+    private let filterbutton2 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("배달 요금순", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(orderfilterButtontaped), for: .touchUpInside)
+        button.tag = 1
+        return button
+    }()
+
+    private let filterbutton3 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("별점순", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(orderfilterButtontaped), for: .touchUpInside)
+        button.tag = 2
+        return button
+    }()
+
+    private let filterbutton4 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("리뷰 많은순", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(orderfilterButtontaped), for: .touchUpInside)
+        button.tag = 3
+        return button
+    }()
 
     
+    private let filterbutton5 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("최소 주문 금액순", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(orderfilterButtontaped), for: .touchUpInside)
+        button.tag = 4
+        return button
+    }()
+
+    private let filterbutton6 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("결제수단 전체", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(paymentfilterButtontaped(_:)), for: .touchUpInside)
+        button.tag = 0
+        return button
+    }()
+
+    private let filterbutton7 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("현금", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(paymentfilterButtontaped), for: .touchUpInside)
+        button.tag = 1
+        return button
+    }()
+
+    private let filterbutton8 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("현장카드", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(paymentfilterButtontaped), for: .touchUpInside)
+        button.tag = 2
+        return button
+    }()
+
+    private let filterbutton9 : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor( .darkGray, for: .normal)
+        button.imageView?.tintColor = .darkGray
+        button.setTitle("요기서결제", for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
+        button.addTarget(self, action: #selector(paymentfilterButtontaped), for: .touchUpInside)
+        button.tag = 3
+        return button
+    }()
     
  //    MARK:  LifeCycle
     
@@ -148,7 +234,20 @@ class StoreListFilterView: UIView {
         super.init(frame: frame)
         
         configUiSet()
+        orderArrayButtons.append(filterbutton)
+        orderArrayButtons.append(filterbutton2)
+        orderArrayButtons.append(filterbutton3)
+        orderArrayButtons.append(filterbutton4)
+        orderArrayButtons.append(filterbutton5)
         
+        
+        paymentArrayButtons.append(filterbutton6)
+        paymentArrayButtons.append(filterbutton7)
+        paymentArrayButtons.append(filterbutton8)
+        paymentArrayButtons.append(filterbutton9)
+        
+        selectChosenOrder(selectedOrder)
+        selectChosenPayment(selectedPayment)
     }
     
     required init?(coder: NSCoder) {
@@ -205,37 +304,94 @@ class StoreListFilterView: UIView {
             make.leading.trailing.bottom.equalTo(0)
         }
         
-        let stack = UIStackView(arrangedSubviews: [checkButton,filterDetailLabel])
-        stack.axis = .horizontal
-        stack.distribution = .fillProportionally
-        stack.spacing = 4
         
-        addSubview(stack)
-        stack.snp.makeConstraints { (make) in
-            make.top.equalTo(horizontalIndicator.snp.bottom).offset(10)
-            make.leading.equalTo(self.snp.leading).inset(10)
-        }
-        
-        let stack2 = UIStackView(arrangedSubviews: [checkButton2,filterDetailLabel2])
-        stack2.axis = .horizontal
+        let stack2 = UIStackView(arrangedSubviews: [filterbutton,filterbutton2,filterbutton3,filterbutton4,filterbutton5])
+        stack2.axis = .vertical
         stack2.distribution = .fillProportionally
-        stack2.spacing = 4
+        stack2.spacing = 8
+        stack2.alignment = .leading
+        
+
         
         addSubview(stack2)
         stack2.snp.makeConstraints { (make) in
             make.top.equalTo(horizontalIndicator.snp.bottom).offset(10)
-            make.leading.equalTo(verticalIndicator.snp.trailing).offset(10)
+            make.leading.equalTo(self.snp.leading).inset(50)
         }
         
-
+        let stack3 = UIStackView(arrangedSubviews: [filterbutton6,filterbutton7,filterbutton8,filterbutton9])
+        stack3.axis = .vertical
+        stack3.distribution = .fillProportionally
+        stack3.spacing = 8
+        stack3.alignment = .leading
         
-}
- 
+        addSubview(stack3)
+        stack3.snp.makeConstraints { (make) in
+            make.top.equalTo(horizontalIndicator.snp.bottom).offset(10)
+            make.leading.equalTo(verticalIndicator.snp.leading).inset(50)
+        }
 
+    }
+    
+    func selectChosenOrder(_ index: Int) {
+        let selectedButton = orderArrayButtons[index]
+        selectedButton.setTitleColor(.red, for: .normal)
+        selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        selectedButton.tintColor = .red
+    }
+    
+    func selectChosenPayment(_ index: Int) {
+        let selectedButton = paymentArrayButtons[index]
+        selectedButton.setTitleColor(.red, for: .normal)
+        selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        selectedButton.tintColor = .red
+    }
+    
+    
     
 //    MARK: Selector
 
-    @objc func filtercloseButton() {
+    @objc func setInitButtonClicked() {
+//        for i in orderArrayButtons {
+//            i.setTitleColor( .darkGray, for: .normal)
+//            i.setImage(UIImage(systemName: "circle"), for: .normal)
+//            i.tintColor = .darkGray
+//        }
+//        selectChosenOrder(0)
+//
+//        for i in paymentArrayButtons {
+//            i.setTitleColor( .darkGray, for: .normal)
+//            i.setImage(UIImage(systemName: "circle"), for: .normal)
+//            i.tintColor = .darkGray
+//        }
+//        selectChosenPayment(0)
+  
     }
-
+    
+    @objc func filtercloseButton() {
+//        storeFilterBigView.removeFromSuperview()
+    
+    }
+    
+    @objc func orderfilterButtontaped(_ sender: UIButton) {
+        for i in orderArrayButtons {
+            i.setTitleColor( .darkGray, for: .normal)
+            i.setImage(UIImage(systemName: "circle"), for: .normal)
+            i.tintColor = .darkGray
+        }
+        selectedOrder = sender.tag
+        selectChosenOrder(sender.tag)
+        
+    }
+    
+    @objc func paymentfilterButtontaped(_ sender: UIButton) {
+        for i in paymentArrayButtons {
+            i.setTitleColor( .darkGray, for: .normal)
+            i.setImage(UIImage(systemName: "circle"), for: .normal)
+            i.tintColor = .darkGray
+        }
+        selectedPayment = sender.tag
+        selectChosenPayment(sender.tag)
+        
+    }
 }
