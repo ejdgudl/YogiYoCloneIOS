@@ -10,6 +10,7 @@ import Foundation
 
 struct Category {
     let item: [item]
+    let companyInfo: String
     
     struct item {
         let name: String
@@ -62,5 +63,15 @@ let category = Category(
            
            Category.item(name: "편의점/마트",
                          image: "편의점"),
-    ]
+    ],
+    companyInfo: """
+            주소 : 서초구 서초대로38길 12 마제스타시티 타워2 17층
+            대표자 : 강신봉 | 사업자등록번호 : 211-88-68802
+            통신판매업신고 : 제 2018-서울서초-2635호
+            개인정보담당자 : privacy@yogiyo.co.kr
+            고객만족센터 : 1661-5270 (24시간,연중무휴)
+            이메일 : support@yogiyo.co.kr
+            호스팅 제공자 : 카페24 주식회사
+            입점 문의하기
+            """
 )

@@ -35,32 +35,21 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    private let motherScrollView: UIScrollView = {
+    private lazy var motherScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = ColorPiker.customGray
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.delegate = self
         return scrollView
     }()
+    private let contentView = UIView()
     
-    private let topBannerView: UIView = {
-        let view = UIView()
+    private lazy var topBannerView: BannerView = {
+        let view = BannerView()
+        view.bannerScrollView.delegate = self
         return view
     }()
-    private let topBannerScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    private let topBannerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "MyAccountVCImage")
-        return imageView
-    }()
-    
     lazy var categoryCV: CategoryCollection = {
         let category = CategoryCollection()
         category.collection.dataSource = self
@@ -86,25 +75,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return category
     }()
     
-    private let middleBannerView: UIView = {
-        let view = UIView()
+    private lazy var middleBannerView: BannerView = {
+        let view = BannerView()
+        view.bannerScrollView.delegate = self
+        view.bannerScrollView.layer.cornerRadius = 5
+        view.bannerScrollView.clipsToBounds = true
         return view
-    }()
-    private let middleBannerScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-//        scrollView.backgroundColor = .red
-        scrollView.layer.cornerRadius = 5
-        scrollView.clipsToBounds = true
-        scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    let middleBannerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "MyAccountVCImage")
-        return imageView
     }()
     
     lazy var thirdCV: RecommendCollection = {
@@ -175,24 +151,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private let bottomView = BottomView()
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: bottomView.frame.maxY)
-
-        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(category.item.count),
-                                                 height: topBannerView.frame.height)
-        
-        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(category.item.count),
-                                                    height: middleBannerView.frame.height)
-    }
-    
+    private var constraint: Constraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
         
         setUI()
         setLayout()
@@ -200,6 +162,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     // MARK: Set UI
     private func setUI() {
+        
+        view.backgroundColor = .systemBackground
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell"),
                                                            style: .plain,
                                                            target: self,
@@ -213,56 +178,47 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         navigationItem.titleView = titleStack
         
-        motherScrollView.delegate = self
         view.addSubview(motherScrollView)
         
-        motherScrollView.addSubview(topBannerView)
+        motherScrollView.addSubview(contentView)
         
-        topBannerScrollView.delegate = self
-        topBannerView.addSubview(topBannerScrollView)
-        topBannerScrollView.addSubview(topBannerImageView)
+        contentView.addSubview(topBannerView)
         
-        motherScrollView.addSubview(categoryCV)
-        motherScrollView.addSubview(firstCV)
-        motherScrollView.addSubview(twiceCV)
+        contentView.addSubview(categoryCV)
+        contentView.addSubview(firstCV)
+        contentView.addSubview(twiceCV)
         
-        motherScrollView.addSubview(middleBannerView)
+        contentView.addSubview(middleBannerView)
         
-        middleBannerScrollView.delegate = self
-        middleBannerView.addSubview(middleBannerScrollView)
-        middleBannerScrollView.addSubview(middleBannerImageView)
+        contentView.addSubview(thirdCV)
+        contentView.addSubview(fourthCV)
+        contentView.addSubview(fifthCV)
+        contentView.addSubview(sixthCV)
+        contentView.addSubview(seventhCV)
+        contentView.addSubview(eighthCV)
+        contentView.addSubview(ninthCV)
         
-        motherScrollView.addSubview(thirdCV)
-        motherScrollView.addSubview(fourthCV)
-        motherScrollView.addSubview(fifthCV)
-        motherScrollView.addSubview(sixthCV)
-        motherScrollView.addSubview(seventhCV)
-        motherScrollView.addSubview(eighthCV)
-        motherScrollView.addSubview(ninthCV)
+        contentView.addSubview(buttonStack)
         
-        motherScrollView.addSubview(buttonStack)
-        
-        motherScrollView.addSubview(bottomView)
+        bottomView.companyButton.addTarget(self, action: #selector(companyAction(_:)), for: .touchUpInside)
+        contentView.addSubview(bottomView)
     }
     
     // MARK: Auto Layout
     private func setLayout() {
-
+        
         motherScrollView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.leading.centerX.trailing.bottom.equalTo(motherScrollView)
         }
         
         topBannerView.snp.makeConstraints {
             $0.top.leading.equalTo(motherScrollView)
             $0.width.equalTo(motherScrollView)
             $0.height.equalTo(topBannerView.snp.width).multipliedBy(0.31)
-        }
-        topBannerScrollView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(topBannerView)
-        }
-        topBannerImageView.snp.makeConstraints {
-            $0.top.leading.equalTo(topBannerScrollView)
-            $0.width.height.equalTo(topBannerView)
         }
         
         
@@ -291,17 +247,10 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.width.equalTo(motherScrollView).offset(-CollectionDesign.padding * 2)
             $0.height.equalTo(middleBannerView.snp.width).multipliedBy(0.31)
         }
-        middleBannerScrollView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(middleBannerView)
-        }
-        middleBannerImageView.snp.makeConstraints {
-            $0.top.leading.equalTo(middleBannerScrollView)
-            $0.width.height.equalTo(middleBannerView)
-        }
         
-
+        
         thirdCV.snp.makeConstraints {
-            $0.top.equalTo(twiceCV.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.top.equalTo(middleBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(thirdCV.snp.width).multipliedBy(0.78)
         }
@@ -352,11 +301,13 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         bottomView.snp.makeConstraints {
             $0.top.equalTo(buttonStack.snp.bottom)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45)
+            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45).priority(.medium)
+            $0.bottom.equalTo(contentView).inset(CollectionDesign.padding)
+            constraint = $0.height.equalTo(bottomView.snp.width).multipliedBy(0.85).priority(.low).constraint
         }
     }
     
-    // MARK: Present, Push func
+    // MARK: Button func
     @objc func mapPresent(_ sender: UIButton) {
         let mapVC = MapVC()
         mapVC.modalPresentationStyle = .fullScreen
@@ -383,5 +334,23 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     @objc func plusPush(_ sender: UIButton) {
         let plusVC = YogiyoPlusStoreListVC()
         navigationController?.pushViewController(plusVC, animated: true)
+    }
+    @objc private func companyAction(_ sender: UIButton) {
+        if !bottomView.toggle {
+            sender.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+            bottomView.companyInformation.padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+            bottomView.companyInformation.text = category.companyInfo
+            bottomView.constraint?.update(offset: CollectionDesign.padding)
+            constraint?.update(priority: .high)
+            bottomView.toggle = true
+            
+        } else {
+            sender.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            bottomView.companyInformation.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            bottomView.companyInformation.text = nil
+            bottomView.constraint?.update(offset: 0)
+            constraint?.update(priority: .low)
+            bottomView.toggle = false
+        }
     }
 }
