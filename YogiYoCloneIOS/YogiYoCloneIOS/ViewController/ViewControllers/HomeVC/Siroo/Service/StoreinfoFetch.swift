@@ -61,7 +61,7 @@ class StoreinfoFetch {
                     let image = restaurant["image"].stringValue
                     let deliveryDiscount = restaurant["delivery_discount"].intValue
                     let deliveryTime = restaurant["delivery_time"].stringValue
-                    let reviewCount = restaurant["-review_count"].intValue
+                    let reviewCount = restaurant["review_count"].intValue
                     let representativeMenus = restaurant["representative_menus"].stringValue
                     let deliveryCharge = restaurant["delivery_charge"].intValue
                     

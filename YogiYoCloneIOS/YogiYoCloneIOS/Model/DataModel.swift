@@ -34,7 +34,7 @@ struct AllListData: Codable {
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
             case deliveryTime = "delivery_time"
-            case reviewCount = "-review_count"
+            case reviewCount = "review_count"
             case representativeMenus = "representative_menus"
         }
 
