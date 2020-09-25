@@ -27,6 +27,12 @@ class StoreinfoFetch {
         "피자양식",
     ]
     
+    static var payment_methods: [String] = [
+        "현금",
+        "신용카드",
+        "요기서 결제",
+    ]
+    
     func fetchAll() {
         for (index, _) in StoreinfoFetch.categories.enumerated() {
             self.getRestaurnatData(index)
@@ -51,17 +57,15 @@ class StoreinfoFetch {
                 for (_, restaurant) in restaurants {
                     let id = restaurant["id"].intValue
                     let name = restaurant["name"].stringValue
-//                    let name = "[\(StoreinfoFetch.categories[categoryIndex])] \(restaurant["name"].stringValue)"
-                    let star = restaurant["-star"].doubleValue
+                    let averageRating = restaurant["average_rating"].doubleValue
                     let image = restaurant["image"].stringValue
                     let deliveryDiscount = restaurant["delivery_discount"].intValue
                     let deliveryTime = restaurant["delivery_time"].stringValue
                     let reviewCount = restaurant["-review_count"].intValue
                     let representativeMenus = restaurant["representative_menus"].stringValue
                     let deliveryCharge = restaurant["delivery_charge"].intValue
-//                    let categories = restaurant["categories"].stringValue
                     
-                    rs.append(AllListData.Results(id: id, name: name, star: star, image: image, deliveryDiscount: deliveryDiscount, deliveryCharge: deliveryCharge, deliveryTime: deliveryTime, reviewCount: reviewCount, representativeMenus: [representativeMenus] ))
+                    rs.append(AllListData.Results(id: id, name: name, averageRating: averageRating, image: image, deliveryDiscount: deliveryDiscount, deliveryCharge: deliveryCharge, deliveryTime: deliveryTime, reviewCount: reviewCount, representativeMenus: [representativeMenus] ))
                 }
                 
                 self.restaurantListData[categoryIndex] = AllListData(next: result["next"].stringValue, previous: result["privious"].stringValue, results: rs)

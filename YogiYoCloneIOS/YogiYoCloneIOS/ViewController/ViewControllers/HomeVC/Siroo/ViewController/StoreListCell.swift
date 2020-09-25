@@ -16,10 +16,10 @@ class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
-            storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)
+            storeRateLabel.text = String(format: "%.1f", restaurant?.averageRating as! CVarArg)
             setImage(from: restaurant!.image)
             reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
-            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))"
+            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))원"
             estimatedTime.text = restaurant?.deliveryTime
             bestMenuLabel.text = restaurant?.representativeMenus.joined()
             

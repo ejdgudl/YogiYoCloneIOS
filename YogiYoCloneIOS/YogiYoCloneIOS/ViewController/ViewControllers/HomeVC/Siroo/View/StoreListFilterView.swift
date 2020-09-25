@@ -21,7 +21,7 @@ class StoreListFilterView: UIView {
     var selectedOrder = 0
     var selectedPayment = 0
     
-    private var storeFilterBigView = StoreFilterbigView()
+    private var storeFilterBigView: StoreFilterbigView?
     
     private let indicatorView : UIView = {
         let view = UIView()
@@ -67,6 +67,7 @@ class StoreListFilterView: UIView {
         let button = UIButton()
         button.setTitle("적용", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(enterButtontaped), for: .touchUpInside)
         button.backgroundColor = ColorPiker.customRed
         
         return button
@@ -347,30 +348,34 @@ class StoreListFilterView: UIView {
         selectedButton.tintColor = .red
     }
     
+    func setFilterView(view: StoreFilterbigView) {
+        storeFilterBigView = view
+    }
+    
     
     
 //    MARK: Selector
 
     @objc func setInitButtonClicked() {
-//        for i in orderArrayButtons {
-//            i.setTitleColor( .darkGray, for: .normal)
-//            i.setImage(UIImage(systemName: "circle"), for: .normal)
-//            i.tintColor = .darkGray
-//        }
-//        selectChosenOrder(0)
-//
-//        for i in paymentArrayButtons {
-//            i.setTitleColor( .darkGray, for: .normal)
-//            i.setImage(UIImage(systemName: "circle"), for: .normal)
-//            i.tintColor = .darkGray
-//        }
-//        selectChosenPayment(0)
+        for i in orderArrayButtons {
+            i.setTitleColor( .darkGray, for: .normal)
+            i.setImage(UIImage(systemName: "circle"), for: .normal)
+            i.tintColor = .darkGray
+        }
+        selectChosenOrder(0)
+
+        for i in paymentArrayButtons {
+            i.setTitleColor( .darkGray, for: .normal)
+            i.setImage(UIImage(systemName: "circle"), for: .normal)
+            i.tintColor = .darkGray
+        }
+        selectChosenPayment(0)
   
     }
+
     
     @objc func filtercloseButton() {
-//        storeFilterBigView.removeFromSuperview()
-    
+        storeFilterBigView?.removeFromSuperview()
     }
     
     @objc func orderfilterButtontaped(_ sender: UIButton) {
@@ -379,12 +384,13 @@ class StoreListFilterView: UIView {
             i.setImage(UIImage(systemName: "circle"), for: .normal)
             i.tintColor = .darkGray
         }
+        
         selectedOrder = sender.tag
         selectChosenOrder(sender.tag)
         
     }
     
-    @objc func paymentfilterButtontaped(_ sender: UIButton) {
+    @objc func paymentfilterButtontaped(_ sender: UIButton){
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
@@ -392,6 +398,10 @@ class StoreListFilterView: UIView {
         }
         selectedPayment = sender.tag
         selectChosenPayment(sender.tag)
+        
+    }
+    
+    @objc func enterButtontaped(){
         
     }
 }
