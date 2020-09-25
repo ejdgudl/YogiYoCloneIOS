@@ -8,6 +8,8 @@
 
 import UIKit
 
+var isOn = true
+
 extension UIView {
     
     func inputContainerView(image: UIImage, textField: UITextField? = nil, segmentedControl: UISegmentedControl? = nil) -> UIView {
@@ -119,5 +121,28 @@ extension UIView {
         layer.masksToBounds = false
     }
     
+    func filterButtonclicked(_ sender: UIButton){
+        var isOn = true
+        let button = UIButton()
+
+        if isOn == true {
+            isOn = false
+            button.setTitleColor( .darkGray, for: .normal)
+            button.setImage(UIImage(systemName: "circle"), for: .normal)
+            button.tintColor = .darkGray
+        } else {
+            isOn = true
+            button.setTitleColor(.red, for: .normal)
+            button.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            button.tintColor = .red
+            
+        }
+      
+    
+    
 }
+    
+}
+
+
 

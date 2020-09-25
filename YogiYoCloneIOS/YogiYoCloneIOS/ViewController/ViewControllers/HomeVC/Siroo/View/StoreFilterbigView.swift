@@ -8,14 +8,15 @@
 
 import UIKit
 
+
 class StoreFilterbigView: UIView {
     
+    // storeFilterView: StoreListFilterViewd 의 인스턴스 / 곧 addSubview로 화면에 보여질 인스턴스 <id: 1>
     private let storeFilterView = StoreListFilterView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
-        
         
         self.addSubview(storeFilterView)
         self.storeFilterView.snp.makeConstraints { (make) in
@@ -24,7 +25,7 @@ class StoreFilterbigView: UIView {
             make.bottom.equalTo(self.snp.bottom)
         }
         
-        //        backgroundColor = UIColor(white: 1, alpha: 0.5)
+        storeFilterView.setFilterView(view: self)
     }
     
     required init?(coder: NSCoder) {

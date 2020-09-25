@@ -32,7 +32,10 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     private let storeListCell = StoreListCell()
     private let menuList = MenuListVC()
     private let scrollView = UIScrollView()
+    
+    // storeFilterbigView: StoreFilterbigView의 인스턴스 / 곧 addSubview로 화면에 보여질 인스턴스 <id: 1>
     public let storeFilterbigView = StoreFilterbigView()
+    
     public var categoryIndex : Int = 0
     
     private var scrollViewIndex : Int  = 0
