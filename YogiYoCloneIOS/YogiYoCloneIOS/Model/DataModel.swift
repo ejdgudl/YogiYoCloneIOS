@@ -19,7 +19,7 @@ struct AllListData: Codable {
         
         let id: Int
         let name: String
-        let star: Double
+        let averageRating: Double
         let image: String
         
         let deliveryDiscount: Int?
@@ -29,7 +29,8 @@ struct AllListData: Codable {
         let representativeMenus: [String]
         
         enum CodingKeys: String, CodingKey {
-            case id, name, star, image
+            case id, name, image
+            case averageRating = "average_rating"
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
             case deliveryTime = "delivery_time"
@@ -45,8 +46,14 @@ struct RestaurantInstanceData: Codable {
     
     let id: Int
     let name: String
-    let star: Double
+    
+    let averageRating: Double
+    let averageTaste: Double
+    let averageDelivery: Double
+    let averageAmount: Double
+    
     let image: String
+    let backImage: String?
     
     let notification: String
     let openingTime: String
@@ -65,7 +72,6 @@ struct RestaurantInstanceData: Codable {
     let deliveryCharge: Int
     let deliveryTime: String
     
-    let backImage: String?
 //    let lat: Double
 //    let lng: Double
     
@@ -74,7 +80,15 @@ struct RestaurantInstanceData: Codable {
     let menuGroup: [MenuGroup]
     
     enum CodingKeys: String, CodingKey {
-        case id, name, star, image, notification, address
+        case id, name, image, notification, address
+        
+        case averageRating = "average_rating"
+        case averageTaste = "average_taste"
+        case averageDelivery = "average_delivery"
+        case averageAmount = "average_amount"
+        
+        case backImage = "back_image"
+        
         case openingTime = "opening_time"
         case closingTime = "closing_time"
         case telNumber = "tel_number"
@@ -86,7 +100,7 @@ struct RestaurantInstanceData: Codable {
         case deliveryDiscount = "delivery_discount"
         case deliveryCharge = "delivery_charge"
         case deliveryTime = "delivery_time"
-        case backImage = "back_image"
+        
         case photoMenu = "photo_menu"
         case menuGroup = "menu_group"
     }
@@ -191,15 +205,14 @@ struct UrlBase {
     static let ip = "http://52.79.251.125/"
     
     static let listAll = "restaurants"
-    static let category = "?categories="
+    static let category = "categories"
     static let instance = "restaurants/"
     
     static let menu = "menu/"
     
-    static let payment = "?payment_methods="
+    static let payment = "payment_methods"
     
-//    static let order = "order"
-    static let ordering = "_by="
+    static let ordering = "ordering"
 
 
     static let restaurantList = "http://52.79.251.125/restaurants"

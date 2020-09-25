@@ -14,7 +14,7 @@ struct CollectionDesign {
     static let tripleLineCount: CGFloat = 3
     
     static let padding: CGFloat = 15
-    static let edge = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
+    static let edge = UIEdgeInsets(top: 18.5, left: 15, bottom: 18.5, right: 15)
     
     static let textPadding: CGFloat = 10
     static let collectionPadding: CGFloat = 5

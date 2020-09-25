@@ -22,7 +22,7 @@ class HeaderView: UICollectionReusableView {
                 imageView.kf.setImage(with: url)
             }
             storeLabel.text = storeInfo.name
-            cosmosView.rating = storeInfo.star
+            cosmosView.rating = storeInfo.averageRating
             discountLabel.text = String(storeInfo.deliveryDiscount)
             deliveryTime.text = storeInfo.deliveryTime
         }

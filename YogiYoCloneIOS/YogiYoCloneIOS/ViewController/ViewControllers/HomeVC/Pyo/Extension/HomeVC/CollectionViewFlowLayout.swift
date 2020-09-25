@@ -11,11 +11,21 @@ import UIKit
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     // 줄 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CollectionDesign.padding
+        if collectionView == categoryCV.collection {
+            return CollectionDesign.padding
+        } else if collectionView == fourthCV.collection {
+            return CollectionDesign.padding * 2
+        } else {
+            return CollectionDesign.textPadding
+        }
     }
     // 행 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CollectionDesign.padding
+        if collectionView == categoryCV.collection {
+            return CollectionDesign.padding
+        } else {
+            return CollectionDesign.textPadding
+        }
     }
     // 테두리
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -25,11 +35,11 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         switch collectionView {
-        case categoryCollection:
+        case categoryCV.collection:
             return categorySize(collectionView: collectionView)
-        case fourthCollection:
+        case fourthCV.collection:
             return restaurantTripleSize(collectionView: collectionView)
-        case ninthCollection:
+        case ninthCV.collection:
             return restaurantNewSize(collectionView: collectionView)
         default:
             return restaurantSize(collectionView: collectionView)
