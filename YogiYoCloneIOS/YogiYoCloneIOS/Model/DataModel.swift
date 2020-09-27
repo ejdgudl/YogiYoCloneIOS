@@ -212,7 +212,7 @@ struct UrlBase {
     
     static let payment = "payment_methods"
     
-    static let ordering = "ordering"
+    static let ordering = "order_by"
 
 
     static let restaurantList = "http://52.79.251.125/restaurants"
