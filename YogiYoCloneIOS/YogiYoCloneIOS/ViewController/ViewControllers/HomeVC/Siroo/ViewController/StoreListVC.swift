@@ -21,26 +21,23 @@ public let scrollView = UIScrollView()
 //
 
 class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate , categoryVCdelegate {
-    func scrolltableviewreload() {
-        print("111")
-    }
     
     
     
     //    MARK: Properties
     
-    private let storeListCell = StoreListCell()
     private let menuList = MenuListVC()
     private let scrollView = UIScrollView()
     
     // storeFilterbigView: StoreFilterbigView의 인스턴스 / 곧 addSubview로 화면에 보여질 인스턴스 <id: 1>
     public let storeFilterbigView = StoreFilterbigView()
+    public let storeListFilterView = StoreListFilterView()
     
     public var categoryIndex : Int = 0
     
     private var scrollViewIndex : Int  = 0
     
-    
+
     private let fetchModel = StoreinfoFetch()
     
     private var codeSegmented: CustomTopCategoryView?
@@ -115,11 +112,20 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         for (_, vc) in categoriesVC.enumerated() {
             vc.categoryDelegate = self
         }
+        
+        
+        storeListFilterView.filterViewDelegate = self
+        storeFilterbigView.setStoreFilterView(storeListFilterView)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func scrolltableviewreload() {
+        fetchModel.getRestaurnatData(categoryIndex)
+    }
+    
     
     //    MARK:  Selector
     @objc private func didTapNext() {
@@ -152,7 +158,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     
     //    MARK: fetch event
     func restaurantRetrived(restaurants: [AllListData.Results], index: Int) {
-        categoriesVC[index].restaurants = restaurants
+        categoriesVC[index].restaurants += restaurants
         categoriesVC[index].reload()
     }
     
@@ -245,8 +251,13 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
 
 
 extension StoreListVC : StoreListFilterViewDelegate {
-    func presentStorefilterView() {
-        print("d")
+    // 필터 정렬 이벤트 리스너
+    func presentStorefilterView(selectedOrder: Int, selectedPayment: Int) {
+        print("필터 정렬이 적용되었습니다 category: \(categoryIndex)")
+        print("필터값 적용되었습니다 filter: \(selectedPayment)")
+        print("정렬값 적용되었습니다 order: \(selectedOrder)")
+        
+        
     }
 
     
