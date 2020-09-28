@@ -21,8 +21,7 @@ public let scrollView = UIScrollView()
 //
 
 class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate , categoryVCdelegate {
-
-    
+  
     //    MARK: Properties
     
     private let menuList = MenuListVC()
@@ -122,7 +121,8 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
     
     func scrolltableviewreload() {
-        fetchModel.getRestaurnatData(categoryIndex,selectedOrder: storeListFilterView.selectedOrder, selectedPayment: storeListFilterView.selectedPayment)
+        // 두번째 페이지 부터 불러옴
+        fetchModel.getRestaurnatData(categoryIndex,selectedOrder: storeListFilterView.selectedOrder, selectedPayment: storeListFilterView.selectedPayment, isFirst: false)
     }
     
     
@@ -156,17 +156,24 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }
     
     //    MARK: fetch event
-    func restaurantRetrived(restaurants: [AllListData.Results], index: Int) {
+    func restaurantRetrived(restaurants: [AllListData.Results], index: Int , isFirst : Bool) {
         // 기존 로드된 매장리스트 + 새로 받은 매장리스트 (스크롤로 페이징할때 모두 보이게 하기 위해)
         // 필터 정렬시 : Restaurant리스트를 먼저 빈 값 [] 으로 넣어두고 다음조건으로 [] + 새로 불러온 Restarurant List 값을 더해준다. > (스크롤로 페이징할때 모두 보이게 하기 위해)
        // 1. 필터적용을 눌렀을때 첫번째 페이지부터 데이터가 다시 들어가게 하기 위해서는 기존의 첫번째 페이지의 데이터가 nil 값이 되도록 하는 장치가 있어야 한다.
-        categoriesVC[index].restaurants += restaurants
+        
+        if isFirst == true {
+            categoriesVC[index].restaurants = restaurants
+            
+        } else {
+            categoriesVC[index].restaurants += restaurants
+        }
         categoriesVC[index].reload()
     }
     
-    func filterreload(restaurants: [AllListData.Results], selectedOrder: Int, seletedPayment: Int) {
         
-    }
+    
+//
+
     
     //    MARK: Configure
     func configure() {
@@ -262,8 +269,10 @@ extension StoreListVC : StoreListFilterViewDelegate {
         print("필터 정렬이 적용되었습니다 category: \(categoryIndex)")
         print("필터값 적용되었습니다 filter: \(selectedPayment)")
         print("정렬값 적용되었습니다 order: \(selectedOrder)")
-        fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment)
-        print("필터 패치 :\(fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment))")
+        fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true)
+        print("필터정렬 이벤트 리스너 : \(fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true))")
+        
+
 
         
     }

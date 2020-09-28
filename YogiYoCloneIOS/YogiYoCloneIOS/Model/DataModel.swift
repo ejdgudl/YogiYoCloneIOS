@@ -212,13 +212,13 @@ struct UrlBase {
     
     static let payment = "payment_methods"
     
-    static let ordering = "order_by"
+    static let ordering = "ordering"
 
 
     static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
     static let menuInstance = "http://52.79.251.125/menu/2"
-    static let order = "http://52.79.251.125/ordering"
+    static let order = "http://52.79.251.125/orders"
 
     
     static var lat = "37.545258"

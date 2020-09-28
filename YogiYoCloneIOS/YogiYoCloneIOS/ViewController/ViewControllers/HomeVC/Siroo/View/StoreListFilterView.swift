@@ -339,14 +339,14 @@ class StoreListFilterView: UIView {
         let selectedButton = orderArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.tintColor = .red
+        selectedButton.tintColor = UIColor.red
     }
     
     func selectChosenPayment(_ index: Int) {
         let selectedButton = paymentArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.tintColor = .red
+        selectedButton.tintColor = UIColor.red
     }
     
     func setFilterView(view: StoreFilterbigView) {
@@ -383,7 +383,7 @@ class StoreListFilterView: UIView {
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.tintColor = UIColor.red
         }
         
         selectedOrder = sender.tag
@@ -395,7 +395,8 @@ class StoreListFilterView: UIView {
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.tintColor = UIColor.red
+
         }
         selectedPayment = sender.tag
         selectChosenPayment(sender.tag)

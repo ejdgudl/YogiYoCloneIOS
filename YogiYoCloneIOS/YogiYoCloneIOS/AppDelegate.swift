@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         instance?.appName = kServiceAppName
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: StoreListVC())
+        window?.rootViewController = UINavigationController(rootViewController: MyorderListVC())
  //      window?.rootViewController = MainTabVC()
 
         window?.makeKeyAndVisible()

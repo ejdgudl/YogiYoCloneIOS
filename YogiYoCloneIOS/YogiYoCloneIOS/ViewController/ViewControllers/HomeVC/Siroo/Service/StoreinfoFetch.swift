@@ -12,8 +12,7 @@ import SwiftyJSON
 import Foundation
 
 protocol RestaurantModelProtocol {
-    func restaurantRetrived(restaurants: [AllListData.Results], index: Int)
-    func filterreload(restaurants: [AllListData.Results], selectedOrder: Int, seletedPayment: Int)
+    func restaurantRetrived(restaurants: [AllListData.Results], index: Int, isFirst : Bool)
 }
 
 class StoreinfoFetch {
@@ -46,17 +45,21 @@ class StoreinfoFetch {
     
     func fetchAll() {
         for (index, _) in StoreinfoFetch.categories.enumerated() {
-            self.getRestaurnatData(index, selectedOrder: 0 , selectedPayment: 0 )
+            self.getRestaurnatData(index, selectedOrder: 0 , selectedPayment: 0, isFirst: true )
         }
     }
     
-    func getRestaurnatData (_ categoryIndex: Int, selectedOrder : Int , selectedPayment: Int) {
+    // isFirst : 첫페이지 여부
+    func getRestaurnatData (_ categoryIndex: Int, selectedOrder : Int , selectedPayment: Int , isFirst: Bool) {
         let previousData: AllListData? = self.restaurantListData[categoryIndex]
         //"http://52.79.251.125/restaurants?categories=%;EC%B9%98%ED%82%A8&cursor=cD0yMQ%3D%3D&payment_methods=%ED%98%84%EA%B8%88" => next
         //"http://52.79.251.125/restaurants" => UrlBase.restaurantList
     
         var url: String?
-        var parameters: [String: String] = ["": ""]
+        var parameters: [String: String] = [
+            UrlBase.ordering : "",
+            UrlBase.payment: "",
+        ]
         
         /*
         조건1: previousData 이 nil 이면 첫페이지
@@ -70,18 +73,17 @@ class StoreinfoFetch {
         // 1. 필터적용을 눌렀을때 첫번째 페이지부터 데이터가 다시 들어가게 하기 위해서는 기존의 첫번째 페이지의 데이터가 nil 값이 되도록 하는 장치가 있어야 한다.(event 받는 리스너에서)
         // 2. 파라미터는 어느 시점에 넣어주어야 하는가(첫페이지면서 오더가 있을땐, 오더 파라미터, 금액필터가 잇을땐 금액 파라미터를 넣어준다.)
         
-        if previousData == nil {
+        if isFirst == true {
             url = UrlBase.restaurantList
             if categoryIndex > 0 {
-                parameters = [
-                    UrlBase.category: StoreinfoFetch.categories[categoryIndex],
-                ]
+                parameters[UrlBase.category] = StoreinfoFetch.categories[categoryIndex]
+                
             } // 첫페이지에서는 필터 쿼리스트링을 무조건 넣는다
             parameters[UrlBase.ordering] = StoreinfoFetch.order_by[selectedOrder]
             parameters[UrlBase.payment] = StoreinfoFetch.payment_methods[selectedPayment]
             
             
-        } else if previousData != nil && previousData?.next != nil {
+        } else if isFirst == false && previousData?.next != nil {
             url = (previousData?.next)!
         }
         
@@ -109,7 +111,7 @@ class StoreinfoFetch {
         
         
         // 조건문 : url 이 nil 값이면 모든데이터를 가져오고, previousData 가 있으면, lastRequest 값이 url 과 다르면, 아래 리퀘스트 실행하고, 아니면 중지하여 중복데이터 로딩 방지
-        if url != nil && (previousData == nil || lastRequest != url) {
+        if url != nil && (isFirst || lastRequest != url) {
             print("category \(categoryIndex) - \(url)")
             print("파라미터 :\(parameters)")
             lastRequest = url!
@@ -139,7 +141,7 @@ class StoreinfoFetch {
                         results: rs
                     )
                     
-                    self.delegate?.restaurantRetrived(restaurants: rs, index: categoryIndex)
+                    self.delegate?.restaurantRetrived(restaurants: rs, index: categoryIndex, isFirst: isFirst)
 
                 }
             }
