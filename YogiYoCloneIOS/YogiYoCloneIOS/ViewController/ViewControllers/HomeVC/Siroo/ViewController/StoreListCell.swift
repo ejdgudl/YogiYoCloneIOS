@@ -16,6 +16,7 @@ class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
+            print(restaurant?.name)
             storeRateLabel.text = String(format: "%.1f", restaurant?.averageRating as! CVarArg)
             setImage(from: restaurant!.image)
             reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"

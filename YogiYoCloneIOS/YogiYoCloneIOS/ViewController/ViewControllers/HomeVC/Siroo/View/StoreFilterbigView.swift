@@ -12,14 +12,18 @@ import UIKit
 class StoreFilterbigView: UIView {
     
     // storeFilterView: StoreListFilterViewd 의 인스턴스 / 곧 addSubview로 화면에 보여질 인스턴스 <id: 1>
-    private let storeFilterView = StoreListFilterView()
+    public var storeFilterView: StoreListFilterView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
         
+    }
+    
+    func setStoreFilterView(_ storeFilterView: StoreListFilterView) {
+        self.storeFilterView = storeFilterView
         self.addSubview(storeFilterView)
-        self.storeFilterView.snp.makeConstraints { (make) in
+        self.storeFilterView!.snp.makeConstraints { (make) in
             make.left.right.equalTo(self)
             make.height.equalToSuperview().multipliedBy(0.5)
             make.bottom.equalTo(self.snp.bottom)
@@ -34,7 +38,7 @@ class StoreFilterbigView: UIView {
     
     func showMenu() {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: {
-            self.storeFilterView.frame = CGRect(x: self.storeFilterView.frame.origin.x, y: -1000, width: self.storeFilterView.frame.width, height: self.storeFilterView.frame.height)
+            self.storeFilterView!.frame = CGRect(x: self.storeFilterView!.frame.origin.x, y: -1000, width: self.storeFilterView!.frame.width, height: self.storeFilterView!.frame.height)
         }, completion: nil)
 
     }
