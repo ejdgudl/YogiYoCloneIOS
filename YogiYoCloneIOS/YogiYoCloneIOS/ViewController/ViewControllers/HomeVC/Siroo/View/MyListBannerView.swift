@@ -7,15 +7,21 @@
 //
 
 import UIKit
+import SnapKit
 
-class MyListBannerView: UIView {
+class MyOrderListBannerView: UIView {
     
-    private let MyOrderListScrollView: UIScrollView = {
+    let MyOrderListbannerScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
         scrollView.alwaysBounceHorizontal = true
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
+    }()
+    
+    private let MyOrderListbannerContentView: UIView = {
+        let view = UIView()
+        return view
     }()
     
     private let MyOrderListbannerImageView: UIImageView = {
@@ -24,19 +30,56 @@ class MyListBannerView: UIView {
         imageView.image = UIImage(named: "MyListbanner1")
         return imageView
     }()
+    
     private let MyOrderListbannerImageView2: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.image = UIImage(named: "MyListbanner2")
         return imageView
     }()
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setBannerScrollView()
+        setContentView()
+        setBannerImageView()
     }
-    */
-
+    
+    private func setBannerScrollView() {
+        
+        self.addSubview(MyOrderListbannerScrollView)
+        
+        MyOrderListbannerScrollView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    private func setContentView() {
+        
+        MyOrderListbannerScrollView.addSubview(MyOrderListbannerContentView)
+        
+        MyOrderListbannerContentView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.centerY.equalTo(MyOrderListbannerScrollView)
+        }
+    }
+    private func setBannerImageView() {
+        
+        MyOrderListbannerContentView.addSubview(MyOrderListbannerImageView)
+        
+        MyOrderListbannerImageView.snp.makeConstraints {
+            $0.top.width.leading.bottom.equalTo(MyOrderListbannerScrollView)
+        }
+        
+        MyOrderListbannerContentView.addSubview(MyOrderListbannerImageView2)
+        
+        MyOrderListbannerImageView2.snp.makeConstraints {
+            $0.top.width.bottom.equalTo(MyOrderListbannerScrollView)
+            $0.leading.equalTo(MyOrderListbannerImageView.snp.trailing)
+//            $0.trailing.equalTo(MyOrderListbannerContentView)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
