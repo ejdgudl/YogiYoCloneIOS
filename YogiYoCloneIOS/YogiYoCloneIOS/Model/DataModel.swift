@@ -204,6 +204,7 @@ struct UrlBase {
 
     static let ip = "http://52.79.251.125/"
     
+    static let recomend = "restaurants/home_view_"
     static let listAll = "restaurants"
     static let category = "categories"
     static let instance = "restaurants/"

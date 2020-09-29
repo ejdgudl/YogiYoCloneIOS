@@ -10,10 +10,14 @@ import UIKit
 
 class LikeVC: UIViewController {
     
-    private lazy var likeTableView: LikeTableView = {
-        let view = LikeTableView()
-        view.likeTable.dataSource = self
-        return view
+    lazy var likeTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = ColorPiker.customGray
+        tableView.dataSource = self
+        tableView.register(NilViewCustomCell.self, forCellReuseIdentifier: NilViewCustomCell.identifier)
+        tableView.register(LikeViewCustomCell.self, forCellReuseIdentifier: LikeViewCustomCell.identifier)
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -21,6 +25,7 @@ class LikeVC: UIViewController {
         
         view.backgroundColor = .systemBackground
         title = "찜"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
         
         setUI()
         setLayout()
@@ -34,5 +39,11 @@ class LikeVC: UIViewController {
         likeTableView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    @objc func pushlistVC(_ sender: UIButton) {
+        let listVC = StoreListVC()
+        listVC.categoryIndex = sender.tag
+        navigationController?.pushViewController(listVC, animated: true)
     }
 }
