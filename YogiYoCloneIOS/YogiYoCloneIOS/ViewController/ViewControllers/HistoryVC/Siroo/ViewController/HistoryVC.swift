@@ -1,18 +1,21 @@
 //
-//  MyorderListVC.swift
+//  HistoryVC.swift
 //  YogiYoCloneIOS
 //
-//  Created by 김믿음 on 2020/09/28.
+//  Created by 김동현 on 2020/08/19.
 //  Copyright © 2020 김동현. All rights reserved.
 //
 
 import UIKit
 
-class MyorderListVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollViewDelegate {
+class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollViewDelegate {
     func categoryButtonScrollAction(to index: Int) {
         print(index)
     }
+    
     private var codeSegmented: CustomTopCategoryView?
+    private let historyEmptyView = HistoryEmptyView()
+    private let storeListVC = StoreListVC()
 
     var login : Bool = true
     var touchorder : Int = 2
@@ -26,8 +29,7 @@ class MyorderListVC: UIViewController,  CustomTopCategoryViewDelegate , UIScroll
     
     private lazy var MyOrderListBigScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.backgroundColor = ColorPiker.customGray
-        scrollView.backgroundColor = .systemBlue
+        scrollView.backgroundColor = ColorPiker.customGray
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.isPagingEnabled = true
@@ -45,6 +47,8 @@ class MyorderListVC: UIViewController,  CustomTopCategoryViewDelegate , UIScroll
         configurecodeSegmented()
         configureMyOrderListScrollview()
         congigureTopbanner()
+        configurehistoryEmptyView()
+        historyEmptyView.historyEmptyViewdelegate = self
         
         if login == true{
             title = "회원 주문내역"
@@ -94,10 +98,24 @@ class MyorderListVC: UIViewController,  CustomTopCategoryViewDelegate , UIScroll
             make.height.equalTo(MyOrderListtopBannerView.snp.width).multipliedBy(0.18)
 
         }
+        
+    }
+    
+    func configurehistoryEmptyView() {
+        view.addSubview(historyEmptyView)
+        historyEmptyView.snp.makeConstraints { (make) in
+            make.top.equalTo(MyOrderListtopBannerView.snp.bottom).offset(10)
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+
+}
+
+extension HistoryVC : HistoryEmptyViewdelegate {
+    func orderTapButton() {
+        navigationController?.pushViewController(storeListVC, animated: true)
     }
     
     
-    
-
-
 }
+

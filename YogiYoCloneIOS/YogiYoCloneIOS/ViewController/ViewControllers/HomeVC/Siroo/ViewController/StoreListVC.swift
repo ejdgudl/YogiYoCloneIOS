@@ -66,20 +66,6 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         return button
     }()
     
-    private let filterImage : UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(systemName: "slider.horizontal.3")
-        image.tintColor = .black
-        return image
-    }()
-    
-    private let filterLabel : UILabel = {
-        let labal = UILabel()
-        labal.text = "필터"
-        labal.font = UIFont(name: FontModel.customSemibold, size: 18)
-        return labal
-    }()
-    
     private let titleNavigationButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.black, for: .normal)
