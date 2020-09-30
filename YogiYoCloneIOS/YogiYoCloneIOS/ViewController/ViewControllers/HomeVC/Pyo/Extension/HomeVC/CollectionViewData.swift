@@ -39,7 +39,7 @@ extension HomeVC: UICollectionViewDataSource {
             firstCV.collection.tag = 1
             loadDataCollection(listNum: "\(firstCV.collection.tag)") { (RecommendData) in
                 DispatchQueue.main.async {
-                item.setValue(image: RecommendData.results[indexPath.item].image,
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: nil,
                                   title: RecommendData.results[indexPath.item].name,
                                   starPoint: RecommendData.results[indexPath.item].star,
@@ -54,8 +54,8 @@ extension HomeVC: UICollectionViewDataSource {
             twiceCV.collection.tag = 2
             loadDataCollection(listNum: "\(twiceCV.collection.tag)") { (RecommendData) in
                 DispatchQueue.main.async {
-                item.setValue(image: RecommendData.results[indexPath.item].image,
-                              imageText: "♡ \(RecommendData.results[indexPath.item].bookmarkCount)",
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: "♡ \(RecommendData.results[indexPath.item].bookmarkCount)",
                                   title: RecommendData.results[indexPath.item].name,
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
@@ -71,8 +71,8 @@ extension HomeVC: UICollectionViewDataSource {
             thirdCV.collection.tag = 3
             loadDataCollection(listNum: "\(thirdCV.collection.tag)") { (RecommendData) in
                 DispatchQueue.main.async {
-                item.setValue(image: RecommendData.results[indexPath.item].image,
-                              imageText: "\(RecommendData.results[indexPath.item].deliveryDiscount)원 할인",
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: "\(self.formatter.string(from: RecommendData.results[indexPath.item].deliveryDiscount as NSNumber) ?? "")원 할인",
                                   title: RecommendData.results[indexPath.item].name,
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
@@ -93,7 +93,7 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus,
-                                  discountText: "\(RecommendData.results[indexPath.item].deliveryDiscount)원 할인")
+                                  discountText: "\(self.formatter.string(from: RecommendData.results[indexPath.item].deliveryDiscount as NSNumber) ?? "")원 할인")
                 }
             }
             
@@ -105,11 +105,11 @@ extension HomeVC: UICollectionViewDataSource {
             loadDataCollection(listNum: "\(fifthCV.collection.tag)") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
-                          imageText: "배달비 무료",
-                          title: RecommendData.results[indexPath.item].name,
-                          starPoint: RecommendData.results[indexPath.item].star,
-                          review: RecommendData.results[indexPath.item].reviewCount,
-                          explain: "최소주문 \(RecommendData.results[indexPath.item].minOrderPrice)")
+                                  imageText: "배달비 무료",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: "\(self.formatter.string(from: RecommendData.results[indexPath.item].minOrderPrice as NSNumber) ?? "")원 할인")
                 }
             }
             
@@ -121,11 +121,11 @@ extension HomeVC: UICollectionViewDataSource {
             loadDataCollection(listNum: "\(sixthCV.collection.tag)") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
-                          imageText: nil,
-                          title: RecommendData.results[indexPath.item].name,
-                          starPoint: RecommendData.results[indexPath.item].star,
-                          review: RecommendData.results[indexPath.item].reviewCount,
-                          explain: RecommendData.results[indexPath.item].representativeMenus)
+                                  imageText: nil,
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
                 }
             }
             
@@ -169,9 +169,9 @@ extension HomeVC: UICollectionViewDataSource {
             loadDataCollection(listNum: "\(ninthCV.collection.tag)") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
-                          imageText: "NEW",
-                          title: RecommendData.results[indexPath.item].name,
-                          explain: RecommendData.results[indexPath.item].representativeMenus)
+                                  imageText: "NEW",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
                 }
             }
             

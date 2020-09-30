@@ -153,6 +153,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     private var constraint: Constraint?
     
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
