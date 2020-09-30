@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RestaurantNewCustomCell: UICollectionViewCell {
     
@@ -71,10 +72,13 @@ class RestaurantNewCustomCell: UICollectionViewCell {
         }
     }
     func setValue(image: String, imageText: String ,title: String, explain: String) {
-        imageView.image = UIImage(named: image)
+        
         imageLabel.text = imageText
         titleLabel.text = title
         explanLabel.text = explain
+        
+        guard let imageURL = URL(string: image) else { return }
+        imageView.kf.setImage(with: imageURL)
     }
     
     required init?(coder: NSCoder) {

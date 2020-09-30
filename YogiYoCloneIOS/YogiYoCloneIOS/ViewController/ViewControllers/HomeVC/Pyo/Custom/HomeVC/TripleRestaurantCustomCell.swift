@@ -125,13 +125,16 @@ class TripleRestaurantCustomCell: UICollectionViewCell {
         }
     }
     func setValue(image: String, countText: String ,title: String, starPoint: Double, review: Int, explain: String, discountText: String?) {
-        imageView.image = UIImage(named: image)
+        
         countLabel.text = countText
         titleLabel.text = title
         starPointLabel.text = "\(starPoint)"
         reviewLabel.text = " · 리뷰 \(review)"
         explanLabel.text = explain
         discountLabel.text = discountText
+        
+        guard let imageURL = URL(string: image) else { return }
+        imageView.kf.setImage(with: imageURL)
     }
     
     required init?(coder: NSCoder) {

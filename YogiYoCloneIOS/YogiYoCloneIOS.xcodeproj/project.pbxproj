@@ -26,6 +26,8 @@
 		6E91216224FD07FC003D86F0 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91216124FD07FC003D86F0 /* CollectionViewFlowLayout.swift */; };
 		6EC9E8C6251DD54300922A20 /* LikeViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9E8C5251DD54300922A20 /* LikeViewCustomCell.swift */; };
 		6EC9E8C9251DD61C00922A20 /* TableViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9E8C8251DD61C00922A20 /* TableViewData.swift */; };
+		6EC9E8D4252458CC00922A20 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9E8D3252458CC00922A20 /* LaunchScreen.swift */; };
+		6EC9E8D725245E9700922A20 /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9E8D625245E9700922A20 /* LoadData.swift */; };
 		6EE8C08724F6654400A55413 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8C08624F6654400A55413 /* PaddingLabel.swift */; };
 		6EE8C08924F8FFB000A55413 /* TripleRestaurantCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */; };
 		7306254A24F53A5E00DC70C1 /* NilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306254924F53A5E00DC70C1 /* NilCell.swift */; };
@@ -161,6 +163,8 @@
 		6E91216124FD07FC003D86F0 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		6EC9E8C5251DD54300922A20 /* LikeViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewCustomCell.swift; sourceTree = "<group>"; };
 		6EC9E8C8251DD61C00922A20 /* TableViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewData.swift; sourceTree = "<group>"; };
+		6EC9E8D3252458CC00922A20 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		6EC9E8D625245E9700922A20 /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		6EE8C08624F6654400A55413 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleRestaurantCustomCell.swift; sourceTree = "<group>"; };
 		7306254924F53A5E00DC70C1 /* NilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilCell.swift; sourceTree = "<group>"; };
@@ -355,6 +359,7 @@
 		6E5B36F0251DD32800F43A22 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				6EC9E8D625245E9700922A20 /* LoadData.swift */,
 				6E91215F24FD075E003D86F0 /* CollectionViewData.swift */,
 				6E16560C251217EF00DE7786 /* CollectionViewDelegate.swift */,
 				6E91216124FD07FC003D86F0 /* CollectionViewFlowLayout.swift */,
@@ -387,6 +392,7 @@
 				6E88B1852514F77100A64DDA /* CategoryCollection.swift */,
 				6E88B1882514FF3500A64DDA /* RecommendCollection.swift */,
 				6E6B448D2518C30500A74597 /* BannerView.swift */,
+				6EC9E8D3252458CC00922A20 /* LaunchScreen.swift */,
 			);
 			path = HomeVC;
 			sourceTree = "<group>";
@@ -1088,6 +1094,7 @@
 				D33768DE24ECCD0B00E0C27A /* DetailMenuVC.swift in Sources */,
 				D37F20712513343200AFCAD7 /* DetailMenuListCell.swift in Sources */,
 				7306256A24F53D1B00DC70C1 /* BuyLastTableViewCell.swift in Sources */,
+				6EC9E8D725245E9700922A20 /* LoadData.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
 				731B059D2511E708005BC1DC /* OderModel.swift in Sources */,
 				D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */,
@@ -1112,6 +1119,7 @@
 				7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */,
 				D33768C124ECC72000E0C27A /* LikeVC.swift in Sources */,
 				7306255824F53BA200DC70C1 /* ReviewTableViewCell.swift in Sources */,
+				6EC9E8D4252458CC00922A20 /* LaunchScreen.swift in Sources */,
 				D37C9DA024FA55DB00A7C9F2 /* EmailIDCell.swift in Sources */,
 				D368064524F34F5500A7E59D /* LogVC.swift in Sources */,
 				D3B30D54250DF1E4004BEA40 /* MenListService.swift in Sources */,
