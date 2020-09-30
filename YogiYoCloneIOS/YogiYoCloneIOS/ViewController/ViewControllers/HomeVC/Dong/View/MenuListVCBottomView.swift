@@ -34,9 +34,11 @@ class MenuListVCBottomView: UIView {
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         [callOrderButton, touchOrderButton].forEach {
             addSubview($0)
         }
+        
         callOrderButton.snp.makeConstraints { (make) in
             make.top.bottom.left.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.25)

@@ -12,3 +12,7 @@ let presentLoggedAccountVCObserveName = Notification.Name(rawValue: "presentLogg
 let logoutObserveName = Notification.Name(rawValue: "logout")
 let appleUserInfo = Notification.Name(rawValue: "appleUserInfo")
 let pushOrderVC = Notification.Name(rawValue: "pushOrderVC")
+let presentSignUpVC = Notification.Name(rawValue: "presentSignUpVC")
+let pushPhoneAcceptVC = Notification.Name(rawValue: "pushPhoneAcceptVC")
+let logCellObserveName = Notification.Name(rawValue: "logCellObserveName")
+let pushLoggedVC = Notification.Name(rawValue: "logCellObserveName")

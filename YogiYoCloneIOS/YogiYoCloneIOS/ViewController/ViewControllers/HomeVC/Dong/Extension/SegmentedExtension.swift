@@ -9,6 +9,7 @@
 import UIKit
 
 extension UISegmentedControl {
+    
     func removeBorders() {
         setBackgroundImage(imageWithColor(color: UIColor.white), for: .normal, barMetrics: .default)
         setBackgroundImage(imageWithColor(color: UIColor.white), for: .selected, barMetrics: .default)
@@ -25,4 +26,5 @@ extension UISegmentedControl {
         UIGraphicsEndImageContext()
         return image!
     }
+    
 }

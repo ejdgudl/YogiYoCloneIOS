@@ -58,7 +58,7 @@ class BenefitCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
@@ -76,7 +76,8 @@ class BenefitCell: UITableViewCell {
             make.width.height.equalTo(5)
         }
         
-        subtitleLabel.snp.makeConstraints { (make) in
+        subtitleLabel.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.centerY.equalToSuperview()
             make.left.equalTo(self.redDotView.snp.right).offset(7)
         }
