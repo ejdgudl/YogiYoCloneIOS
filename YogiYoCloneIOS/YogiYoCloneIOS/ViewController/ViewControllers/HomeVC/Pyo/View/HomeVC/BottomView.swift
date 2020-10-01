@@ -41,7 +41,7 @@ class BottomView: UIView {
         return label
     }()
     
-    let companyMenuStack: UIStackView = {
+    private let companyMenuStack: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
         stack.axis = .horizontal

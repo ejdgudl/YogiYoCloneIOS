@@ -48,6 +48,48 @@ struct RecommendData: Codable {
 }
 
 
+struct LikeData: Codable {
+    
+    let next: String?
+    let previous: String?
+    let results: [Results]
+    
+    
+    struct Results: Codable {
+        
+        let id: Int?
+        let name: String?
+        let star: Double?
+        let image: String?
+        
+        let deliveryDiscount: Int?
+        let deliveryCharge: Int?
+        let deliveryTime: String?
+        
+        let reviewCount:Int?
+        let representativeMenus: String?
+        let ownerCommentCount:Int?
+        
+        
+        enum CodingKeys: String, CodingKey {
+            
+            case id = "id"
+            case name = "name"
+            case star = "average_rating"
+            case image = "image"
+            
+            case deliveryDiscount = "delivery_discount"
+            case deliveryCharge = "delivery_charge"
+            case deliveryTime = "delivery_time"
+            
+            case reviewCount = "review_count"
+            case representativeMenus = "representative_menus"
+            case ownerCommentCount = "owner_comment_count"
+        }
+    }
+}
+
+
 struct AllListData: Codable {
     
     let next: String?
@@ -244,7 +286,7 @@ struct UrlBase {
     static let ip = "http://52.79.251.125/"
     
     static let recomend = "restaurants/home_view_"
-    static let bookmarks = "/bookmarks"
+    static let bookmarks = "bookmarks"
     
     static let listAll = "restaurants"
     static let category = "categories"

@@ -15,13 +15,13 @@ class NilViewCustomCell: UITableViewCell {
     
     let motherView = UIView()
     
-    let logoImageView: UIImageView = {
+    private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "LikeHouse")
         imageView.contentMode = .scaleToFill
         return imageView
     }()
-    let labelStack: UIStackView = {
+    private let labelStack: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .center
         stack.distribution = .fillEqually

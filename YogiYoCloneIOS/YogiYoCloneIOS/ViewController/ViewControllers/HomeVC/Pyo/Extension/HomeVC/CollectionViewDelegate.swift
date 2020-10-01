@@ -9,6 +9,7 @@
 import UIKit
 
 extension HomeVC: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCV.collection {
             guard indexPath.row == 1 || indexPath.row == 2 else {

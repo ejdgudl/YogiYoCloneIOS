@@ -12,19 +12,19 @@ class TripleRestaurantCustomCell: UICollectionViewCell {
     
     static let identifier = "TripleRestaurantCustomItem"
     
-    let imageView = UIImageView()
+    private let imageView = UIImageView()
     
-    let countLabel = UILabel()
+    private let countLabel = UILabel()
     
-    let titleLabel = UILabel()
+    private let titleLabel = UILabel()
     
-    let starImage = UIImageView()
-    let starPointLabel = UILabel()
-    let reviewLabel = UILabel()
+    private let starImage = UIImageView()
+    private let starPointLabel = UILabel()
+    private let reviewLabel = UILabel()
     
-    let explanLabel = UILabel()
+    private let explanLabel = UILabel()
     
-    let discountLabel = UILabel()
+    private let discountLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -124,17 +124,18 @@ class TripleRestaurantCustomCell: UICollectionViewCell {
             $0.leading.equalTo(explanLabel)
         }
     }
-    func setValue(image: String, countText: String ,title: String, starPoint: Double, review: Int, explain: String, discountText: String?) {
+    func setValue(image: String, countText: String ,title: String, starPoint: Double, review: Int, explain: String, discountText: String) {
+        
+        guard let imageURL = URL(string: image) else { return }
+        imageView.kf.setImage(with: imageURL)
         
         countLabel.text = countText
         titleLabel.text = title
         starPointLabel.text = "\(starPoint)"
         reviewLabel.text = " · 리뷰 \(review)"
         explanLabel.text = explain
-        discountLabel.text = discountText
         
-        guard let imageURL = URL(string: image) else { return }
-        imageView.kf.setImage(with: imageURL)
+        discountText != "0원 할인" ? (discountLabel.text = discountText) : (discountLabel.text = nil)
     }
     
     required init?(coder: NSCoder) {

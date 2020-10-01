@@ -36,8 +36,7 @@ extension HomeVC: UICollectionViewDataSource {
         case firstCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            firstCV.collection.tag = 1
-            loadDataCollection(listNum: "\(firstCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)1") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: nil,
@@ -51,8 +50,7 @@ extension HomeVC: UICollectionViewDataSource {
         case twiceCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            twiceCV.collection.tag = 2
-            loadDataCollection(listNum: "\(twiceCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)2") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: "♡ \(RecommendData.results[indexPath.item].bookmarkCount)",
@@ -68,8 +66,7 @@ extension HomeVC: UICollectionViewDataSource {
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.explanLabel.textColor = .systemRed
-            thirdCV.collection.tag = 3
-            loadDataCollection(listNum: "\(thirdCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)3") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: "\(self.formatter.string(from: RecommendData.results[indexPath.item].deliveryDiscount as NSNumber) ?? "")원 할인",
@@ -84,8 +81,7 @@ extension HomeVC: UICollectionViewDataSource {
         case fourthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TripleRestaurantCustomCell.identifier,
                                                                 for: indexPath) as? TripleRestaurantCustomCell else { fatalError() }
-            fourthCV.collection.tag = 4
-            loadDataCollection(listNum: "\(fourthCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)4") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   countText: "\(indexPath.item + 1)",
@@ -101,15 +97,14 @@ extension HomeVC: UICollectionViewDataSource {
         case fifthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            fifthCV.collection.tag = 5
-            loadDataCollection(listNum: "\(fifthCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)5") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: "배달비 무료",
                                   title: RecommendData.results[indexPath.item].name,
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
-                                  explain: "\(self.formatter.string(from: RecommendData.results[indexPath.item].minOrderPrice as NSNumber) ?? "")원 할인")
+                                  explain: "최소주문 \(self.formatter.string(from: RecommendData.results[indexPath.item].minOrderPrice as NSNumber) ?? "")원")
                 }
             }
             
@@ -117,8 +112,7 @@ extension HomeVC: UICollectionViewDataSource {
         case sixthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            sixthCV.collection.tag = 6
-            loadDataCollection(listNum: "\(sixthCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)6") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: nil,
@@ -133,8 +127,7 @@ extension HomeVC: UICollectionViewDataSource {
         case seventhCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
-            seventhCV.collection.tag = 7
-            loadDataCollection(listNum: "\(seventhCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)7") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   title: RecommendData.results[indexPath.item].name,
@@ -149,8 +142,7 @@ extension HomeVC: UICollectionViewDataSource {
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
             item.imageLabel.backgroundColor = .systemGreen
-            eighthCV.collection.tag = 8
-            loadDataCollection(listNum: "\(eighthCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)8") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: RecommendData.results[indexPath.item].deliveryTime,
@@ -165,8 +157,7 @@ extension HomeVC: UICollectionViewDataSource {
         case ninthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantNewCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantNewCustomCell else { fatalError() }
-            ninthCV.collection.tag = 9
-            loadDataCollection(listNum: "\(ninthCV.collection.tag)") { (RecommendData) in
+            loadData(url: "\(UrlBase.recomend)9") { (RecommendData) in
                 DispatchQueue.main.async {
                     item.setValue(image: RecommendData.results[indexPath.item].image,
                                   imageText: "NEW",

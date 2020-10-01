@@ -10,16 +10,17 @@ import UIKit
 
 class LikeVC: UIViewController {
     
-    lazy var likeTableView: UITableView = {
+    private lazy var likeTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.backgroundColor = ColorPiker.customGray
         tableView.dataSource = self
         tableView.register(NilViewCustomCell.self, forCellReuseIdentifier: NilViewCustomCell.identifier)
-        tableView.register(LikeViewCustomCell.self, forCellReuseIdentifier: LikeViewCustomCell.identifier)
+        tableView.register(StoreListCell.self, forCellReuseIdentifier: StoreListCell.identifier)
         return tableView
     }()
     
+    var likeData: LikeData?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,13 +30,19 @@ class LikeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadData { (LikeData) in
+            self.likeData = LikeData
+            DispatchQueue.main.async {
+                self.setUI()
+                self.setLayout()
+            }
+        }
+    }
+    
+    private func setUI() {
+        
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
-        
-        setUI()
-        setLayout()
-    }
-    private func setUI() {
         
         view.addSubview(likeTableView)
     }
@@ -50,5 +57,14 @@ class LikeVC: UIViewController {
         let listVC = StoreListVC()
         listVC.categoryIndex = sender.tag
         navigationController?.pushViewController(listVC, animated: true)
+    }
+    @objc func removeLike(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.setImage(UIImage(systemName: "suit.heart"), for: .normal)
+            sender.isSelected = false
+        } else {
+            sender.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+            sender.isSelected = true
+        }
     }
 }
