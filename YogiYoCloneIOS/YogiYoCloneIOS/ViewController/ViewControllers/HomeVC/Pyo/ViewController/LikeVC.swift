@@ -16,6 +16,7 @@ class LikeVC: UIViewController {
         tableView.backgroundColor = ColorPiker.customGray
         tableView.dataSource = self
         tableView.register(NilViewCustomCell.self, forCellReuseIdentifier: NilViewCustomCell.identifier)
+        tableView.register(CountHeaderCell.self, forCellReuseIdentifier: CountHeaderCell.identifier)
         tableView.register(StoreListCell.self, forCellReuseIdentifier: StoreListCell.identifier)
         return tableView
     }()
@@ -30,6 +31,9 @@ class LikeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
+        
         loadData { (LikeData) in
             self.likeData = LikeData
             DispatchQueue.main.async {
@@ -40,9 +44,6 @@ class LikeVC: UIViewController {
     }
     
     private func setUI() {
-        
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
         
         view.addSubview(likeTableView)
     }
