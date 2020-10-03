@@ -11,7 +11,7 @@ import Foundation
 import SnapKit
 
 protocol StoreListFilterViewDelegate : class {
-    func presentStorefilterView()
+    func presentStorefilterView(selectedOrder: Int, selectedPayment: Int)
 }
 
 class StoreListFilterView: UIView {
@@ -20,9 +20,10 @@ class StoreListFilterView: UIView {
     
     var selectedOrder = 0
     var selectedPayment = 0
+    weak var filterViewDelegate: StoreListFilterViewDelegate?
     
-    private var storeFilterBigView: StoreFilterbigView?
     
+    private var storeFilterBigView: StoreFilterbigView?    
     private let indicatorView : UIView = {
         let view = UIView()
         return view
@@ -338,14 +339,14 @@ class StoreListFilterView: UIView {
         let selectedButton = orderArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.tintColor = .red
+        selectedButton.tintColor = UIColor.red
     }
     
     func selectChosenPayment(_ index: Int) {
         let selectedButton = paymentArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.tintColor = .red
+        selectedButton.tintColor = UIColor.red
     }
     
     func setFilterView(view: StoreFilterbigView) {
@@ -382,7 +383,7 @@ class StoreListFilterView: UIView {
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.tintColor = UIColor.red
         }
         
         selectedOrder = sender.tag
@@ -394,14 +395,21 @@ class StoreListFilterView: UIView {
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.tintColor = UIColor.red
+
         }
         selectedPayment = sender.tag
         selectChosenPayment(sender.tag)
         
     }
     
-    @objc func enterButtontaped(){
-        
+    @objc func enterButtontaped(_ sender: UIButton){
+        /* 이벤트 발생
+         리스너 : StoreVC의 카테고리 확인(StoreVC 의 Delegate) + FilterVC의 selected.tag를 확인!
+         이벤트 발생하면,
+        */
+        self.filterViewDelegate?.presentStorefilterView(selectedOrder: selectedOrder, selectedPayment: selectedPayment)
+        storeFilterBigView?.removeFromSuperview()
+
     }
 }
