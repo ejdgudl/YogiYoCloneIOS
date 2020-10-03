@@ -1,24 +1,70 @@
 //
-//  AcceptVC.swift
+//  TextFiledCell.swift
 //  YogiYoCloneIOS
 //
-//  Created by 김동현 on 2020/08/26.
+//  Created by 김동현 on 2020/09/26.
 //  Copyright © 2020 김동현. All rights reserved.
 //
 
 import UIKit
+import Alamofire
 
-class AcceptVC: UIViewController {
+struct SignUpUserInfo: Codable {
+    let email: String
+    let id: Int
+    let nickname: String
+}
+
+class TextFiledCell: UITableViewCell {
     
     // MARK: Properties
-    private let logoImageView: LogoImageView = {
-        let imageView = LogoImageView()
-        return imageView
+    static let cellID = "TextFiledCell"
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [emailTF, pwTF, pwCheckTF, nikNameTF])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
-    private let descriptionLabel: DescriptionLabel = {
-       let label = DescriptionLabel()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "이메일 회원가입"
+        label.font = .systemFont(ofSize: 21, weight: .bold)
         return label
+    }()
+    
+    private let emailTF: UITextField = {
+       let tf = UITextField()
+        tf.borderStyle = .roundedRect
+        tf.placeholder = "이메일 주소"
+        tf.addLeftPadding()
+        return tf
+    }()
+    
+    private let pwTF: UITextField = {
+       let tf = UITextField()
+        tf.borderStyle = .roundedRect
+        tf.placeholder = "비밀번호 (영문+숫자+특수문자 조합 8자리이상)"
+        tf.addLeftPadding()
+        return tf
+    }()
+    
+    private let pwCheckTF: UITextField = {
+       let tf = UITextField()
+        tf.borderStyle = .roundedRect
+        tf.placeholder = "비밀번호 확인"
+        tf.addLeftPadding()
+        return tf
+    }()
+    
+    private let nikNameTF: UITextField = {
+       let tf = UITextField()
+        tf.borderStyle = .roundedRect
+        tf.placeholder = "닉네임 (권장)"
+        tf.addLeftPadding()
+        return tf
     }()
     
     private lazy var titleCheckBoxButton: CheckBoxButton = {
@@ -106,27 +152,78 @@ class AcceptVC: UIViewController {
     }()
     
     private lazy var nextButton: UIButton = {
-        let button = UIButton()
+       let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        button.backgroundColor = .red
-        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 0.5
+        button.addTarget(self, action: #selector(nextButtonHandler), for: .touchUpInside)
         return button
     }()
     
-    // MARK: Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavi()
+    // MARK: Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
         configureViews()
     }
     
-    // MARK: @Objc
-    @objc private func didTapPopButton() {
-        navigationController?.popViewController(animated: true)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        endEditing(true)
+    }
+    
+    // MARK: @objc
+    @objc private func nextButtonHandler() {
+        
+        // 회원가입 flow -> email, password, nickname 을 받아 post And -pushPhoneAcceptVC-으로 Noti with userInfo(phoneNum = nil)
+        guard let email = emailTF.text, let password = pwTF.text, let nickName = nikNameTF.text else { return }
+        let parameters = ["email": "\(email)", "password":"\(password)", "nickname": "\(nickName)"]
+        
+        AF.request("http://52.79.251.125/users", method: .post, parameters: parameters).response { (res) in
+            
+            if let error = res.error {
+                print("----- AF RESPONSE ERROR [POST] (SIGN UP)----- \(error.localizedDescription)")
+            }
+            
+            guard let code = res.response?.statusCode else { return }
+            
+            if code >= 200, code <= 299 {
+                switch res.result {
+                    
+                case .success(let data):
+                    if let data = data {
+                        
+                        do {
+                            let result = try JSONDecoder().decode(SignUpUserInfo.self, from: data)
+                            print("----- AF RESULT SUCCESS [POST] (SIGN UP)----- ")
+                            
+                            UserDefaults.standard.set(result.id, forKey: "id")
+                            let emailAndPassword = ["email": email, "password": password]
+                            UserDefaults.standard.set(emailAndPassword, forKey: "emailAndPassword")
+                            NotificationCenter.default.post(name: pushPhoneAcceptVC, object: nil, userInfo: nil)
+                            
+                        } catch {
+                            print("----- JSONDecoder ERROR (SIGN UP)-----  \(error.localizedDescription)")
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print("----- AF RESULT FAIL [POST] (SIGN UP)----- \(error.localizedDescription)")
+                }
+                
+            } else if code >= 400, code <= 499 {
+                print("----- AF STATUS CODE IS 400 ~ 499 [POST] (SIGN UP)----- ")
+            } else {
+                print("----- AF STATUS CODE IS 500 ~ [POST] (SIGN UP)----- ")
+            }
+        }
+    }
+    
     @objc private func didTapCheckBoxButton(_ sender: UIButton) {
         let elements = [titleCheckBoxButton, firstCheckBoxButton, secondCheckBoxButton, thirdCheckBoxButton, fourthCheckBoxButton, fiffthCheckBoxButton]
         if sender == titleCheckBoxButton {
@@ -161,49 +258,43 @@ class AcceptVC: UIViewController {
         }
     }
     
-    @objc private func didTapNextButton() {
-        let phoneAcceptVC = PhoneAcceptVC()
-        navigationController?.pushViewController(phoneAcceptVC, animated: true)
-    }
-    
-    // MARK: Helpers
-    private func configureNavi() {
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapPopButton))
-    }
-    
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
     private func configureViews() {
-        view.backgroundColor = .white
-        
-        [logoImageView, descriptionLabel, titleCheckBoxButton, acceptStackView, nextButton].forEach {
-            view.addSubview($0)
+        [titleLabel, stackView].forEach {
+            addSubview($0)
         }
         
-        logoImageView.snp.makeConstraints { [weak self] (make) in
-            guard let self = self else { return }
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(200)
+        titleLabel.snp.makeConstraints { (make) in
+            make.right.equalToSuperview()
+            make.top.equalToSuperview().inset(10)
+            make.left.equalToSuperview().inset(13)
             make.height.equalTo(60)
         }
         
-        descriptionLabel.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(logoImageView.snp.bottom).offset(5)
+        stackView.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
+            make.top.equalTo(self.titleLabel.snp.bottom)
+            make.left.right.equalToSuperview().inset(13)
+        }
+        
+        [emailTF, pwTF, pwCheckTF, nikNameTF].forEach {
+            $0.snp.makeConstraints { (make) in
+                make.height.equalTo(40)
+            }
+        }
+        
+        [titleCheckBoxButton, acceptStackView, nextButton].forEach {
+            addSubview($0)
         }
         
         titleCheckBoxButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
-            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(45)
+            make.top.equalTo(self.stackView.snp.bottom).offset(50)
             make.left.right.equalToSuperview()
             make.height.equalTo(28)
         }
@@ -211,7 +302,7 @@ class AcceptVC: UIViewController {
         acceptStackView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
             make.top.equalTo(self.titleCheckBoxButton.snp.bottom).offset(10)
-            make.left.right.equalToSuperview()
+            make.left.right.equalToSuperview().inset(13)
             make.height.equalTo(200)
         }
 
@@ -225,9 +316,9 @@ class AcceptVC: UIViewController {
         
         nextButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
-            make.top.equalTo(self.acceptStackView.snp.bottom).offset(37)
-            make.left.right.equalToSuperview().inset(15)
-            make.height.equalTo(45)
+            make.top.equalTo(self.acceptStackView.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(13)
         }
+        
     }
 }
