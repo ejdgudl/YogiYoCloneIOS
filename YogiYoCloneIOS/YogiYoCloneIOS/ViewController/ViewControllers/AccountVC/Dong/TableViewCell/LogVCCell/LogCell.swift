@@ -29,7 +29,7 @@ class LogCell: UITableViewCell {
     
     public lazy var emailTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "    이메일 주소 입력"
+        tf.placeholder = "이메일 주소 입력"
         tf.addLeftPadding()
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor.lightGray.cgColor
@@ -38,7 +38,7 @@ class LogCell: UITableViewCell {
     
     public let passwordTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "    비밀번호 입력"
+        tf.placeholder = "비밀번호 입력"
         tf.addLeftPadding()
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor.lightGray.cgColor
