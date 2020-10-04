@@ -85,9 +85,10 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         configureWrapperScrollView()
         for index in 0 ..< orderTypes.count {
             let pageView = configurePageContentView(page: index)
-            congifureBannerView(parentView: pageView, index: index)
-//            configureEmptyView(parentView: pageView, index : index)
-            configureTableView(parentView: pageView, index: index)
+            let bannerView = congifureBannerView(parentView: pageView, index: index)
+//            configureEmptyView(parentView: pageView, index : index, bannerView: bannerView)
+            
+            configureTableView(parentView: pageView, index: index, bannerView: bannerView)
             
         }
     }
@@ -142,7 +143,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     /**
         bannerView 설정
      */
-    func congifureBannerView(parentView: UIView, index: Int) {
+    func congifureBannerView(parentView: UIView, index: Int) -> UIImageView {
         let imageView = UIImageView()
         imageView.image = topBannerImages[index]
         parentView.addSubview(imageView)
@@ -151,18 +152,21 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
             make.width.equalTo(parentView)
             make.height.equalTo(parentView.frame.width * 0.18)
         }
+        
+        return imageView
+    
     }
     
-    func configureEmptyView(parentView: UIView, index : Int) {
-//        let emptyView = HistoryEmptyView()
-//        emptyView.historyEmptyViewdelegate = self
-//        emptyView.congigSetUI(index: index)
-//        parentView.addSubview(emptyView)
-//        emptyView.snp.makeConstraints { (make) in
-//            make.bottom.leading.trailing.equalTo(parentView)
-//            make.width.equalTo(parentView)
-//            make.height.equalTo(parentView.frame.height - (parentView.frame.width * 0.18))
-//        }
+    func configureEmptyView(parentView: UIView, index : Int, bannerView: UIImageView) {
+        let emptyView = HistoryEmptyView()
+        emptyView.historyEmptyViewdelegate = self
+        emptyView.configSetUI(index: index)
+        parentView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { (make) in
+            make.bottom.leading.trailing.equalTo(parentView)
+            make.width.equalTo(parentView)
+            make.top.equalTo(bannerView.snp.bottom)
+        }
 
     }
     
@@ -181,13 +185,13 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollIndex = setIndex(wrapperScrollView.contentOffset.x)
-        if scrollIndex != categoryIndex {
-            categoryIndex = scrollIndex
-            codeSegmented?.indexChangedListener(categoryIndex)
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let scrollIndex = setIndex(wrapperScrollView.contentOffset.x)
+//        if scrollIndex != categoryIndex {
+//            categoryIndex = scrollIndex
+//            codeSegmented?.indexChangedListener(categoryIndex)
+//        }
+//    }
     
     func categoryButtonScrollAction(to index: Int) {
         historycategoryButtonScrollAction(to: index)
@@ -198,19 +202,54 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         print("TableviewDelegate")
     }
     
-    func configureTableView(parentView : UIView, index : Int) {
-        let historyTableView = HistoryTableVC()
-        historyTableView.configureTableView(index: index)
-        parentView.addSubview(historyTableView.view)
-        historyTableView.view.snp.makeConstraints { (make) in
-            make.bottom.leading.trailing.equalTo(parentView)
-            make.width.equalTo(parentView)
-            make.height.equalTo(parentView.frame.height - (parentView.frame.width * 0.18))
+    func configureTableView(parentView : UIView, index : Int, bannerView: UIImageView) {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 160
+        tableView.allowsSelection = false
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: reuseIdentifier)
+        parentView.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.top.equalTo(bannerView.snp.bottom)
         }
-
     }
+}
 
+private let reuseIdentifier = "HistoryCell"
 
+extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
 
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HistoryCell
+        return cell
+    }
+    
+    //셀이 선택되었을때 실행할 액션(HistoryDetailVC 로 이동)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        navigationController?.pushViewController(HistoryDetailVC(), animated: true)
+//        print("터치가되나")
+    }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//      let height: CGFloat = scrollView.frame.size.height
+//      let contentYOffset: CGFloat = scrollView.contentOffset.y
+//      let scrollViewHeight: CGFloat = scrollView.contentSize.height
+//      let distanceFromBottom: CGFloat = scrollViewHeight - contentYOffset
+//
+//      if distanceFromBottom < height {
+//        categoryDelegate?.scrolltableviewreload()
+//        print("스크롤")
+//      }
+//    }
+ 
 }

@@ -115,7 +115,7 @@ class HistoryCell: UITableViewCell {
             make.top.equalTo(contentView.snp.top).offset(10)
             make.leading.equalTo(contentView.snp.leading).offset(8)
             make.width.equalTo(100)
-            make.height.equalTo(20)
+            make.height.equalTo(18)
         }
         
         addSubview(orderTime)
@@ -123,56 +123,58 @@ class HistoryCell: UITableViewCell {
             make.centerY.equalTo(delivery)
             make.leading.equalTo(delivery.snp.trailing).multipliedBy(1.1)
         }
-        
+
         addSubview(orderStatus)
         orderStatus.snp.makeConstraints { (make) in
             make.centerY.equalTo(orderTime)
-            make.trailing.equalTo(contentView).multipliedBy(20)
+            make.trailing.equalTo(contentView).multipliedBy(18)
         }
-        
+
         addSubview(lineIndicator)
         lineIndicator.snp.makeConstraints { (make) in
             make.centerY.equalTo(contentView).multipliedBy(18)
-            make.centerX.equalTo(contentView).multipliedBy(11)
-            make.width.equalTo(contentView.frame.width * 1.18)
+            make.centerX.equalTo(contentView).multipliedBy(10)
+            make.width.equalTo(contentView.frame.width * 1.08)
             make.height.equalTo(0.5)
         }
-        
+
         addSubview(storeImage)
         storeImage.snp.makeConstraints { (make) in
             make.leading.equalTo(delivery)
-            make.centerY.equalTo(contentView).multipliedBy(45)
+            make.centerY.equalTo(contentView).multipliedBy(42)
             make.width.height.equalTo(100)
 
         }
-        
+
         addSubview(storeName)
         storeName.snp.makeConstraints { (make) in
             make.leading.equalTo(orderTime.snp.leading)
             make.top.equalTo(storeImage.snp.top)
         }
-        
+
         addSubview(orderMenu)
         orderMenu.snp.makeConstraints { (make) in
             make.leading.equalTo(storeName.snp.leading)
             make.centerY.equalTo(contentView).multipliedBy(40)
         }
-        
+
         addSubview(reorderButton)
         reorderButton.snp.makeConstraints { (make) in
             make.leading.equalTo(orderMenu.snp.leading)
             make.bottom.equalTo(storeImage.snp.bottom)
             make.width.equalTo(contentView.frame.width * 0.3)
-            make.height.equalTo(contentView.frame.height * 0.9)
+            make.height.equalTo(contentView.frame.height * 0.8)
         }
-        
+
         addSubview(orderDetailButton)
         orderDetailButton.snp.makeConstraints { (make) in
             make.leading.equalTo(contentView).multipliedBy(12.5)
             make.bottom.equalTo(reorderButton.snp.bottom)
             make.width.equalTo(contentView.frame.width * 0.3)
-            make.height.equalTo(contentView.frame.height * 0.9)
+            make.height.equalTo(contentView.frame.height * 0.8)
         }
 
     }
 }
+
+

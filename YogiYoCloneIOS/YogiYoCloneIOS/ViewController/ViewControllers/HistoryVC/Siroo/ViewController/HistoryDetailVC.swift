@@ -7,16 +7,5 @@
 //
 
 import UIKit
+import SnapKit
 
-class HistoryDetailVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemPink
-        
-    }
-    
-
-   
-
-}

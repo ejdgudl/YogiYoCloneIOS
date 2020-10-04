@@ -146,10 +146,10 @@ class StoreListCell: UITableViewCell {
         
         storeImage.snp.makeConstraints { (make) in
             make.top.leading.equalToSuperview().offset(20)
-//            make.width.equalToSuperview().multipliedBy(0.2)
-//            make.height.equalTo(storeImage.snp.width)
             make.trailing.equalToSuperview().offset(-310)
             make.bottom.equalToSuperview().offset(-20)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
         }
         
         storeNameLabel.snp.makeConstraints { (make) in
