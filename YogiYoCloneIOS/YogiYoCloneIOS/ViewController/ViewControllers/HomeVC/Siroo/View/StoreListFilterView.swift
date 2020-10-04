@@ -11,7 +11,7 @@ import Foundation
 import SnapKit
 
 protocol StoreListFilterViewDelegate : class {
-    func presentStorefilterView()
+    func presentStorefilterView(selectedOrder: Int, selectedPayment: Int)
 }
 
 class StoreListFilterView: UIView {
@@ -20,9 +20,10 @@ class StoreListFilterView: UIView {
     
     var selectedOrder = 0
     var selectedPayment = 0
+    weak var filterViewDelegate: StoreListFilterViewDelegate?
     
-    private var storeFilterBigView: StoreFilterbigView?
     
+    private var storeFilterBigView: StoreFilterbigView?    
     private let indicatorView : UIView = {
         let view = UIView()
         return view
@@ -69,7 +70,7 @@ class StoreListFilterView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(enterButtontaped), for: .touchUpInside)
         button.backgroundColor = ColorPiker.customRed
-        
+        button.titleEdgeInsets = UIEdgeInsets(top: -50, left: 0, bottom: 0, right: 0)
         return button
     }()
 
@@ -301,8 +302,9 @@ class StoreListFilterView: UIView {
         }
         
         enterButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.centerY).multipliedBy(1.6)
-            make.leading.trailing.bottom.equalTo(0)
+            make.top.equalTo(self.snp.centerY).multipliedBy(1.3)
+            make.leading.trailing.equalTo(0)
+            make.bottom.equalToSuperview().inset(50)
         }
         
         
@@ -338,14 +340,14 @@ class StoreListFilterView: UIView {
         let selectedButton = orderArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.tintColor = .red
+        selectedButton.imageView?.tintColor = .systemGray
     }
     
     func selectChosenPayment(_ index: Int) {
         let selectedButton = paymentArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.tintColor = .red
+        selectedButton.imageView?.tintColor = .systemGray
     }
     
     func setFilterView(view: StoreFilterbigView) {
@@ -382,7 +384,7 @@ class StoreListFilterView: UIView {
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.tintColor = UIColor.red
         }
         
         selectedOrder = sender.tag
@@ -394,14 +396,21 @@ class StoreListFilterView: UIView {
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.tintColor = UIColor.red
+
         }
         selectedPayment = sender.tag
         selectChosenPayment(sender.tag)
         
     }
     
-    @objc func enterButtontaped(){
-        
+    @objc func enterButtontaped(_ sender: UIButton){
+        /* 이벤트 발생
+         리스너 : StoreVC의 카테고리 확인(StoreVC 의 Delegate) + FilterVC의 selected.tag를 확인!
+         이벤트 발생하면,
+        */
+        self.filterViewDelegate?.presentStorefilterView(selectedOrder: selectedOrder, selectedPayment: selectedPayment)
+        storeFilterBigView?.removeFromSuperview()
+
     }
 }

@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import KakaoSDKAuth
-import KakaoSDKUser
-import NaverThirdPartyLogin
 import Alamofire
 import AuthenticationServices
+
+protocol LogVCDelegate: class {
+    func pushLoggedVC(appUser: AppUser)
+}
 
 class LogVC: UIViewController {
     
@@ -22,7 +23,7 @@ class LogVC: UIViewController {
         return tableView
     }()
     
-    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    weak var delegate: LogVCDelegate?
     
     let acceptVC = AcceptVC()
     
@@ -39,23 +40,6 @@ class LogVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc private func didTapKakaoButton() {
-        if (AuthApi.isKakaoTalkLoginAvailable()) {
-            AuthApi.shared.loginWithKakaoTalk { (oAuthToken, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                self.navigationController?.pushViewController(self.acceptVC, animated: true)
-                guard let token = oAuthToken else { return }
-                print("Login With Kakao Suc And Token is \(token)")
-            }
-        }
-    }
-    
-    @objc private func didTapNaverButton(_ sender: UIButton) {
-        loginInstance?.requestThirdPartyLogin()
-    }
-    
     @objc private func didTapAppleButton(_ sender: UIButton) {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -63,6 +47,13 @@ class LogVC: UIViewController {
         controller.delegate = self
         controller.presentationContextProvider = self
         controller.performRequests()
+    }
+    
+    @objc private func dissmissWhenLogin(notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: AppUser] else { return }
+        guard let appUser = userInfo["userInfo"] else { return }
+        self.dismiss(animated: true, completion: nil)
+        delegate?.pushLoggedVC(appUser: appUser)
     }
     
     // MARK: Helpers
@@ -83,7 +74,7 @@ class LogVC: UIViewController {
         tableView.register(LogCell.self, forCellReuseIdentifier: LogCell.cellID)
         tableView.register(SocialLogCell.self, forCellReuseIdentifier: SocialLogCell.cellID)
         
-        loginInstance?.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(dissmissWhenLogin), name: logCellObserveName, object: nil)
     }
     
     // MARK: ConfigureViews
@@ -129,47 +120,15 @@ extension LogVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SocialLogCell.cellID, for: indexPath) as? SocialLogCell else { return UITableViewCell() }
-            cell.kakaoButton.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
-            cell.naverButton.addTarget(self, action: #selector(didTapNaverButton), for: .touchUpInside)
             cell.appleButton.addTarget(self, action: #selector(didTapAppleButton), for: .touchUpInside)
             return cell
         }
     }
 }
 
-extension LogVC: NaverThirdPartyLoginConnectionDelegate {
-    // 로그인 버튼을 눌렀을 경우 열게 될 브라우저
-    func oauth20ConnectionDidOpenInAppBrowser(forOAuth request: URLRequest!) {
-        
-    }
-    
-    // 로그인에 성공했을 경우 호출
-    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
-        guard let accessToken = loginInstance?.accessToken else { return }
-        print("[Success] : Success Naver Login And Token is \(accessToken)")
-        self.navigationController?.pushViewController(acceptVC, animated: true)
-    }
-    
-    // 접근 토큰 갱신
-    func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
-        
-    }
-    
-    // 로그아웃 할 경우 호출(토큰 삭제)
-    func oauth20ConnectionDidFinishDeleteToken() {
-        loginInstance?.requestDeleteToken()
-    }
-    
-    // 모든 Error
-    func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
-        print("[Error] :", error.localizedDescription)
-    }
-}
-//001413.f6da7c6632bf44a6a3af1ac21579cc08.1142
 extension LogVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            print(credential.user)
             guard let givName = credential.fullName?.givenName else { return }
             guard let famName = credential.fullName?.familyName else { return }
             let strName = famName + givName

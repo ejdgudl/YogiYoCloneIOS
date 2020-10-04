@@ -16,6 +16,7 @@ class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
+            print(restaurant?.name)
             storeRateLabel.text = String(format: "%.1f", restaurant?.averageRating as! CVarArg)
             setImage(from: restaurant!.image)
             reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
@@ -136,19 +137,19 @@ class StoreListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //    MARK: SetUIConstraints
+//    MARK: SetUIConstraints
     
-    func setUIConstraints () {
+    private func setUIConstraints () {
         [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
             contentView.addSubview($0)
         })
         
         storeImage.snp.makeConstraints { (make) in
             make.top.leading.equalToSuperview().offset(20)
-//            make.width.equalToSuperview().multipliedBy(0.2)
-//            make.height.equalTo(storeImage.snp.width)
             make.trailing.equalToSuperview().offset(-310)
             make.bottom.equalToSuperview().offset(-20)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
         }
         
         storeNameLabel.snp.makeConstraints { (make) in

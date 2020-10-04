@@ -79,7 +79,7 @@ class WalletCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
@@ -100,13 +100,15 @@ class WalletCell: UITableViewCell {
             make.height.equalTo(0.5)
         }
         
-        deviderView1.snp.makeConstraints { (make) in
+        deviderView1.snp.makeConstraints { [weak self](make) in
+            guard let self = self else { return }
             make.centerX.equalTo(self.myPointButton.snp.left)
             make.top.bottom.equalToSuperview()
             make.width.equalTo(0.4)
         }
         
-        deviderView2.snp.makeConstraints { (make) in
+        deviderView2.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.centerX.equalTo(self.myPointButton.snp.right)
             make.top.bottom.equalToSuperview()
             make.width.equalTo(0.4)

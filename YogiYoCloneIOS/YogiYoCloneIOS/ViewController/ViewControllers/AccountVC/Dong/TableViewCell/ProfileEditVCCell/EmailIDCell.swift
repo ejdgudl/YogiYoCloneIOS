@@ -11,9 +11,9 @@ import UIKit
 class EmailIDCell: UITableViewCell {
     
     // MARK: Properties
-    var user: User? {
+    public var appUser: AppUser? {
         didSet {
-            emailID.text = user?.email
+            emailID.text = appUser?.email
         }
     }
     
@@ -53,7 +53,7 @@ class EmailIDCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
