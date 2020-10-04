@@ -110,6 +110,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
+        tabBarController?.tabBar.isHidden = false
     }
     
     func scrolltableviewreload() {
@@ -243,6 +244,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         menuList.id = id
         navigationController?.pushViewController(menuList, animated: true)
         navigationController?.navigationBar.tintColor = .gray
+        tabBarController?.tabBar.isHidden = true
     }
     
 }
