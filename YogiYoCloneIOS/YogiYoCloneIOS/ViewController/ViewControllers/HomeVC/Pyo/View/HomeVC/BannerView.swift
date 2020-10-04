@@ -18,16 +18,19 @@ class BannerView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
+    
     private let bannerContentView: UIView = {
         let view = UIView()
         return view
     }()
+    
     private let bannerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.image = UIImage(named: "MyAccountVCImage")
         return imageView
     }()
+    
     private let bannerImageView2: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
