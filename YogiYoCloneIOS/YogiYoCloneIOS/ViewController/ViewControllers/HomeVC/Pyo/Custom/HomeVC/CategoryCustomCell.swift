@@ -12,8 +12,8 @@ class CategoryCustomCell: UICollectionViewCell {
     
     static let identifier = "CategoryCustomItem"
     
-    let imageView = UIImageView()
-    let label = UILabel()
+    private let imageView = UIImageView()
+    private let label = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,6 +40,7 @@ class CategoryCustomCell: UICollectionViewCell {
         }
     }
     func setValue(image: String, title: String) {
+        
         imageView.image = UIImage(named: image)
         label.text = title
     }

@@ -53,7 +53,7 @@ class SocialLogCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
@@ -70,13 +70,15 @@ class SocialLogCell: UITableViewCell {
             make.height.equalTo(50)
         }
         
-        naverButton.snp.makeConstraints { (make) in
+        naverButton.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.equalTo(self.kakaoButton.snp.bottom).offset(5)
             make.left.right.equalToSuperview().inset(10)
             make.height.equalTo(50)
         }
         
-        appleButton.snp.makeConstraints { (make) in
+        appleButton.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.equalTo(self.naverButton.snp.bottom).offset(5)
             make.left.right.equalToSuperview().inset(10)
             make.height.equalTo(50)

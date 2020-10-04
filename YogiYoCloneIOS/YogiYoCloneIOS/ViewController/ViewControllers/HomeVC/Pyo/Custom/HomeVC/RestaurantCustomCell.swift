@@ -7,21 +7,22 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RestaurantCustomCell: UICollectionViewCell {
     
     static let identifier = "RestaurantCustomItem"
     
-    let imageView = UIImageView()
+    private let imageView = UIImageView()
     let imageLabel = PaddingLabel()
-    let truePadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    let falsePadding = UIEdgeInsets(top: 2.5, left: 10, bottom: 2.5, right: 10)
+    private let truePadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    private let falsePadding = UIEdgeInsets(top: 2.5, left: 10, bottom: 2.5, right: 10)
     
-    let titleLabel = UILabel()
+    private let titleLabel = UILabel()
     
-    let starImage = UIImageView()
-    let starPointLabel = UILabel()
-    let reviewLabel = UILabel()
+    private let starImage = UIImageView()
+    private let starPointLabel = UILabel()
+    private let reviewLabel = UILabel()
     
     let explanLabel = UILabel()
     
@@ -113,8 +114,12 @@ class RestaurantCustomCell: UICollectionViewCell {
         }
     }
     func setValue(image: String, imageText: String? ,title: String, starPoint: Double, review: Int, explain: String) {
+        
+        guard let imageURL = URL(string: image) else { return }
+        imageView.kf.setImage(with: imageURL)
+        
         imageText == nil ? (imageLabel.padding = truePadding) : (imageLabel.padding = falsePadding)
-        imageView.image = UIImage(named: image)
+        
         imageLabel.text = imageText
         titleLabel.text = title
         starPointLabel.text = "\(starPoint)"

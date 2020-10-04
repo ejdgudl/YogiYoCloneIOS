@@ -9,7 +9,9 @@
 import UIKit
 
 extension HomeVC: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if collectionView == categoryCV.collection {
             guard indexPath.row == 1 || indexPath.row == 2 else {
                 let listVC = StoreListVC()
@@ -17,6 +19,7 @@ extension HomeVC: UICollectionViewDelegate {
                 navigationController?.pushViewController(listVC, animated: true)
                 return
             }
+            
             switch indexPath.row {
             case 1:
                 let plusVC = YogiyoPlusStoreListVC()
@@ -27,6 +30,7 @@ extension HomeVC: UICollectionViewDelegate {
                 fatalError()
             }
         } else {
+            
             return
         }
     }

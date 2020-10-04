@@ -103,7 +103,10 @@ class HeaderView: UICollectionReusableView {
             make.edges.equalToSuperview()
         }
         
-        stackView.snp.makeConstraints { (make) in
+        stackView.snp.makeConstraints { [weak self] (make) in
+            
+            guard let self = self else { return }
+            
             if self.imageView.image == nil {
                 print("no")
                 make.centerY.equalTo(self.snp.bottom).offset(-80)

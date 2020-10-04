@@ -11,7 +11,7 @@ import UIKit
 class StoreInfoCell: UICollectionViewCell {
     
     // MARK: Properties
-    var storeInfo: RestaurantInstanceData? {
+    public var storeInfo: RestaurantInstanceData? {
         didSet {
             guard let storeInfo = storeInfo else { return }
             minPrice = storeInfo.minOrder
@@ -31,6 +31,7 @@ class StoreInfoCell: UICollectionViewCell {
             minOrderPrice.setAttribute(label: minOrderPrice, string: string)
         }
     }
+    
     private var deliPrice: Int? {
         didSet {
             guard let deliPrice = deliPrice else { return }
@@ -39,6 +40,7 @@ class StoreInfoCell: UICollectionViewCell {
             deliveryPrice.setAttribute(label: deliveryPrice, string: string)
         }
     }
+    
     private var payMent: String? {
         didSet {
             guard let payMent = payMent else { return }
@@ -46,6 +48,7 @@ class StoreInfoCell: UICollectionViewCell {
             payMentLbl.setAttribute(label: payMentLbl, string: string)
         }
     }
+    
     private var heartCount = 52
     
     let numberFormatter = NumberFormatter()
@@ -97,18 +100,24 @@ class StoreInfoCell: UICollectionViewCell {
     
     private lazy var notiView: UIView = {
         let view = UIView()
+        
         view.backgroundColor = .lightGray
+        
         [notiTitle, moreButton, notiTextLabel].forEach {
             view.addSubview($0)
         }
+        
         notiTitle.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().inset(11)
         }
+        
         moreButton.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(5)
             make.right.equalToSuperview().inset(11)
         }
-        notiTextLabel.snp.makeConstraints { (make) in
+        
+        notiTextLabel.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.equalTo(self.notiTitle.snp.bottom).offset(12)
             make.left.right.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(12)
@@ -173,7 +182,8 @@ class StoreInfoCell: UICollectionViewCell {
             make.left.equalToSuperview()
         }
         
-        notiView.snp.makeConstraints { (make) in
+        notiView.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.equalTo(self.payStackView.snp.bottom).offset(12)
             make.left.right.equalToSuperview()
         }

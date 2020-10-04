@@ -10,7 +10,6 @@ import UIKit
 
 class HelpTitleLabel: UILabel {
     
-    
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)

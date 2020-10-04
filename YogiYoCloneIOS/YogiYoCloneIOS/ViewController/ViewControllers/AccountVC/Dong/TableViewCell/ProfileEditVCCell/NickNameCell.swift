@@ -11,9 +11,9 @@ import UIKit
 class NickNameCell: UITableViewCell {
     
     // MARK: Properties
-    var user: User? {
+    public var appUser: AppUser? {
         didSet {
-            nickName.text = user?.nickName
+            nickName.text = appUser?.nickname
         }
     }
     
@@ -38,7 +38,7 @@ class NickNameCell: UITableViewCell {
         return label
     }()
     
-    private let changeButton: UIButton = {
+    public let changeButton: UIButton = {
        let button = UIButton()
         button.setTitle("변경", for: .normal)
         button.layer.borderColor = UIColor.lightGray.cgColor
@@ -61,7 +61,7 @@ class NickNameCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews

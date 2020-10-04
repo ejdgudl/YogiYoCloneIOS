@@ -11,7 +11,17 @@ import UIKit
 extension HomeVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return category.item.count
+        switch collectionView {
+        case categoryCV.collection:
+            
+            return category.item.count
+        case fourthCV.collection:
+            
+            return 9
+        default:
+            
+            return 10
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -26,100 +36,135 @@ extension HomeVC: UICollectionViewDataSource {
         case firstCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: nil,
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
-            
+            loadData(url: "\(UrlBase.recomend)1") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: nil,
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
+                }
+            }
             return item
         case twiceCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "♡ \(117)",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            loadData(url: "\(UrlBase.recomend)2") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: "♡ \(RecommendData.results[indexPath.item].bookmarkCount)",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
+                }
+            }
             
             return item
         case thirdCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "5,000원 할인",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "배달비 무료")
             item.explanLabel.textColor = .systemRed
+            loadData(url: "\(UrlBase.recomend)3") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: "\(self.formatter.string(from: RecommendData.results[indexPath.item].deliveryDiscount as NSNumber) ?? "")원 할인",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: "배달비 무료")
+                }
+            }
             
             return item
         case fourthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TripleRestaurantCustomCell.identifier,
                                                                 for: indexPath) as? TripleRestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          countText: "\(indexPath.item + 1)",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지",
-                          discountText: "2,000원 할인")
+            loadData(url: "\(UrlBase.recomend)4") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  countText: "\(indexPath.item + 1)",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus,
+                                  discountText: "\(self.formatter.string(from: RecommendData.results[indexPath.item].deliveryDiscount as NSNumber) ?? "")원 할인")
+                }
+            }
             
             return item
         case fifthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "배달비 무료",
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "최소주문 24,000원")
+            loadData(url: "\(UrlBase.recomend)5") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: "배달비 무료",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: "최소주문 \(self.formatter.string(from: RecommendData.results[indexPath.item].minOrderPrice as NSNumber) ?? "")원")
+                }
+            }
             
             return item
         case sixthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: nil,
-                          title: "버거킹-건대입구역점",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            loadData(url: "\(UrlBase.recomend)6") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: nil,
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
+                }
+            }
             
             return item
         case seventhCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          title: "버거킹",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            loadData(url: "\(UrlBase.recomend)7") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
+                }
+            }
             
             return item
         case eighthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "15~25분",
-                          title: "버거킹",
-                          starPoint: 4.4,
-                          review: 895,
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
             item.imageLabel.backgroundColor = .systemGreen
+            loadData(url: "\(UrlBase.recomend)8") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: RecommendData.results[indexPath.item].deliveryTime,
+                                  title: RecommendData.results[indexPath.item].name,
+                                  starPoint: RecommendData.results[indexPath.item].star,
+                                  review: RecommendData.results[indexPath.item].reviewCount,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
+                }
+            }
             
             return item
         case ninthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantNewCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantNewCustomCell else { fatalError() }
-            item.setValue(image: "testRestaurant",
-                          imageText: "NEW",
-                          title: "버거킹",
-                          explain: "버거킹은 불고기와퍼세트가 짜세지")
+            loadData(url: "\(UrlBase.recomend)9") { (RecommendData) in
+                DispatchQueue.main.async {
+                    item.setValue(image: RecommendData.results[indexPath.item].image,
+                                  imageText: "NEW",
+                                  title: RecommendData.results[indexPath.item].name,
+                                  explain: RecommendData.results[indexPath.item].representativeMenus)
+                }
+            }
             
             return item
         default:
