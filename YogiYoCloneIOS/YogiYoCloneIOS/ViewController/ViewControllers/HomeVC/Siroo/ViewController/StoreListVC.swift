@@ -106,6 +106,12 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .gray
+        UIApplication.shared.statusBarStyle = .darkContent
+    }
+    
     func scrolltableviewreload() {
         // 두번째 페이지 부터 불러옴
         fetchModel.getRestaurnatData(categoryIndex,selectedOrder: storeListFilterView.selectedOrder, selectedPayment: storeListFilterView.selectedPayment, isFirst: false)
@@ -253,8 +259,6 @@ extension StoreListVC : StoreListFilterViewDelegate {
         print("필터정렬 이벤트 리스너 : \(fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true))")
         
 
-
-        
     }
 
     

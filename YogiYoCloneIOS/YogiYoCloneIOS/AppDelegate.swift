@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = UINavigationController(rootViewController: AccountVC())
-        window?.rootViewController = MainTabVC()
+        window?.rootViewController = UINavigationController(rootViewController: StoreListVC())
+       window?.rootViewController = MainTabVC()
         window?.makeKeyAndVisible()
         return true
     }
