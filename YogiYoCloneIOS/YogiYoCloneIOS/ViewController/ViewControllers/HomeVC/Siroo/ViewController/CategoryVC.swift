@@ -77,9 +77,6 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
             headerView.contentView.backgroundColor = .white
             headerView.backgroundView?.backgroundColor = .white
             headerView.textLabel?.textColor = .black
-            //            headerView.snp.makeConstraints { (make) in
-            //                make.top.equalTo(headerView.snp.top).offset(100)
-            //            }
         }
     }
     
@@ -110,11 +107,10 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
         cell.restaurant = self.restaurants[indexPath.row]
         print("index: \(indexPath.row)")
-        //        cell.
         return cell
     }
     
-    //셀이 선택되었을때 실행할 액션
+//셀이 선택되었을때 실행할 액션
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("안되나..")
         categoryDelegate?.categoryDelegate(id: self.restaurants[indexPath.row].id)

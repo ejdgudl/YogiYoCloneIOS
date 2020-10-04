@@ -70,7 +70,7 @@ class StoreListFilterView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(enterButtontaped), for: .touchUpInside)
         button.backgroundColor = ColorPiker.customRed
-        
+        button.titleEdgeInsets = UIEdgeInsets(top: -50, left: 0, bottom: 0, right: 0)
         return button
     }()
 
@@ -302,8 +302,9 @@ class StoreListFilterView: UIView {
         }
         
         enterButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.centerY).multipliedBy(1.6)
-            make.leading.trailing.bottom.equalTo(0)
+            make.top.equalTo(self.snp.centerY).multipliedBy(1.3)
+            make.leading.trailing.equalTo(0)
+            make.bottom.equalToSuperview().inset(50)
         }
         
         

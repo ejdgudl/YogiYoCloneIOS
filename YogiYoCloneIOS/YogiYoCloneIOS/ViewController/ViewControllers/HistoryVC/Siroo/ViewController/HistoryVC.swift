@@ -46,6 +46,13 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .gray
+        UIApplication.shared.statusBarStyle = .darkContent
+    }
+
+    
     //    MARK: Configure
     
     func configurecodeSegmented() {
@@ -200,16 +207,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
             make.width.equalTo(parentView)
             make.height.equalTo(parentView.frame.height - (parentView.frame.width * 0.18))
         }
-        
-        
-        
-        
-        
-//                emptyView.snp.makeConstraints { (make) in
-//                    make.bottom.leading.trailing.equalTo(parentView)
-//                    make.width.equalTo(parentView)
-//                    make.height.equalTo(parentView.frame.height - (parentView.frame.width * 0.18))
-//                }
+
     }
 
 

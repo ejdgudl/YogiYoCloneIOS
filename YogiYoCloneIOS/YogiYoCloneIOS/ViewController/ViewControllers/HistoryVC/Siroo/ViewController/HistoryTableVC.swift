@@ -24,9 +24,9 @@ class HistoryTableVC: UIViewController {
         
     }
     
-//    func reload() {
-//        self.tableView.reloadData()
-//    }
+    func reload() {
+        self.tableView.reloadData()
+    }
     
 //    MARK: Config
     func configureTableView(index: Int) -> UIView {
@@ -36,7 +36,7 @@ class HistoryTableVC: UIViewController {
         tableView.rowHeight = 180
         tableView.allowsSelection = true
         
-        tableView.tableFooterView = UIView()
+//        tableView.tableFooterView = UIView()
         
         let height = view.frame.height - 200
         let xPos: CGFloat = view.frame.width * CGFloat(index)
@@ -55,7 +55,7 @@ extension HistoryTableVC : UITableViewDataSource , UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,6 +66,7 @@ extension HistoryTableVC : UITableViewDataSource , UITableViewDelegate{
     //셀이 선택되었을때 실행할 액션(HistoryDetailVC 로 이동)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(historyDetailVC, animated: true)
+        print("터치가되나")
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
