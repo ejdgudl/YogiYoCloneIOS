@@ -207,7 +207,6 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 160
-        tableView.allowsSelection = false
         tableView.register(HistoryCell.self, forCellReuseIdentifier: reuseIdentifier)
         parentView.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -231,13 +230,14 @@ extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HistoryCell
+        cell.selectionStyle = .none
         return cell
     }
     
     //셀이 선택되었을때 실행할 액션(HistoryDetailVC 로 이동)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        navigationController?.pushViewController(HistoryDetailVC(), animated: true)
-//        print("터치가되나")
+        navigationController?.pushViewController(HistoryDetailVC(), animated: true)
+        print("터치가되나")
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
