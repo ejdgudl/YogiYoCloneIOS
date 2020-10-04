@@ -133,9 +133,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     @objc func tabCloseFilter() {
         storeFilterbigView.removeFromSuperview()
     }
-    
-    
-    
+
     // Button Gesture 했을때 색상하는 Selector
     @objc func filterButtoncolorChange() {
         filterbutton.backgroundColor = .systemGray
@@ -155,11 +153,6 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         }
         categoriesVC[index].reload()
     }
-    
-        
-    
-//
-
     
     //    MARK: Configure
     func configure() {
@@ -217,7 +210,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     
     
     
-    //    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
+//    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
     
     func categoryButtonScrollAction(to index: Int) {
         categoryIndex = index
@@ -237,7 +230,8 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
             codeSegmented?.indexChangedListener(categoryIndex)
         }
     }
-    //    MARK: Category delegate
+    
+//    MARK: Category delegate
     func categoryDelegate(id: Int) {
         let menuList = MenuListVC()
         menuList.id = id

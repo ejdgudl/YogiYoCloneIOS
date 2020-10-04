@@ -12,7 +12,7 @@ protocol HistoryEmptyViewdelegate : class {
     func orderTapButton()
 }
 
-class HistoryEmptyView: UIView {
+class HistoryEmptyView: UIView, UIScrollViewDelegate {
     
     private let emptyView : UIView = {
         let view = UIView()
@@ -48,9 +48,7 @@ class HistoryEmptyView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
- 
-        congigSetUI()
-        
+
     }
 
     required init?(coder: NSCoder) {
@@ -58,17 +56,17 @@ class HistoryEmptyView: UIView {
     }
     
 //    MARK: Func
-    func congigSetUI(){
+    func congigSetUI(index: Int) -> UIView{
         
         addSubview(emptyView)
         emptyView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
-        
+
         emptyView.addSubview(emptyImage)
         emptyImage.snp.makeConstraints { (make) in
             make.centerX.equalTo(emptyView)
-            make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(0.8)
+            make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(0.6)
             make.height.equalTo(200)
             make.width.equalTo(240)
         }
@@ -84,20 +82,21 @@ class HistoryEmptyView: UIView {
         emptyView.addSubview(kakaotalkButton)
         kakaotalkButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(60)
-            make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(1.75)
+            make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(1.35)
             make.centerX.equalTo(emptyView.snp.centerX).multipliedBy(1.75)
         }
- 
+        return emptyView
     }
     
 //    MARK: Selector
     
     @objc func tapOrderButton(_ sender: UIButton) {
+        print("!!!!orderTap")
         historyEmptyViewdelegate?.orderTapButton()
     }
     
     @objc func tapkakaotalkButton(_ sender: UIButton) {
-        
+        print("KAKAO")
     }
     
     

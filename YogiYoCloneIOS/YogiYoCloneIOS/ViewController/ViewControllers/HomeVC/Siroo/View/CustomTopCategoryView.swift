@@ -12,9 +12,11 @@ protocol CustomTopCategoryViewDelegate : class {
     func categoryButtonScrollAction(to index: Int)
 }
 
-
-
-class CustomTopCategoryView: UIView , StoreListVCDelegate {
+class CustomTopCategoryView: UIView , StoreListVCDelegate, HistoryVCDelegate {
+    func historyVCScrollIndex(to index: Int) {
+        print("HistoryVCScroll : \(index)")
+    }
+    
     func scrollViewAction(to index: Int) {
         print("Scroll: \(index)")
     }
@@ -76,7 +78,6 @@ class CustomTopCategoryView: UIView , StoreListVCDelegate {
                 }
                 btn.setTitleColor(selectorTextColor, for: .normal)
                 delegate?.categoryButtonScrollAction(to: buttonIndex)
- 
             }
         }
     }

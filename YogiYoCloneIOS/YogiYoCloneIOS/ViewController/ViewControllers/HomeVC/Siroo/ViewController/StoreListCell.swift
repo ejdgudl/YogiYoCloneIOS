@@ -127,9 +127,9 @@ class StoreListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //    MARK: SetUIConstraints
+//    MARK: SetUIConstraints
     
-    func setUIConstraints () {
+    private func setUIConstraints () {
         [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
             contentView.addSubview($0)
         })

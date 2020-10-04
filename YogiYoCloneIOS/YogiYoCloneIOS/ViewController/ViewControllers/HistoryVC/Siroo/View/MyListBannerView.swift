@@ -11,27 +11,33 @@ import SnapKit
 
 class MyOrderListBannerView: UIView {
     
-    let MyOrderListbannerScrollView: UIScrollView = {
+    let myOrderListbannerScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
+        scrollView.autoresizingMask = .flexibleWidth
         scrollView.alwaysBounceHorizontal = true
+        scrollView.alwaysBounceVertical = false
         scrollView.showsHorizontalScrollIndicator = false
+        
+        
+        
+        
         return scrollView
     }()
     
-    private let MyOrderListbannerContentView: UIView = {
+    private let myOrderListbannerContentView: UIView = {
         let view = UIView()
         return view
     }()
     
-    private let MyOrderListbannerImageView: UIImageView = {
+    private let myOrderListbannerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.image = UIImage(named: "MyListbanner1")
         return imageView
     }()
     
-    private let MyOrderListbannerImageView2: UIImageView = {
+    private let myOrderListbannerImageView2: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.image = UIImage(named: "MyListbanner2")
@@ -40,42 +46,40 @@ class MyOrderListBannerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setBannerScrollView()
-        setContentView()
-        setBannerImageView()
     }
     
-    private func setBannerScrollView() {
-        
-        self.addSubview(MyOrderListbannerScrollView)
-        
-        MyOrderListbannerScrollView.snp.makeConstraints {
+    public func setBannerScrollView() {
+        myOrderListbannerScrollView.contentSize = CGSize(width: myOrderListbannerScrollView.frame.width * 2, height: myOrderListbannerScrollView.frame.height)
+        self.addSubview(myOrderListbannerScrollView)
+        myOrderListbannerScrollView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
+        setContentView()
     }
+    
     private func setContentView() {
         
-        MyOrderListbannerScrollView.addSubview(MyOrderListbannerContentView)
+        myOrderListbannerScrollView.addSubview(myOrderListbannerContentView)
         
-        MyOrderListbannerContentView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.centerY.equalTo(MyOrderListbannerScrollView)
+        myOrderListbannerContentView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.centerY.equalTo(myOrderListbannerScrollView)
+            $0.width.equalTo(myOrderListbannerScrollView.frame.width * 2)
         }
+        
+        setBannerImageView()
     }
     private func setBannerImageView() {
+        myOrderListbannerContentView.addSubview(myOrderListbannerImageView)
         
-        MyOrderListbannerContentView.addSubview(MyOrderListbannerImageView)
-        
-        MyOrderListbannerImageView.snp.makeConstraints {
-            $0.top.width.leading.bottom.equalTo(MyOrderListbannerScrollView)
+        myOrderListbannerImageView.snp.makeConstraints {
+            $0.top.width.leading.bottom.equalTo(myOrderListbannerScrollView)
         }
         
-        MyOrderListbannerContentView.addSubview(MyOrderListbannerImageView2)
+        myOrderListbannerContentView.addSubview(myOrderListbannerImageView2)
         
-        MyOrderListbannerImageView2.snp.makeConstraints {
-            $0.top.width.bottom.equalTo(MyOrderListbannerScrollView)
-            $0.leading.equalTo(MyOrderListbannerImageView.snp.trailing)
-//            $0.trailing.equalTo(MyOrderListbannerContentView)
+        myOrderListbannerImageView2.snp.makeConstraints {
+            $0.top.width.bottom.equalTo(myOrderListbannerScrollView)
+            $0.leading.equalTo(myOrderListbannerImageView.snp.trailing)
         }
     }
     

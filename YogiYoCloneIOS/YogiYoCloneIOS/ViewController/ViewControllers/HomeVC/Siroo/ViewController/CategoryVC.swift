@@ -131,10 +131,6 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         print("스크롤")
       }
     }
-
-    
-
-    
-    
+ 
 }
 

@@ -1,5 +1,5 @@
 //
-//  MyOrderListDetailVCViewController.swift
+//  HistoryDetailVC.swift
 //  YogiYoCloneIOS
 //
 //  Created by 김믿음 on 2020/09/29.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MyOrderListDetailVCViewController: UIViewController {
+class HistoryDetailVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemPink
         
     }
     
