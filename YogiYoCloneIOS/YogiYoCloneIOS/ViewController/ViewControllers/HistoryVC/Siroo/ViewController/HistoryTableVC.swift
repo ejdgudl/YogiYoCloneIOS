@@ -51,11 +51,11 @@ class HistoryTableVC: UIViewController {
 extension HistoryTableVC : UITableViewDataSource , UITableViewDelegate{
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
