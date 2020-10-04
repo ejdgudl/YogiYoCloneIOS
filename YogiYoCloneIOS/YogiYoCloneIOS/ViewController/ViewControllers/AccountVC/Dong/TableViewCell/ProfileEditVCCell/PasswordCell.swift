@@ -11,6 +11,8 @@ import UIKit
 class PasswordCell: UITableViewCell {
     
     // MARK: Properties
+    public var appUser: AppUser?
+    
     static let cellID = "PasswordCellID"
     
     private let topDeviderView: UIView = {
@@ -28,7 +30,7 @@ class PasswordCell: UITableViewCell {
 
     var passord: UILabel = {
        let label = UILabel()
-        label.text = "SNS계정에서 변경하실 수 있습니다."
+        label.text = "*******"
         return label
     }()
     
@@ -45,7 +47,7 @@ class PasswordCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews

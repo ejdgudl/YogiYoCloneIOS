@@ -51,7 +51,7 @@ class BottomListCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews

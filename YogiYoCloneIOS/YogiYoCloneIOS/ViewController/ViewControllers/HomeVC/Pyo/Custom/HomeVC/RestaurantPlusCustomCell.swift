@@ -12,15 +12,15 @@ class RestaurantPlusCustomCell: UICollectionViewCell {
     
     static let identifier = "RestaurantPlusCustomCell"
     
-    let imageView = UIImageView()
+    private let imageView = UIImageView()
     
-    let titleLabel = UILabel()
+    private let titleLabel = UILabel()
     
-    let starImage = UIImageView()
-    let starPointLabel = UILabel()
-    let reviewLabel = UILabel()
+    private let starImage = UIImageView()
+    private let starPointLabel = UILabel()
+    private let reviewLabel = UILabel()
     
-    let explanLabel = UILabel()
+    private let explanLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,7 +102,10 @@ class RestaurantPlusCustomCell: UICollectionViewCell {
         }
     }
     func setValue(image: String ,title: String, starPoint: Double, review: Int, explain: String) {
-        imageView.image = UIImage(named: image)
+        
+        guard let imageURL = URL(string: image) else { return }
+        imageView.kf.setImage(with: imageURL)
+        
         titleLabel.text = title
         starPointLabel.text = "\(starPoint)"
         reviewLabel.text = " · 리뷰 \(review)"

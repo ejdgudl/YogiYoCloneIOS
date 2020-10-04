@@ -45,7 +45,6 @@ class MenuListVC: UIViewController {
         return view
     }()
     
-    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +106,8 @@ class MenuListVC: UIViewController {
             make.edges.equalToSuperview()
         }
         
-        statusView.snp.makeConstraints { (make) in
+        statusView.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }

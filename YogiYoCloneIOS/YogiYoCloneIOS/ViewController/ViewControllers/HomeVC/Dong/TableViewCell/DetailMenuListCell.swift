@@ -49,7 +49,6 @@ class DetailMenuListCell: UITableViewCell {
         stackView.spacing = 3
         stackView.distribution = .equalSpacing
         stackView.alignment = .leading
-//        stackView.addBackgroundWithShadow(color: .white)
         return stackView
     }()
     
@@ -95,7 +94,8 @@ class DetailMenuListCell: UITableViewCell {
             make.height.equalTo(75)
         }
         
-        stackView.snp.makeConstraints { (make) in
+        stackView.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.centerY.equalToSuperview()
             make.right.equalTo(self.menuImageView.snp.left)
             make.left.equalToSuperview().inset(18)
@@ -106,15 +106,5 @@ class DetailMenuListCell: UITableViewCell {
             make.height.equalTo(0.5)
         }
         
-//
-//        menuName.snp.makeConstraints { (make) in
-//            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.centerY).inset(3)
-//            make.left.equalToSuperview().inset(18)
-//        }
-//
-//        menuPrice.snp.makeConstraints { (make) in
-//            make.top.equalTo(self.safeAreaLayoutGuide.snp.centerY).offset(3)
-//            make.left.equalToSuperview().inset(18)
-//        }
     }
 }
