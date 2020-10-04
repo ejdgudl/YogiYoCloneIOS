@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RestaurantNewCustomCell: UICollectionViewCell {
     
     static let identifier = "RestaurantNewCustomCell"
     
-    let imageView = UIImageView()
-    let imageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5))
+    private let imageView = UIImageView()
+    private let imageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5))
     
-    let titleLabel = UILabel()
-    let explanLabel = UILabel()
+    private let titleLabel = UILabel()
+    private let explanLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,7 +72,10 @@ class RestaurantNewCustomCell: UICollectionViewCell {
         }
     }
     func setValue(image: String, imageText: String ,title: String, explain: String) {
-        imageView.image = UIImage(named: image)
+        
+        guard let imageURL = URL(string: image) else { return }
+        imageView.kf.setImage(with: imageURL)
+        
         imageLabel.text = imageText
         titleLabel.text = title
         explanLabel.text = explain

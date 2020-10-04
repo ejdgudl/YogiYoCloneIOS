@@ -29,13 +29,14 @@ class SignCell: UITableViewCell {
         return button
     }()
     
-    private let singUpButton: UIButton = {
+    private lazy var singUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("회원가입", for: .normal)
         button.layer.borderWidth = 0.5
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.setTitleColor(.black, for: .normal)
         button.layer.borderColor = UIColor.black.cgColor
+        button.addTarget(self, action: #selector(signUpButtonHandler), for: .touchUpInside)
         return button
     }()
     
@@ -46,13 +47,18 @@ class SignCell: UITableViewCell {
         configureViews()
     }
     
+    // MARK: @objc
+    @objc private func signUpButtonHandler() {
+        NotificationCenter.default.post(name: presentSignUpVC, object: nil, userInfo: nil)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
@@ -63,18 +69,21 @@ class SignCell: UITableViewCell {
             addSubview($0)
         }
         
-        signText.snp.makeConstraints { (make) in
+        signText.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.bottom.equalTo(self.snp.centerY)
             make.top.left.right.centerX.equalToSuperview()
         }
         
-        singInButton.snp.makeConstraints { (make) in
+        singInButton.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.equalTo(self.snp.centerY)
             make.right.equalTo(self.snp.centerX).inset(6)
             make.left.bottom.equalToSuperview().inset(15)
         }
         
-        singUpButton.snp.makeConstraints { (make) in
+        singUpButton.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.top.equalTo(self.snp.centerY)
             make.left.equalTo(self.snp.centerX).offset(6)
             make.right.bottom.equalToSuperview().inset(15)

@@ -129,7 +129,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        category.setValue(text: "요기요플러스 맛집!", image: nil)
+        category.setValue(text: "가장 빨리 배달돼요~", image: nil)
         return category
     }()
     lazy var ninthCV: RecommendCollection = {
@@ -152,6 +152,12 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     private let bottomView = BottomView()
     
     private var constraint: Constraint?
+    
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

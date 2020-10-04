@@ -37,8 +37,8 @@ class StoreinfoFetch {
     static var order_by: [String] = [
         "",
         "delivery_charge",
-        "star",
-        "review",
+        "average_rating",
+        "review_count",
         "min_order_price",
     ]
     
