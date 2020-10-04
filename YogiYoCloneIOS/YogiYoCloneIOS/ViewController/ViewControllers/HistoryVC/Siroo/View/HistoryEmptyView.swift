@@ -56,7 +56,7 @@ class HistoryEmptyView: UIView, UIScrollViewDelegate {
     }
     
 //    MARK: Func
-    func congigSetUI(index: Int) -> UIView{
+    func configSetUI(index: Int) {
         
         addSubview(emptyView)
         emptyView.snp.makeConstraints { (make) in
@@ -85,7 +85,6 @@ class HistoryEmptyView: UIView, UIScrollViewDelegate {
             make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(1.35)
             make.centerX.equalTo(emptyView.snp.centerX).multipliedBy(1.75)
         }
-        return emptyView
     }
     
 //    MARK: Selector
