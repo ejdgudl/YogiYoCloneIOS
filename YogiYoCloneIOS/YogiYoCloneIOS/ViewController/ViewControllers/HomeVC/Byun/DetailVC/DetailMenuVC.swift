@@ -119,7 +119,7 @@ class DetailMenuVC: UIViewController {
   
   
   func fechData(){
-    let url = URL(string: "http://52.79.251.125/menu/33")
+    let url = URL(string: "http://52.79.251.125/menu/\(String(id))")
     URLSession.shared.dataTask(with: url!)  { (data, _, _) in
       guard let data = data else { return }
       do {
