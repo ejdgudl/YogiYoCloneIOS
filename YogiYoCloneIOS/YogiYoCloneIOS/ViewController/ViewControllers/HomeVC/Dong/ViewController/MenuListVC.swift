@@ -50,8 +50,13 @@ class MenuListVC: UIViewController {
         super.viewDidLoad()
         configureStoreInfo()
         configure()
-        configureNavi()
+        
         configureViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavi()
     }
     
     // MARK: @Objc
@@ -66,7 +71,7 @@ class MenuListVC: UIViewController {
     lazy var bar:UINavigationBar! =  self.navigationController?.navigationBar
     
     // MARK: Helpers
-    private func configureNavi() {
+    public func configureNavi() {
         UIApplication.shared.statusBarStyle = .lightContent
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()

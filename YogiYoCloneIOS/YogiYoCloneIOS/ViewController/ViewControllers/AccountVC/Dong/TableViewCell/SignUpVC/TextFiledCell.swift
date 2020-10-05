@@ -47,6 +47,7 @@ class TextFiledCell: UITableViewCell {
        let tf = UITextField()
         tf.borderStyle = .roundedRect
         tf.placeholder = "비밀번호 (영문+숫자+특수문자 조합 8자리이상)"
+        tf.isSecureTextEntry = true
         tf.addLeftPadding()
         return tf
     }()
@@ -55,6 +56,7 @@ class TextFiledCell: UITableViewCell {
        let tf = UITextField()
         tf.borderStyle = .roundedRect
         tf.placeholder = "비밀번호 확인"
+        tf.isSecureTextEntry = true
         tf.addLeftPadding()
         return tf
     }()
