@@ -516,6 +516,5 @@ extension DetailMenuVC : buyDelegate {
     buycell?.costLable.text = "\(String(totalPrice()))원"
     print(totalPrice())
   }
-  
-  
+
 }
