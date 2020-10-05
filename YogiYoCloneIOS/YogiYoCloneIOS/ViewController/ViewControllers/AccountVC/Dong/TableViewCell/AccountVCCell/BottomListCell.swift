@@ -15,7 +15,6 @@ class BottomListCell: UITableViewCell {
     
     var titleLabel: UILabel = {
        let label = UILabel()
-        label.text = " ss"
         return label
     }()
     
@@ -27,14 +26,14 @@ class BottomListCell: UITableViewCell {
     private let rightImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right")
-        imageView.tintColor = .black
+        imageView.tintColor = .darkGray
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     private lazy var bottomDeviderView: UIView = {
        let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorPiker.lightGray
         return view
     }()
     
