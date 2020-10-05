@@ -131,6 +131,7 @@ class StoreInfoCell: UICollectionViewCell {
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.setTitle("  찜  \(heartCount)", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         button.titleLabel?.textAlignment = .center
         button.tintColor = .black
         return button
@@ -142,7 +143,9 @@ class StoreInfoCell: UICollectionViewCell {
         button.setTitle("공유", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         button.tintColor = .black
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
         return button
     }()
     

@@ -28,12 +28,12 @@ extension UIStackView {
         let subView = UIView(frame: bounds)
         subView.backgroundColor = color
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        subView.layer.borderColor = UIColor.lightGray.cgColor
+        subView.layer.borderColor = ColorPiker.lightGray.cgColor
         subView.layer.borderWidth = 1
         insertSubview(subView, at: 0)
         
         let devideView = UIView()
-        devideView.backgroundColor = .lightGray
+        devideView.backgroundColor = ColorPiker.lightGray
         subView.addSubview(devideView)
         devideView.snp.makeConstraints { (make) in
             make.top.bottom.centerX.equalToSuperview()
