@@ -301,17 +301,8 @@ struct OrderData: Codable {
       }
   }
 }
-
-
-struct Option: Codable {
-    
-    let id: Int
-    let name: String
-    let price: Int
-    let optionGroupId: Int
-    var selectPos: Bool = false
-    
-    struct OrderListData : Codable {
+   
+struct OrderListData : Codable {
         let next: String?
         let previous: String?
         let results: [Results]
@@ -336,6 +327,7 @@ struct Option: Codable {
             }
         }
     }
+
 
 struct UrlBase {
         
@@ -367,6 +359,3 @@ struct UrlBase {
         static var lat = "37.545258"
         static var lon = "127.057174"
     }
-    
-    
-}
