@@ -16,15 +16,18 @@ class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
-            storeRateLabel.text = String(format: "%.1f", restaurant?.star as! CVarArg)
+            print(restaurant?.name)
+            storeRateLabel.text = String(format: "%.1f", restaurant?.averageRating as! CVarArg)
             setImage(from: restaurant!.image)
             reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
-            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))"
+            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))원"
             estimatedTime.text = restaurant?.deliveryTime
             bestMenuLabel.text = restaurant?.representativeMenus.joined()
             
         }
     }
+    
+    static let identifier = "StoreListCell"
     
     //    MARK: Properties
     private let storeImage : UIImageView = {
@@ -97,10 +100,12 @@ class StoreListCell: UITableViewCell {
         return label
     }()
     
-    private let cescoMark : UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "cesco")
-        return imageView
+    let cescoMark : UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "cesco"), for: .normal)
+        button.tintColor = .systemRed
+        button.isSelected = true
+        return button
     }()
     
     private let deliveryDiscountLabel : UILabel = {
@@ -109,6 +114,12 @@ class StoreListCell: UITableViewCell {
         label.textColor = .red
    
         return label
+    }()
+    
+    private let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
     }()
     
     //    MARK:  LifeCycle
@@ -126,9 +137,9 @@ class StoreListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //    MARK: SetUIConstraints
+//    MARK: SetUIConstraints
     
-    func setUIConstraints () {
+    private func setUIConstraints () {
         [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
             contentView.addSubview($0)
         })
@@ -137,6 +148,8 @@ class StoreListCell: UITableViewCell {
             make.top.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-310)
             make.bottom.equalToSuperview().offset(-20)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
         }
         
         storeNameLabel.snp.makeConstraints { (make) in
@@ -207,5 +220,20 @@ class StoreListCell: UITableViewCell {
         guard let imageURL = URL(string: url) else { return }
         
         storeImage.kf.setImage(with: imageURL)
+    }
+    
+    func setValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
+        
+        let discountText = formatter.string(from: discount as NSNumber? ?? 0)
+        
+        discountText != "0" ? (deliveryDiscountLabel.text = "배달할인 \(discountText ?? "0")원") :
+                              (deliveryDiscountLabel.text = nil)
+        
+        setImage(from: image ?? "")
+        storeNameLabel.text = title
+        storeRateLabel.text = "\(starPoint ?? 0)"
+        reviewLabel.text = "리뷰 \(review ?? 0)"
+        bestMenuLabel.text = explain
+        cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }
 }

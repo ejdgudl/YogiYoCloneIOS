@@ -35,378 +35,129 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    private let motherScrollView: UIScrollView = {
+    private lazy var motherScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = ColorPiker.customGray
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.delegate = self
         return scrollView
     }()
+    private let contentView = UIView()
     
-    private let topBannerView: UIView = {
-        let view = UIView()
+    private lazy var topBannerView: BannerView = {
+        let view = BannerView()
+        view.bannerScrollView.delegate = self
         return view
     }()
-    private let topBannerScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    private let topBannerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "MyAccountVCImage")
-        return imageView
+    lazy var categoryCV: CategoryCollection = {
+        let category = CategoryCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(CategoryCustomCell.self, forCellWithReuseIdentifier: CategoryCustomCell.identifier)
+        return category
     }()
     
-    lazy var categoryCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(CategoryCustomCell.self, forCellWithReuseIdentifier: CategoryCustomCell.identifier)
-        return collectionView
+    lazy var firstCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        category.setValue(text: "나의 입맛 저격!", image: "questionmark.circle")
+        return category
+    }()
+    lazy var twiceCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        category.setValue(text: "우리동네 찜♡ 많은 음식점", image: nil)
+        return category
     }()
     
-    private let firstCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
+    private lazy var middleBannerView: BannerView = {
+        let view = BannerView()
+        view.bannerScrollView.delegate = self
+        view.bannerScrollView.layer.cornerRadius = 5
+        view.bannerScrollView.clipsToBounds = true
         return view
     }()
-    private let firstHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "나의 입맛 저격!"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
+    
+    lazy var thirdCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        category.setValue(text: "성수동2가 오늘만 할인!!", image: nil)
+        return category
     }()
-    private let firstQueryButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "testQ"), for: .normal)
-        return button
+    lazy var fourthCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(TripleRestaurantCustomCell.self, forCellWithReuseIdentifier: TripleRestaurantCustomCell.identifier)
+        category.setValue(text: "요즘 뜨는 우리동네 음식점", image: "questionmark.circle")
+        return category
     }()
-    lazy var firstCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        return collectionView
+    lazy var fifthCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        category.setValue(text: "성수동2가 배달비 무료", image: nil)
+        return category
+    }()
+    lazy var sixthCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        category.setValue(text: "최근 7일 동안 리뷰가 많아요!", image: "questionmark.circle")
+        return category
+    }()
+    lazy var seventhCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantPlusCustomCell.self, forCellWithReuseIdentifier: RestaurantPlusCustomCell.identifier)
+        category.queryButton.addTarget(self, action: #selector(plusPush(_:)), for: .touchUpInside)
+        category.setValue(text: "요기요플러스 맛집!", image: "더보기 〉")
+        return category
+    }()
+    lazy var eighthCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
+        category.setValue(text: "가장 빨리 배달돼요~", image: nil)
+        return category
+    }()
+    lazy var ninthCV: RecommendCollection = {
+        let category = RecommendCollection()
+        category.collection.dataSource = self
+        category.collection.delegate = self
+        category.collection.register(RestaurantNewCustomCell.self, forCellWithReuseIdentifier: RestaurantNewCustomCell.identifier)
+        category.setValue(text: "새로 오픈했어요!", image: nil)
+        return category
     }()
     
-    private let twiceCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
+    private let buttonStack: BottomStack = {
+        let view = BottomStack()
+        view.buttons.forEach {
+            $0.addTarget(self, action: #selector(stackPush(_:)), for: .touchUpInside)
+        }
         return view
     }()
-    private let twiceHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "우리동네 찜♡ 많은 음식점"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    lazy var twiceCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let middleBannerView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    private let middleBannerScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-//        scrollView.backgroundColor = .red
-        scrollView.layer.cornerRadius = 5
-        scrollView.clipsToBounds = true
-        scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    let middleBannerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "MyAccountVCImage")
-        return imageView
-    }()
-    
-    private let thirdCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    private let thirdHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "성수동2가 오늘만 할인!!"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    lazy var thirdCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let fourthCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    private let fourthHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "요즘 뜨는 우리동네 음식점"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    private let fourthQueryButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "testQ"), for: .normal)
-        return button
-    }()
-    lazy var fourthCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(TripleRestaurantCustomCell.self, forCellWithReuseIdentifier: TripleRestaurantCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let fifthCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    private let fifthHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "성수동2가 배달비 무료"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    lazy var fifthCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let sixthCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    private let sixthHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "최근 7일 동안 리뷰가 많아요!"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    private let sixthQueryButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "testQ"), for: .normal)
-        return button
-    }()
-    lazy var sixthCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let seventhCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    private let seventhHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "요기요플러스 맛집!"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    private let seventhQueryButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("더보기 〉", for: .normal)
-        button.titleLabel?.textColor = .darkGray
-        return button
-    }()
-    lazy var seventhCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantPlusCustomCell.self, forCellWithReuseIdentifier: RestaurantPlusCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let eighthCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    private let eighthHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "가장 빨리 배달돼요~"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    lazy var eighthCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let ninthCollectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    private let ninthHeaderTitle: UILabel = {
-        let label = UILabel()
-        label.text = "새로 오픈했어요!"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        return label
-    }()
-    lazy var ninthCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(RestaurantNewCustomCell.self, forCellWithReuseIdentifier: RestaurantNewCustomCell.identifier)
-        return collectionView
-    }()
-    
-    private let motherStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.axis = .vertical
-        stack.spacing = 1
-        return stack
-    }()
-    
-    private let firstStack: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        stack.spacing = 1
-        return stack
-    }()
-    private let button1 = UIButton()
-    private let button2 = UIButton()
-    private let button3 = UIButton()
-    
-    private let twiceStack: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        stack.spacing = 1
-        return stack
-    }()
-    private let button4 = UIButton()
-    private let button5 = UIButton()
-    private let button6 = UIButton()
-    
-    private let thirdStack: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        stack.spacing = 1
-        return stack
-    }()
-    private let button7 = UIButton()
-    private let button8 = UIButton()
-    private let button9 = UIButton()
-    
-    private let fourthStack: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        stack.spacing = 1
-        return stack
-    }()
-    private let button10 = UIButton()
-    private let button11 = UIButton()
-    private let button12 = UIButton()
-    
-    private let fifthStack: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        stack.spacing = 1
-        return stack
-    }()
-    private let button13 = UIButton()
-    private let button14 = UIButton()
-    private let button15 = UIButton()
     
     private let bottomView = BottomView()
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        view.backgroundColor = .systemBackground
-        
-        motherScrollView.contentSize = CGSize(width: view.frame.width,
-                                              height: bottomView.frame.maxY)
-
-        topBannerScrollView.contentSize = CGSize(width: topBannerView.frame.width * CGFloat(category.item.count),
-                                                 height: topBannerView.frame.height)
-        
-        middleBannerScrollView.contentSize = CGSize(width: middleBannerView.frame.width * CGFloat(category.item.count),
-                                                    height: middleBannerView.frame.height)
-    }
+    private var constraint: Constraint?
     
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -417,6 +168,9 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     // MARK: Set UI
     private func setUI() {
+        
+        view.backgroundColor = .systemBackground
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell"),
                                                            style: .plain,
                                                            target: self,
@@ -430,73 +184,41 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         navigationItem.titleView = titleStack
         
-        motherScrollView.delegate = self
         view.addSubview(motherScrollView)
         
-        motherScrollView.addSubview(topBannerView)
+        motherScrollView.addSubview(contentView)
         
-        topBannerScrollView.delegate = self
-        topBannerView.addSubview(topBannerScrollView)
-        topBannerScrollView.addSubview(topBannerImageView)
+        contentView.addSubview(topBannerView)
         
-        motherScrollView.addSubview(categoryCollection)
+        contentView.addSubview(categoryCV)
+        contentView.addSubview(firstCV)
+        contentView.addSubview(twiceCV)
         
-        motherScrollView.addSubview(firstCollectionHeader)
-        firstCollectionHeader.addSubview(firstHeaderTitle)
-        firstCollectionHeader.addSubview(firstQueryButton)
-        motherScrollView.addSubview(firstCollection)
+        contentView.addSubview(middleBannerView)
         
-        motherScrollView.addSubview(twiceCollectionHeader)
-        twiceCollectionHeader.addSubview(twiceHeaderTitle)
-        motherScrollView.addSubview(twiceCollection)
+        contentView.addSubview(thirdCV)
+        contentView.addSubview(fourthCV)
+        contentView.addSubview(fifthCV)
+        contentView.addSubview(sixthCV)
+        contentView.addSubview(seventhCV)
+        contentView.addSubview(eighthCV)
+        contentView.addSubview(ninthCV)
         
-        motherScrollView.addSubview(middleBannerView)
+        contentView.addSubview(buttonStack)
         
-        middleBannerScrollView.delegate = self
-        middleBannerView.addSubview(middleBannerScrollView)
-        middleBannerScrollView.addSubview(middleBannerImageView)
-        
-        motherScrollView.addSubview(thirdCollectionHeader)
-        thirdCollectionHeader.addSubview(thirdHeaderTitle)
-        motherScrollView.addSubview(thirdCollection)
-        
-        motherScrollView.addSubview(fourthCollectionHeader)
-        fourthCollectionHeader.addSubview(fourthHeaderTitle)
-        fourthCollectionHeader.addSubview(fourthQueryButton)
-        motherScrollView.addSubview(fourthCollection)
-        
-        motherScrollView.addSubview(fifthCollectionHeader)
-        fifthCollectionHeader.addSubview(fifthHeaderTitle)
-        motherScrollView.addSubview(fifthCollection)
-        
-        motherScrollView.addSubview(sixthCollectionHeader)
-        sixthCollectionHeader.addSubview(sixthHeaderTitle)
-        sixthCollectionHeader.addSubview(sixthQueryButton)
-        motherScrollView.addSubview(sixthCollection)
-        
-        motherScrollView.addSubview(seventhCollectionHeader)
-        seventhCollectionHeader.addSubview(seventhHeaderTitle)
-        seventhCollectionHeader.addSubview(seventhQueryButton)
-        motherScrollView.addSubview(seventhCollection)
-        
-        motherScrollView.addSubview(eighthCollectionHeader)
-        eighthCollectionHeader.addSubview(eighthHeaderTitle)
-        motherScrollView.addSubview(eighthCollection)
-        
-        motherScrollView.addSubview(ninthCollectionHeader)
-        ninthCollectionHeader.addSubview(ninthHeaderTitle)
-        motherScrollView.addSubview(ninthCollection)
-        
-        setStackUI()
-        
-        motherScrollView.addSubview(bottomView)
+        bottomView.companyButton.addTarget(self, action: #selector(companyAction(_:)), for: .touchUpInside)
+        contentView.addSubview(bottomView)
     }
     
     // MARK: Auto Layout
     private func setLayout() {
-
+        
         motherScrollView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.leading.centerX.trailing.bottom.equalTo(motherScrollView)
         }
         
         topBannerView.snp.makeConstraints {
@@ -504,243 +226,94 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             $0.width.equalTo(motherScrollView)
             $0.height.equalTo(topBannerView.snp.width).multipliedBy(0.31)
         }
-        topBannerScrollView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(topBannerView)
-        }
-        topBannerImageView.snp.makeConstraints {
-            $0.top.leading.equalTo(topBannerScrollView)
-            $0.width.height.equalTo(topBannerView)
-        }
         
-        categoryCollection.snp.makeConstraints {
+        
+        categoryCV.snp.makeConstraints {
             $0.top.equalTo(topBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(categoryCollection.snp.width).multipliedBy(0.61)
+            $0.height.equalTo(categoryCV.snp.width).multipliedBy(0.61)
         }
         
-        firstCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(categoryCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        firstCV.snp.makeConstraints {
+            $0.top.equalTo(categoryCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(firstCollection.snp.width).multipliedBy(0.15)
-        }
-        firstHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        firstQueryButton.snp.makeConstraints {
-            $0.centerY.equalTo(firstHeaderTitle)
-            $0.leading.equalTo(firstHeaderTitle.snp.trailing).offset(2)
-        }
-        firstCollection.snp.makeConstraints {
-            $0.top.equalTo(firstCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(firstCollection.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(firstCV.snp.width).multipliedBy(0.78)
         }
         
-        twiceCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(firstCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        twiceCV.snp.makeConstraints {
+            $0.top.equalTo(firstCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(twiceCollection.snp.width).multipliedBy(0.15)
+            $0.height.equalTo(twiceCV.snp.width).multipliedBy(0.78)
         }
-        twiceHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        twiceCollection.snp.makeConstraints {
-            $0.top.equalTo(twiceCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(twiceCollection.snp.width).multipliedBy(0.63)
-        }
+        
         
         middleBannerView.snp.makeConstraints {
-            $0.top.equalTo(twiceCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.top.equalTo(twiceCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.equalTo(CollectionDesign.padding)
             $0.width.equalTo(motherScrollView).offset(-CollectionDesign.padding * 2)
             $0.height.equalTo(middleBannerView.snp.width).multipliedBy(0.31)
         }
-        middleBannerScrollView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(middleBannerView)
-        }
-        middleBannerImageView.snp.makeConstraints {
-            $0.top.leading.equalTo(middleBannerScrollView)
-            $0.width.height.equalTo(middleBannerView)
-        }
         
-        thirdCollectionHeader.snp.makeConstraints {
+        
+        thirdCV.snp.makeConstraints {
             $0.top.equalTo(middleBannerView.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(thirdCollection.snp.width).multipliedBy(0.15)
-        }
-        thirdHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        thirdCollection.snp.makeConstraints {
-            $0.top.equalTo(thirdCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(thirdCollection.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(thirdCV.snp.width).multipliedBy(0.78)
         }
         
-        fourthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(thirdCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        fourthCV.snp.makeConstraints {
+            $0.top.equalTo(thirdCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(fourthCollection.snp.width).multipliedBy(0.15)
-        }
-        fourthHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        fourthQueryButton.snp.makeConstraints {
-            $0.centerY.equalTo(fourthHeaderTitle)
-            $0.leading.equalTo(fourthHeaderTitle.snp.trailing).offset(2)
-        }
-        fourthCollection.snp.makeConstraints {
-            $0.top.equalTo(fourthCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(fourthCollection.snp.width).multipliedBy(0.83)
+            $0.height.equalTo(fourthCV.snp.width).multipliedBy(0.98)
         }
         
-        fifthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(fourthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        fifthCV.snp.makeConstraints {
+            $0.top.equalTo(fourthCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(fifthCollectionHeader.snp.width).multipliedBy(0.15)
-        }
-        fifthHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        fifthCollection.snp.makeConstraints {
-            $0.top.equalTo(fifthCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(fifthCollection.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(fifthCV.snp.width).multipliedBy(0.78)
         }
         
-        sixthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(fifthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        sixthCV.snp.makeConstraints {
+            $0.top.equalTo(fifthCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(sixthCollection.snp.width).multipliedBy(0.15)
-        }
-        sixthHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        sixthQueryButton.snp.makeConstraints {
-            $0.centerY.equalTo(sixthHeaderTitle)
-            $0.leading.equalTo(sixthHeaderTitle.snp.trailing).offset(2)
-        }
-        sixthCollection.snp.makeConstraints {
-            $0.top.equalTo(sixthCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(sixthCollection.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(sixthCV.snp.width).multipliedBy(0.78)
         }
         
-        seventhCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(sixthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        seventhCV.snp.makeConstraints {
+            $0.top.equalTo(sixthCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.15)
-        }
-        seventhHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        seventhQueryButton.snp.makeConstraints {
-            $0.centerY.equalTo(seventhHeaderTitle)
-            $0.trailing.equalToSuperview().inset(CollectionDesign.padding)
-        }
-        seventhCollection.snp.makeConstraints {
-            $0.top.equalTo(seventhCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(seventhCollection.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(seventhCV.snp.width).multipliedBy(0.78)
         }
         
-        eighthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(seventhCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        eighthCV.snp.makeConstraints {
+            $0.top.equalTo(seventhCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(eighthCollectionHeader.snp.width).multipliedBy(0.15)
-        }
-        eighthHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        eighthCollection.snp.makeConstraints {
-            $0.top.equalTo(eighthCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(eighthCollection.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(eighthCV.snp.width).multipliedBy(0.78)
         }
         
-        ninthCollectionHeader.snp.makeConstraints {
-            $0.top.equalTo(eighthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        ninthCV.snp.makeConstraints {
+            $0.top.equalTo(eighthCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(ninthCollectionHeader.snp.width).multipliedBy(0.15)
-        }
-        ninthHeaderTitle.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(CollectionDesign.padding)
-        }
-        ninthCollection.snp.makeConstraints {
-            $0.top.equalTo(ninthCollectionHeader.snp.bottom)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(ninthCollection.snp.width).multipliedBy(0.59)
+            $0.height.equalTo(ninthCV.snp.width).multipliedBy(0.74)
         }
         
-        motherStackView.snp.makeConstraints {
-            $0.top.equalTo(ninthCollection.snp.bottom).offset(CollectionDesign.padding / 2)
+        
+        buttonStack.snp.makeConstraints {
+            $0.top.equalTo(ninthCV.snp.bottom).offset(CollectionDesign.padding / 2)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(motherStackView.snp.width).multipliedBy(0.58)
+            $0.height.equalTo(buttonStack.snp.width).multipliedBy(0.58)
         }
         
         bottomView.snp.makeConstraints {
-            $0.top.equalTo(motherStackView.snp.bottom)
+            $0.top.equalTo(buttonStack.snp.bottom)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45)
+            $0.height.equalTo(bottomView.snp.width).multipliedBy(0.45).priority(.medium)
+            $0.bottom.equalTo(contentView).inset(CollectionDesign.padding)
+            constraint = $0.height.equalTo(bottomView.snp.width).multipliedBy(0.85).priority(.low).constraint
         }
     }
     
-    // MARK: Stack UI
-    private func setStackUI() {
-        
-        motherScrollView.addSubview(motherStackView)
-        
-        var index = 0
-        [button1, button2, button3, button4, button5,
-         button6, button7, button8, button9, button10,
-         button11, button12, button13, button14, button15].forEach {
-            $0.backgroundColor = .systemBackground
-            $0.setTitleColor(.black, for: .normal)
-            $0.setTitle(category.item[index].name, for: .normal)
-            $0.titleLabel?.font = UIFont(name: FontModel.customLight, size: 14)
-            $0.addTarget(self, action: #selector(stackPush(_:)), for: .touchUpInside)
-            $0.tag = index
-            index += 1
-        }
-        
-        [button1, button2, button3].forEach {
-            firstStack.addArrangedSubview($0)
-        }
-        motherStackView.addArrangedSubview(firstStack)
-        
-        [button4, button5, button6].forEach {
-            twiceStack.addArrangedSubview($0)
-        }
-        motherStackView.addArrangedSubview(twiceStack)
-        
-        [button7, button8, button9].forEach {
-            thirdStack.addArrangedSubview($0)
-        }
-        motherStackView.addArrangedSubview(thirdStack)
-        
-        [button10, button11, button12].forEach {
-            fourthStack.addArrangedSubview($0)
-        }
-        motherStackView.addArrangedSubview(fourthStack)
-        
-        [button13, button14, button15].forEach {
-            fifthStack.addArrangedSubview($0)
-        }
-        motherStackView.addArrangedSubview(fifthStack)
-    }
-    
-    // MARK: Present, Push func
+    // MARK: Button func
     @objc func mapPresent(_ sender: UIButton) {
         let mapVC = MapVC()
         mapVC.modalPresentationStyle = .fullScreen
@@ -762,6 +335,28 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             print("take out")
         default:
             fatalError()
+        }
+    }
+    @objc func plusPush(_ sender: UIButton) {
+        let plusVC = YogiyoPlusStoreListVC()
+        navigationController?.pushViewController(plusVC, animated: true)
+    }
+    @objc private func companyAction(_ sender: UIButton) {
+        if !bottomView.toggle {
+            sender.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+            bottomView.companyInformation.padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+            bottomView.companyInformation.text = category.companyInfo
+            bottomView.constraint?.update(offset: CollectionDesign.padding)
+            constraint?.update(priority: .high)
+            bottomView.toggle = true
+            
+        } else {
+            sender.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            bottomView.companyInformation.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            bottomView.companyInformation.text = nil
+            bottomView.constraint?.update(offset: 0)
+            constraint?.update(priority: .low)
+            bottomView.toggle = false
         }
     }
 }

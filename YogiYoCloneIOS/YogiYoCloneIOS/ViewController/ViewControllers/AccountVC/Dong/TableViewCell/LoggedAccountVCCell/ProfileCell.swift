@@ -11,6 +11,12 @@ import UIKit
 class ProfileCell: UITableViewCell {
     
     // MARK: Properties
+    public var appUser: AppUser? {
+        didSet {
+            userName.text = appUser?.nickname
+        }
+    }
+    
     static let cellID = "ProfileCellID"
     
     private let riceImageView: UIImageView = {
@@ -55,7 +61,7 @@ class ProfileCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-        
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
@@ -73,12 +79,14 @@ class ProfileCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
         
-        yogiFriendLabel.snp.makeConstraints { (make) in
+        yogiFriendLabel.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.left.equalTo(self.riceImageView.snp.right).offset(13)
             make.top.equalToSuperview().inset(25)
         }
         
-        userName.snp.makeConstraints { (make) in
+        userName.snp.makeConstraints { [weak self] (make) in
+            guard let self = self else { return }
             make.left.equalTo(self.riceImageView.snp.right).offset(13)
             make.bottom.equalToSuperview().inset(25)
         }

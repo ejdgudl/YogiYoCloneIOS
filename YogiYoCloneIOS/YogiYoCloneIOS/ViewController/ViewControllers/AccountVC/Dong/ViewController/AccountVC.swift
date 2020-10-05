@@ -37,17 +37,26 @@ class AccountVC: UIViewController {
         navigationController?.pushViewController(configureVC, animated: true)
     }
     
+    let logVC = LogVC()
+    
     @objc private func didTapSignInButton() {
-        let logVC = LogVC()
         let nav = UINavigationController(rootViewController: logVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
     }
     
+    let loggedAccountVC = LoggedAccountVC()
+    
     @objc private func presentLoggedAccountVC(notification: Notification) {
-        let loggedAccountVC = LoggedAccountVC()
-        loggedAccountVC.userPhoneNum = notification.userInfo?["phoneNum"] as? String
-        navigationController?.pushViewController(loggedAccountVC, animated: true)
+            loggedAccountVC.appUser = notification.userInfo?["userInfo"] as? AppUser
+            navigationController?.pushViewController(loggedAccountVC, animated: true)
+    }
+    
+    @objc private func presentAccept() {
+        let signUpVC = SignUpVC()
+        let nav = UINavigationController(rootViewController: signUpVC)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     // MARK: Helpers
@@ -69,7 +78,12 @@ class AccountVC: UIViewController {
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(BannerCell.self, forCellReuseIdentifier: BannerCell.cellID)
         tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(presentAccept), name: presentSignUpVC, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
+        
+        logVC.delegate = self
     }
     
     // MARK: ConfigureViews
@@ -143,5 +157,12 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+    }
+}
+
+extension AccountVC: LogVCDelegate {
+    func pushLoggedVC(appUser: AppUser) {
+        loggedAccountVC.appUser = appUser
+        navigationController?.pushViewController(loggedAccountVC, animated: true)
     }
 }

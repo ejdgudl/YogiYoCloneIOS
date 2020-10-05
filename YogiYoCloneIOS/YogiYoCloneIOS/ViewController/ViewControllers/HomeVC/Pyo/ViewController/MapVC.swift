@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class MapVC: UIViewController {
     
-    let button: UIButton = {
+    private let button: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("MapVC dismiss", for: .normal)
         return button
