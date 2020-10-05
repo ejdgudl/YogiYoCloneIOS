@@ -32,7 +32,7 @@ class LogCell: UITableViewCell {
         tf.placeholder = "이메일 주소 입력"
         tf.addLeftPadding()
         tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
+        tf.layer.borderColor = ColorPiker.lightGray.cgColor
         return tf
     }()
     
@@ -41,7 +41,7 @@ class LogCell: UITableViewCell {
         tf.placeholder = "비밀번호 입력"
         tf.addLeftPadding()
         tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
+        tf.layer.borderColor = ColorPiker.lightGray.cgColor
         return tf
     }()
     
@@ -100,7 +100,7 @@ class LogCell: UITableViewCell {
     private lazy var signInButton: UIButton = {
        let button = UIButton()
         button.setTitle("로그인 하기", for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.85)
         button.addTarget(self, action: #selector(singInButtonHandler), for: .touchUpInside)
         return button
     }()
