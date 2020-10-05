@@ -47,7 +47,7 @@ class PhoneAcceptVC: UIViewController {
     
     private let codeTextField: TextField = {
         let tf = TextField()
-        tf.placeholder = "4자리 인증번호 입력"
+        tf.placeholder = "6자리 인증번호 입력"
         tf.textContentType = .oneTimeCode
         return tf
     }()

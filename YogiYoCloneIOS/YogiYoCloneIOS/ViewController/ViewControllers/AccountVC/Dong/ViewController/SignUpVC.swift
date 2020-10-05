@@ -57,8 +57,9 @@ class SignUpVC: UIViewController {
     private func configureNavi() {
         title = "회원가입"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(leftBarButtonHandler))
-        navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barTintColor = .white
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     // MARK: ConfigureViews
