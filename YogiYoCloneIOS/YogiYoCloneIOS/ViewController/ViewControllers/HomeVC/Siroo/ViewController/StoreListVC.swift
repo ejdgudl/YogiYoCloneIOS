@@ -41,7 +41,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     private var codeSegmented: CustomTopCategoryView?
     
     private let categories: [String] = StoreinfoFetch.categories
-    //    private let categoriesVC: [CategoryVC] = [CategoryVC](repeating: CategoryVC(), count: StoreinfoFetch.categories.count)
+//        private let categoriesVC: [CategoryVC] = [CategoryVC](repeating: CategoryVC(), count: StoreinfoFetch.categories.count)
     
     private let categoriesVC: [CategoryVC] = [CategoryVC(), CategoryVC(), CategoryVC(), CategoryVC(), CategoryVC()]
     
@@ -110,6 +110,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
+        tabBarController?.tabBar.isHidden = false
     }
     
     func scrolltableviewreload() {
@@ -243,6 +244,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         menuList.id = id
         navigationController?.pushViewController(menuList, animated: true)
         navigationController?.navigationBar.tintColor = .gray
+        tabBarController?.tabBar.isHidden = true
     }
     
 }

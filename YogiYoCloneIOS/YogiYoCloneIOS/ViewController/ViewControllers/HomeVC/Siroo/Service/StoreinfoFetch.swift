@@ -37,7 +37,7 @@ class StoreinfoFetch {
     static var order_by: [String] = [
         "",
         "delivery_charge",
-        "average_rating",
+        "-average_rating",
         "review_count",
         "min_order_price",
     ]
@@ -102,14 +102,7 @@ class StoreinfoFetch {
                 "http://52.79.251.125/restaurants?order_by=delivery_charge&payment_methods=%ED%98%84%EA%B8%88"
          
          */
-        
-        
-        
-        
-        
-        
-        
-        
+
         // 조건문 : url 이 nil 값이면 모든데이터를 가져오고, previousData 가 있으면, lastRequest 값이 url 과 다르면, 아래 리퀘스트 실행하고, 아니면 중지하여 중복데이터 로딩 방지
         if url != nil && (isFirst || lastRequest != url) {
             print("category \(categoryIndex) - \(url)")
@@ -147,7 +140,6 @@ class StoreinfoFetch {
             }
         }
     }
-    
 }
 
 

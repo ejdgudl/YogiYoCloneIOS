@@ -340,7 +340,7 @@ class StoreListFilterView: UIView {
         let selectedButton = orderArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.imageView?.tintColor = .systemGray
+        selectedButton.imageView?.tintColor = .systemRed
     }
     
     func selectChosenPayment(_ index: Int) {
@@ -381,16 +381,21 @@ class StoreListFilterView: UIView {
     }
     
     @objc func orderfilterButtontaped(_ sender: UIButton) {
+        let image = UIImage(systemName: "circle")
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
-            i.setImage(UIImage(systemName: "circle"), for: .normal)
+            i.setImage(image, for: .normal)
             i.tintColor = UIColor.red
+    
         }
         
         selectedOrder = sender.tag
         selectChosenOrder(sender.tag)
         
     }
+    
+    // 초기화 컬러
+    //sender 컬러 따로주는 작업
     
     @objc func paymentfilterButtontaped(_ sender: UIButton){
         for i in paymentArrayButtons {

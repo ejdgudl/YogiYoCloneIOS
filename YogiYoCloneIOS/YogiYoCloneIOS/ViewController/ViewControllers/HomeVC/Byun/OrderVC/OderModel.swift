@@ -8,55 +8,41 @@
 
 import UIKit
 
-struct Post {
- // var results: [restaurant]
-  var restaurant : Int
-  var order_menu : [orderMenu?]
-  var address : String
-  var delivery_requests : String
-  var payment_method : String
-  var total_price : Int
- 
-struct orderMenu {
+
+// 전체 주문 메뉴를 관리하는 데이터 모델
+class OrderManager {
   
-  var menu : Int
-  var name : String
-  var count : Int
-  var price : Int
-  var order_option_group : [orderOptionGroup?]
-}
-
-struct orderOptionGroup {
-  var mandatory : Bool
-  var order_option : [orderOption?]
- 
-}
-  struct orderOption {
-    var name : String
-    var price : Int
-}
+  static let shared = OrderManager()
+  var orderList: [OrderData] = []
+  
+  //선택된 메뉴들이 무엇인지
+  func selectedMenus(menus: [OrderData]) {
+    // orderList 배열에 저장하기
+    orderList = menus
+  }
+  
+  //실제 선택된 메뉴 정보 주세요
+  func showMeOrderedList() -> [OrderData] {
+    // 오더메뉴 정보를 리턴
+    return orderList
+  }
+  
+  //선택된 메뉴를 모두 초기화
+  func resetOrderList(){
+    orderList.removeAll()
+  }
+  
+  func totalPrice() -> Int{
+    var total = 0
+    print("오더리스트갯수 확인: ", orderList.count)
+    orderList.forEach
+    {
+      total += $0.price
+      $0.option.forEach{
+        total += $0.price
+      }
+    }
+    return 10000
+  }
   
 }
-
-
-
-struct Orders {
-  //  let category: String
-    let products: [Product]
-  }
-
-  struct Product {
-    let name: String
-    let price: Int
-    let options : String
-  }
-
-  let menuData: [Orders] = [
-    Orders(products: [
-      Product(name: "3333", price: 3, options: "dd"),
-      Product(name: "배달요금", price: 2000,options: "dd"),
-      Product(name: "추가할인(10%)", price: 5000,options: "dd"),
-      Product(name: "결제금액", price: 33333,options: "dd"),
-    ])
-]
-
