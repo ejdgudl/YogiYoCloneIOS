@@ -146,16 +146,6 @@ class DetailMenuVC: UIViewController {
     }.resume()
   }
   
-  func addOptionsOrderList(){
-    let indexPath = NSIndexPath(row: 0, section: 0)//NSNotFound
-
-    //1)반복구문 통해서 true뽑아 내기
-  //  orderlist.append(indexPath.)
-    //2)true인 옵션들을 orderData로 변환
-    //3)배열로 넘기기
-    //4)price계산
-  }
-  
  
   
   //MARK:- UITableView
