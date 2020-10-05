@@ -235,7 +235,7 @@ struct MenuData: Codable {
     let image: String
     let caption: String
     let price: Int
-    let optionGroup: [OptionGroup?]
+    var optionGroup: [OptionGroup?]
     
     enum CodingKeys: String, CodingKey {
         case id, name, image, caption, price
@@ -250,8 +250,8 @@ struct MenuData: Codable {
         let menuId: Int
         
         let mandatory: Bool
-        let option: [Option]
-        
+        var option: [Option]
+         
         enum CodingKeys: String, CodingKey {
             case id, name, mandatory, option
             case menuId = "menu_id"
@@ -263,7 +263,8 @@ struct MenuData: Codable {
             let name: String
             let price: Int
             let optionGroupId: Int
-            
+            var selectPos: Bool = false
+
             enum CodingKeys: String, CodingKey {
                 case id, name, price
                 case optionGroupId = "option_group_id"
@@ -276,8 +277,36 @@ struct MenuData: Codable {
 
 struct OrderData: Codable {
     
-}
+    var menu: Int
+    var name: String
+    var count: Int
+    var price: Int
+    var option: [Option] = []
+    var totalPrice: Int?
+    
+  init(menu: Int, name: String, count: Int, price: Int) {
+        self.name = name
+        self.menu = menu
+        self.count = count
+        self.price = price
+        //self.option = option //초기화될경우 nil됨 ?때문에
+    }
+    
+    struct Option: Codable {
+      
+      let id: Int
+      let name: String
+      let price: Int
+      let optionGroupId: Int
+      var selectPos: Bool = false
 
+      enum CodingKeys: String, CodingKey {
+          case id, name, price
+          case optionGroupId = "option_group_id"
+      }
+      
+  }
+}
 
 
 struct UrlBase {
@@ -301,8 +330,10 @@ struct UrlBase {
 
     static let restaurantList = "http://52.79.251.125/restaurants"
     static let restaurantInstance = "http://52.79.251.125/restaurants/2"
+
     static let menuInstance = "http://52.79.251.125/menu/2"
     static let order = "http://52.79.251.125/orders"
+
 
     
     static var lat = "37.545258"

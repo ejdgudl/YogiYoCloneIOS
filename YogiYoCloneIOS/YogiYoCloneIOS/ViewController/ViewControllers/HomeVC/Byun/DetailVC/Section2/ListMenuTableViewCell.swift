@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol ListMenuDelagate : class {
+  func menuCheckdidTap(_ cell: UITableViewCell, check: Bool)
+}
+
 class ListMenuTableViewCell: UITableViewCell {
   
   var checkOn : Bool = false
+  
+  var delegate : ListMenuDelagate?
   
   let selectButton : UIButton = {
     let b = UIButton()
@@ -45,7 +51,7 @@ class ListMenuTableViewCell: UITableViewCell {
   }
   
   func buttondidTab(){
-    selectButton.addTarget(self, action: #selector(checkdidTap), for: .touchUpInside)
+    selectButton.addTarget(self, action: #selector(menuCheckdidTap), for: .touchUpInside)
   }
   /*
    func nsString(){
@@ -59,17 +65,21 @@ class ListMenuTableViewCell: UITableViewCell {
    */
   
   //MARK:- Action
-  @objc func checkdidTap(sender: UIButton){
+  @objc func menuCheckdidTap(sender: UIButton){
+    
+
     if checkOn == false{
       checkOn = true
       selectButton.tintColor = ColorPiker.customRed
       selectButton.layer.borderColor = ColorPiker.customRed.cgColor
+      self.delegate?.menuCheckdidTap(self, check: true)
     }else if checkOn == true {
       checkOn = false
       selectButton.tintColor = .clear
       selectButton.layer.borderColor = ColorPiker.customDarkGray.cgColor
+      self.delegate?.menuCheckdidTap(self, check: false)
     }
-    print(checkOn)
+    //print(checkOn)
   }
   
   func setConstrain(){

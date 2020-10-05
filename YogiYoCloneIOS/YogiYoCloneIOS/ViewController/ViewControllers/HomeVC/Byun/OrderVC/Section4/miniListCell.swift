@@ -29,7 +29,7 @@ class miniListCell : UITableViewCell{
   
   let miniSubMenuLable : UILabel = {
     let l = UILabel()
-    l.text = "콜라(펩시)1.25L"
+    l.text = " "
     l.numberOfLines = 0
     l.font = FontModel.toSize.customSmallFont
     l.textColor = ColorPiker.customDarkGray
@@ -73,12 +73,6 @@ class miniListCell : UITableViewCell{
       
       
     ])
-  }
-  
-  func configure(data: Product){//(name: String?, price: String?, option: String?){
-    miniMenuLable.text = data.name
-    miniSubMenuLable.text = data.options
-    miniPriseLable.text = String(data.price)
   }
   
   required init?(coder: NSCoder) {

@@ -8,9 +8,19 @@
 
 import UIKit
 
+protocol ListOptionDelagate : class {
+  func checkdidTap(_ cell: UITableViewCell)
+}
+
 class ListOptionTableViewCell: UITableViewCell {
   
-  var checkOn : Bool = false
+  var checkOn : Bool = false {
+    didSet {
+      selectButton.tintColor = checkOn ? ColorPiker.customRed : .clear
+      selectButton.layer.borderColor = checkOn ? ColorPiker.customDarkGray.cgColor : ColorPiker.customDarkGray.cgColor
+    }
+  }
+  var delegate : ListOptionDelagate?
   
   let selectButton : UIButton = {
     let b = UIButton()
@@ -18,6 +28,7 @@ class ListOptionTableViewCell: UITableViewCell {
     b.tintColor = .clear
     b.layer.borderWidth = 0.8
     b.layer.borderColor = ColorPiker.customDarkGray.cgColor
+    b.tag = 1
     // b.layer.borderColor = ColorPiker.customRed.cgColor
     return b
   }()
@@ -46,29 +57,15 @@ class ListOptionTableViewCell: UITableViewCell {
     buttondidTab()
   }
   
+  //  //MARK:- Action
   func buttondidTab(){
     selectButton.addTarget(self, action: #selector(checkdidTap), for: .touchUpInside)
   }
   
-  //var checkOn : Bool = false {
-  // didSet{
-  // }
-  // }
-  //MARK:- Action
-  @objc func checkdidTap(sender: UIButton){
-    
-    if checkOn == false{
-      checkOn = true
-      selectButton.tintColor = ColorPiker.customRed
-      selectButton.layer.borderColor = ColorPiker.customRed.cgColor
-    }else if checkOn == true {
-      checkOn = false
-      selectButton.tintColor = .clear
-      selectButton.layer.borderColor = ColorPiker.customDarkGray.cgColor
-    }
-    print(checkOn)
-  }
-  
+  @objc func checkdidTap(_ sender: UIButton) {
+    self.delegate?.checkdidTap(self)
+ }
+
   
   func setConstrain(){
     [selectButton,selectLable,costLabel].forEach{
@@ -91,7 +88,6 @@ class ListOptionTableViewCell: UITableViewCell {
       costLabel.leadingAnchor.constraint(equalTo: selectLable.trailingAnchor,constant: 2)
     ])
   }
-  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

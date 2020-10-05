@@ -8,13 +8,20 @@
 
 import UIKit
 
+protocol buyDelegate : class {
+  func plusdidTap(sender : UIButton, up: Int)
+  func minusdidTap(sender : UIButton, down: Int)
+}
+
 class BuyTableViewCell: UITableViewCell {
+  
+  weak var delegate : buyDelegate?
   
   let buyLable: UILabel = {
     let l = UILabel()
     l.font = FontModel.toSize.customFont
     l.text = "수량"
-    l.textColor = .black //ColorPiker.customDarkGray
+    l.textColor = .black
     return l
   }()
   
@@ -24,7 +31,6 @@ class BuyTableViewCell: UITableViewCell {
     b.tintColor = ColorPiker.customDarkGray
     b.layer.borderWidth = 1
     b.layer.borderColor = ColorPiker.customDarkGray.cgColor
-    //b.tintColor = .black
     return b
   }()
   
@@ -81,9 +87,12 @@ class BuyTableViewCell: UITableViewCell {
       }
     }
   }
+  
   //증가
   @objc func plusdidTap(sender : UIButton){
     pieceCount += 1
+    delegate?.plusdidTap(sender: sender, up: pieceCount)
+
   }
   //감소
   @objc func minusdidTap(sender : UIButton){
@@ -92,7 +101,9 @@ class BuyTableViewCell: UITableViewCell {
       pieceCount = 1
       countLable.text = "1"
     }
+    delegate?.minusdidTap(sender: sender, down: pieceCount)
   }
+  
   
   struct stackSize {
     static let stack: CGFloat = 40
@@ -133,3 +144,6 @@ class BuyTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 }
+
+
+  
