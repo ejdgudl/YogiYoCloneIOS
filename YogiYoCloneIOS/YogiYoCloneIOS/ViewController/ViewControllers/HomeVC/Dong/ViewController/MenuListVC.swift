@@ -226,8 +226,9 @@ extension MenuListVC: PushOrderVCDelegate {
     func pushOrderVCDelegate(id: Int) {
         let detailMenuVC = DetailMenuVC()
         detailMenuVC.id = id
-        detailMenuVC.modalPresentationStyle = .fullScreen
-        present(detailMenuVC, animated: true)
+        let nav = UINavigationController(rootViewController: detailMenuVC)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
         print("----------------------\(id)")
     }
 }

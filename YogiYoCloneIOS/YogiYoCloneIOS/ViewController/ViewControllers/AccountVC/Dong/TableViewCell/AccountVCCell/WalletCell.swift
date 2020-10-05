@@ -15,46 +15,49 @@ class WalletCell: UITableViewCell {
     
     var myCouponButton: UIButton = {
         let button = UIButton()
-        button.setTitle("쿠폰함\n-",for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.setTitleColor(.black, for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "쿠폰함", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        attributedTitle.append(NSAttributedString(string: "\n-", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
         return button
     }()
     
     var myPointButton: UIButton = {
         let button = UIButton()
-        button.setTitle("포인트\n-",for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.setTitleColor(.black, for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "포인트", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        attributedTitle.append(NSAttributedString(string: "\n-", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
         return button
     }()
     
     var myReviewButton: UIButton = {
         let button = UIButton()
-        button.setTitle("리뷰관리\n0건",for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.setTitleColor(.black, for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "리뷰관리", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        attributedTitle.append(NSAttributedString(string: "\n0건", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
         return button
     }()
     
     private lazy var topDeviderView: UIView = {
        let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorPiker.lightGray
         return view
     }()
     
     private lazy var deviderView1: UIView = {
        let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorPiker.lightGray
         return view
     }()
     
     private lazy var deviderView2: UIView = {
        let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorPiker.lightGray
         return view
     }()
     
