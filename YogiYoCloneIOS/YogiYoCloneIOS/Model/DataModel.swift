@@ -135,22 +135,12 @@ struct Menu: Codable {
 
 struct MenuData: Codable {
     
-
-    var id: Int
-    var name: String
-    var image: String
-    var caption: String
-    var price: Int
+    let id: Int
+    let name: String
+    let image: String
+    let caption: String
+    let price: Int
     var optionGroup: [OptionGroup?]
-    
-    init() {
-        id = 0
-        name = ""
-        image = ""
-        caption = ""
-        price = 0
-        optionGroup = [OptionGroup]()
-    }
     
     enum CodingKeys: String, CodingKey {
         case id, name, image, caption, price
@@ -160,22 +150,13 @@ struct MenuData: Codable {
     
     struct OptionGroup: Codable {
         
-        var id: Int
-        var name: String
-        var menuId: Int
+        let id: Int
+        let name: String
+        let menuId: Int
         
-        var mandatory: Bool
+        let mandatory: Bool
         var option: [Option]
-        
-        
-        init() {
-            id = 0
-            name = ""
-            mandatory = true
-            menuId = 0
-            option = [Option]()
-        }
-        
+         
         enum CodingKeys: String, CodingKey {
             case id, name, mandatory, option
             case menuId = "menu_id"
@@ -183,18 +164,12 @@ struct MenuData: Codable {
         
         struct Option: Codable {
             
-            var id: Int
-            var name: String
-            var price: Int
-            var optionGroupId: Int
-            
-            init() {
-                id = 0
-                name = ""
-                price = 0
-                optionGroupId = 0
-            }
-            
+            let id: Int
+            let name: String
+            let price: Int
+            let optionGroupId: Int
+            var selectPos: Bool = false
+
             enum CodingKeys: String, CodingKey {
                 case id, name, price
                 case optionGroupId = "option_group_id"
@@ -207,8 +182,36 @@ struct MenuData: Codable {
 
 struct OrderData: Codable {
     
-}
+    var menu: Int
+    var name: String
+    var count: Int
+    var price: Int
+    var option: [Option] = []
+    var totalPrice: Int?
+    
+  init(menu: Int, name: String, count: Int, price: Int) {
+        self.name = name
+        self.menu = menu
+        self.count = count
+        self.price = price
+        //self.option = option //초기화될경우 nil됨 ?때문에
+    }
+    
+    struct Option: Codable {
+      
+      let id: Int
+      let name: String
+      let price: Int
+      let optionGroupId: Int
+      var selectPos: Bool = false
 
+      enum CodingKeys: String, CodingKey {
+          case id, name, price
+          case optionGroupId = "option_group_id"
+      }
+      
+  }
+}
 
 
 struct UrlBase {

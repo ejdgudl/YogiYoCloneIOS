@@ -34,12 +34,21 @@ class BuyLastTableViewCell: UITableViewCell {
           l.textColor = ColorPiker.customDarkGray
           return l
       }()
+  
       
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
           super.init(style: style, reuseIdentifier: reuseIdentifier)
       setUI()
       setConstrain()
       }
+  
+//  func totalDidset(data: OrderData){
+//    var checkOn : Bool = false {
+//      didSet {
+//        costLable.text = "\(data.price)"
+//      }
+//    }
+//  }
       
       
       func setUI(){
