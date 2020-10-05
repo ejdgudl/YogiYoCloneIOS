@@ -51,7 +51,6 @@ class StoreInfoCell: UICollectionViewCell {
     
     private var heartCount = 52
     
-    let numberFormatter = NumberFormatter()
     
     private lazy var minOrderPrice: UILabel = {
         let label = UILabel()
@@ -152,6 +151,8 @@ class StoreInfoCell: UICollectionViewCell {
         stackView.addBackgroundButtonStack(color: .white)
         return stackView
     }()
+    
+    let numberFormatter = NumberFormatter()
     
     // MARK: Init
     override init(frame: CGRect) {

@@ -20,6 +20,8 @@ extension UIStackView {
         subView.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
         subView.layer.shadowRadius = 8
         subView.layer.shadowOpacity = 0.2
+        subView.frame.size = CGSize(width: self.frame.width, height: self.frame.height + 25)
+        subView.center.y = self.center.y
     }
     
     func addBackgroundButtonStack(color: UIColor) {
