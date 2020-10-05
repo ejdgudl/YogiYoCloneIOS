@@ -278,6 +278,35 @@ struct OrderData: Codable {
     
 }
 
+struct OrderListData : Codable {
+    let next: String?
+    let previous: String?
+    let results: [Results]
+    
+    struct Results: Codable {
+        
+        let id: Int
+        let orderMenu: String
+        let restautantName: String
+        let restautantImage: String
+        let status : String
+        let orderTime : String
+        let reviewWritten : Bool
+
+        enum CodingKeys: String, CodingKey {
+            case id, status
+            case orderMenu = "order_menu"
+            case restautantName = "restaurant_name"
+            case restautantImage = "restaurant_image"
+            case orderTime = "order_time"
+            case reviewWritten = "review_written"
+        }
+
+    }
+    
+    
+}
+
 
 
 struct UrlBase {
