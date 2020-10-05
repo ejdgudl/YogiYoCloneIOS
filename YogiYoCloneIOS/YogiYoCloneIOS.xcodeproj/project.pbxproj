@@ -151,6 +151,7 @@
 		DE470359250FD6F400143A6F /* YogiyoPlusCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE470358250FD6F400143A6F /* YogiyoPlusCollectionVC.swift */; };
 		DE47035B250FD76000143A6F /* StoreListFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47035A250FD76000143A6F /* StoreListFilterView.swift */; };
 		DE6393C52524E34900575DDB /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6393C42524E34900575DDB /* HistoryVC.swift */; };
+		DE7B6F11252B145A00598252 /* HistoryInfoFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B6F10252B145A00598252 /* HistoryInfoFetch.swift */; };
 		DE8202F2250B378F008537B1 /* YogiyoPlusStoreListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8202F1250B378F008537B1 /* YogiyoPlusStoreListVC.swift */; };
 		DE9610B12521E3D600F371F4 /* MyListBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9610B02521E3D600F371F4 /* MyListBannerView.swift */; };
 		DE9610B42522467900F371F4 /* HistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9610B32522467800F371F4 /* HistoryDetailVC.swift */; };
@@ -308,6 +309,7 @@
 		DE470358250FD6F400143A6F /* YogiyoPlusCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogiyoPlusCollectionVC.swift; sourceTree = "<group>"; };
 		DE47035A250FD76000143A6F /* StoreListFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListFilterView.swift; sourceTree = "<group>"; };
 		DE6393C42524E34900575DDB /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		DE7B6F10252B145A00598252 /* HistoryInfoFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInfoFetch.swift; sourceTree = "<group>"; };
 		DE8202F1250B378F008537B1 /* YogiyoPlusStoreListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogiyoPlusStoreListVC.swift; sourceTree = "<group>"; };
 		DE9610B02521E3D600F371F4 /* MyListBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListBannerView.swift; sourceTree = "<group>"; };
 		DE9610B32522467800F371F4 /* HistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailVC.swift; sourceTree = "<group>"; };
@@ -987,6 +989,14 @@
 			path = CategoryVC;
 			sourceTree = "<group>";
 		};
+		DE7B6F0F252B13D200598252 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DE7B6F10252B145A00598252 /* HistoryInfoFetch.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		DE8202F3250B4591008537B1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -1000,6 +1010,7 @@
 			children = (
 				DE9610BC252324D700F371F4 /* ViewController */,
 				DE9610BB252324D100F371F4 /* View */,
+				DE7B6F0F252B13D200598252 /* Service */,
 			);
 			path = Siroo;
 			sourceTree = "<group>";
@@ -1230,6 +1241,7 @@
 				DE9FDA7E2513B920004654A6 /* StoreFilterbigView.swift in Sources */,
 				731B05892510E75A005BC1DC /* LoginCell.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
+				DE7B6F11252B145A00598252 /* HistoryInfoFetch.swift in Sources */,
 				6E88B1892514FF3500A64DDA /* RecommendCollection.swift in Sources */,
 				D3E6EC4A24F94560005C4B32 /* BenefitCell.swift in Sources */,
 				DE47035B250FD76000143A6F /* StoreListFilterView.swift in Sources */,

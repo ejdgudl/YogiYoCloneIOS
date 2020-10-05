@@ -118,7 +118,7 @@ struct AllListData: Codable {
             case reviewCount = "review_count"
             case representativeMenus = "representative_menus"
         }
-
+        
     }
 }
 
@@ -153,10 +153,10 @@ struct RestaurantInstanceData: Codable {
     let deliveryCharge: Int
     let deliveryTime: String
     
-//    let lat: Double
-//    let lng: Double
+    //    let lat: Double
+    //    let lng: Double
     
-
+    
     let photoMenu: [PhotoMenu]
     let menuGroup: [MenuGroup]
     
@@ -186,7 +186,7 @@ struct RestaurantInstanceData: Codable {
         case menuGroup = "menu_group"
     }
 }
-    
+
 struct PhotoMenu: Codable {
     
     let id: Int
@@ -207,26 +207,26 @@ struct MenuGroup: Codable {
     
     let name: String
     var menu: [Menu]
- 
+    
     
 }
 
 struct Menu: Codable {
-     
-     let id: Int
-     let name: String
-     let image: String?
-     
-     let caption: String
-     let menuGroupId: Int
-     let price: Int
-     
-     enum CodingKeys: String, CodingKey {
-         case id, name, image, caption, price
-         case menuGroupId = "menu_group_id"
-     }
-
- }
+    
+    let id: Int
+    let name: String
+    let image: String?
+    
+    let caption: String
+    let menuGroupId: Int
+    let price: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, image, caption, price
+        case menuGroupId = "menu_group_id"
+    }
+    
+}
 
 struct MenuData: Codable {
     
@@ -251,7 +251,7 @@ struct MenuData: Codable {
         
         let mandatory: Bool
         var option: [Option]
-         
+        
         enum CodingKeys: String, CodingKey {
             case id, name, mandatory, option
             case menuId = "menu_id"
@@ -264,7 +264,7 @@ struct MenuData: Codable {
             let price: Int
             let optionGroupId: Int
             var selectPos: Bool = false
-
+            
             enum CodingKeys: String, CodingKey {
                 case id, name, price
                 case optionGroupId = "option_group_id"
@@ -276,14 +276,12 @@ struct MenuData: Codable {
 
 
 struct OrderData: Codable {
-    
     var menu: Int
     var name: String
     var count: Int
     var price: Int
     var option: [Option] = []
     var totalPrice: Int?
-    
   init(menu: Int, name: String, count: Int, price: Int) {
         self.name = name
         self.menu = menu
@@ -291,53 +289,84 @@ struct OrderData: Codable {
         self.price = price
         //self.option = option //초기화될경우 nil됨 ?때문에
     }
-    
     struct Option: Codable {
-      
       let id: Int
       let name: String
       let price: Int
       let optionGroupId: Int
       var selectPos: Bool = false
-
       enum CodingKeys: String, CodingKey {
           case id, name, price
           case optionGroupId = "option_group_id"
       }
-      
   }
 }
 
 
+struct Option: Codable {
+    
+    let id: Int
+    let name: String
+    let price: Int
+    let optionGroupId: Int
+    var selectPos: Bool = false
+    
+    struct OrderListData : Codable {
+        let next: String?
+        let previous: String?
+        let results: [Results]
+        
+        struct Results: Codable {
+            
+            let id: Int
+            let orderMenu: String
+            let restautantName: String
+            let restautantImage: String
+            let status : String
+            let orderTime : String
+            let reviewWritten : Bool
+            
+            enum CodingKeys: String, CodingKey {
+                case id, status
+                case orderMenu = "order_menu"
+                case restautantName = "restaurant_name"
+                case restautantImage = "restaurant_image"
+                case orderTime = "order_time"
+                case reviewWritten = "review_written"
+            }
+        }
+    }
+
 struct UrlBase {
+        
+        
+        static let ip = "http://52.79.251.125/"
+        
+        static let recomend = "restaurants/home_view_"
+        static let bookmarks = "bookmarks"
+        
+        static let listAll = "restaurants"
+        static let category = "categories"
+        static let instance = "restaurants/"
+        
+        static let menu = "menu/"
+        
+        static let payment = "payment_methods"
+        
+        static let ordering = "ordering"
+        
+        
+        static let restaurantList = "http://52.79.251.125/restaurants"
+        static let restaurantInstance = "http://52.79.251.125/restaurants/2"
+        
+        static let menuInstance = "http://52.79.251.125/menu/2"
+        static let order = "http://52.79.251.125/orders"
+        
+        
+        
+        static var lat = "37.545258"
+        static var lon = "127.057174"
+    }
     
-
-    static let ip = "http://52.79.251.125/"
     
-    static let recomend = "restaurants/home_view_"
-    static let bookmarks = "bookmarks"
-    
-    static let listAll = "restaurants"
-    static let category = "categories"
-    static let instance = "restaurants/"
-    
-    static let menu = "menu/"
-    
-    static let payment = "payment_methods"
-    
-    static let ordering = "ordering"
-
-
-    static let restaurantList = "http://52.79.251.125/restaurants"
-    static let restaurantInstance = "http://52.79.251.125/restaurants/2"
-
-    static let menuInstance = "http://52.79.251.125/menu/2"
-    static let order = "http://52.79.251.125/orders"
-
-
-    
-    static var lat = "37.545258"
-    static var lon = "127.057174"
 }
-
-
