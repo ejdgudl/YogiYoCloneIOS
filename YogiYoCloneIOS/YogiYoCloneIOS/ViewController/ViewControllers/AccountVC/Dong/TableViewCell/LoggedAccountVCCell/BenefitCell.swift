@@ -41,7 +41,7 @@ class BenefitCell: UITableViewCell {
     
     private let deviderView: UIView = {
        let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorPiker.lightGray
         return view
     }()
     

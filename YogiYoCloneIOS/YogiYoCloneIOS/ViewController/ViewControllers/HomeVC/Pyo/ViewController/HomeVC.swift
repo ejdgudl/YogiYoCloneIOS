@@ -60,6 +60,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     lazy var firstCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 0
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
@@ -68,6 +69,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var twiceCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 1
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
@@ -85,6 +87,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     lazy var thirdCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 2
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
@@ -93,6 +96,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var fourthCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 3
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(TripleRestaurantCustomCell.self, forCellWithReuseIdentifier: TripleRestaurantCustomCell.identifier)
@@ -101,6 +105,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var fifthCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 4
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
@@ -109,6 +114,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var sixthCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 5
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
@@ -117,6 +123,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var seventhCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 6
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantPlusCustomCell.self, forCellWithReuseIdentifier: RestaurantPlusCustomCell.identifier)
@@ -126,6 +133,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var eighthCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 7
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantCustomCell.self, forCellWithReuseIdentifier: RestaurantCustomCell.identifier)
@@ -134,11 +142,34 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     lazy var ninthCV: RecommendCollection = {
         let category = RecommendCollection()
+        category.collection.tag = 8
         category.collection.dataSource = self
         category.collection.delegate = self
         category.collection.register(RestaurantNewCustomCell.self, forCellWithReuseIdentifier: RestaurantNewCustomCell.identifier)
         category.setValue(text: "새로 오픈했어요!", image: nil)
         return category
+    }()
+    
+    var collectionData: [RecommendData?] = {
+        let index = Array(1...9)
+        var database = [RecommendData?]()
+        index.forEach {_  in
+            var data: RecommendData?
+            database.append(data)
+        }
+//        var firstCD: RecommendData?
+//        var twiceCD: RecommendData?
+//        var thirdCD: RecommendData?
+//        var fourthCD: RecommendData?
+//        var fifthCD: RecommendData?
+//        var sixthCD: RecommendData?
+//        var seventhCD: RecommendData?
+//        var eighthCD: RecommendData?
+//        var ninthCD: RecommendData?
+
+//        var database = [firstCD, twiceCD, thirdCD, fourthCD, fifthCD, sixthCD, seventhCD, eighthCD, ninthCD]
+        
+        return database
     }()
     
     private let buttonStack: BottomStack = {
@@ -164,6 +195,11 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         setUI()
         setLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = .white
     }
     
     // MARK: Set UI
@@ -315,7 +351,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     // MARK: Button func
     @objc func mapPresent(_ sender: UIButton) {
-        let mapVC = MapVC()
+        let mapVC = UINavigationController(rootViewController: MapVC())
         mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
     }
@@ -340,6 +376,11 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     @objc func plusPush(_ sender: UIButton) {
         let plusVC = YogiyoPlusStoreListVC()
         navigationController?.pushViewController(plusVC, animated: true)
+    }
+    func pushStore(store: Int) {
+        let menuVC = MenuListVC()
+        menuVC.id = store
+        navigationController?.pushViewController(menuVC, animated: true)
     }
     @objc private func companyAction(_ sender: UIButton) {
         if !bottomView.toggle {

@@ -20,7 +20,7 @@ class LoggedAccountVC: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .lightGray
+        tableView.backgroundColor = ColorPiker.lightGray
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -126,7 +126,7 @@ class LoggedAccountVC: UIViewController {
     
     // MARK: ConfigureViews
     private func configureViews() {
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         
         view.addSubview(tableView)
         
@@ -191,7 +191,6 @@ extension LoggedAccountVC: UITableViewDelegate, UITableViewDataSource {
         case 5:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "이벤트 및 공지사항"
-            cell.newImageView.backgroundColor = .red
             return cell
         case 6:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }

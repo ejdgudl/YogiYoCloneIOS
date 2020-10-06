@@ -16,10 +16,9 @@ class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
-            print(restaurant?.name)
-            storeRateLabel.text = String(format: "%.1f", restaurant?.averageRating as! CVarArg)
+            storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
             setImage(from: restaurant!.image)
-            reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
+            reviewLabel.text = " ・ 리뷰 \(String(restaurant!.reviewCount))"
             deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))원"
             estimatedTime.text = restaurant?.deliveryTime
             bestMenuLabel.text = restaurant?.representativeMenus.joined()
@@ -32,13 +31,11 @@ class StoreListCell: UITableViewCell {
     //    MARK: Properties
     private let storeImage : UIImageView = {
         let imageView = UIImageView()
-        //        imageView.image = UIImage(named: "testRestaurant")
         return imageView
     }()
     
     private let storeNameLabel : UILabel = {
         let label = UILabel()
-        //        label.backgroundColor = .red
         label.font = UIFont(name: FontModel.customLight, size: 20)
         return label
     }()
@@ -51,7 +48,6 @@ class StoreListCell: UITableViewCell {
     
     private let storeRateLabel : UILabel = {
         let label = UILabel()
-        //        label.backgroundColor = .blue
         label.textAlignment = .center
         label.font = UIFont(name: FontModel.customSemibold, size: 13)
         label.textColor = .black
@@ -74,8 +70,6 @@ class StoreListCell: UITableViewCell {
     
     private let reviewLabel : UILabel = {
         let label = UILabel()
-        //        label.textAlignment = .center
-        //        label.backgroundColor = .yellow
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
         
@@ -91,8 +85,6 @@ class StoreListCell: UITableViewCell {
     
     private let estimatedTime : UILabel = {
         let label = UILabel()
-//        label.text = " 30~40분"
-        //        label.backgroundColor = .systemPink
         label.textAlignment = .center
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .black
@@ -145,73 +137,57 @@ class StoreListCell: UITableViewCell {
         })
         
         storeImage.snp.makeConstraints { (make) in
-            make.top.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-310)
-            make.bottom.equalToSuperview().offset(-20)
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-        }
-        
-        storeNameLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(5)
-            make.leading.equalTo(storeImage.snp.trailing).offset(20)
-            make.bottom.equalToSuperview().inset(67)
+            make.top.leading.equalToSuperview().inset(20)
+            make.width.equalTo(self.snp.width).multipliedBy(0.2)
+            make.height.equalTo(storeImage.snp.width)
         }
         
         cescoMark.snp.makeConstraints { (make) in
             make.top.equalTo(storeImage.snp.top)
-            make.leading.equalTo(storeNameLabel.snp.trailing)
-            make.trailing.equalToSuperview().offset(-30)
+            make.trailing.equalToSuperview().inset(20)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.1)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.2)
-            make.bottom.equalTo(storeNameLabel.snp.bottom)
+            make.height.equalTo(storeImage.snp.height).multipliedBy(0.35)
         }
+        
+        storeNameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(storeImage)
+            make.leading.equalTo(storeImage.snp.trailing).offset(20)
+            make.trailing.equalTo(cescoMark.snp.leading)
+        }
+        
         
         starImage.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(42)
+            make.top.equalTo(storeNameLabel.snp.bottom).offset(1)
             make.leading.equalTo(storeNameLabel.snp.leading)
             make.width.height.equalTo(contentView.snp.width).multipliedBy(0.05)
-            make.bottom.equalToSuperview().inset(40)
         }
-        
         
         storeRateLabel.snp.makeConstraints { (make) in
             make.top.equalTo(starImage.snp.top)
             make.leading.equalTo(starImage.snp.trailing).offset(3)
-            make.bottom.equalTo(starImage.snp.bottom)
         }
-        
-        pointLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(storeRateLabel.snp.top)
-            make.leading.equalTo(storeRateLabel.snp.trailing).offset(5)
-            make.bottom.equalTo(storeRateLabel.snp.bottom)
-        }
+
         
         reviewLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(pointLabel.snp.top)
-            make.leading.equalTo(pointLabel.snp.trailing).offset(2)
-            make.trailing.equalToSuperview().inset(150)
-            make.bottom.equalTo(pointLabel.snp.bottom)
+            make.top.equalTo(storeRateLabel.snp.top)
+            make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
         deliveryDiscountLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(pointLabel.snp.bottom).offset(-20)
-            make.leading.equalTo(storeNameLabel.snp.leading)
-            make.bottom.equalToSuperview().inset(15)
+            make.top.equalTo(starImage.snp.bottom).offset(1)
+            make.leading.equalTo(starImage.snp.leading)
+        }
+
+        estimatedTime.snp.makeConstraints { (make) in
+            make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         bestMenuLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(pointLabel.snp.bottom).offset(15)
-            make.leading.equalTo(storeNameLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(50)
-            make.bottom.equalToSuperview().inset(10)
-        }
-        
-        estimatedTime.snp.makeConstraints { (make) in
-            make.top.equalTo(bestMenuLabel.snp.top)
-            make.leading.equalTo(bestMenuLabel.snp.trailing).offset(-20)
-            make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(bestMenuLabel.snp.bottom)
+            make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+            make.leading.equalTo(deliveryDiscountLabel.snp.leading)
+            make.trailing.equalTo(estimatedTime.snp.leading)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
 //    MARK:  Store Image Set
@@ -232,7 +208,7 @@ class StoreListCell: UITableViewCell {
         setImage(from: image ?? "")
         storeNameLabel.text = title
         storeRateLabel.text = "\(starPoint ?? 0)"
-        reviewLabel.text = "리뷰 \(review ?? 0)"
+        reviewLabel.text = " ・ 리뷰 \(review ?? 0)"
         bestMenuLabel.text = explain
         cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }

@@ -11,6 +11,7 @@ import UIKit
 extension HomeVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         switch collectionView {
         case categoryCV.collection:
             
@@ -25,6 +26,8 @@ extension HomeVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let index = collectionView.tag
+        
         switch collectionView {
         case categoryCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCustomCell.identifier,
@@ -33,6 +36,7 @@ extension HomeVC: UICollectionViewDataSource {
                           title: category.item[indexPath.item].name)
             
             return item
+            
         case firstCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
@@ -44,9 +48,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus)
+                    self.collectionData[index] = RecommendData
                 }
             }
+            
             return item
+            
         case twiceCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
@@ -58,10 +65,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus)
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case thirdCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
@@ -74,10 +83,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: "배달비 무료")
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case fourthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TripleRestaurantCustomCell.identifier,
                                                                 for: indexPath) as? TripleRestaurantCustomCell else { fatalError() }
@@ -90,10 +101,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus,
                                   discountText: "\(self.formatter.string(from: RecommendData.results[indexPath.item].deliveryDiscount as NSNumber) ?? "")원 할인")
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case fifthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
@@ -105,10 +118,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: "최소주문 \(self.formatter.string(from: RecommendData.results[indexPath.item].minOrderPrice as NSNumber) ?? "")원")
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case sixthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
@@ -120,10 +135,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus)
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case seventhCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantPlusCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantPlusCustomCell else { fatalError() }
@@ -134,10 +151,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus)
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case eighthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantCustomCell else { fatalError() }
@@ -150,10 +169,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   starPoint: RecommendData.results[indexPath.item].star,
                                   review: RecommendData.results[indexPath.item].reviewCount,
                                   explain: RecommendData.results[indexPath.item].representativeMenus)
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         case ninthCV.collection:
             guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantNewCustomCell.identifier,
                                                                 for: indexPath) as? RestaurantNewCustomCell else { fatalError() }
@@ -163,10 +184,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   imageText: "NEW",
                                   title: RecommendData.results[indexPath.item].name,
                                   explain: RecommendData.results[indexPath.item].representativeMenus)
+                    self.collectionData[index] = RecommendData
                 }
             }
             
             return item
+            
         default:
             fatalError()
         }

@@ -50,8 +50,13 @@ class MenuListVC: UIViewController {
         super.viewDidLoad()
         configureStoreInfo()
         configure()
-        configureNavi()
+        
         configureViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavi()
     }
     
     // MARK: @Objc
@@ -59,14 +64,14 @@ class MenuListVC: UIViewController {
         
     }
     
-    @objc private func didTapBackButton() {
-      navigationController?.popViewController(animated: true)
-    }
+//    @objc private func didTapBackButton() {
+//      navigationController?.popViewController(animated: true)
+//    }
     
     lazy var bar:UINavigationBar! =  self.navigationController?.navigationBar
     
     // MARK: Helpers
-    private func configureNavi() {
+    public func configureNavi() {
         UIApplication.shared.statusBarStyle = .lightContent
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
@@ -75,7 +80,13 @@ class MenuListVC: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        bar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        navigationController?.navigationBar.barTintColor = .white
     }
     
     private func configureStoreInfo() {
@@ -114,7 +125,7 @@ class MenuListVC: UIViewController {
         
         bottomView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(85)
+            make.height.equalToSuperview().multipliedBy(0.1)
         }
     }
 }
@@ -226,8 +237,9 @@ extension MenuListVC: PushOrderVCDelegate {
     func pushOrderVCDelegate(id: Int) {
         let detailMenuVC = DetailMenuVC()
         detailMenuVC.id = id
-        detailMenuVC.modalPresentationStyle = .fullScreen
-        present(detailMenuVC, animated: true)
+        let nav = UINavigationController(rootViewController: detailMenuVC)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
         print("----------------------\(id)")
     }
 }

@@ -49,7 +49,7 @@ class SegMenuCell: UICollectionViewCell {
     
     // MARK: ConfigureViews
     private func configureViews() {
-        backgroundColor = .lightGray
+        backgroundColor = ColorPiker.lightGray
         
         addSubview(collectionView)
         

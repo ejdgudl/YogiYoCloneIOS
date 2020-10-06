@@ -57,17 +57,17 @@ struct LikeData: Codable {
     
     struct Results: Codable {
         
-        let id: Int?
-        let name: String?
-        let star: Double?
-        let image: String?
+        let id: Int
+        let name: String
+        let star: Double
+        let image: String
         
-        let deliveryDiscount: Int?
-        let deliveryCharge: Int?
-        let deliveryTime: String?
+        let deliveryDiscount: Int
+        let deliveryCharge: Int
+        let deliveryTime: String
         
-        let reviewCount:Int?
-        let representativeMenus: String?
+        let reviewCount:Int
+        let representativeMenus: String
         let ownerCommentCount:Int?
         
         

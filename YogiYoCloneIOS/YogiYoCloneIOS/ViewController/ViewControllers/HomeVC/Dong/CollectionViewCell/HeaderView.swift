@@ -23,8 +23,9 @@ class HeaderView: UICollectionReusableView {
             }
             storeLabel.text = storeInfo.name
             cosmosView.rating = storeInfo.averageRating
-            discountLabel.text = String(storeInfo.deliveryDiscount)
-            deliveryTime.text = storeInfo.deliveryTime
+            discountLabel.text = "\(numberFormatter.string(from: NSNumber(value: storeInfo.deliveryDiscount))!)원 할인"
+            deliveryTime.text = "배달예상시간 \(storeInfo.deliveryTime)"
+            cosmosView.text = "\(storeInfo.averageRating)"
         }
     }
     
@@ -41,7 +42,7 @@ class HeaderView: UICollectionReusableView {
     let storeLabel: UILabel = {
         let label = UILabel()
         label.text = "Store Name"
-        label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -54,22 +55,23 @@ class HeaderView: UICollectionReusableView {
         view.settings.starMargin = 1
         view.settings.fillMode = .precise
         view.settings.starSize = 15
-        view.settings.filledColor = .red
         view.settings.emptyBorderColor = .lightGray
+        view.settings.filledImage = UIImage(named: "star")
         return view
     }()
     
+    let label = UILabel()
+    
     let discountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Discout Label"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.textColor = .systemRed
         return label
     }()
     
     let deliveryTime: UILabel = {
         let label = UILabel()
-        label.text = "Delivery Time"
-        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         return label
     }()
     
@@ -77,20 +79,28 @@ class HeaderView: UICollectionReusableView {
         let stackView = UIStackView(arrangedSubviews: [storeLabel, cosmosView, discountLabel, deliveryTime])
         stackView.axis = .vertical
         stackView.spacing = 2
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.addBackgroundWithShadow(color: .white)
         return stackView
     }()
     
+    let numberFormatter = NumberFormatter()
+    
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
         configureViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Configure
+    private func configure() {
+        numberFormatter.numberStyle = .decimal
     }
     
     // MARK: ConfigureViews
@@ -114,7 +124,7 @@ class HeaderView: UICollectionReusableView {
                 make.width.equalToSuperview().inset(16)
             } else {
                 print("yes")
-                make.centerY.equalTo(self.snp.bottom).offset(20)
+                make.centerY.equalTo(self.snp.bottom).offset(10)
                 make.centerX.equalToSuperview()
                 make.width.equalToSuperview().inset(16)
             }
