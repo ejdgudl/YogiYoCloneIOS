@@ -16,7 +16,7 @@ class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results? {
         didSet {
             storeNameLabel.text = restaurant?.name
-            print(restaurant?.name)
+            print("스토어 라벨: \(restaurant?.name)")
             storeRateLabel.text = String(format: "%.1f", restaurant?.averageRating as! CVarArg)
             setImage(from: restaurant!.image)
             reviewLabel.text = "리뷰 \(String(restaurant!.reviewCount))"
@@ -40,6 +40,7 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         //        label.backgroundColor = .red
         label.font = UIFont(name: FontModel.customLight, size: 20)
+        label.backgroundColor = .yellow
         return label
     }()
     
@@ -86,6 +87,7 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
+        label.backgroundColor = .blue
         return label
     }()
     
@@ -105,6 +107,8 @@ class StoreListCell: UITableViewCell {
         button.setImage(UIImage(named: "cesco"), for: .normal)
         button.tintColor = .systemRed
         button.isSelected = true
+        button.backgroundColor = .red
+        button.layer.borderWidth = 1
         return button
     }()
     
@@ -146,8 +150,8 @@ class StoreListCell: UITableViewCell {
         
         storeImage.snp.makeConstraints { (make) in
             make.top.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-310)
-            make.bottom.equalToSuperview().offset(-20)
+//            make.leading.equalToSuperview().offset(-310)
+//            make.bottom.equalToSuperview().offset(-20)
             make.width.equalTo(100)
             make.height.equalTo(100)
         }
@@ -155,16 +159,17 @@ class StoreListCell: UITableViewCell {
         storeNameLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(5)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
-            make.bottom.equalToSuperview().inset(67)
+//            make.bottom.equalToSuperview().inset(67)
+            
         }
         
         cescoMark.snp.makeConstraints { (make) in
-            make.top.equalTo(storeImage.snp.top)
+            make.top.bottom.equalTo(storeNameLabel)
+//            make.centerY.equalTo(storeNameLabel)
             make.leading.equalTo(storeNameLabel.snp.trailing)
-            make.trailing.equalToSuperview().offset(-30)
+//            make.trailing.equalToSuperview().offset(-30)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.1)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.2)
-            make.bottom.equalTo(storeNameLabel.snp.bottom)
+//            make.height.equalTo(contentView.snp.height).multipliedBy(0.2)
         }
         
         starImage.snp.makeConstraints { (make) in
@@ -203,15 +208,14 @@ class StoreListCell: UITableViewCell {
         bestMenuLabel.snp.makeConstraints { (make) in
             make.top.equalTo(pointLabel.snp.bottom).offset(15)
             make.leading.equalTo(storeNameLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(50)
+            make.trailing.equalTo(estimatedTime.snp.leading).inset(50)
             make.bottom.equalToSuperview().inset(10)
         }
         
         estimatedTime.snp.makeConstraints { (make) in
-            make.top.equalTo(bestMenuLabel.snp.top)
-            make.leading.equalTo(bestMenuLabel.snp.trailing).offset(-20)
-            make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(bestMenuLabel.snp.bottom)
+//            make.top.equalTo(bestMenuLabel.snp.top)
+            make.trailing.equalTo(cescoMark.snp.trailing)
+            make.centerY.equalTo(bestMenuLabel)
         }
     }
 //    MARK:  Store Image Set
