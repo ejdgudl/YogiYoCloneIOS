@@ -83,6 +83,12 @@ class MenuListVC: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        bar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        navigationController?.navigationBar.barTintColor = .white
+    }
+    
     private func configureStoreInfo() {
         storeInfoService(selfVC: self, id: self.id)
     }
@@ -119,7 +125,7 @@ class MenuListVC: UIViewController {
         
         bottomView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(85)
+            make.height.equalToSuperview().multipliedBy(0.1)
         }
     }
 }

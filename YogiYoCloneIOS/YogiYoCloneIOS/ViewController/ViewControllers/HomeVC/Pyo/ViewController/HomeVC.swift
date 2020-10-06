@@ -189,6 +189,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         
         setUI()
         setLayout()
+        navigationController?.navigationBar.barTintColor = .white
     }
     
     // MARK: Set UI

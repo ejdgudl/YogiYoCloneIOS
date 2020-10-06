@@ -16,8 +16,8 @@ class MenuListVCBottomView: UIView {
         button.backgroundColor = .red
         button.setTitle("터치 주문", for: .normal)
         button.titleLabel?.textAlignment = .center
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        button.titleEdgeInsets = UIEdgeInsets(top: 15, left: 0, bottom: 30, right: 0)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         return button
     }()
     
@@ -26,8 +26,8 @@ class MenuListVCBottomView: UIView {
         button.backgroundColor = UIColor(red: 171/255, green: 40/255, blue: 38/255, alpha: 1)
         button.setTitle("전화 주문", for: .normal)
         button.titleLabel?.textAlignment = .center
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        button.titleEdgeInsets = UIEdgeInsets(top: 15, left: 0, bottom: 30, right: 0)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         return button
     }()
     
