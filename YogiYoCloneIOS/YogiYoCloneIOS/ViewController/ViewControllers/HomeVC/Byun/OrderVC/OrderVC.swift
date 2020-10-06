@@ -13,9 +13,7 @@ class OderVC : UIViewController {
   
   var orderMager = OrderManager.shared
   var orderList: [OrderData] = []
-  
-  //var post = [Post1]()
-  
+    
   lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapButton))
   
   public var id : Int = 1
