@@ -13,9 +13,7 @@ class OderVC : UIViewController {
   
   var orderMager = OrderManager.shared
   var orderList: [OrderData] = []
-  
-  //var post = [Post1]()
-  
+    
   lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapButton))
   
   public var id : Int = 1
@@ -75,12 +73,6 @@ class OderVC : UIViewController {
           let restaurant = "restaurant"
           let total_price = "total_price"
           print(json)
-          
-        //  let item = datalist(address: id, order_menu: [orderList], payment_method:  )
-          
-          //orderlist에 item할당
-          // 주문정보 하나 담기(주메뉴)
-       //   self.orderlist =  item
           
           
         }catch{
