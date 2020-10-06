@@ -151,17 +151,23 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     }()
     
     var collectionData: [RecommendData?] = {
-        var firstCD: RecommendData?
-        var twiceCD: RecommendData?
-        var thirdCD: RecommendData?
-        var fourthCD: RecommendData?
-        var fifthCD: RecommendData?
-        var sixthCD: RecommendData?
-        var seventhCD: RecommendData?
-        var eighthCD: RecommendData?
-        var ninthCD: RecommendData?
+        let index = Array(1...9)
+        var database = [RecommendData?]()
+        index.forEach {_  in
+            var data: RecommendData?
+            database.append(data)
+        }
+//        var firstCD: RecommendData?
+//        var twiceCD: RecommendData?
+//        var thirdCD: RecommendData?
+//        var fourthCD: RecommendData?
+//        var fifthCD: RecommendData?
+//        var sixthCD: RecommendData?
+//        var seventhCD: RecommendData?
+//        var eighthCD: RecommendData?
+//        var ninthCD: RecommendData?
 
-        var database = [firstCD, twiceCD, thirdCD, fourthCD, fifthCD, sixthCD, seventhCD, eighthCD, ninthCD]
+//        var database = [firstCD, twiceCD, thirdCD, fourthCD, fifthCD, sixthCD, seventhCD, eighthCD, ninthCD]
         
         return database
     }()
@@ -340,7 +346,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     
     // MARK: Button func
     @objc func mapPresent(_ sender: UIButton) {
-        let mapVC = MapVC()
+        let mapVC = UINavigationController(rootViewController: MapVC())
         mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
     }
