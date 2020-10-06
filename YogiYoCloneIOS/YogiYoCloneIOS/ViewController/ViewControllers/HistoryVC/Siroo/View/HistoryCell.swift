@@ -20,8 +20,8 @@ class HistoryCell: UITableViewCell {
         didSet {
             storeName.text = history?.restaurantName
             historySetImage(from: history!.restaurantImage)
-            orderStatus.text = history?.status
-            orderTime.text = history?.orderTime
+//            orderStatus.text = history?.status
+//            orderTime.text = history?.orderTime
             orderMenu.text = history?.orderMenu
         }
     }
@@ -48,7 +48,7 @@ class HistoryCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: FontModel.customSemibold, size: 15)
         label.textColor = .systemGray
-        label.text = "주문완료"
+        label.text = "배달완료"
         return label
     }()
     
@@ -120,10 +120,10 @@ class HistoryCell: UITableViewCell {
     private func setUIConstraints() {
         addSubview(delivery)
         delivery.snp.makeConstraints { (make) in
-      //      make.centerX.equalTo(contentView).multipliedBy(4)
-//            make.centerY.equalTo(contentView).multipliedBy(9)
+            make.centerX.equalTo(contentView).multipliedBy(4)
+            make.centerY.equalTo(contentView).multipliedBy(9)
             make.top.equalTo(contentView.snp.top).offset(10)
-//            make.leading.equalTo(contentView.snp.leading).offset(8)
+            make.leading.equalTo(contentView.snp.leading).offset(8)
             make.width.equalTo(100)
             make.height.equalTo(18)
         }
