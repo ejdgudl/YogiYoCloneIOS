@@ -64,9 +64,9 @@ class MenuListVC: UIViewController {
         
     }
     
-    @objc private func didTapBackButton() {
-      navigationController?.popViewController(animated: true)
-    }
+//    @objc private func didTapBackButton() {
+//      navigationController?.popViewController(animated: true)
+//    }
     
     lazy var bar:UINavigationBar! =  self.navigationController?.navigationBar
     
@@ -80,7 +80,7 @@ class MenuListVC: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
