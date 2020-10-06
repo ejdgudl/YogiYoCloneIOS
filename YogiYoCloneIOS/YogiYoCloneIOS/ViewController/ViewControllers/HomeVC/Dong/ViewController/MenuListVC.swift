@@ -89,12 +89,6 @@ class MenuListVC: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        bar.setBackgroundImage(nil, for: UIBarMetrics.default)
-        navigationController?.navigationBar.barTintColor = .white
-    }
-    
     private func configureStoreInfo() {
         storeInfoService(selfVC: self, id: self.id)
     }
