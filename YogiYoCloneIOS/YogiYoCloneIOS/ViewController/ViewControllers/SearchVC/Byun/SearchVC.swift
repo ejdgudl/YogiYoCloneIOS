@@ -13,6 +13,11 @@ class SearchVC: UIViewController {
   let searchfield = UITextField()
   let tableview = UITableView()
   
+  //SearchData만 담기
+  var searchList: SearchDataload?
+ // var test : DidSearchData.Results?
+  
+  var data : DidSearchData?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,9 +26,9 @@ class SearchVC: UIViewController {
     setNavi()
     setSearchfield()
     setTableView()
-   // fechData()
+    fechData()
     
-    filterData = data
+    filterData = datai
   }
   //MARK:-Searchfield
   func setSearchfield(){
@@ -59,10 +64,8 @@ class SearchVC: UIViewController {
     self.resignFirstResponder()
     
   }
-  //MARK: -fechData
     
     func setTableView(){
-      
       tableview.dataSource = self
       tableview.delegate = self
       tableview.frame = view.frame
@@ -76,21 +79,45 @@ class SearchVC: UIViewController {
     }
     
   
-  let data = ["롯데리아","버거킹","치요남치킨","요거프레소","호식이두마리치킨","홍콩반점0410","홈플러스익스프레스","호치킨"]
+  let datai = ["롯데리아","버거킹","치요남치킨","요거프레소","호식이두마리치킨","홍콩반점0410","홈플러스익스프레스","호치킨", "피자헛","맥도날드"]
+ // let datai : [String] = []
   var filterData : [String]!
   
+  //MARK: -fechData
+  func fechData(){
+    //\(word.self)
+    let url = URL(string: "http://52.79.251.125/restaurants?/tags?name=")
+    URLSession.shared.dataTask(with: url!) { (data, _, _) in
+      guard let data = data else { return }
+      do {
+        self.data = try JSONDecoder().decode(DidSearchData.self, from: data)
+       print(data)
+        let next = self.data?.next
+        let previous = self.data?.previous
+        
+        let item = DidSearchData(next: next, previous: previous)
+      //  self.datai = item
+  //searchList
+        DispatchQueue.main.async{
+       // self.tableView.reloadData()
+        }
+      } catch {
+        print("catch")
+      }
+    }.resume()
+  }
+ 
   }
   
   
   extension SearchVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      filterData.count
+      data?.results!.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
-      cell.textLabel?.text = filterData[indexPath.row]
-      
+      cell.textLabel?.text = data?.results![indexPath.row].name
       return cell
       
     }
@@ -98,13 +125,14 @@ class SearchVC: UIViewController {
   }
 
 extension SearchVC : UITextFieldDelegate {
-  func textFieldDidChangeSelection(_ textField: UITextField) {
+  func textFieldDidChangeSelection(_ textField: UITextField) {    
+    
     filterData = []
     
     if searchfield.text == "" {
-      filterData = data
+      filterData = datai
     }else {
-    for index in data {
+    for index in datai {
       if index.lowercased().contains(textField.text?.lowercased() ?? "") {
         filterData.append(index)
       }
@@ -115,9 +143,24 @@ extension SearchVC : UITextFieldDelegate {
 }
 extension SearchVC : UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DidSearchVC()
-        navigationController?.pushViewController(vc, animated: true)
-    filterData.removeAll()
+    let vc = DidSearchVC()
+    navigationController?.pushViewController(vc, animated: true)
+  
+      filterData.removeAll()
+    
+   // let searchData = SearchData(id: , name: <#T##String?#>)
+    
+    var item = data?.results![indexPath.row]
+    var searchData = DidSearchData.Results(id: item?.id, name: item?.name, star: item?.star, image: item?.image, deliveryDiscount: item?.deliveryCharge, deliveryCharge: item?.deliveryCharge, deliveryTime: item?.deliveryTime, reviewCount: item?.reviewCount, representativeMenus: item?.representativeMenus, ownerCommentCount: item?.ownerCommentCount)
+    
+   // self.searchList?.results?.append(self.searchData)
+//     self.searchList?.results?.append(self.searchData)
+   // self.searchList?.results?.append(self.searchData)
+   // self.searchList?.results?.append()
+    print("searchData : \(searchData)")
+    print("searchList : \(searchList)")
+   
+    //  vc.menuValue(orderData: orderData)
     
   }
 }

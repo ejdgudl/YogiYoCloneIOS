@@ -18,7 +18,7 @@ class DetailMenuVC: UIViewController {
     var orderMager = OrderManager.shared
     
     // 주메뉴를 담기 위한 변수
-    var orderlist: OrderData?
+  var orderlist: OrderData?
     
   var data: MenuData?
   
@@ -248,15 +248,15 @@ class DetailMenuVC: UIViewController {
 //MARK:- ListMenuDelagate
 //선택사항
 extension DetailMenuVC : ListMenuDelagate {
+  
   func menuCheckdidTap(_ cell: UITableViewCell, check: Bool) {
     // 체크 ===> 필수값을 유저가 선택했는지 (참/거짓을 전달)
     guard let indexPath = tableView.indexPath(for: cell)
     else {return}
-      let item = data!.optionGroup[indexPath.section-2]!.option[indexPath.row-1]
-     
+     let item = data!.optionGroup[indexPath.section-2]!.option[indexPath.row-1]
      let optionItem = OrderData.Option(id: item.id, name: item.name, price: item.price, optionGroupId: item.optionGroupId, selectPos: item.selectPos)
+    
     if check {
-      
       self.orderlist?.option.append(optionItem)
       print("self.orderlist?.option : \(self.orderlist?.option)")
       reCalculatePriceAndDisplay()

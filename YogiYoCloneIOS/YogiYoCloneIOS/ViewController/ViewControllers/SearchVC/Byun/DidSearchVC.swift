@@ -10,6 +10,10 @@ import UIKit
 
 class DidSearchVC : UIViewController {
   
+  //public var restaurants: [AllListData.Results] = []
+  var data : DidSearchData?
+  var word : String = ""
+    
   let searchfield = UITextField()
   let topView = TopView()
   let tableV = UITableView()
@@ -24,7 +28,52 @@ class DidSearchVC : UIViewController {
     setTableView()
     topViewFrame()
     constrain()
+    
+//    loadData { (DidSearchData) in
+//        self.didSearchdata = DidSearchData
+//        DispatchQueue.main.async {
+//            self.setUI()
+//            self.setLayout()
+//        }
+ //   }
   }
+  
+  
+  func fechData(){
+    //\(word.self)
+    let url = URL(string: "http://52.79.251.125/restaurants?/tags?name=")
+    URLSession.shared.dataTask(with: url!)  { (data, _, _) in
+      guard let data = data else { return }
+      do {
+        self.data = try JSONDecoder().decode(DidSearchData.self, from: data)
+       print(data)
+        
+        
+//        let id = self.data?.id
+//        let name = self.data?.name
+//        let averageRating = self.data?.averageRating
+//        let image = self.data?.image
+//        let deliveryDiscount = self.data?.deliveryDiscount
+//        let deliveryCharge = self.data?.deliveryCharge
+//        let deliveryTime = self.data?.deliveryTime
+//        let reviewCount = self.data?.reviewCount
+        let representativeMenus = self
+        
+        
+       // let searchList = SearchData(id: id!, name: name!, averageRating: averageRating!, image: image!, deliveryDiscount: deliveryDiscount!, deliveryCharge: deliveryCharge!, deliveryTime: deliveryTime!, reviewCount: reviewCount!, representativeMenus: [String]())
+   
+        
+        DispatchQueue.main.async{
+       // self.tableView.reloadData()
+        }
+      } catch {
+        print("catch")
+      }
+    }.resume()
+  }
+  
+  
+  
   //MARK:-Searchfield
   func setSearchfield(){
     searchfield.sizeToFit()
@@ -37,7 +86,6 @@ class DidSearchVC : UIViewController {
     searchfield.delegate = self
   }
   func topViewFrame(){
-    topView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 135)
     view.addSubview(topView)
     topView.translatesAutoresizingMaskIntoConstraints = false
   }
@@ -54,7 +102,6 @@ class DidSearchVC : UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply.circle.fill"), style: .done, target: self, action: #selector(canceltoDidTab( _:)))
     navigationItem.rightBarButtonItem?.tintColor = .lightGray
       
-      
      // title: "취소", style: .plain, target: self, action: #selector(canceltoDidTab( _:)))
   }
   
@@ -66,38 +113,66 @@ class DidSearchVC : UIViewController {
   
   @objc func canceltoDidTab(_ sender: UIButton){
     self.resignFirstResponder()
-//    let vc = SearchVC()
     navigationController?.popViewController(animated: true)
     
   }
-}
-
-func setTableView(){
-  
-//  tableV.dataSource = self
-  //tableview.delegate = self
-//  tableV.frame = view.frame
-//  tableV.rowHeight = 44
-//  tableV.backgroundColor = .white
-//  tableV.separatorStyle = .none
-//  tableV.clipsToBounds = true
-//  view.addSubview(tableV)
-  
- // tableV.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-}
-
-
-func constrain(){
-  NSLayoutConstraint.activate([
+  func setTableView(){
     
+    tableV.dataSource = self
+    //tableview.delegate = self
+    tableV.rowHeight = 120
+    tableV.backgroundColor = .white
+    tableV.separatorStyle = .singleLine
+    tableV.clipsToBounds = true
+    view.addSubview(tableV)
     
-  ])
+    tableV.register(StoreListCell.self, forCellReuseIdentifier: "StoreListCell")
+  }
+
+
+  func constrain(){
+    tableV.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      topView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+      topView.heightAnchor.constraint(equalToConstant: 44),
+      
+      tableV.topAnchor.constraint(equalTo: topView.bottomAnchor),
+      tableV.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+      tableV.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      
+    ])
 
 }
-
-
+  
+}
 extension DidSearchVC : UITextFieldDelegate{
   func textFieldDidChangeSelection(_ textField: UITextField) {
     navigationController?.popViewController(animated: false)
   }
+}
+
+extension DidSearchVC : UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    10
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "StoreListCell", for: indexPath) as! StoreListCell
+//    let vc =
+//      vc.searchValue
+    
+    let row = indexPath.row
+//    cell.searchValue(image: DidSearchData?.results[row].image,
+//                  title: DidSearchData?.results[row].name,
+//                  starPoint: DidSearchData?.results[row].star,
+//                  review: DidSearchData?.results[row].reviewCount,
+//                  discount: DidSearchData?.results[row].deliveryDiscount,
+//                  explain: DidSearchData?.results[row].representativeMenus)
+    
+   // cell.restaurant = self.restaurants[indexPath.row]
+    return cell
+  }
+  
+
 }

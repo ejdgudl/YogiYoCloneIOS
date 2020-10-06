@@ -74,12 +74,6 @@ class OderVC : UIViewController {
           let total_price = "total_price"
           print(json)
           
-        //  let item = datalist(address: id, order_menu: [orderList], payment_method:  )
-          
-          //orderlist에 item할당
-          // 주문정보 하나 담기(주메뉴)
-       //   self.orderlist =  item
-          
           
         }catch{
           print(error)
