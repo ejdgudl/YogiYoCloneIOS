@@ -13,14 +13,17 @@ extension HomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == categoryCV.collection {
-            guard indexPath.row == 1 || indexPath.row == 2 else {
+
+            guard indexPath.item == 1 || indexPath.item == 2 else {
+
                 let listVC = StoreListVC()
-                indexPath.row < 3 ? (listVC.categoryIndex = indexPath.row) : (listVC.categoryIndex = indexPath.row - 2)
+                indexPath.item < 3 ? (listVC.categoryIndex = indexPath.item) : (listVC.categoryIndex = indexPath.item - 2)
                 navigationController?.pushViewController(listVC, animated: true)
+
                 return
             }
-            
-            switch indexPath.row {
+
+            switch indexPath.item {
             case 1:
                 let plusVC = YogiyoPlusStoreListVC()
                 navigationController?.pushViewController(plusVC, animated: true)
@@ -31,7 +34,7 @@ extension HomeVC: UICollectionViewDelegate {
             }
         } else {
             
-            return
+            return pushStore(store: collectionData[collectionView.tag]?.results[indexPath.item].id ?? 0)
         }
     }
 }
