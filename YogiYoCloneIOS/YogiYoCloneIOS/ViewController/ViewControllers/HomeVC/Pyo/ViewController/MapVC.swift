@@ -11,22 +11,52 @@ import SnapKit
 
 class MapVC: UIViewController {
     
-    private let button: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("MapVC dismiss", for: .normal)
-        return button
+    private let topView = TopSearchView()
+    
+    private lazy var addressTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(NearestCustomCell.self, forCellReuseIdentifier: NearestCustomCell.identifier)
+        tableView.register(NearestListCustomCell.self, forCellReuseIdentifier: NearestListCustomCell.identifier)
+//        tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>)
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        setUI()
+        setLayout()
+    }
+    private func setUI() {
         
-        button.frame = CGRect(x: view.center.x - 100,
-                              y: view.center.y, width: 200, height: 100)
-        button.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
-        view.addSubview(button)
+        view.backgroundColor = ColorPiker.customGray
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(dismiss(_:)))
+        navigationItem.leftBarButtonItem?.tintColor = .black
+        title = "배달 주소 설정"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
+        
+        view.addSubview(topView)
+        
+        view.addSubview(addressTableView)
+    }
+    private func setLayout() {
+        
+        topView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(topView.snp.width).multipliedBy(0.32)
+        }
+        
+        addressTableView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom).offset(CollectionDesign.padding / 2)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
     @objc func dismiss(_ sender: UIButton) {
         dismiss(animated: true)

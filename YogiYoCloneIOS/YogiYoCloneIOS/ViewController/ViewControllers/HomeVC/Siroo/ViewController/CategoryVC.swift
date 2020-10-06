@@ -45,7 +45,7 @@ class CategoryVC: UIViewController {
         
         
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.rowHeight = 120
+//        tableView.rowHeight = 120
         tableView.allowsSelection = true
         
         
