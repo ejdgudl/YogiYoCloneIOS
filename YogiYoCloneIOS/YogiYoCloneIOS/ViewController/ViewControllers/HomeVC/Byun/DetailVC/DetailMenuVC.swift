@@ -199,8 +199,8 @@ class DetailMenuVC: UIViewController {
   //MARK: -Action
   //닫기
   @objc func dismissButton(sender : UIBarButtonItem){
-    // dismiss(animated: true, completion: nil)
-    navigationController?.popViewController(animated: true)
+     dismiss(animated: true, completion: nil)
+  //  navigationController?.popViewController(animated: true)
   }
   //공유하기
   @objc func shareButton(sender : UIBarButtonItem){

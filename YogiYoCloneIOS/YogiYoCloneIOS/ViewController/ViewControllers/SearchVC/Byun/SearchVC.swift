@@ -21,12 +21,15 @@ class SearchVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    searchfield.addTarget(self, action: #selector(textfieldDid(_ :)), for: .editingChanged)
+    
     navigationItem.titleView = searchfield
     view.backgroundColor = .yellow
     setNavi()
     setSearchfield()
     setTableView()
-    fechData()
+   // fechData()
     
     filterData = datai
   }
@@ -64,6 +67,10 @@ class SearchVC: UIViewController {
     self.resignFirstResponder()
     
   }
+  
+  @objc func textfieldDid(_ sender : UITextField){
+    tableview.reloadData()
+  }
     
     func setTableView(){
       tableview.dataSource = self
@@ -81,12 +88,14 @@ class SearchVC: UIViewController {
   
   let datai = ["롯데리아","버거킹","치요남치킨","요거프레소","호식이두마리치킨","홍콩반점0410","홈플러스익스프레스","호치킨", "피자헛","맥도날드"]
  // let datai : [String] = []
+  let dataa : [String] = []
   var filterData : [String]!
   
   //MARK: -fechData
-  func fechData(){
-    //\(word.self)
-    let url = URL(string: "http://52.79.251.125/restaurants?/tags?name=")
+  func fechData(text : String?){
+    //http://52.79.251.125/restaurants?search=%ED%94%BC%EC%9E%90
+    //\(word.self) // text : String
+    let url = URL(string: "http://52.79.251.125/restaurants?search=\(text)")
     URLSession.shared.dataTask(with: url!) { (data, _, _) in
       guard let data = data else { return }
       do {
@@ -116,8 +125,12 @@ class SearchVC: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      fechData(text: searchfield.text)
       let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
       cell.textLabel?.text = data?.results![indexPath.row].name
+   //   self.data?.results![indexPath.row].name?.append(self.dataa)
+     
+      print("dataa : \(dataa)")
       return cell
       
     }
@@ -126,7 +139,8 @@ class SearchVC: UIViewController {
 
 extension SearchVC : UITextFieldDelegate {
   func textFieldDidChangeSelection(_ textField: UITextField) {    
-    
+    //     // fechData(text: searchfield.text ?? "")
+
     filterData = []
     
     if searchfield.text == "" {
