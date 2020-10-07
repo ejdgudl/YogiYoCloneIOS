@@ -41,7 +41,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     private var codeSegmented: CustomTopCategoryView?
     
     private let categories: [String] = StoreinfoFetch.categories
-    //    private let categoriesVC: [CategoryVC] = [CategoryVC](repeating: CategoryVC(), count: StoreinfoFetch.categories.count)
+//        private let categoriesVC: [CategoryVC] = [CategoryVC](repeating: CategoryVC(), count: StoreinfoFetch.categories.count)
     
     private let categoriesVC: [CategoryVC] = [CategoryVC(), CategoryVC(), CategoryVC(), CategoryVC(), CategoryVC()]
     
@@ -111,6 +111,13 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
         tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        title = "성수동2가 277-17 ▼"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        title = ""
     }
     
     func scrolltableviewreload() {

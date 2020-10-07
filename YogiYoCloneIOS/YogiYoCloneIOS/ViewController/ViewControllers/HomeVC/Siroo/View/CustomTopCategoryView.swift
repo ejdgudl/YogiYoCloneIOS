@@ -12,6 +12,7 @@ protocol CustomTopCategoryViewDelegate : class {
     func categoryButtonScrollAction(to index: Int)
 }
 
+// dragGesture
 class CustomTopCategoryView: UIView , StoreListVCDelegate, HistoryVCDelegate {
     func historyVCScrollIndex(to index: Int) {
         print("HistoryVCScroll : \(index)")
