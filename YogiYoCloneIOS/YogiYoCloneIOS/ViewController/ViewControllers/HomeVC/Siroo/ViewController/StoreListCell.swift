@@ -23,6 +23,43 @@ class StoreListCell: UITableViewCell {
             estimatedTime.text = restaurant?.deliveryTime
             bestMenuLabel.text = restaurant?.representativeMenus.joined()
             
+            if restaurant?.deliveryDiscount == 0 {
+                    [estimatedTime, bestMenuLabel].forEach{
+                      contentView.addSubview($0)
+                    }
+                    estimatedTime.snp.makeConstraints { (make) in
+                      make.top.equalTo(reviewLabel.snp.bottom).offset(1)
+                      make.trailing.equalToSuperview().inset(20)
+                    }
+                
+                
+                    bestMenuLabel.snp.makeConstraints { (make) in
+                      make.top.equalTo(starImage.snp.bottom).offset(1)
+                      make.leading.equalTo(starImage.snp.leading)
+                      make.trailing.equalTo(self.estimatedTime.snp.leading)
+                        make.width.equalTo(180)
+                    }
+                  } else {
+                    [estimatedTime, bestMenuLabel, deliveryDiscountLabel].forEach{
+                      contentView.addSubview($0)
+                    }
+                    deliveryDiscountLabel.snp.makeConstraints { (make) in
+                      make.top.equalTo(starImage.snp.bottom).offset(1)
+                      make.leading.equalTo(starImage.snp.leading)
+                    }
+                    estimatedTime.snp.makeConstraints { (make) in
+                      make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+                      make.trailing.equalToSuperview().inset(20)
+                    }
+                    bestMenuLabel.snp.makeConstraints { (make) in
+                      make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+                      make.leading.equalTo(deliveryDiscountLabel.snp.leading)
+                      make.trailing.equalTo(estimatedTime.snp.leading)
+                      make.bottom.equalToSuperview().inset(20)
+                    make.width.equalTo(180)
+                    }
+                  }
+            
         }
     }
     
@@ -175,38 +212,38 @@ class StoreListCell: UITableViewCell {
             make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
-        if restaurant?.deliveryDiscount == 0 {
-            
-            estimatedTime.snp.makeConstraints { (make) in
-                make.top.equalTo(reviewLabel.snp.bottom).offset(1)
-                make.trailing.equalToSuperview().inset(20)
-            }
-            
-            bestMenuLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(starImage.snp.bottom).offset(1)
-                make.leading.equalTo(starImage.snp.leading)
-            }
-            
-        } else if restaurant?.deliveryDiscount != 0 {
-            deliveryDiscountLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(starImage.snp.bottom).offset(1)
-                make.leading.equalTo(starImage.snp.leading)
-            }
-            
-            estimatedTime.snp.makeConstraints { (make) in
-                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-                make.trailing.equalToSuperview().inset(20)
-            }
-            
-            bestMenuLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-                make.leading.equalTo(deliveryDiscountLabel.snp.leading)
-                make.trailing.equalTo(estimatedTime.snp.leading)
-                make.bottom.equalToSuperview().inset(20)
-            }
-
-        }
     }
+//        if restaurant?.deliveryDiscount == 0 {
+//            print("\(restaurant?.deliveryDiscount)")
+//            estimatedTime.snp.makeConstraints { (make) in
+//                make.top.equalTo(reviewLabel.snp.bottom).offset(1)
+//                make.trailing.equalToSuperview().inset(20)
+//            }
+//
+//            bestMenuLabel.snp.makeConstraints { (make) in
+//                make.top.equalTo(starImage.snp.bottom).offset(1)
+//                make.leading.equalTo(starImage.snp.leading)
+//            }
+//        } else  {
+//            deliveryDiscountLabel.snp.makeConstraints { (make) in
+//                make.top.equalTo(starImage.snp.bottom).offset(1)
+//                make.leading.equalTo(starImage.snp.leading)
+//            }
+//
+//            estimatedTime.snp.makeConstraints { (make) in
+//                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+//                make.trailing.equalToSuperview().inset(20)
+//            }
+//
+//            bestMenuLabel.snp.makeConstraints { (make) in
+//                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+//                make.leading.equalTo(deliveryDiscountLabel.snp.leading)
+//                make.trailing.equalTo(estimatedTime.snp.leading)
+//                make.bottom.equalToSuperview().inset(20)
+//            }
+//
+//        }
+//    }
         //    MARK:  Store Image Set
     
     func setImage(from url: String) {
