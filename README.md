@@ -8,6 +8,7 @@
 - Cosmos
 - Kingfisher
 - Firebase/Auth
+- SwiftyJSON
 
 #### 소감 한마디
 ---
@@ -53,7 +54,7 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/63357508/95326151-164ef500-08dd-11eb-86e7-db04f6a12581.gif">
 </center>  
 
-## AccountVC, LoggedAccountVC
+## AccountVC, LoggedAccountVC, LogVC, SignUpVC, PhoneAcceptVC, ProfileEditVC, ChangeNickNameVC
 ```
 email, password, nickname을 post 후에 서버에서 동일한 email이 사용되고 있는지 체크 
 사용중인 이메일이 아니라면 비활성화된 유저를 서버에서 생성하고 id, token 반환  
