@@ -37,9 +37,9 @@ class AccountVC: UIViewController {
         navigationController?.pushViewController(configureVC, animated: true)
     }
     
-    let logVC = LogVC()
-    
     @objc private func didTapSignInButton() {
+        let logVC = LogVC()
+        logVC.delegate = self
         let nav = UINavigationController(rootViewController: logVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
@@ -83,7 +83,6 @@ class AccountVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
         
-        logVC.delegate = self
     }
     
     // MARK: ConfigureViews

@@ -197,6 +197,11 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         setLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = .white
+    }
+    
     // MARK: Set UI
     private func setUI() {
         

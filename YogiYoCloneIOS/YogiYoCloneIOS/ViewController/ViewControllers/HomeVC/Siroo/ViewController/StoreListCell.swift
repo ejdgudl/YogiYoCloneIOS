@@ -230,7 +230,22 @@ class StoreListCell: UITableViewCell {
         bestMenuLabel.text = explain
         cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }
-    
+
+  func searchValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
+      
+      let discountText = formatter.string(from: discount as NSNumber? ?? 0)
+      
+      discountText != "0" ? (deliveryDiscountLabel.text = "배달할인 \(discountText ?? "0")원") :
+                            (deliveryDiscountLabel.text = nil)
+      
+      setImage(from: image ?? "")
+      storeNameLabel.text = title
+      storeRateLabel.text = "\(starPoint ?? 0)"
+      reviewLabel.text = "리뷰 \(review ?? 0)"
+      bestMenuLabel.text = explain
+      cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+  }
+
 }
 
 
