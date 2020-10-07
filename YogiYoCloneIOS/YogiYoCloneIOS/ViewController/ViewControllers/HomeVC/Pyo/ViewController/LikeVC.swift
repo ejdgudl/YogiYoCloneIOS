@@ -29,6 +29,10 @@ class LikeVC: UIViewController {
         
         title = "찜"
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        UIApplication.shared.statusBarStyle = .darkContent
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
