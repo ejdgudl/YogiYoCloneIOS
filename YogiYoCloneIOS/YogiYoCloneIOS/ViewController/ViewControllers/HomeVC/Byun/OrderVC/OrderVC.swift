@@ -107,14 +107,11 @@ class OderVC : UIViewController {
   //뒤로가기
   @objc func didTapButton(_ sender : UIButton){
     navigationController?.popViewController(animated: true)
-    
   }
   //결제하기
   @objc func paymentDidTapButton(_ sender : UIButton){
     onPostShowBible()
-//    let vc = MenuListVC()
-//    dismiss(vc, animation: true)
-    navigationController?.popViewController(animated: true)
+    alertController()    
   }
   
   func buttonFrame(){
@@ -165,7 +162,21 @@ class OderVC : UIViewController {
     // print(totalPrice())
   }
   
+  func alertController(){
+  
+    let alert = UIAlertController(title: "알림", message: "⛳️주문이 완료되었습니다~!🏇🚣‍♂️~!🧘‍♂️ 배달이 시작됩니다.🛥🚁", preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { action in
+      
+//      //2-1
+//           DatabaseManager.shared.insertUser(with: DatabaseManager.ChatAppUser(email: email, nickname: email, id: password))
+      
+     self.dismiss(animated: true)
+    }))
+    self.present(alert, animated: true, completion: nil)
+  }
 }
+
+
 //MARK:-UITableViewDataSource
 extension OderVC : UITableViewDataSource{
   func numberOfSections(in tableView: UITableView) -> Int {
