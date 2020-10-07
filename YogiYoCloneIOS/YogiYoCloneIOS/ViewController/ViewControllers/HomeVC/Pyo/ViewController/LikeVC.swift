@@ -28,12 +28,14 @@ class LikeVC: UIViewController {
         super.viewWillAppear(animated)
         
         title = "찜"
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
+        
         
         loadData { (LikeData) in
             self.likeData = LikeData
