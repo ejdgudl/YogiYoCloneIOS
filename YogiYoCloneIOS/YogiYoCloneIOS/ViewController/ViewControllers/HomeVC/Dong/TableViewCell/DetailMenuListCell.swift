@@ -79,6 +79,7 @@ class DetailMenuListCell: UITableViewCell {
     // MARK: Configure
     private func configure() {
         numberFormatter.numberStyle = .decimal
+        selectionStyle = .none
     }
     
     // MARK: ConfigureViews
