@@ -36,6 +36,11 @@
 		6EDE1966252604E8007415F4 /* LoadDataLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE1965252604E8007415F4 /* LoadDataLikeVC.swift */; };
 		6EDE1970252635FA007415F4 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE196F252635F9007415F4 /* TableViewDelegate.swift */; };
 		6EDE197325265C85007415F4 /* CountHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE197225265C84007415F4 /* CountHeaderCell.swift */; };
+		6EDE1979252AC15F007415F4 /* TopSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE1978252AC15F007415F4 /* TopSearchView.swift */; };
+		6EDE198C252AE51B007415F4 /* MapTableViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE198B252AE51B007415F4 /* MapTableViewData.swift */; };
+		6EDE198F252AE531007415F4 /* MapTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE198E252AE531007415F4 /* MapTableViewDelegate.swift */; };
+		6EDE1992252AE6B7007415F4 /* NearestCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE1991252AE6B7007415F4 /* NearestCustomCell.swift */; };
+		6EDE1995252AE9BD007415F4 /* NearestListCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE1994252AE9BD007415F4 /* NearestListCustomCell.swift */; };
 		6EE8C08724F6654400A55413 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8C08624F6654400A55413 /* PaddingLabel.swift */; };
 		6EE8C08924F8FFB000A55413 /* TripleRestaurantCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */; };
 		7306254A24F53A5E00DC70C1 /* NilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306254924F53A5E00DC70C1 /* NilCell.swift */; };
@@ -190,6 +195,11 @@
 		6EDE1965252604E8007415F4 /* LoadDataLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataLikeVC.swift; sourceTree = "<group>"; };
 		6EDE196F252635F9007415F4 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		6EDE197225265C84007415F4 /* CountHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountHeaderCell.swift; sourceTree = "<group>"; };
+		6EDE1978252AC15F007415F4 /* TopSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSearchView.swift; sourceTree = "<group>"; };
+		6EDE198B252AE51B007415F4 /* MapTableViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapTableViewData.swift; path = YogiYoCloneIOS/ViewController/ViewControllers/HomeVC/Pyo/Extension/LikeVC/MapTableViewData.swift; sourceTree = SOURCE_ROOT; };
+		6EDE198E252AE531007415F4 /* MapTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewDelegate.swift; sourceTree = "<group>"; };
+		6EDE1991252AE6B7007415F4 /* NearestCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestCustomCell.swift; sourceTree = "<group>"; };
+		6EDE1994252AE9BD007415F4 /* NearestListCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestListCustomCell.swift; sourceTree = "<group>"; };
 		6EE8C08624F6654400A55413 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		6EE8C08824F8FFB000A55413 /* TripleRestaurantCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleRestaurantCustomCell.swift; sourceTree = "<group>"; };
 		7306254924F53A5E00DC70C1 /* NilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilCell.swift; sourceTree = "<group>"; };
@@ -366,6 +376,7 @@
 		6E1656182513484500DE7786 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6EDE1977252AC11A007415F4 /* MapVC */,
 				6ED1609F251DB24F009B7F4C /* LikeVC */,
 				6ED1609E251DB243009B7F4C /* HomeVC */,
 			);
@@ -375,6 +386,7 @@
 		6E373A8724EFDA3900BF5678 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				6EDE1976252AC108007415F4 /* MapVC */,
 				6E5B36E3251DCDB400F43A22 /* LikeVC */,
 				6E5B36E2251DCDAA00F43A22 /* HomeVC */,
 			);
@@ -427,6 +439,7 @@
 		6E91215C24FD060E003D86F0 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6EDE1980252ADECF007415F4 /* MapVC */,
 				6E5B36F1251DD33600F43A22 /* LikeVC */,
 				6E5B36F0251DD32800F43A22 /* HomeVC */,
 			);
@@ -451,6 +464,32 @@
 			children = (
 			);
 			path = LikeVC;
+			sourceTree = "<group>";
+		};
+		6EDE1976252AC108007415F4 /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE1991252AE6B7007415F4 /* NearestCustomCell.swift */,
+				6EDE1994252AE9BD007415F4 /* NearestListCustomCell.swift */,
+			);
+			path = MapVC;
+			sourceTree = "<group>";
+		};
+		6EDE1977252AC11A007415F4 /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE1978252AC15F007415F4 /* TopSearchView.swift */,
+			);
+			path = MapVC;
+			sourceTree = "<group>";
+		};
+		6EDE1980252ADECF007415F4 /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE198B252AE51B007415F4 /* MapTableViewData.swift */,
+				6EDE198E252AE531007415F4 /* MapTableViewDelegate.swift */,
+			);
+			path = MapVC;
 			sourceTree = "<group>";
 		};
 		7306254B24F53A6800DC70C1 /* Section0 */ = {
@@ -1195,6 +1234,7 @@
 				7306256A24F53D1B00DC70C1 /* BuyLastTableViewCell.swift in Sources */,
 				6EDE1970252635FA007415F4 /* TableViewDelegate.swift in Sources */,
 				D3D6C43824EF9CE000B2873B /* StackViewExtension.swift in Sources */,
+				6EDE1992252AE6B7007415F4 /* NearestCustomCell.swift in Sources */,
 				731B059D2511E708005BC1DC /* OderModel.swift in Sources */,
 				D3E641C324F13AEA0019B9AC /* SegMenuCell.swift in Sources */,
 				7306254A24F53A5E00DC70C1 /* NilCell.swift in Sources */,
@@ -1243,6 +1283,7 @@
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
 				DE7B6F11252B145A00598252 /* HistoryInfoFetch.swift in Sources */,
 				6E88B1892514FF3500A64DDA /* RecommendCollection.swift in Sources */,
+				6EDE1979252AC15F007415F4 /* TopSearchView.swift in Sources */,
 				D3E6EC4A24F94560005C4B32 /* BenefitCell.swift in Sources */,
 				DE47035B250FD76000143A6F /* StoreListFilterView.swift in Sources */,
 				D37C9DA824FA5CEE00A7C9F2 /* BottomCell.swift in Sources */,
@@ -1274,6 +1315,7 @@
 				D32F4F3124F12C5300375DB2 /* API.swift in Sources */,
 				DE21FA7424F55BCB004D8A56 /* CategoryVC.swift in Sources */,
 				D32F4F2C24F120D100375DB2 /* SegmentCell.swift in Sources */,
+				6EDE1995252AE9BD007415F4 /* NearestListCustomCell.swift in Sources */,
 				7306254D24F53A8000DC70C1 /* ImageTableViewCell.swift in Sources */,
 				6E16560D251217EF00DE7786 /* CollectionViewDelegate.swift in Sources */,
 				D307AAE324F26A6B00225E6A /* YoFeedVC.swift in Sources */,
@@ -1301,6 +1343,7 @@
 				7306256524F53CC200DC70C1 /* ListOptionTableViewCell.swift in Sources */,
 				731B05A525120B2E005BC1DC /* miniListCell.swift in Sources */,
 				D32F4F2E24F128DE00375DB2 /* SegmentedExtension.swift in Sources */,
+				6EDE198C252AE51B007415F4 /* MapTableViewData.swift in Sources */,
 				D3F9EA8E24FA868C0058E501 /* AlertExtension.swift in Sources */,
 				D37C9DA624FA5C6E00A7C9F2 /* NickNameCell.swift in Sources */,
 				D3847ECE24F9406F00C34792 /* ProfileCell.swift in Sources */,
@@ -1319,6 +1362,7 @@
 				731B058D2510E79E005BC1DC /* InformationView.swift in Sources */,
 				7306256324F53CA800DC70C1 /* OptionTableViewCell.swift in Sources */,
 				D307AAE124F268E400225E6A /* SignCell.swift in Sources */,
+				6EDE198F252AE531007415F4 /* MapTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

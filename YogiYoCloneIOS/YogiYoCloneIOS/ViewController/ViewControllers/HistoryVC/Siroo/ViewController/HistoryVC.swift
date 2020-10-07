@@ -19,7 +19,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     let orderTypes = ["터치주문", "전화주문"]
     var touchHistories: [OrderListData.Results] = []
     var contactHistories: [OrderListData.Results] = []
-    let orderCounts = [2, 0]
+    let orderCounts = [10, 0]
     private let topBannerImages = [UIImage(named: "MyListbanner1"),UIImage(named: "MyListbanner2")]
 
     private var categoryIndex : Int = 0
@@ -48,9 +48,10 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         // 컨텐츠 view 만들기
         configureContentView()
         historyFetch.historyFetch()
-        
-        
+
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,6 +61,9 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        title = "회원 주문내역"
     }
 
     
@@ -252,6 +256,8 @@ extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HistoryCell
         cell.history = self.touchHistories[indexPath.row]
         cell.selectionStyle = .none
+        cell.layer.borderWidth = 4
+        cell.layer.borderColor = ColorPiker.customSystem.cgColor
         return cell
     }
     

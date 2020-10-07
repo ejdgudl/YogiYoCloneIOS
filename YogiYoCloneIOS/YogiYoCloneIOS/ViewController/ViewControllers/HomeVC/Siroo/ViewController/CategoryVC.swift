@@ -41,9 +41,6 @@ class CategoryVC: UIViewController {
     func configureTableView(index: Int) -> UIView {
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
-        
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
         // tableView의 rowheight : 컨텐츠뷰의 길이에 따라 높이값 주기 
         tableView.rowHeight = 120

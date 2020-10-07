@@ -47,6 +47,7 @@ class TextFiledCell: UITableViewCell {
        let tf = UITextField()
         tf.borderStyle = .roundedRect
         tf.placeholder = "비밀번호 (영문+숫자+특수문자 조합 8자리이상)"
+        tf.isSecureTextEntry = true
         tf.addLeftPadding()
         return tf
     }()
@@ -55,6 +56,7 @@ class TextFiledCell: UITableViewCell {
        let tf = UITextField()
         tf.borderStyle = .roundedRect
         tf.placeholder = "비밀번호 확인"
+        tf.isSecureTextEntry = true
         tf.addLeftPadding()
         return tf
     }()
@@ -155,6 +157,10 @@ class TextFiledCell: UITableViewCell {
        let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.imageView?.tintColor = .red
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 0)
         button.setTitleColor(.black, for: .normal)
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 0.5
@@ -301,7 +307,7 @@ class TextFiledCell: UITableViewCell {
         
         acceptStackView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
-            make.top.equalTo(self.titleCheckBoxButton.snp.bottom).offset(10)
+            make.top.equalTo(self.titleCheckBoxButton.snp.bottom).offset(29)
             make.left.right.equalToSuperview().inset(13)
             make.height.equalTo(200)
         }

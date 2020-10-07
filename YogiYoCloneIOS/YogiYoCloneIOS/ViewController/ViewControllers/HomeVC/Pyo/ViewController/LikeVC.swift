@@ -14,6 +14,7 @@ class LikeVC: UIViewController {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.backgroundColor = ColorPiker.customGray
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.register(NilViewCustomCell.self, forCellReuseIdentifier: NilViewCustomCell.identifier)
         tableView.register(CountHeaderCell.self, forCellReuseIdentifier: CountHeaderCell.identifier)
