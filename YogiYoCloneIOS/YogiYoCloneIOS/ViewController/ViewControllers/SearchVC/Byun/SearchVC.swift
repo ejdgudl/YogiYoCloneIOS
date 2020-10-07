@@ -15,14 +15,12 @@ class SearchVC: UIViewController {
   
   //SearchData만 담기
   var searchList: SearchDataload?
- // var test : DidSearchData.Results?
   
   var data : DidSearchData?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    searchfield.addTarget(self, action: #selector(textfieldDid(_ :)), for: .editingChanged)
     
     navigationItem.titleView = searchfield
     view.backgroundColor = .yellow
@@ -30,9 +28,14 @@ class SearchVC: UIViewController {
     setSearchfield()
     setTableView()
    // fechData()
-    
-    filterData = datai
+ //   filterData = datai
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(true)
+    fechData(text: searchfield.text)
+    }
+  
   //MARK:-Searchfield
   func setSearchfield(){
     searchfield.sizeToFit()
@@ -43,6 +46,7 @@ class SearchVC: UIViewController {
     searchfield.sizeToFit()
     searchfield.clearButtonMode = .always
     searchfield.delegate = self
+    searchfield.addTarget(self, action: #selector(textfieldDid(_ :)), for: .editingChanged)
   }
   //MARK:- navi
   func setNavi(){
@@ -70,6 +74,9 @@ class SearchVC: UIViewController {
   
   @objc func textfieldDid(_ sender : UITextField){
     tableview.reloadData()
+    fechData(text: searchfield.text!)
+    print(searchfield.text)
+    
   }
     
     func setTableView(){
@@ -86,21 +93,23 @@ class SearchVC: UIViewController {
     }
     
   
-  let datai = ["롯데리아","버거킹","치요남치킨","요거프레소","호식이두마리치킨","홍콩반점0410","홈플러스익스프레스","호치킨", "피자헛","맥도날드"]
+ // let datai = ["롯데리아","버거킹","치요남치킨","요거프레소","호식이두마리치킨","홍콩반점0410","홈플러스익스프레스","호치킨", "피자헛","맥도날드"]
  // let datai : [String] = []
-  let dataa : [String] = []
-  var filterData : [String]!
+//  let dataa : [String] = []
+//  var filterData : [String]!
   
   //MARK: -fechData
   func fechData(text : String?){
-    //http://52.79.251.125/restaurants?search=%ED%94%BC%EC%9E%90
-    //\(word.self) // text : String
-    let url = URL(string: "http://52.79.251.125/restaurants?search=\(text)")
+    //변환
+    let urlString = "http://52.79.251.125/restaurants?search=\(text ?? "")"
+    guard let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else { return }
+    var urlFragmentAllowed: CharacterSet
+    let url = URL(string: encodedString)
     URLSession.shared.dataTask(with: url!) { (data, _, _) in
       guard let data = data else { return }
       do {
         self.data = try JSONDecoder().decode(DidSearchData.self, from: data)
-       print(data)
+      //print(data)
         let next = self.data?.next
         let previous = self.data?.previous
         
@@ -108,7 +117,7 @@ class SearchVC: UIViewController {
       //  self.datai = item
   //searchList
         DispatchQueue.main.async{
-       // self.tableView.reloadData()
+   //     self.tableView.reloadData()
         }
       } catch {
         print("catch")
@@ -127,10 +136,12 @@ class SearchVC: UIViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       fechData(text: searchfield.text)
       let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
-      cell.textLabel?.text = data?.results![indexPath.row].name
+        cell.textLabel?.text = data?.results![indexPath.row].name
+      
+
    //   self.data?.results![indexPath.row].name?.append(self.dataa)
      
-      print("dataa : \(dataa)")
+   //   print("dataa : \(dataa)")
       return cell
       
     }
@@ -138,21 +149,25 @@ class SearchVC: UIViewController {
   }
 
 extension SearchVC : UITextFieldDelegate {
-  func textFieldDidChangeSelection(_ textField: UITextField) {    
-    //     // fechData(text: searchfield.text ?? "")
-
-    filterData = []
-    
-    if searchfield.text == "" {
-      filterData = datai
-    }else {
-    for index in datai {
-      if index.lowercased().contains(textField.text?.lowercased() ?? "") {
-        filterData.append(index)
-      }
+  private func textFieldWilChangeSelection(_ textField: UITextField) {
+    DispatchQueue.main.async {
+      self.fechData(text: self.searchfield.text ?? "")
+      self.tableview.reloadData()
     }
-    self.tableview.reloadData()
-  }
+    
+
+//    filterData = []
+//
+//    if searchfield.text == "" {
+//      filterData = datai
+//    }else {
+//    for index in datai {
+//      if index.lowercased().contains(textField.text?.lowercased() ?? "") {
+//        filterData.append(index)
+//      }
+//    }
+//    self.tableview.reloadData()
+//  }
 }
 }
 extension SearchVC : UITableViewDelegate {
@@ -160,7 +175,7 @@ extension SearchVC : UITableViewDelegate {
     let vc = DidSearchVC()
     navigationController?.pushViewController(vc, animated: true)
   
-      filterData.removeAll()
+    //  filterData.removeAll()
     
    // let searchData = SearchData(id: , name: <#T##String?#>)
     
@@ -168,11 +183,9 @@ extension SearchVC : UITableViewDelegate {
     var searchData = DidSearchData.Results(id: item?.id, name: item?.name, star: item?.star, image: item?.image, deliveryDiscount: item?.deliveryCharge, deliveryCharge: item?.deliveryCharge, deliveryTime: item?.deliveryTime, reviewCount: item?.reviewCount, representativeMenus: item?.representativeMenus, ownerCommentCount: item?.ownerCommentCount)
     
    // self.searchList?.results?.append(self.searchData)
-//     self.searchList?.results?.append(self.searchData)
-   // self.searchList?.results?.append(self.searchData)
    // self.searchList?.results?.append()
     print("searchData : \(searchData)")
-    print("searchList : \(searchList)")
+   // print("searchList : \(searchList)")
    
     //  vc.menuValue(orderData: orderData)
     

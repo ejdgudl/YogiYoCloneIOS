@@ -107,14 +107,12 @@ class OderVC : UIViewController {
   //뒤로가기
   @objc func didTapButton(_ sender : UIButton){
     navigationController?.popViewController(animated: true)
-    
   }
   //결제하기
   @objc func paymentDidTapButton(_ sender : UIButton){
     onPostShowBible()
-//    let vc = MenuListVC()
-//    dismiss(vc, animation: true)
-    navigationController?.popViewController(animated: true)
+    dismiss(animated: true)
+    
   }
   
   func buttonFrame(){
