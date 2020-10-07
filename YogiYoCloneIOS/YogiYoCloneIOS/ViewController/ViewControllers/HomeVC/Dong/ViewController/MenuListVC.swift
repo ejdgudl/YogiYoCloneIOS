@@ -50,7 +50,7 @@ class MenuListVC: UIViewController {
         super.viewDidLoad()
         configureStoreInfo()
         configure()
-        
+        tabBarController?.tabBar.isHidden = true
         configureViews()
     }
     

@@ -220,9 +220,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
             make.height.equalTo(40)
         }
     }
-    
-    
-    
+
     
 //    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
     
