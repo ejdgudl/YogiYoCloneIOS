@@ -38,11 +38,11 @@
 김동현
 
 ## MenuListVC
-<center>
+'''
 UICollectionViewFlowLayout을 custom 하여 StretchHeader를 구현
 해당 점포의 정보와 메뉴들을 parsing하여 view 구성 
 expandable한 tableView를 사용하여 메뉴 리스트 구성
-</center>
+'''
 <center>
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/63357508/95325300-f539d480-08db-11eb-8021-fd5aa8b07752.gif">
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/63357508/95326047-f3244580-08dc-11eb-97c8-00ae69fddc20.gif">
@@ -50,14 +50,14 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 </center>  
 
 ## AccountVC, LoggedAccountVC
-<center>
+'''
 email, password, nickname을 post 후에 서버에서 동일한 email이 사용되고 있는지 체크 
 사용중인 이메일이 아니라면 비활성화된 유저를 서버에서 생성하고 id, token 반환  
 FCM을 활용한 전화번호 인증을 완료후 반환받은 id를 사용하여 patch하면
 해당 비활성화 유저의 전화번호 정보가 patch 되어지고
 활성화 유저로 변경 해당 유저의 id를 사용하여 유저의 데이터를 get한 후에 app내에서 
 정의해놓은 User 타입의 구조로 user 생성
-</center>
+'''
 <center>
 <img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95326269-44ccd000-08dd-11eb-9aae-3ff8cabc8695.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326435-8b222f00-08dd-11eb-9fbd-3ba7f0ccc923.gif">
