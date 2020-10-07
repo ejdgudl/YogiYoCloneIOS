@@ -241,13 +241,6 @@ class DetailMenuVC: UIViewController {
   }
   
 }
-//MARK:- ListMenuDelagate
-//func totalPriceManeger(){
-//  let indexPath = NSIndexPath(row: 0, section: 0)
-//  guard let total = orderlist?.price else {return}
-//  orderlist?.option[indexPath.row-2].price
-//  print("total : \(total)")
-//}
 
 //MARK:- ListMenuDelagate
 //선택사항
@@ -313,12 +306,10 @@ extension DetailMenuVC : ListOptionDelagate {
 //MARK: -numberOfRowsInSection
 
 extension DetailMenuVC: UITableViewDataSource{
-  //섹션갯수
   func numberOfSections(in tableView: UITableView) -> Int {
     3 + (data?.optionGroup.count ?? 0)
   }
   
-  //셀갯수
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 { //이미지,할인,메뉴명,상세,리뷰
       return 5

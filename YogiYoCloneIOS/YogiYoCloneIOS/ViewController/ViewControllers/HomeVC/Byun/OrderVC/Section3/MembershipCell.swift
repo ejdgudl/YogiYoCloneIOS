@@ -35,7 +35,8 @@ class MembershipCell: UITableViewCell {
     setConstraint()
     memberView()
     pointView()
-    
+    selectionStyle = .none
+
   }
   
   func memberView(){
