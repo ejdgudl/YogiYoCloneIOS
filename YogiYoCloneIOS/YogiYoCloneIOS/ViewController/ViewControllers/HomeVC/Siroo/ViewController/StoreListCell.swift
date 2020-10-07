@@ -171,7 +171,7 @@ class StoreListCell: UITableViewCell {
     
     
     private func setUIConstraints () {
-        [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
+        [storeImage,storeNameLabel,starImage,storeRateLabel,reviewLabel,pointLabel,cescoMark].forEach({
             contentView.addSubview($0)
         })
         
