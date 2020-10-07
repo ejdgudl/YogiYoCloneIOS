@@ -19,6 +19,8 @@ struct RecommendData: Codable {
         let name: String
         let star: Double
         let image: String
+        let foodImage: String?
+        
         
         let deliveryDiscount: Int
         let deliveryCharge: Int
@@ -36,6 +38,7 @@ struct RecommendData: Codable {
             case name = "name"
             case star = "average_rating"
             case image = "image"
+            case foodImage = "back_image"
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
             case deliveryTime = "delivery_time"
@@ -61,6 +64,7 @@ struct LikeData: Codable {
         let name: String
         let star: Double
         let image: String
+        let foodImage: String?
         
         let deliveryDiscount: Int
         let deliveryCharge: Int
@@ -77,6 +81,7 @@ struct LikeData: Codable {
             case name = "name"
             case star = "average_rating"
             case image = "image"
+            case foodImage = "back_image"
             
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"

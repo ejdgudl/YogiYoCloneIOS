@@ -151,6 +151,12 @@ class StoreListCell: UITableViewCell {
             make.height.equalTo(storeImage.snp.height).multipliedBy(0.35)
         }
         
+        estimatedTime.snp.makeConstraints { (make) in
+//            make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+            make.trailing.equalTo(cescoMark.snp.trailing)
+            make.bottom.equalToSuperview().inset(20)
+        }
+        
         storeNameLabel.snp.makeConstraints { (make) in
             make.top.equalTo(storeImage)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
@@ -175,35 +181,17 @@ class StoreListCell: UITableViewCell {
             make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
-        if restaurant?.deliveryDiscount == 0 {
-            
-            estimatedTime.snp.makeConstraints { (make) in
-                make.top.equalTo(reviewLabel.snp.bottom).offset(1)
-                make.trailing.equalToSuperview().inset(20)
-            }
-            
-            bestMenuLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(starImage.snp.bottom).offset(1)
-                make.leading.equalTo(starImage.snp.leading)
-            }
-            
-        } else if restaurant?.deliveryDiscount != 0 {
-            deliveryDiscountLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(starImage.snp.bottom).offset(1)
-                make.leading.equalTo(starImage.snp.leading)
-            }
-            
-            estimatedTime.snp.makeConstraints { (make) in
-                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-                make.trailing.equalToSuperview().inset(20)
-            }
-            
-            bestMenuLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-                make.leading.equalTo(deliveryDiscountLabel.snp.leading)
-                make.trailing.equalTo(estimatedTime.snp.leading)
-                make.bottom.equalToSuperview().inset(20)
-            }
+
+        deliveryDiscountLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(starImage.snp.bottom).offset(1)
+            make.leading.equalTo(starImage.snp.leading)
+        }
+        
+        bestMenuLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+            make.leading.equalTo(deliveryDiscountLabel.snp.leading)
+            make.trailing.equalTo(estimatedTime.snp.leading)
+            make.bottom.equalToSuperview().inset(20)
 
         }
     }

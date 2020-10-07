@@ -12,7 +12,6 @@ extension LikeVC {
     
     func loadData(complitionHandler: @escaping (LikeData) -> Void) {
         let apiurl = "\(UrlBase.ip)\(UrlBase.bookmarks)"
-        print(apiurl)
         guard let urlJson = URL(string: apiurl) else { return print("error") }
         
         let dataTask = URLSession.shared.dataTask(with: urlJson) { data, response, error in
