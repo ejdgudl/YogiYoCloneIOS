@@ -98,13 +98,6 @@ class StoreListCell: UITableViewCell {
         return view
     }()
     
-    private let pointLabel : UILabel = {
-        let label = UILabel()
-        label.text = "・"
-        label.font = UIFont(name: FontModel.customSemibold, size: 10)
-        return label
-    }()
-    
     private let reviewLabel : UILabel = {
         let label = UILabel()
         label.font = FontModel.toSize.customSmallFont
@@ -171,7 +164,7 @@ class StoreListCell: UITableViewCell {
     
     
     private func setUIConstraints () {
-        [storeImage,storeNameLabel,starImage,storeRateLabel,reviewLabel,pointLabel,cescoMark].forEach({
+        [storeImage,cescoMark,estimatedTime,storeNameLabel,starImage,storeRateLabel,deliveryDiscountLabel,reviewLabel,bestMenuLabel].forEach({
             contentView.addSubview($0)
         })
         
@@ -190,7 +183,7 @@ class StoreListCell: UITableViewCell {
         
         estimatedTime.snp.makeConstraints { (make) in
             make.trailing.equalTo(cescoMark.snp.trailing)
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalTo(contentView.snp.bottom).inset(20)
         }
         
         storeNameLabel.snp.makeConstraints { (make) in
