@@ -63,7 +63,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         UIApplication.shared.statusBarStyle = .darkContent
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        title = "회원 주문내역"
+        title = "주문내역"
     }
 
     
