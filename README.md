@@ -10,17 +10,22 @@
 - Firebase/Auth
 
 #### 소감 한마디
+---
 
 표건욱 - 
 
+---
 김믿음 -
 
+---
 김동현(팀장) - 파이어베이스에서나 해봤을 회원 관리 프로세스를 백엔드팀과 협업을 진행함으로써 개인적으로 많이 성장하였다고 생각합니다. 각 case 마다의 statuscode를 공유 요청하여 client 에서도 각 상황에 맞는 대응을 준비할수 있는 최대한 restful한 작업이 되게 노력하였고, 또한 슬랙을 통하여 response 받은 stautscode를 가지고 서버 error와, client error를 공유하면서 즉각 대응 하며 작업을 진행함으로써 협업의 묘미를 느낄수 있는 계기 되었습니다. 
 
+---
 변윤나 - 
 
 <div>
   
+#### View
 ---
 표건욱
 ## HomeVC
@@ -54,9 +59,13 @@ FCM을 활용한 전화번호 인증을 완료후 반환받은 id를 사용하�
 <center>
 <img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95326269-44ccd000-08dd-11eb-9aae-3ff8cabc8695.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326435-8b222f00-08dd-11eb-9fbd-3ba7f0ccc923.gif">
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327497-1b14a880-08df-11eb-9306-fe001fe08a07.gif">
+</center>
+<center>
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326699-f0762000-08dd-11eb-8236-d38c870bf649.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326973-5d89b580-08de-11eb-9556-66180a25f582.gif">
-<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327497-1b14a880-08df-11eb-9306-fe001fe08a07.gif">
+</center>
+<center>
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327853-a3934900-08df-11eb-8eb4-4baa8b07a058.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95328033-e9501180-08df-11eb-8723-28191f7c1703.gif">
 </center>
