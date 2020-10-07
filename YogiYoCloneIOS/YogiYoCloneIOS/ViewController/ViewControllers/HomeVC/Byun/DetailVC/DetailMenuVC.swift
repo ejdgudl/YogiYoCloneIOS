@@ -50,14 +50,10 @@ class DetailMenuVC: UIViewController {
     clipboradMessag()
     setNaviBar()
     fechData()
-    
     buttonFrame()
     
     }
-  
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y-88, width: self.view.frame.size.width, height: self.view.frame.size.height+88)
-    }
+
   
   //MARK:- Popup Options
   func clipboradMessag(){
@@ -153,7 +149,7 @@ class DetailMenuVC: UIViewController {
     tableView.dataSource = self
     tableView.delegate = self
     
-    tableView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y-88, width: self.view.frame.size.width, height: self.view.frame.size.height+88)
+   // tableView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y-88, width: self.view.frame.size.width, height: self.view.frame.size.height+88)
     navigationBarLess()
     
     tableView.rowHeight = UITableView.automaticDimension //동적높이
@@ -162,6 +158,14 @@ class DetailMenuVC: UIViewController {
     tableView.separatorStyle = .none
     view.addSubview(tableView)
     register()
+    
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
     
   }
   //MARK:-register
