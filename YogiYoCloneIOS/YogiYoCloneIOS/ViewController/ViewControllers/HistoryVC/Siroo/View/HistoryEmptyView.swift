@@ -56,7 +56,7 @@ class HistoryEmptyView: UIView, UIScrollViewDelegate {
     }
     
 //    MARK: Func
-    func configSetUI(index: Int) {
+    func configSetUI() {
         
         addSubview(emptyView)
         emptyView.snp.makeConstraints { (make) in

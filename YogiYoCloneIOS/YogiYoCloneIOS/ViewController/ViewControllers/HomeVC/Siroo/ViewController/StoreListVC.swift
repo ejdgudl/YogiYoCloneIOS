@@ -111,6 +111,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
         tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         title = "성수동2가 277-17 ▼"
     }
     
