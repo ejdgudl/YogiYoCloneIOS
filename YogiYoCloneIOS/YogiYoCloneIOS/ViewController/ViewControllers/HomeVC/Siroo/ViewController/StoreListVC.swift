@@ -112,6 +112,12 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         UIApplication.shared.statusBarStyle = .darkContent
         tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        title = "성수동2가 277-17 ▼"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        title = ""
     }
     
     func scrolltableviewreload() {

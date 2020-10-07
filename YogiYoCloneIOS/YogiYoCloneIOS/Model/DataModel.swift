@@ -88,6 +88,99 @@ struct LikeData: Codable {
         }
     }
 }
+struct SearchData : Codable{
+  let id : Int?
+  let name : String?
+
+  init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+}
+  enum CodingKeys: String, CodingKey {
+      case id = "id"
+      case name = "name"
+}
+}
+struct DidSearchData: Codable {
+    
+    let next: String?
+    let previous: String?
+    var results: [Results]?
+    
+    
+    struct Results: Codable {
+        
+        let id: Int?
+        let name: String?
+        let star: Double?
+        let image: String?
+        
+        let deliveryDiscount: Int?
+        let deliveryCharge: Int?
+        let deliveryTime: String?
+        
+        let reviewCount:Int?
+        let representativeMenus: String?
+        let ownerCommentCount:Int?
+        
+        
+        enum CodingKeys: String, CodingKey {
+            
+            case id = "id"
+            case name = "name"
+            case star = "average_rating"
+            case image = "image"
+            
+            case deliveryDiscount = "delivery_discount"
+            case deliveryCharge = "delivery_charge"
+            case deliveryTime = "delivery_time"
+            
+            case reviewCount = "review_count"
+            case representativeMenus = "representative_menus"
+            case ownerCommentCount = "owner_comment_count"
+        }
+    }
+}
+struct SearchDataload: Codable {
+    
+    let next: String?
+    let previous: String?
+    var results: [Results]?
+    
+    
+    struct Results: Codable {
+        
+        let id: Int?
+        let name: String?
+        let star: Double?
+        let image: String?
+        
+        let deliveryDiscount: Int?
+        let deliveryCharge: Int?
+        let deliveryTime: String?
+        
+        let reviewCount:Int?
+        let representativeMenus: String?
+        let ownerCommentCount:Int?
+        
+        
+        enum CodingKeys: String, CodingKey {
+            
+            case id = "id"
+            case name = "name"
+            case star = "average_rating"
+            case image = "image"
+            
+            case deliveryDiscount = "delivery_discount"
+            case deliveryCharge = "delivery_charge"
+            case deliveryTime = "delivery_time"
+            
+            case reviewCount = "review_count"
+            case representativeMenus = "representative_menus"
+            case ownerCommentCount = "owner_comment_count"
+        }
+    }
+}
 
 
 struct AllListData: Codable {
