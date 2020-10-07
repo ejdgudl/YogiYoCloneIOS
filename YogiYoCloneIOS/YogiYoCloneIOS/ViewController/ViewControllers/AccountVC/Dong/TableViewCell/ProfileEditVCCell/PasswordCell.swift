@@ -21,14 +21,14 @@ class PasswordCell: UITableViewCell {
         return view
     }()
     
-    var passordTitle: UILabel = {
+    private var passordTitle: UILabel = {
        let label = UILabel()
         label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 11)
         return label
     }()
 
-    var passord: UILabel = {
+    private var passord: UILabel = {
        let label = UILabel()
         label.text = "*******"
         return label

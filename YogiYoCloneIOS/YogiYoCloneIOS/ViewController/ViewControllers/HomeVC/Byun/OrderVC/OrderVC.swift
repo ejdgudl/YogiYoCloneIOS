@@ -11,8 +11,9 @@ import UIKit
 
 class OderVC : UIViewController {
   
-  var post = [Post]()
-  
+  var orderMager = OrderManager.shared
+  var orderList: [OrderData] = []
+    
   lazy var leftButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapButton))
   
   public var id : Int = 1
@@ -25,51 +26,101 @@ class OderVC : UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    orderList = orderMager.showMeOrderedList()
     setTableView2()
     buttonFrame()
-  //  navigation()
+    //  navigation()
     title = "배달 주문 결제"
-   // self.navigationItem.leftBarButtonItem?.tintColor = .black
-
+    //   fetchPosts()
+    print("orderMager : \(orderMager.showMeOrderedList())")
+    addTotal()
   }
   
+  
   func viewDidappear(_ animated: Bool) {
-  //  super.viewDidappear(true)
     buttonFrame()
   }
+  override func viewDidLayoutSubviews() {
+    buttonFrame()
+  }
+  
+  //MARK:- POST
+  func onPostShowBible(){
+    print("포스트 방식 데이터 가지러옴")
+    let datalist = orderList
+    guard let url = URL(string: "http://52.79.251.125/orders") else {return}
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    // 4. HTTP 메시지에 포함될 헤더 설정
+    request.addValue("application/json", forHTTPHeaderField: "text/html")
+    let body = "http://52.79.251.125/orders".data(using:String.Encoding.ascii, allowLossyConversion: false)
+    
+    request.httpBody = body
+    
+    // 5. URLSession 객체를 통해 전송 및 응답값 처리 로직 작성
+    let session = URLSession.shared
+    session.dataTask(with: request) { (data, response, error) in
+      if let res = response{
+        print(res)
+      }
+      if let data = data {
+        do{
+          let json = try JSONSerialization.jsonObject(with: data, options: [])
 
+          let address = "address"
+          let order_menu = self.orderList
+          let payment_method = "payment_method"
+          let restaurant = "restaurant"
+          let total_price = "total_price"
+          print(json)
+          
+          
+        }catch{
+          print(error)
+        }
+      }
+      // 6. POST 전송
+    }.resume()
+  }
+  
+  
   let paymentButton : UIButton = {
-  let b = UIButton()
-  b.backgroundColor = ColorPiker.customMainRed
-  b.setTitle("결제 하기", for: .normal)
-  b.setTitleColor(.white, for: .normal)
+    let b = UIButton()
+    b.backgroundColor = ColorPiker.customMainRed
+    b.setTitle("결제 하기", for: .normal)
+    b.setTitleColor(.white, for: .normal)
     b.titleLabel?.font = UIFont(name: FontModel.customRegular, size: 23)
-  b.addTarget(self, action: #selector(paymentDidTapButton(_:)), for: .touchUpInside)
+    b.addTarget(self, action: #selector(paymentDidTapButton(_:)), for: .touchUpInside)
     b.isHidden = true
-  return b
+    return b
   }()
   
   //MARK: -Navi
   func navigation(){
-  title = "배달 주문 결제"
+    title = "배달 주문 결제"
     navigationItem.leftBarButtonItem = leftButton
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "back"), for: .any, barMetrics: .default)
     navigationController?.navigationBar.backgroundColor = UIColor.white
   }
   
   //MARK:- Action
+  //뒤로가기
   @objc func didTapButton(_ sender : UIButton){
     navigationController?.popViewController(animated: true)
-
+    
   }
+  //결제하기
   @objc func paymentDidTapButton(_ sender : UIButton){
-     navigationController?.popViewController(animated: true)
-   }
+    onPostShowBible()
+//    let vc = MenuListVC()
+//    dismiss(vc, animation: true)
+    navigationController?.popViewController(animated: true)
+  }
   
-    func buttonFrame(){
-      paymentButton.frame = CGRect(x: view.frame.minX + 20, y: view.frame.maxY - 20, width: view.frame.width - 40, height: -50)
+  func buttonFrame(){
+    paymentButton.frame = CGRect(x: view.frame.minX + 20, y: view.frame.maxY - 20, width: view.frame.width - 40, height: -50)
     //  paymentButton.center = view.center
-     view.addSubview(paymentButton)
+    view.addSubview(paymentButton)
   }
   
   
@@ -99,6 +150,19 @@ class OderVC : UIViewController {
     tableView2.register(OrderListCell.self, forCellReuseIdentifier: "OrderListCell") //주문결제내역
     tableView2.register(paymentCell.self, forCellReuseIdentifier: "paymentCell")
     
+  }
+  
+  func addTotal() {
+    //tableview IndexPath값에 직접 접근
+    let index = IndexPath(row: 0, section: 4)
+    //tableview row값에 직접 접근
+    let cellForrow = tableView2.cellForRow(at: index)
+    //타입캐스팅으로 BuyLastTableViewCell불러오기
+    let ordercell = cellForrow as? OrderListCell
+    ordercell?.totalOrderPriceWon.text = "플리즈"
+    //"\(3500 + orderList[0].totalPrice!)"
+    print("출력이 되나요?")
+    // print(totalPrice())
   }
   
 }
@@ -143,12 +207,12 @@ extension OderVC : UITableViewDataSource{
         let CustomOderCell = tableView.dequeueReusableCell(withIdentifier: "CustomOrderCell", for: indexPath) as! CustomOrderCell
         _ = false
         CustomOderCell.configure(title: "\(userString)")
-       // print(userString)
+        // print(userString)
         return CustomOderCell
-     
-      default: //클릭시 펼쳐질 셀
+        
+      default:
         let unMembershipCell = tableView.dequeueReusableCell(withIdentifier: "unMembershipCell", for: indexPath) as!
-        unMembershipCell
+          unMembershipCell
         return unMembershipCell
       }
     case 2:
@@ -159,10 +223,13 @@ extension OderVC : UITableViewDataSource{
       return MembershipCell
     case 4:
       let OrderListCell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
+      print("오더리스트셀 제발 알려주세요", indexPath)
+      OrderListCell.orderData = orderList
+      
       return OrderListCell
     case 5 :
       let paymentCell = tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath) as! paymentCell
-           return paymentCell
+      return paymentCell
     default:
       let loginCell = tableView.dequeueReusableCell(withIdentifier: "loginCell", for: indexPath) as! loginCell
       return loginCell
@@ -175,24 +242,7 @@ extension OderVC : UITableViewDelegate {
     tableView.cellForRow(at: indexPath)
     guard let cell = tableView.cellForRow(at: indexPath) as? CustomOrderCell else {return}
     guard let index = tableView.indexPath(for: cell) else { return }
-    tableView.beginUpdates()
-    tableView.endUpdates()
-    if index.row == indexPath.row {
-      if index.row == 1 {
-        print("요청사항")
-
-        var open = true
-        print(open)
-        if open == true {
-          let open = false
-          let section = IndexSet.init(integer: indexPath.section)
-          tableView.reloadSections(section, with: .fade)
-        }else {
-          let section = IndexSet.init(integer: indexPath.section)
-          tableView.reloadSections(section, with: .fade)
-        }
-      }
-    }
+    
     
     //MARK:- pikerView
     if indexPath.section == 1 && indexPath.row == 1 {
@@ -207,59 +257,49 @@ extension OderVC : UITableViewDelegate {
     }
     
   }
+  
   @objc func onDoneButtonTapped() {
-   // pikerView.reloadAllComponents()
+    // pikerView.reloadAllComponents()
     toolBar.removeFromSuperview()
     pikerView.removeFromSuperview()
-
+    
   }
   
   //헤더
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       switch section {
-       case 0:
-         return " "
-       case 1:
-         return " "
-       case 2:
-         return " "
-       case 3:
-         return " "
-       case 4:
-         return " "
-       default:
-         return " "
-       }
-     }
-     
-     //푸터뷰 높이
-     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section{
-         case 0:
-           return 1
-         case 1:
-           return 10
-         case 2:
-           return 0
-         case 3:
-           return 10
-         case 4:
-           return 10
-         default:
-           return 0
-         }
-     
-   }
+  func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    section == 0 ? " " : " "
+  }
+  
+  //푸터뷰 높이
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    switch section{
+    case 0:
+      return 1
+    case 1:
+      return 10
+    case 2:
+      return 0
+    case 3:
+      return 10
+    case 4:
+      return 0
+    default:
+      return 0
+    }
+    
+  }
 }
 
 
 extension OderVC : UISceneDelegate {
-func scrollViewDidScroll(_ scrollView: UIScrollView) {
-   if scrollView.contentOffset.y > 800 {
-     scrollView.contentOffset.y = 800
-    paymentButton.isHidden = false
-   }else{
-    paymentButton.isHidden = true
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if scrollView.contentOffset.y > 800 {
+      scrollView.contentOffset.y = 840
+      paymentButton.isHidden = false
+    }else{
+      paymentButton.isHidden = true
+    }
   }
 }
-}
+
+

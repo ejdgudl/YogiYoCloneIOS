@@ -10,13 +10,8 @@ import UIKit
 
 class OrderListCell : UITableViewCell {
 
-  var post = [Post]()
-  var orderData = [Product]()
-  
-  var orderName = [String]()
-  var orderOption = [String]()
-  var orderPrice = Int()
-  
+  var orderData : [OrderData]?
+    
   let listTableView :UITableView = {
     let t = UITableView()
     t.backgroundColor = .white
@@ -30,6 +25,12 @@ class OrderListCell : UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUI()
     setConstraint()
+  }
+  
+  //고정금액
+  struct Cost {
+    static let deliveryPrice = 2000
+    static let deliverySale = 1000
   }
   
   let orderlable : UILabel = {
@@ -49,7 +50,7 @@ class OrderListCell : UITableViewCell {
   }()
   let deliveryPriceWon : UILabel = {
     let l = UILabel()
-    l.text = "1,500원"
+    l.text = "\(Cost.deliveryPrice)원"
     l.font = FontModel.toSize.customLargeFont
     l.textAlignment = .center
     return l
@@ -64,7 +65,7 @@ class OrderListCell : UITableViewCell {
   }()
   let deliverySalePriceWon : UILabel = {
     let l = UILabel()
-    l.text = "-2,000원"
+    l.text = "-\(Cost.deliverySale)원"
     l.textColor = .orange
     l.font = FontModel.toSize.customLargeFont
     l.textAlignment = .center
@@ -81,10 +82,10 @@ class OrderListCell : UITableViewCell {
   
   let totalOrderPriceWon : UILabel = {
      let l = UILabel()
-     l.text = "26,630원"
-     l.textColor = ColorPiker.customMainRed
+    //l.text = "0"
+    l.textColor = ColorPiker.customMainRed
     l.font = UIFont(name: FontModel.customSemibold, size: 24)
-     l.textAlignment = .center
+    l.textAlignment = .center
      return l
    }()
   
@@ -92,7 +93,7 @@ class OrderListCell : UITableViewCell {
      let l = UILabel()
     l.layer.borderColor = ColorPiker.customAlpha2.cgColor
     l.layer.borderWidth = 0.8
-    l.text = "2,000원 할인 혜택을 받으셨습니다."
+    l.text = "1,000원 할인 혜택을 받으셨습니다."
     l.textColor = .orange
      l.font = FontModel.toSize.customLargeFont
      l.textAlignment = .center
@@ -111,6 +112,8 @@ class OrderListCell : UITableViewCell {
     l.textAlignment = .center
     return l
   }()
+  
+
   
   func setUI(){
     
@@ -131,6 +134,7 @@ class OrderListCell : UITableViewCell {
   [deliveryPriceWon,deliverySalePriceWon,totalOrderPriceWon,salePriceLableMessag,uiLable1,uiLable2].forEach {
         $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
       }
+    
   }
 
   func setConstraint(){
@@ -167,29 +171,47 @@ class OrderListCell : UITableViewCell {
       salePriceLableMessag.heightAnchor.constraint(equalToConstant: 50),
       salePriceLableMessag.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
     ])
-    
   }
-  
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 }
 
+
 extension OrderListCell : UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  //  orderData.count
-  1
+    if let count = orderData?.count {
+      return count
+    }else {
+      return 0
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let miniListCell = tableView.dequeueReusableCell(withIdentifier: "miniListCell", for: indexPath) as! miniListCell
-  
-  //  miniListCell.configure(data: orderData[indexPath.row])
-         return miniListCell
+   miniListCell.miniMenuLable.text = orderData?[indexPath.row].name
+   //miniListCell.miniPriseLable.text = String((orderData?[indexPath.row].price)!)
+    
+    var addPrice = orderData![indexPath.row].price
+    var nameArr : [String] = []
+    miniListCell.miniPriseLable.text! = String( orderData?[indexPath.row].totalPrice ?? 0)
+          
+    orderData?[indexPath.row].option.forEach{
+      miniListCell.miniSubMenuLable.text! += "+\($0.name) "
+     // addPrice = addPrice + $0.
+      nameArr.append($0.name)
+    }
+    print(addPrice)
+    print(nameArr)
+    
+    totalOrderPriceWon.text = "\(String(((orderData?[0].totalPrice)! - 1000)))원"
+   
+   return miniListCell
   }
   
 }
+
 
 /* let rect = CGRect.init(origin: CGPoint.init(x: 20, y: 100), size: CGSize.init(width: 200, height: 100))
 let layer = CAShapeLayer.init()

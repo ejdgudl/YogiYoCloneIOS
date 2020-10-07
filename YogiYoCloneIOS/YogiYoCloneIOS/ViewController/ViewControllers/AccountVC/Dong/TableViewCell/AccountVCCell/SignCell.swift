@@ -25,7 +25,7 @@ class SignCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.backgroundColor = .red
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         return button
     }()
     
@@ -33,9 +33,9 @@ class SignCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("회원가입", for: .normal)
         button.layer.borderWidth = 0.5
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setTitleColor(.black, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderColor = UIColor.lightGray.cgColor
         button.addTarget(self, action: #selector(signUpButtonHandler), for: .touchUpInside)
         return button
     }()

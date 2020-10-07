@@ -13,7 +13,7 @@ class AccountVC: UIViewController {
     // MARK: Properties
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .lightGray
+        tableView.backgroundColor = ColorPiker.lightGray
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -37,9 +37,9 @@ class AccountVC: UIViewController {
         navigationController?.pushViewController(configureVC, animated: true)
     }
     
-    let logVC = LogVC()
-    
     @objc private func didTapSignInButton() {
+        let logVC = LogVC()
+        logVC.delegate = self
         let nav = UINavigationController(rootViewController: logVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
@@ -83,12 +83,11 @@ class AccountVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
         
-        logVC.delegate = self
     }
     
     // MARK: ConfigureViews
     private func configureViews() {
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         
         view.addSubview(tableView)
         
@@ -140,19 +139,26 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "요기서 1초 결제 관리"
+            cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            cell.titleLabel.textColor = .darkGray
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "이벤트 및 공지사항"
-            cell.newImageView.backgroundColor = .red
+            cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            cell.titleLabel.textColor = .darkGray
             return cell
         case 5:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "요기요 안내"
+            cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            cell.titleLabel.textColor = .darkGray
             return cell
         case 6:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "고객만족센터"
+            cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            cell.titleLabel.textColor = .darkGray
             return cell
         default:
             return UITableViewCell()
