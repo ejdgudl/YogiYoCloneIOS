@@ -23,7 +23,14 @@
 
 
 김동현(팀장) -
-파이어베이스에서나 해봤을 회원 관리 프로세스를 백엔드팀과 협업을 진행함으로써 개인적으로 많이 성장하였다고 생각합니다. 각 case 마다의 statuscode를 공유 요청하여 client 에서도 각 상황에 맞는 대응을 준비할수 있는 최대한 restful한 작업이 되게 노력하였고, 또한 슬랙을 통하여 response 받은 stautscode를 가지고 서버 error와, client error를 공유하면서 즉각 대응 하며 작업을 진행함으로써 협업의 묘미를 느낄수 있는 계기 되었습니다.
+프로젝트 제작에 앞서 팀장으로서 GIT 관리를 시작하여 팀원들의 풀리퀘스트를 받아 컨플릭을 해소 시키며 머지를 진행하는 과정을 경험해보며 분산 버전 관리 툴에 대한 경험을 할 수 있었습니다.
+팀원의 버그 해결에 힘을 보태며 원활한 과정이 이어지게 노력하는점에 있어서 힘이 들었지만, 제가 작성한 코드가 아닌 낯선 스타일의 코드를 읽으면서 디버깅을 하고 
+구글미트로 화면을 띄어주며 해결 과정을 설명 해주는 과정은 정말 좋은 경험이었습니다.
+파이어 베이스에서나 해봤을 회원 관리 프로세스를 백 엔드 팀과 협업을 진행함으로써 개인적으로 많이 성장하였다고 생각합니다. 
+각 case 마다의 STATUSCODE를 백 엔드 팀에게 공유 요청하여 CLIENT에서도 각 상황에 맞는 대응을 준비할 수 있는 최대한 RESTFUL 한 작업이 되게 노력하였고, 
+또한 슬랙을 통하여 RESPONSE 받은 STATUSCODE를 가지고 SERVER ERROR와, CLIENT ERROR를 공유하면서 즉각 대응하며 작업을 진행함으로써 협업의 묘미를 느낄수 있는 계기 되었습니다. 
+정부 방침으로 인한 학원 휴강으로 인하여 오프라인 만큼의 협업 능력을 이루어내지 못한 아쉬움과 동시에 조금더 미래지향적인 스타일의 협업이란 좋은 경험을 했다고 생각합니다.
+
 
 
 변윤나 -
@@ -71,27 +78,67 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/63357508/95326151-164ef500-08dd-11eb-86e7-db04f6a12581.gif">
 </center>  
 
-## AccountVC, LoggedAccountVC, LogVC, SignUpVC, PhoneAcceptVC, ProfileEditVC, ChangeNickNameVC
+## AccountVC
 ```
-email, password, nickname을 post 후에 서버에서 동일한 email이 사용되고 있는지 체크 
-사용중인 이메일이 아니라면 비활성화된 유저를 서버에서 생성하고 id, token 반환  
-FCM을 활용한 전화번호 인증을 완료후 반환받은 id를 사용하여 patch하면
-해당 비활성화 유저의 전화번호 정보가 patch 되어지고
-활성화 유저로 변경 해당 유저의 id를 사용하여 유저의 데이터를 get한 후에 app내에서 
-정의해놓은 User 타입의 구조로 user 생성
+- 로그인 전 메인 화면
+```
+<center>
+<img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95480130-7ff6fe00-09c6-11eb-8a7e-258126dad33c.jpeg">
+</center>
+
+## SignUpVC
+- 회원가입
+```
+- email, password, nickname을 PARAMETER로 추가한 후 제공된 URL로 POST 
+- 서버에서 동일한 email이 사용되고 있는지 체크 
+- 사용중인 이메일이 아니라면 비활성화된 유저를 서버에서 생성하고 ID, TOKEN 반환  
 ```
 <center>
 <img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95326269-44ccd000-08dd-11eb-9aae-3ff8cabc8695.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326435-8b222f00-08dd-11eb-9fbd-3ba7f0ccc923.gif">
-<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326699-f0762000-08dd-11eb-8236-d38c870bf649.gif">
-<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327497-1b14a880-08df-11eb-9306-fe001fe08a07.gif">
-
 </center>
+
+## PhoneAcceptVC
+- 전화번호 인증 (회원가입 완료후 바로 로그인이 되어지는 프로세스)
+```
+- FCM을 활용한 전화번호 인증을 완료후 반환받았던 ID와 유저 활성화 전용 PATH를 ENDPOINT에 추가하고 인증된 번호를 PARAMETER로 담아 PATCH
+- 해당 비활성 유저의 전화번호 정보가 PATCH 되어지고 활성화 유저로 변경
+- 로그인 전용 PATH를 ENDPOINT에 추가하고, 입력했던 email과 password를 PARAMETER로 담아 POST (ID, TOKEN 반환)
+- 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고  ID를 ENDPOINT에 추가한후 유저의 데이터를 GET한 후에
+- Response의 DATA를 Codable을 채택한 구조 User 타입으로 Decode 
+```
+<center>
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326699-f0762000-08dd-11eb-8236-d38c870bf649.gif">
+</center>
+
+## ChangeNickNameVC
+- 정보 변경
+```
+- 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 변경후에 저장될 nickname을 PARAMETER로 추가한 후 PATCH
+```
+<center>
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326973-5d89b580-08de-11eb-9556-66180a25f582.gif">
+</center>
+
+## LogVC, LoggedAccountVC
+- 로그인
+```
+- 입력한 email, password를 PARAMETER로 추가한 후 로그인 전용 PATH를 ENDPOINT에 추가하고 POST (ID, TOKEN 반환)
+- 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고  ID를 ENDPOINT에 추가한후 유저의 데이터를 GET한 후에
+- Response의 DATA를 Codable을 채택한 구조 User 타입으로 Decode 
+```
 <center>
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327853-a3934900-08df-11eb-8eb4-4baa8b07a058.gif">
 </center>
+
+## ProfileEditVC
+- 로그아웃, 회원탈퇴
+```
+- 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 로그아웃 전용 PATH를 ENDPOINT에 추가한후 DELETE(로그 아웃)
+- 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 ID를 ENDPOINT에 추가한후 DELETE(회원 탈퇴)
+```
 <center>
-<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326973-5d89b580-08de-11eb-9556-66180a25f582.gif">
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327497-1b14a880-08df-11eb-9306-fe001fe08a07.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95328033-e9501180-08df-11eb-8723-28191f7c1703.gif">
 </center>
 
