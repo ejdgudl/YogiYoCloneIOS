@@ -17,7 +17,8 @@
 
 
 
-김믿음 -
+김믿음 - 
+매장 리스트와 주문내역뷰를 구현하면서 백엔드 팀과 함께 REST API 를 활용하여 실제 데이터를 네트웍을 통해 요청/응답하는것에 대한 이해를 높일수 있었다. 그리고, 프로젝트를 진행하면서 개인적으로 뷰를 좀더 수월하게 그리는 방법을 알게 되었고, 특히 MVC 패턴을 적용하면서 그동안 못하였던 코드의 간결화도 적용할 수 있었습니다. 프로젝트를 진행하면서 코로나 19로 인해 온라인으로만 소통을 진행해야 해서 답답한 부분이 많았을텐데 각자 맡은 부분 성실하게 해주어 프로젝트가 수월하게 진행됐습니다. 
 
 
 
@@ -38,6 +39,22 @@
 ---
 김믿음
 ## StoreListVC
+```
+사용자가 지정한 지역의 매장 데이터를 가져오는 것으로 상단 카테고리는 UISegmentControl을 Custom 하여 구현
+하단 페이징은 UIScrollView UITableView와 UITableViewCell 을 Customg하여 Paging 구현
+UITableViewCell 내에는 Alanofire 라이브러리를 사용하여 데이터를 GET 방식으로 Fetch
+필터 기능은 Delegate를 활용하여 UIView 로 구성하였으며, 각 필터를 누를 때마다 필터된 데이터를 받아와 TableView 가 Reload 되도록 구현 
+```
+
+## HistoryVC 
+```
+사용자가 주문한 내역 데이터를 가져오는 화면으로 상단 카데고리는 StoreVC 와 동일하게 UISegmentControl 를 사용하였고, 
+하단 페이징 화면도 StoreVC 와 동일하게 구현하되, 데이터가 없는경우 EmptyPage를 만들어 주문하기를 클릭하면
+매장 리스트로 갈수 있도록 구현
+```
+<center>
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/61490943/95412869-e5b29e00-0964-11eb-9375-b2b0a5681319.gif">
+</center>
 
 ---
 김동현
