@@ -113,7 +113,8 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 - 사용중인 이메일이 아니라면 비활성화된 유저를 서버에서 생성하고 ID, TOKEN 반환  
 ```
 <p align="center">
-<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326435-8b222f00-08dd-11eb-9fbd-3ba7f0ccc923.gif">
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95647347-a40f2800-0b09-11eb-86cd-f87a89ca9ca2.gif">
+<img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95647257-fbf95f00-0b08-11eb-97cc-cb3bd712a6ec.png">
 </p>
 
 ## PhoneAcceptVC
@@ -127,6 +128,7 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 ```
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326699-f0762000-08dd-11eb-8236-d38c870bf649.gif">
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95647260-fd2a8c00-0b08-11eb-8322-622b5a980c9a.png">
 </p>
 
 ## ChangeNickNameVC
@@ -136,6 +138,7 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 ```
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326973-5d89b580-08de-11eb-9556-66180a25f582.gif">
+<img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95647261-fdc32280-0b08-11eb-89f0-a715923fa853.png">
 </p>
 
 ## LogVC, LoggedAccountVC
