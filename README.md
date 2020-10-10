@@ -56,17 +56,13 @@
 변윤나
 
 ## DetailMenuVC, OrderVC
-<center>
-  
 
-</center>
 <div>
-<img width="200" alt="2" src="src="https://qussk.github.io/image/gif/yogi1.gif">
+<img width="200" src="src="https://qussk.github.io/image/gif/yogi1.gif">
 
-<img width="200" alt="3" src="https://qussk.github.io/image/gif/yogi4.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
 
-<img width="200" alt="4" src="https://qussk.github.io/image/gif/yogi3.gif">
-
+<img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
 </div>
 
 - REST API
