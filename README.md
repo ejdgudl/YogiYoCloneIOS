@@ -56,13 +56,12 @@
 변윤나
 
 ## DetailMenuVC, OrderVC
-<center>
   
-</center>
-<img width="200" alt="1" src="src="https://qussk.github.io/image/gif/yogi1.gif">
-<img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi4.gif">
-<img width="200" alt="3" src="https://qussk.github.io/image/gif/yogi3.gif"></center>
-<center>
+<div>
+<img width="200" alt="2" src="src="https://qussk.github.io/image/gif/yogi1.gif">
+<img width="200" alt="3" src="https://qussk.github.io/image/gif/yogi4.gif">
+<img width="200" alt="4" src="https://qussk.github.io/image/gif/yogi3.gif">
+</div>
 
 - REST API
 - 주요기능 : 메뉴 옵션(필/선)선택. 결제기능
