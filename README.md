@@ -56,7 +56,10 @@
 변윤나
 
 ## DetailMenuVC, OrderVC
+<center>
   
+
+</center>
 <div>
 <img width="200" alt="2" src="src="https://qussk.github.io/image/gif/yogi1.gif">
 
