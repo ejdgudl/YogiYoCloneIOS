@@ -58,9 +58,9 @@
 ## DetailMenuVC, OrderVC
 
 <div>
-<img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
+<center><img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
-<img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi3.gif"></center>
 </div>
 
 - REST API
@@ -69,7 +69,7 @@
 
 ## ShareVC
 <div>
-<img width="200" alt="1" src="https://qussk.github.io/image/gif/yogi2.gif">
+<img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi2.gif">
 <img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
 </div>
 
