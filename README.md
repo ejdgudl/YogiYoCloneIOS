@@ -58,7 +58,7 @@
 ## DetailMenuVC, OrderVC
 
 <div>
-<img width="200" src="src="https://qussk.github.io/image/gif/yogi1.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
 
 <img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
 
