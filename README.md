@@ -59,8 +59,11 @@
   
 <div>
 <img width="200" alt="2" src="src="https://qussk.github.io/image/gif/yogi1.gif">
+
 <img width="200" alt="3" src="https://qussk.github.io/image/gif/yogi4.gif">
+
 <img width="200" alt="4" src="https://qussk.github.io/image/gif/yogi3.gif">
+
 </div>
 
 - REST API
@@ -72,6 +75,7 @@
   
 </center>
 <center><img width="200" alt="1" src="https://qussk.github.io/image/gif/yogi2.gif">
+
 <img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif"></center>
 
 - 주요기능 : 공유하기 - url Scheme, 클립보드 복사
