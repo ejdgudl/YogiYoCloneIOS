@@ -68,12 +68,10 @@
 
 
 ## ShareVC
-<center>
-  
-</center>
-<center><img width="200" alt="1" src="https://qussk.github.io/image/gif/yogi2.gif">
-
-<img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif"></center>
+<div>
+<img width="200" alt="1" src="https://qussk.github.io/image/gif/yogi2.gif">
+<img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
+</div>
 
 - 주요기능 : 공유하기 - url Scheme, 클립보드 복사
 
