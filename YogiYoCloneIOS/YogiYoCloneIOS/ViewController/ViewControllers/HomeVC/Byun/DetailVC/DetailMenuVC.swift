@@ -6,7 +6,6 @@
 //  Copyright © 2020 김동현. All rights reserved.
 //
 import UIKit
-import SwiftyJSON
 import Kingfisher
 
 
