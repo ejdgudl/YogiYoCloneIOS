@@ -98,7 +98,6 @@ class ShareView : UIView {
         }else {
           print("not found")
        
-          // "https://apps.apple.com/us/app/kakaotalk/id362057947")!)//
         }
       }
     }
