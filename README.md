@@ -91,11 +91,11 @@ UITableViewCell 내에는 Alanofire 라이브러리를 사용하여 데이터를
 
 ## MenuListVC
 - 매장 정보와 메뉴
-```
-UICollectionViewFlowLayout을 custom 하여 StretchHeader를 구현
-해당 점포의 정보와 메뉴들을 parsing하여 view 구성 
-expandable한 tableView를 사용하여 메뉴 리스트 구성
-```
+
+- UICollectionViewFlowLayout을 custom 하여 StretchHeader를 구현
+- 해당 점포의 정보와 메뉴들을 parsing하여 view 구성 
+- expandable한 tableView를 사용하여 메뉴 리스트 구성
+
 <p align="center">
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/63357508/95325300-f539d480-08db-11eb-8021-fd5aa8b07752.gif">
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/63357508/95326047-f3244580-08dc-11eb-97c8-00ae69fddc20.gif">
@@ -106,20 +106,20 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 
 ## AccountVC
 - 마이 요기요
-```
+
 - 로그인 전 메인 화면
-```
+
 <p align="center">
 <img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95480130-7ff6fe00-09c6-11eb-8a7e-258126dad33c.jpeg">
 </p>
 
 ## SignUpVC
 - 회원가입
-```
+
 - email, password, nickname을 PARAMETER로 추가한 후 제공된 URL로 POST 
 - 서버에서 동일한 email이 사용되고 있는지 체크 
 - 사용중인 이메일이 아니라면 비활성화된 유저를 서버에서 생성하고 ID, TOKEN 반환  
-```
+
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95647347-a40f2800-0b09-11eb-86cd-f87a89ca9ca2.gif">
 <img width="200" alt="1" src="https://user-images.githubusercontent.com/63357508/95647257-fbf95f00-0b08-11eb-97cc-cb3bd712a6ec.png">
@@ -127,13 +127,13 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 
 ## PhoneAcceptVC
 - 전화번호 인증 (회원가입 완료후 바로 로그인이 되어지는 프로세스)
-```
+
 - FCM을 활용한 전화번호 인증을 완료후 반환받았던 ID와 유저 활성화 전용 PATH를 ENDPOINT에 추가하고 인증된 번호를 PARAMETER로 담아 PATCH
 - 해당 비활성 유저의 전화번호 정보가 PATCH 되어지고 활성화 유저로 변경
 - 로그인 전용 PATH를 ENDPOINT에 추가하고, 입력했던 email과 password를 PARAMETER로 담아 POST (ID, TOKEN 반환)
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고  ID를 ENDPOINT에 추가한후 유저의 데이터를 GET한 후에
 - Response의 DATA를 Codable을 채택한 구조 User 타입으로 Decode 
-```
+
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326699-f0762000-08dd-11eb-8236-d38c870bf649.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95647260-fd2a8c00-0b08-11eb-8322-622b5a980c9a.png">
@@ -141,9 +141,9 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 
 ## ChangeNickNameVC
 - 정보 변경
-```
+
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 변경후에 저장될 nickname을 PARAMETER로 추가한 후 PATCH
-```
+
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95326973-5d89b580-08de-11eb-9556-66180a25f582.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95647261-fdc32280-0b08-11eb-89f0-a715923fa853.png">
@@ -151,21 +151,21 @@ expandable한 tableView를 사용하여 메뉴 리스트 구성
 
 ## LogVC, LoggedAccountVC
 - 로그인
-```
+
 - 입력한 email, password를 PARAMETER로 추가한 후 로그인 전용 PATH를 ENDPOINT에 추가하고 POST (ID, TOKEN 반환)
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고  ID를 ENDPOINT에 추가한후 유저의 데이터를 GET한 후에
 - Response의 DATA를 Codable을 채택한 구조 User 타입으로 Decode 
-```
+
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327853-a3934900-08df-11eb-8eb4-4baa8b07a058.gif">
 </p>
 
 ## ProfileEditVC
 - 로그아웃, 회원탈퇴
-```
+
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 로그아웃 전용 PATH를 ENDPOINT에 추가한후 DELETE(로그 아웃)
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 ID를 ENDPOINT에 추가한후 DELETE(회원 탈퇴)
-```
+
 <p align="center">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95327497-1b14a880-08df-11eb-9306-fe001fe08a07.gif">
 <img width="200" alt="5" src="https://user-images.githubusercontent.com/63357508/95328033-e9501180-08df-11eb-8723-28191f7c1703.gif">
