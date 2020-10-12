@@ -25,6 +25,8 @@ class OrderListCell : UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUI()
     setConstraint()
+    selectionStyle = .none
+
   }
   
   //고정금액
@@ -199,9 +201,9 @@ extension OrderListCell : UITableViewDataSource {
           
     orderData?[indexPath.row].option.forEach{
       miniListCell.miniSubMenuLable.text! += "+\($0.name) "
-     // addPrice = addPrice + $0.
       nameArr.append($0.name)
     }
+    
     print(addPrice)
     print(nameArr)
     

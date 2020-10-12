@@ -6,7 +6,6 @@
 //  Copyright © 2020 김동현. All rights reserved.
 //
 import UIKit
-import SwiftyJSON
 import Kingfisher
 
 
@@ -50,14 +49,10 @@ class DetailMenuVC: UIViewController {
     clipboradMessag()
     setNaviBar()
     fechData()
-    
     buttonFrame()
     
     }
-  
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y-88, width: self.view.frame.size.width, height: self.view.frame.size.height+88)
-    }
+
   
   //MARK:- Popup Options
   func clipboradMessag(){
@@ -153,7 +148,7 @@ class DetailMenuVC: UIViewController {
     tableView.dataSource = self
     tableView.delegate = self
     
-    tableView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y-88, width: self.view.frame.size.width, height: self.view.frame.size.height+88)
+   // tableView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y-88, width: self.view.frame.size.width, height: self.view.frame.size.height+88)
     navigationBarLess()
     
     tableView.rowHeight = UITableView.automaticDimension //동적높이
@@ -162,6 +157,14 @@ class DetailMenuVC: UIViewController {
     tableView.separatorStyle = .none
     view.addSubview(tableView)
     register()
+    
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
     
   }
   //MARK:-register
@@ -237,13 +240,6 @@ class DetailMenuVC: UIViewController {
   }
   
 }
-//MARK:- ListMenuDelagate
-//func totalPriceManeger(){
-//  let indexPath = NSIndexPath(row: 0, section: 0)
-//  guard let total = orderlist?.price else {return}
-//  orderlist?.option[indexPath.row-2].price
-//  print("total : \(total)")
-//}
 
 //MARK:- ListMenuDelagate
 //선택사항
@@ -272,7 +268,6 @@ extension DetailMenuVC : ListMenuDelagate {
     
   }
 }
-
 
 //MARK:- ListOptionDelagate
 //필수사항
@@ -307,14 +302,11 @@ extension DetailMenuVC : ListOptionDelagate {
 }
 
 //MARK: -numberOfRowsInSection
-
 extension DetailMenuVC: UITableViewDataSource{
-  //섹션갯수
   func numberOfSections(in tableView: UITableView) -> Int {
     3 + (data?.optionGroup.count ?? 0)
   }
   
-  //셀갯수
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 { //이미지,할인,메뉴명,상세,리뷰
       return 5

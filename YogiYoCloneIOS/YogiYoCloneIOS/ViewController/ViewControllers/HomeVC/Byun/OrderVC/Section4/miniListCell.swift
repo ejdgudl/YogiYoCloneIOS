@@ -16,6 +16,8 @@ class miniListCell : UITableViewCell{
     
     setUI()
     setConstraint()
+    selectionStyle = .none
+
     
   }
   let miniMenuLable : UILabel = {
