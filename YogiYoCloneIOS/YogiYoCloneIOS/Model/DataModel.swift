@@ -19,6 +19,8 @@ struct RecommendData: Codable {
         let name: String
         let star: Double
         let image: String
+        let foodImage: String?
+        
         
         let deliveryDiscount: Int
         let deliveryCharge: Int
@@ -36,6 +38,7 @@ struct RecommendData: Codable {
             case name = "name"
             case star = "average_rating"
             case image = "image"
+            case foodImage = "back_image"
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
             case deliveryTime = "delivery_time"
@@ -61,6 +64,7 @@ struct LikeData: Codable {
         let name: String
         let star: Double
         let image: String
+        let foodImage: String?
         
         let deliveryDiscount: Int
         let deliveryCharge: Int
@@ -77,6 +81,7 @@ struct LikeData: Codable {
             case name = "name"
             case star = "average_rating"
             case image = "image"
+            case foodImage = "back_image"
             
             case deliveryDiscount = "delivery_discount"
             case deliveryCharge = "delivery_charge"
@@ -318,7 +323,6 @@ struct Menu: Codable {
         case id, name, image, caption, price
         case menuGroupId = "menu_group_id"
     }
-    
 }
 
 struct MenuData: Codable {
@@ -404,8 +408,8 @@ struct OrderListData : Codable {
             
             let id: Int
             let orderMenu: String
-            let restautantName: String
-            let restautantImage: String
+            let restaurantName: String
+            let restaurantImage: String
             let status : String
             let orderTime : String
             let reviewWritten : Bool
@@ -413,8 +417,8 @@ struct OrderListData : Codable {
             enum CodingKeys: String, CodingKey {
                 case id, status
                 case orderMenu = "order_menu"
-                case restautantName = "restaurant_name"
-                case restautantImage = "restaurant_image"
+                case restaurantName = "restaurant_name"
+                case restaurantImage = "restaurant_image"
                 case orderTime = "order_time"
                 case reviewWritten = "review_written"
             }
