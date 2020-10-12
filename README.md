@@ -79,8 +79,9 @@
 <img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi2.gif">
 <img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
 </div>
-
+- 카카오SDK
 - 주요기능 : 공유하기 - url Scheme, 클립보드 복사
+
 ```
 - 카카오SDK을 통해 id와 kakaoScheme이용헤 kakaolink처리. 
 - 클립보드복사 : UIPasteboard 이용하여 처리.
