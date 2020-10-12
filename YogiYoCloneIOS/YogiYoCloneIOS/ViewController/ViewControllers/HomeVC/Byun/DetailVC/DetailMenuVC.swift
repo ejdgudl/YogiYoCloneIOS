@@ -270,7 +270,6 @@ extension DetailMenuVC : ListMenuDelagate {
   }
 }
 
-
 //MARK:- ListOptionDelagate
 //필수사항
 extension DetailMenuVC : ListOptionDelagate {
@@ -304,7 +303,6 @@ extension DetailMenuVC : ListOptionDelagate {
 }
 
 //MARK: -numberOfRowsInSection
-
 extension DetailMenuVC: UITableViewDataSource{
   func numberOfSections(in tableView: UITableView) -> Int {
     3 + (data?.optionGroup.count ?? 0)
