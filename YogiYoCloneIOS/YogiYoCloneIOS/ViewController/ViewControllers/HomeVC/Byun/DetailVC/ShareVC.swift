@@ -73,7 +73,7 @@ class ShareVC: UIViewController {
   }
   
   @objc func cilpdidTap(_ sender: UIButton){
-    UIPasteboard.general.string = "https://apps.apple.com/us/app/kakaotalk/id362057947"
+    UIPasteboard.general.string = "https://apps.apple.com/kr/app/id543831532"
     print("클립이 복사되었습니다.")
     cancelAnimation()
     

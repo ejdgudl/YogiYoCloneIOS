@@ -42,6 +42,8 @@ class InformationCell : UITableViewCell{
     
     setUI()
     setConstraint()
+    selectionStyle = .none
+
   //  setInformationView()
     
   }

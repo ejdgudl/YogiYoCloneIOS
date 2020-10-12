@@ -34,6 +34,7 @@ class OderVC : UIViewController {
     //   fetchPosts()
     print("orderMager : \(orderMager.showMeOrderedList())")
     addTotal()
+    
   }
   
   
@@ -167,9 +168,6 @@ class OderVC : UIViewController {
     let alert = UIAlertController(title: "알림", message: "⛳️주문이 완료되었습니다~!🏇🚣‍♂️~!🧘‍♂️ 배달이 시작됩니다.🛥🚁", preferredStyle: UIAlertController.Style.alert)
     alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { action in
       
-//      //2-1
-//           DatabaseManager.shared.insertUser(with: DatabaseManager.ChatAppUser(email: email, nickname: email, id: password))
-      
      self.dismiss(animated: true)
     }))
     self.present(alert, animated: true, completion: nil)
@@ -265,12 +263,13 @@ extension OderVC : UITableViewDelegate {
       toolBar.barStyle = .default
       toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
       self.view.addSubview(toolBar)
+      
     }
     
   }
   
   @objc func onDoneButtonTapped() {
-    // pikerView.reloadAllComponents()
+  //  pikerView.reloadAllComponents()
     toolBar.removeFromSuperview()
     pikerView.removeFromSuperview()
     
