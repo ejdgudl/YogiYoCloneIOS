@@ -69,21 +69,36 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 ---
 김믿음
 ## StoreListVC
-```
-사용자가 지정한 지역의 매장 데이터를 가져오는 것으로 상단 카테고리는 UISegmentControl을 Custom 하여 구현
-하단 페이징은 UIScrollView UITableView와 UITableViewCell 을 Customg하여 Paging 구현
-UITableViewCell 내에는 Alanofire 라이브러리를 사용하여 데이터를 GET 방식으로 Fetch
-필터 기능은 Delegate를 활용하여 UIView 로 구성하였으며, 각 필터를 누를 때마다 필터된 데이터를 받아와 TableView 가 Reload 되도록 구현 
-```
+- 카테고리별 매장 리스트 
+
+- 사용자가 지정한 지역의 매장 데이터를 가져오는 것으로 상단 카테고리는 UISegmentControl을 Custom 하여 구현 
+- 하단 페이징은 UIScrollView UITableView와 UITableViewCell 을 Customg하여 Paging 구현
+- ITableViewCell 내에는 Alanofire 라이브러리를 사용하여 데이터를 GET 방식으로 Fetch
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/61490943/95854544-1134ee80-0d92-11eb-9e28-e75be5a6a451.gif">
+</p>
+
+
+- 매장리스트 필터 정렬기능
+
+- 필터 기능은 Delegate를 활용하여 UIView 로 구성, 각 필터를 누를 때마다 필터된 데이터를 받아와 TableView 가 Reload 되도록 구현 
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/61490943/95853495-7c7dc100-0d90-11eb-86c2-846b5c157fce.gif">
+</p>
+
 
 ## HistoryVC 
-```
-사용자가 주문한 내역 데이터를 가져오는 화면으로 상단 카데고리는 StoreVC 와 동일하게 UISegmentControl 를 사용하였고, 
-하단 페이징 화면도 StoreVC 와 동일하게 구현하되, 데이터가 없는경우 EmptyPage를 만들어 주문하기를 클릭하면
-매장 리스트로 갈수 있도록 구현
-```
+
+- 주문내역
+
+- 사용자가 주문한 내역 데이터를 가져오는 화면으로 상단 카데고리는 StoreVC 와 동일하게 UISegmentControl 를 사용
+- 하단 페이징 화면도 StoreVC 와 동일하게 구현하되, 데이터가 없는경우 EmptyPage를 만들어 주문하기를 클릭하면
+- 매장 리스트로 갈수 있도록 구현
+
 <p align="center">
-<img width="200" alt="7" src="https://user-images.githubusercontent.com/61490943/95412869-e5b29e00-0964-11eb-9375-b2b0a5681319.gif">
+<img width="200" alt="1" src="https://user-images.githubusercontent.com/61490943/95853729-d7afb380-0d90-11eb-8cda-abd70526b86d.gif">
 </p>
 
 ---
