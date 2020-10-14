@@ -179,6 +179,7 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - 로그아웃, 회원탈퇴
 
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 로그아웃 전용 PATH를 ENDPOINT에 추가한후 DELETE(로그 아웃)
+
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 ID를 ENDPOINT에 추가한후 DELETE(회원 탈퇴)
 
 <p align="center">
@@ -193,9 +194,13 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 
 - 메뉴 옵션(필/선) 및 수량선택. 결제기능
+
 - 메뉴선택 -> 주문기능 과정에서 menuAPI를 받는 MenuData모델을 만들고 주문시 OrderData모델을 연동하여 주문데이터가 따로 관리되도록 구현(Codable)
+
 - 주문이후 전체적인 주문정보를 관리하는 매니저(데이터 모델)인 OrderMager를 싱글톤으로 만들어 orderList 배열에 저장, 리턴, 초기화 기능을 추가하여 하위 데이터(주메뉴,옵션명,수량,totalPrice등)를 효율적으로 관리
+
 - 옵션,필수등의 체크사항은 데이터에 따라 mandatory(true,false), name, price데이터가 변동되는 것을 고려하여 row와 section값에 직접 접근하여 처리.(필수옵션 - 단일선택, 선택옵션 - 다량선택을 위한 액션은 프로토콜로 처리)
+
 - 체크해제에 대한 데이터 삭제
 
 <div>
@@ -222,7 +227,9 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 ## SearchVC
 
 - 검색기능
+
 - 자동완성 api 
+
 - url의 String포함을 addingPercentEncoding로 처리하여 url사용.
 
 <div>
