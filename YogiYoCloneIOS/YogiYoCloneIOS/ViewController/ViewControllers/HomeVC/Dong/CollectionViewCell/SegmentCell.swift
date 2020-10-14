@@ -13,12 +13,20 @@ class SegmentCell: UICollectionViewCell {
     // MARK: Properties
     static let cellID = "SegmentCellID"
     
+<<<<<<< HEAD
     private var menuCount = 0
+=======
+    private var menuCount = 100...300
+>>>>>>> develop
     private var reviewCount = 0
     
     private lazy var segmentedControl: UISegmentedControl = {
        let sc = UISegmentedControl()
+<<<<<<< HEAD
         sc.insertSegment(withTitle: "메뉴 \(menuCount)", at: 0, animated: false)
+=======
+        sc.insertSegment(withTitle: "메뉴 \(menuCount.randomElement()!)", at: 0, animated: false)
+>>>>>>> develop
         sc.insertSegment(withTitle: "클린리뷰 \(reviewCount)", at: 1, animated: false)
         sc.insertSegment(withTitle: "정보", at: 2, animated: false)
         sc.selectedSegmentIndex = 0

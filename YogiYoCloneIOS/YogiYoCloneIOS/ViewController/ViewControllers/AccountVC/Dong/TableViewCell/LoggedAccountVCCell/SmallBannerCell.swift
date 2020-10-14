@@ -39,7 +39,11 @@ class SmallBannerCell: UITableViewCell {
     
     // MARK: ConfigureViews
     private func configureViews() {
+<<<<<<< HEAD
         backgroundColor = .lightGray
+=======
+        backgroundColor = ColorPiker.lightGray
+>>>>>>> develop
         
         addSubview(bannerImageView)
         

@@ -7,12 +7,22 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import KakaoSDKAuth
 import KakaoSDKUser
 import NaverThirdPartyLogin
 import Alamofire
 import AuthenticationServices
 
+=======
+import Alamofire
+import AuthenticationServices
+
+protocol LogVCDelegate: class {
+    func pushLoggedVC(appUser: AppUser)
+}
+
+>>>>>>> develop
 class LogVC: UIViewController {
     
     // MARK: Properties
@@ -22,7 +32,11 @@ class LogVC: UIViewController {
         return tableView
     }()
     
+<<<<<<< HEAD
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+=======
+    weak var delegate: LogVCDelegate?
+>>>>>>> develop
     
     let acceptVC = AcceptVC()
     
@@ -39,6 +53,7 @@ class LogVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+<<<<<<< HEAD
     @objc private func didTapKakaoButton() {
         if (AuthApi.isKakaoTalkLoginAvailable()) {
             AuthApi.shared.loginWithKakaoTalk { (oAuthToken, error) in
@@ -56,6 +71,8 @@ class LogVC: UIViewController {
         loginInstance?.requestThirdPartyLogin()
     }
     
+=======
+>>>>>>> develop
     @objc private func didTapAppleButton(_ sender: UIButton) {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -65,6 +82,16 @@ class LogVC: UIViewController {
         controller.performRequests()
     }
     
+<<<<<<< HEAD
+=======
+    @objc private func dissmissWhenLogin(notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: AppUser] else { return }
+        guard let appUser = userInfo["userInfo"] else { return }
+        self.dismiss(animated: true, completion: nil)
+        delegate?.pushLoggedVC(appUser: appUser)
+    }
+    
+>>>>>>> develop
     // MARK: Helpers
     private func configureNavi() {
         navigationController?.navigationBar.tintColor = .black
@@ -83,7 +110,11 @@ class LogVC: UIViewController {
         tableView.register(LogCell.self, forCellReuseIdentifier: LogCell.cellID)
         tableView.register(SocialLogCell.self, forCellReuseIdentifier: SocialLogCell.cellID)
         
+<<<<<<< HEAD
         loginInstance?.delegate = self
+=======
+        NotificationCenter.default.addObserver(self, selector: #selector(dissmissWhenLogin), name: logCellObserveName, object: nil)
+>>>>>>> develop
     }
     
     // MARK: ConfigureViews
@@ -129,14 +160,18 @@ extension LogVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SocialLogCell.cellID, for: indexPath) as? SocialLogCell else { return UITableViewCell() }
+<<<<<<< HEAD
             cell.kakaoButton.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
             cell.naverButton.addTarget(self, action: #selector(didTapNaverButton), for: .touchUpInside)
+=======
+>>>>>>> develop
             cell.appleButton.addTarget(self, action: #selector(didTapAppleButton), for: .touchUpInside)
             return cell
         }
     }
 }
 
+<<<<<<< HEAD
 extension LogVC: NaverThirdPartyLoginConnectionDelegate {
     // 로그인 버튼을 눌렀을 경우 열게 될 브라우저
     func oauth20ConnectionDidOpenInAppBrowser(forOAuth request: URLRequest!) {
@@ -166,6 +201,8 @@ extension LogVC: NaverThirdPartyLoginConnectionDelegate {
     }
 }
 
+=======
+>>>>>>> develop
 extension LogVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {

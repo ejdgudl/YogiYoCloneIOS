@@ -34,12 +34,20 @@ class BannerCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
+<<<<<<< HEAD
         
+=======
+        selectionStyle = .none
+>>>>>>> develop
     }
     
     // MARK: ConfigureViews
     private func configureViews() {
+<<<<<<< HEAD
         backgroundColor = .lightGray
+=======
+        backgroundColor = ColorPiker.lightGray
+>>>>>>> develop
         
         addSubview(bannerImageView)
         

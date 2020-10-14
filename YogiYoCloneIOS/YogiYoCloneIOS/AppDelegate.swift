@@ -7,6 +7,7 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import KakaoSDKCommon
 import KakaoSDKAuth
 import Firebase
@@ -35,10 +36,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: HomeVC())
 //        window?.rootViewController = MainTabVC()
+=======
+import Firebase
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    
+    var window: UIWindow?
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FirebaseApp.configure()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+                window?.rootViewController = UINavigationController(rootViewController: StoreListVC())
+        window?.rootViewController = MainTabVC()
+>>>>>>> develop
         window?.makeKeyAndVisible()
         return true
     }
     
+<<<<<<< HEAD
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if (AuthApi.isKakaoTalkLoginUrl(url)) {
             return AuthController.handleOpenUrl(url: url)
@@ -48,4 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
+=======
+>>>>>>> develop
 }
