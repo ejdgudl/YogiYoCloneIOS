@@ -204,9 +204,11 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - 체크해제에 대한 데이터 삭제
 
 <div>
+<p align="center">
 <img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
+</p>
 </div>
 
 
@@ -218,8 +220,10 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - 클립보드복사 : UIPasteboard 이용하여 처리.
 
 <div>
+<p align="center">
 <img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi2.gif">
 <img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
+</p>
 </div>
 
 
@@ -233,7 +237,9 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - url의 String포함을 addingPercentEncoding로 처리하여 url사용.
 
 <div>
+<p align="center">
 <img width="200" src="https://qussk.github.io/image/gif/yogi6.gif">
+</p>
 </div>
 
 
