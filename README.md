@@ -53,9 +53,9 @@
 - 변윤나
 ```
 [로그인 - 주기능 - 부가기능]의 하나의 전체적인 서비스 사이클을 완성하는 앱을 개발함으로서, 
-앱의 전체적인 이해와 개발환경에 대한 개념(서버관리,에러처리,데이터관리 등)을 높일 수 있었다. 
-UI , Model(Data), API 를 숙련할 수 있었던 좋은 프로젝트였다.  
-iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 경험(커뮤니케이션, 발표 준비등)이 특히 의미있었다.
+앱의 전체적인 이해와 개발환경에 대한 개념(서버관리,에러처리,데이터관리 등)을 명확히 하고 어떻게 구성하는 게 효율적인지에 대한 고민을 해볼 수 있는 좋은 경험이 었습니다.  
+UI , Model(Data), REST API의 숙련이 요구되는 프로젝트였고, 
+iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 경험(커뮤니케이션, 발표 준비등)이 특히 의미있었습니다.
 ```
 
 
@@ -179,6 +179,7 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - 로그아웃, 회원탈퇴
 
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 로그아웃 전용 PATH를 ENDPOINT에 추가한후 DELETE(로그 아웃)
+
 - 인증을 위한 해당 유저의 TOKEN을 HEADER에 담고 ID를 ENDPOINT에 추가한후 DELETE(회원 탈퇴)
 
 <p align="center">
@@ -191,57 +192,56 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 ## DetailMenuVC, OrderVC
 
+
+- 메뉴 옵션(필/선) 및 수량선택. 결제기능
+
+- 메뉴선택 -> 주문기능 과정에서 menuAPI를 받는 MenuData모델을 만들고 주문시 OrderData모델을 연동하여 주문데이터가 따로 관리되도록 구현(Codable)
+
+- 주문이후 전체적인 주문정보를 관리하는 매니저(데이터 모델)인 OrderMager를 싱글톤으로 만들어 orderList 배열에 저장, 리턴, 초기화 기능을 추가하여 하위 데이터(주메뉴,옵션명,수량,totalPrice등)를 효율적으로 관리
+
+- 옵션,필수등의 체크사항은 데이터에 따라 mandatory(true,false), name, price데이터가 변동되는 것을 고려하여 row와 section값에 직접 접근하여 처리.(필수옵션 - 단일선택, 선택옵션 - 다량선택을 위한 액션은 프로토콜로 처리)
+
+- 체크해제에 대한 데이터 삭제
+
 <div>
+<p align="center">
 <img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
+</p>
 </div>
 
-- REST API
-- 주요기능 : 메뉴 옵션(필/선) 및 수량선택. 결제기능
-- 사용된 라이브러리 : Kingfisher  
-- autoLayout : Anchor
-
-```
-- 메뉴선택 -> 주문기능 과정에서 menuAPI를 받는 MenuData모델을 만들고 주문시 OrderData모델을 연동하여 주문데이터가 따로 관리되도록 구현(Codable이용).
-- 주문이후 전체적인 주문정보를 관리하는 매니저(데이터 모델)인 OrderMager를 싱글톤으로 만들어 orderList 배열에 저장, 리턴, 초기화 기능을 추가하여 하위 주메뉴,옵션명,수량,totalPrice등을 효율적으로 관리함.
-- 옵션,필수등의 체크사항은 데이터에 따라 mandatory(true,false), name, price데이터가 변동되는 것을 고려하여 row와 section값에 직접 접근하여 처리.(필수옵션 - 단일선택, 선택옵션 - 다량선택을 위한 액션은 프로토콜로 처리). 
-- 다시 주문화면으로 돌아가 User가 옵션에 대해 체크해제할 경우 데이터 remove(at: index)처리함.(배열에서 삭제) 
-
-```
 
 
 ## ShareVC
-<div>
-<img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi2.gif">
-<img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
-</div>
 
-- 카카오SDK
-- 주요기능 : 공유하기 - url Scheme, 클립보드 복사
-- Layout : frame
-
-```
+- 공유하기
 - 카카오SDK을 통해 id와 kakaoScheme이용헤 kakaolink처리. 
 - 클립보드복사 : UIPasteboard 이용하여 처리.
-```
+
+<div>
+<p align="center">
+<img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi2.gif">
+<img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
+</p>
+</div>
+
 
 
 ## SearchVC
 
+- 검색기능
+
+- 자동완성 api 
+
+- url의 String포함을 addingPercentEncoding로 처리하여 url사용.
+
 <div>
+<p align="center">
 <img width="200" src="https://qussk.github.io/image/gif/yogi6.gif">
+</p>
 </div>
 
-- REST API
-- 주요기능 : 매장명, 음식명 검색
-- autoLayout : Anchor
-
-```
-- Textfield in navigationBar
-- url의 String포함을 addingPercentEncoding로 처리하여 url사용.
-- 함수에 text인자 값을 받아 "http://52.79.251.125/restaurants?search=\(text ?? "")"처리.
-```
 
 ---
 
