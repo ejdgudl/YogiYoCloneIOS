@@ -11,22 +11,6 @@ import UIKit
 class StoreInfoCell: UICollectionViewCell {
     
     // MARK: Properties
-<<<<<<< HEAD
-    static let cellID = "StoreInfoCellID"
-    
-    private var minPrice = 10000
-    private var deliPrice = 10000
-    private var payMent = "요기서 결제"
-    private var heartCount = 52
-    
-    let numberFormatter = NumberFormatter()
-    
-    private lazy var minOrderPrice: UILabel = {
-        let label = UILabel()
-        let price = numberFormatter.string(from: NSNumber(value: minPrice))
-        let string = "·최소주문  " + "\(price ?? "")" + "원"
-        label.setAttribute(label: label, string: string)
-=======
     public var storeInfo: RestaurantInstanceData? {
         didSet {
             guard let storeInfo = storeInfo else { return }
@@ -70,28 +54,16 @@ class StoreInfoCell: UICollectionViewCell {
     
     private lazy var minOrderPrice: UILabel = {
         let label = UILabel()
->>>>>>> develop
         return label
     }()
     
     private lazy var payMentLbl: UILabel = {
         let label = UILabel()
-<<<<<<< HEAD
-        let string = "·결제방법  \(payMent)"
-        label.setAttribute(label: label, string: string)
-=======
->>>>>>> develop
         return label
     }()
     
     private lazy var deliveryPrice: UILabel = {
         let label = UILabel()
-<<<<<<< HEAD
-        let price = numberFormatter.string(from: NSNumber(value: deliPrice))
-        let string = "·배달요금  " + "\(price ?? "")" + "원"
-        label.setAttribute(label: label, string: string)
-=======
->>>>>>> develop
         return label
     }()
     
@@ -106,10 +78,7 @@ class StoreInfoCell: UICollectionViewCell {
     private let notiTitle: UILabel = {
         let label = UILabel()
         label.text = "사장님알림"
-<<<<<<< HEAD
-=======
         label.textColor = .black
->>>>>>> develop
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
@@ -117,10 +86,7 @@ class StoreInfoCell: UICollectionViewCell {
     private let moreButton: UIButton = {
         let button = UIButton()
         button.setTitle("더보기 >", for: . normal)
-<<<<<<< HEAD
-=======
         button.setTitleColor(.lightGray, for: .normal)
->>>>>>> develop
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         return button
     }()
@@ -129,25 +95,12 @@ class StoreInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 2
-<<<<<<< HEAD
-        label.text = "aslkdfl;kasdf;akjsdhf;lashdf;lasadfasdfalsdfhalsjkdflasdflkasjdflkasdjflkjsdhf;lahsjdf;lkajsd;fiansugafnsjkglnafslgna;slkfgn;alskdjfg;laksdjf;lasdjf;laisdjflijsdjfli"
-=======
         label.textColor = .darkGray
->>>>>>> develop
         return label
     }()
     
     private lazy var notiView: UIView = {
         let view = UIView()
-<<<<<<< HEAD
-        view.backgroundColor = .lightGray
-        [notiTitle, moreButton, notiTextLabel].forEach {
-            view.addSubview($0)
-        }
-        notiTitle.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().inset(11)
-        }
-=======
         
         view.backgroundColor = ColorPiker.lightGray
         
@@ -159,18 +112,13 @@ class StoreInfoCell: UICollectionViewCell {
             make.top.left.equalToSuperview().inset(11)
         }
         
->>>>>>> develop
         moreButton.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(5)
             make.right.equalToSuperview().inset(11)
         }
-<<<<<<< HEAD
-        notiTextLabel.snp.makeConstraints { (make) in
-=======
         
         notiTextLabel.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.notiTitle.snp.bottom).offset(12)
             make.left.right.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(12)
@@ -183,10 +131,7 @@ class StoreInfoCell: UICollectionViewCell {
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.setTitle("  찜  \(heartCount)", for: .normal)
         button.setTitleColor(.black, for: .normal)
-<<<<<<< HEAD
-=======
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
->>>>>>> develop
         button.titleLabel?.textAlignment = .center
         button.tintColor = .black
         return button
@@ -198,13 +143,9 @@ class StoreInfoCell: UICollectionViewCell {
         button.setTitle("공유", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.textAlignment = .center
-<<<<<<< HEAD
-        button.tintColor = .black
-=======
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         button.tintColor = .black
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
->>>>>>> develop
         return button
     }()
     
@@ -216,11 +157,8 @@ class StoreInfoCell: UICollectionViewCell {
         return stackView
     }()
     
-<<<<<<< HEAD
-=======
     let numberFormatter = NumberFormatter()
     
->>>>>>> develop
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -250,12 +188,8 @@ class StoreInfoCell: UICollectionViewCell {
             make.left.equalToSuperview()
         }
         
-<<<<<<< HEAD
-        notiView.snp.makeConstraints { (make) in
-=======
         notiView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.payStackView.snp.bottom).offset(12)
             make.left.right.equalToSuperview()
         }

@@ -12,8 +12,6 @@ import SnapKit
 class MenuListVC: UIViewController {
     
     // MARK: Properties
-<<<<<<< HEAD
-=======
     var storeInfo: RestaurantInstanceData? {
         didSet {
             collectionView.reloadData()
@@ -23,7 +21,6 @@ class MenuListVC: UIViewController {
 
     public var id : Int = 1
 
->>>>>>> develop
     fileprivate let padding: CGFloat = 16
     
     private var imageVIewOption = true
@@ -34,10 +31,7 @@ class MenuListVC: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.contentInsetAdjustmentBehavior = .never
         view.backgroundColor = .white
-<<<<<<< HEAD
-=======
         view.showsVerticalScrollIndicator = false
->>>>>>> develop
         return view
     }()
     
@@ -54,13 +48,6 @@ class MenuListVC: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
-        configure()
-        configureNavi()
-        configureViews()
-    }
-    
-=======
         configureStoreInfo()
         configure()
         tabBarController?.tabBar.isHidden = true
@@ -72,30 +59,19 @@ class MenuListVC: UIViewController {
         configureNavi()
     }
     
->>>>>>> develop
     // MARK: @Objc
     @objc private func didTapSearchButton() {
         
     }
     
-<<<<<<< HEAD
-    @objc private func didTapBackButton() {
-        navigationController?.popViewController(animated: true)
-    }
-=======
 //    @objc private func didTapBackButton() {
 //      navigationController?.popViewController(animated: true)
 //    }
->>>>>>> develop
     
     lazy var bar:UINavigationBar! =  self.navigationController?.navigationBar
     
     // MARK: Helpers
-<<<<<<< HEAD
-    private func configureNavi() {
-=======
     public func configureNavi() {
->>>>>>> develop
         UIApplication.shared.statusBarStyle = .lightContent
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
@@ -104,9 +80,6 @@ class MenuListVC: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
-<<<<<<< HEAD
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
-=======
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
     }
     
@@ -118,7 +91,6 @@ class MenuListVC: UIViewController {
     
     private func configureStoreInfo() {
         storeInfoService(selfVC: self, id: self.id)
->>>>>>> develop
     }
     
     // MARK: Configure
@@ -145,23 +117,15 @@ class MenuListVC: UIViewController {
             make.edges.equalToSuperview()
         }
         
-<<<<<<< HEAD
-        statusView.snp.makeConstraints { (make) in
-=======
         statusView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
         
         bottomView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
-<<<<<<< HEAD
-            make.height.equalTo(85)
-=======
             make.height.equalToSuperview().multipliedBy(0.1)
->>>>>>> develop
         }
     }
 }
@@ -174,11 +138,7 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-<<<<<<< HEAD
-        return .init(width: view.frame.width, height: 500)
-=======
         return .init(width: view.frame.width, height: 2000)
->>>>>>> develop
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -188,11 +148,7 @@ extension MenuListVC: UICollectionViewDelegateFlowLayout {
         case 1:
             return .init(width: view.frame.width - 2 * padding, height: 50)
         case 2:
-<<<<<<< HEAD
-            return .init(width: view.frame.width, height: 170)
-=======
             return .init(width: view.frame.width, height: 200)
->>>>>>> develop
         default:
             break
         }
@@ -224,20 +180,14 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         switch indexPath.row {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreInfoCell.cellID, for: indexPath) as? StoreInfoCell else { return UICollectionViewCell() }
-<<<<<<< HEAD
-=======
             cell.storeInfo = self.storeInfo
->>>>>>> develop
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegmentCell.cellID, for: indexPath) as? SegmentCell else { return UICollectionViewCell() }
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegMenuCell.cellID, for: indexPath) as? SegMenuCell else { return UICollectionViewCell() }
-<<<<<<< HEAD
-=======
             cell.photoMenus = self.storeInfo?.photoMenu
->>>>>>> develop
             return cell
         default:
             break
@@ -250,11 +200,6 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         
         if kind == UICollectionView.elementKindSectionHeader {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.cellID, for: indexPath) as? HeaderView else { return UICollectionReusableView()}
-<<<<<<< HEAD
-            return header
-        }else {
-            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.cellID, for: indexPath) as? FooterView else { return UICollectionReusableView() }
-=======
             header.storeInfo = self.storeInfo
             return header
         }else {
@@ -262,7 +207,6 @@ extension MenuListVC: UICollectionViewDataSource, UICollectionViewDelegate {
             guard let storeInfo = storeInfo else { return footer }
             footer.tableViewData = storeInfo.menuGroup
             footer.delegate = self
->>>>>>> develop
             return footer
         }
     }
@@ -276,12 +220,8 @@ extension MenuListVC: UIScrollViewDelegate{
                 self.navigationController?.navigationBar.tintColor = .black
                 self.statusView.backgroundColor = .white
                 UIApplication.shared.statusBarStyle = .darkContent
-<<<<<<< HEAD
-                self.title = "가게 이름"
-=======
                 guard let storeInfoName = self.storeInfo?.name else { return }
                 self.title = storeInfoName
->>>>>>> develop
             }
         } else if scrollView.contentOffset.y < 100{
             UIView.animate(withDuration: 0.15) {
@@ -293,8 +233,6 @@ extension MenuListVC: UIScrollViewDelegate{
         }
     }
 }
-<<<<<<< HEAD
-=======
 extension MenuListVC: PushOrderVCDelegate {
     func pushOrderVCDelegate(id: Int) {
         let detailMenuVC = DetailMenuVC()
@@ -305,4 +243,3 @@ extension MenuListVC: PushOrderVCDelegate {
         print("----------------------\(id)")
     }
 }
->>>>>>> develop

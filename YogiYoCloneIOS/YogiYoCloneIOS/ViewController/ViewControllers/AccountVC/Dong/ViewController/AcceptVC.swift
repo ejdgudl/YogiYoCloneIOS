@@ -188,12 +188,8 @@ class AcceptVC: UIViewController {
             view.addSubview($0)
         }
         
-<<<<<<< HEAD
-        logoImageView.snp.makeConstraints { (make) in
-=======
         logoImageView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
             make.centerX.equalToSuperview()
             make.width.equalTo(200)
@@ -205,23 +201,15 @@ class AcceptVC: UIViewController {
             make.top.equalTo(logoImageView.snp.bottom).offset(5)
         }
         
-<<<<<<< HEAD
-        titleCheckBoxButton.snp.makeConstraints { (make) in
-=======
         titleCheckBoxButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(45)
             make.left.right.equalToSuperview()
             make.height.equalTo(28)
         }
         
-<<<<<<< HEAD
-        acceptStackView.snp.makeConstraints { (make) in
-=======
         acceptStackView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.titleCheckBoxButton.snp.bottom).offset(10)
             make.left.right.equalToSuperview()
             make.height.equalTo(200)
@@ -235,12 +223,8 @@ class AcceptVC: UIViewController {
             make.right.equalToSuperview().inset(28)
         }
         
-<<<<<<< HEAD
-        nextButton.snp.makeConstraints { (make) in
-=======
         nextButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.acceptStackView.snp.bottom).offset(37)
             make.left.right.equalToSuperview().inset(15)
             make.height.equalTo(45)

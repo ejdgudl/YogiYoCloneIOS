@@ -25,12 +25,9 @@ struct ColorPiker {
   static let customAlpha2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
   static let customDarkGray = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
   static let customrightGray = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
-<<<<<<< HEAD
-=======
     
     
     static let lightGray = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.5)
->>>>>>> develop
 }
 
 

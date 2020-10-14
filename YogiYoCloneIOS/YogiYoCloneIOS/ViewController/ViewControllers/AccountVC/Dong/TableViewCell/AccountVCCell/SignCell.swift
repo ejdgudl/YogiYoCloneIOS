@@ -25,19 +25,6 @@ class SignCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.backgroundColor = .red
-<<<<<<< HEAD
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        return button
-    }()
-    
-    private let singUpButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("회원가입", for: .normal)
-        button.layer.borderWidth = 0.5
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
-=======
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         return button
     }()
@@ -50,7 +37,6 @@ class SignCell: UITableViewCell {
         button.setTitleColor(.black, for: .normal)
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.addTarget(self, action: #selector(signUpButtonHandler), for: .touchUpInside)
->>>>>>> develop
         return button
     }()
     
@@ -61,25 +47,18 @@ class SignCell: UITableViewCell {
         configureViews()
     }
     
-<<<<<<< HEAD
-=======
     // MARK: @objc
     @objc private func signUpButtonHandler() {
         NotificationCenter.default.post(name: presentSignUpVC, object: nil, userInfo: nil)
     }
     
->>>>>>> develop
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews
@@ -90,33 +69,21 @@ class SignCell: UITableViewCell {
             addSubview($0)
         }
         
-<<<<<<< HEAD
-        signText.snp.makeConstraints { (make) in
-=======
         signText.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.bottom.equalTo(self.snp.centerY)
             make.top.left.right.centerX.equalToSuperview()
         }
         
-<<<<<<< HEAD
-        singInButton.snp.makeConstraints { (make) in
-=======
         singInButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.snp.centerY)
             make.right.equalTo(self.snp.centerX).inset(6)
             make.left.bottom.equalToSuperview().inset(15)
         }
         
-<<<<<<< HEAD
-        singUpButton.snp.makeConstraints { (make) in
-=======
         singUpButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.snp.centerY)
             make.left.equalTo(self.snp.centerX).offset(6)
             make.right.bottom.equalToSuperview().inset(15)

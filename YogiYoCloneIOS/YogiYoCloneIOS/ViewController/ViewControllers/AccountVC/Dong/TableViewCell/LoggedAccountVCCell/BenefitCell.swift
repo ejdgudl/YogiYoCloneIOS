@@ -41,11 +41,7 @@ class BenefitCell: UITableViewCell {
     
     private let deviderView: UIView = {
        let view = UIView()
-<<<<<<< HEAD
-        view.backgroundColor = .lightGray
-=======
         view.backgroundColor = ColorPiker.lightGray
->>>>>>> develop
         return view
     }()
     
@@ -62,11 +58,7 @@ class BenefitCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews
@@ -84,12 +76,8 @@ class BenefitCell: UITableViewCell {
             make.width.height.equalTo(5)
         }
         
-<<<<<<< HEAD
-        subtitleLabel.snp.makeConstraints { (make) in
-=======
         subtitleLabel.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.centerY.equalToSuperview()
             make.left.equalTo(self.redDotView.snp.right).offset(7)
         }

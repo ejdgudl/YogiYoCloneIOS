@@ -11,11 +11,8 @@ import UIKit
 class PasswordCell: UITableViewCell {
     
     // MARK: Properties
-<<<<<<< HEAD
-=======
     public var appUser: AppUser?
     
->>>>>>> develop
     static let cellID = "PasswordCellID"
     
     private let topDeviderView: UIView = {
@@ -24,26 +21,16 @@ class PasswordCell: UITableViewCell {
         return view
     }()
     
-<<<<<<< HEAD
-    var passordTitle: UILabel = {
-=======
     private var passordTitle: UILabel = {
->>>>>>> develop
        let label = UILabel()
         label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 11)
         return label
     }()
 
-<<<<<<< HEAD
-    var passord: UILabel = {
-       let label = UILabel()
-        label.text = "SNS계정에서 변경하실 수 있습니다."
-=======
     private var passord: UILabel = {
        let label = UILabel()
         label.text = "*******"
->>>>>>> develop
         return label
     }()
     
@@ -60,11 +47,7 @@ class PasswordCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews

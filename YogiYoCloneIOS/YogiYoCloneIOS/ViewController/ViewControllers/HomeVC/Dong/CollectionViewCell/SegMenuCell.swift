@@ -11,15 +11,12 @@ import UIKit
 class SegMenuCell: UICollectionViewCell {
     
     // MARK: Properties
-<<<<<<< HEAD
-=======
     var photoMenus: [PhotoMenu]? {
         didSet {
             collectionView.reloadData()
         }
     }
     
->>>>>>> develop
     static let cellID = "SegMenuCellID"
     
     private let collectionView: UICollectionView = {
@@ -52,11 +49,7 @@ class SegMenuCell: UICollectionViewCell {
     
     // MARK: ConfigureViews
     private func configureViews() {
-<<<<<<< HEAD
-        backgroundColor = .lightGray
-=======
         backgroundColor = ColorPiker.lightGray
->>>>>>> develop
         
         addSubview(collectionView)
         
@@ -72,31 +65,20 @@ extension SegMenuCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-<<<<<<< HEAD
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-=======
         return UIEdgeInsets(top: 0, left: 16, bottom: -5, right: 0)
->>>>>>> develop
     }
 }
 
 extension SegMenuCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-<<<<<<< HEAD
-        3
-=======
         guard let photoMenus = self.photoMenus else { return 0 }
         return photoMenus.count
->>>>>>> develop
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SegMenuItemCell.cellID, for: indexPath) as? SegMenuItemCell else { return UICollectionViewCell() }
-<<<<<<< HEAD
-=======
         guard let photoMenus = self.photoMenus else { return cell }
         cell.photoMenu = photoMenus[indexPath.row]
->>>>>>> develop
         return cell
     }
 }

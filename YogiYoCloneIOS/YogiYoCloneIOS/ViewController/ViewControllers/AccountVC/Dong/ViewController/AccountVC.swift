@@ -13,11 +13,7 @@ class AccountVC: UIViewController {
     // MARK: Properties
     private let tableView: UITableView = {
         let tableView = UITableView()
-<<<<<<< HEAD
-        tableView.backgroundColor = .lightGray
-=======
         tableView.backgroundColor = ColorPiker.lightGray
->>>>>>> develop
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -43,21 +39,12 @@ class AccountVC: UIViewController {
     
     @objc private func didTapSignInButton() {
         let logVC = LogVC()
-<<<<<<< HEAD
-=======
         logVC.delegate = self
->>>>>>> develop
         let nav = UINavigationController(rootViewController: logVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
     }
     
-<<<<<<< HEAD
-    @objc private func presentLoggedAccountVC(notification: Notification) {
-        let loggedAccountVC = LoggedAccountVC()
-        loggedAccountVC.userPhoneNum = notification.userInfo?["phoneNum"] as? String
-        navigationController?.pushViewController(loggedAccountVC, animated: true)
-=======
     let loggedAccountVC = LoggedAccountVC()
     
     @objc private func presentLoggedAccountVC(notification: Notification) {
@@ -70,7 +57,6 @@ class AccountVC: UIViewController {
         let nav = UINavigationController(rootViewController: signUpVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
->>>>>>> develop
     }
     
     // MARK: Helpers
@@ -92,24 +78,16 @@ class AccountVC: UIViewController {
         tableView.register(WalletCell.self, forCellReuseIdentifier: WalletCell.cellID)
         tableView.register(BannerCell.self, forCellReuseIdentifier: BannerCell.cellID)
         tableView.register(BottomListCell.self, forCellReuseIdentifier: BottomListCell.cellID)
-<<<<<<< HEAD
-        NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
-=======
         
         NotificationCenter.default.addObserver(self, selector: #selector(presentAccept), name: presentSignUpVC, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(presentLoggedAccountVC), name: presentLoggedAccountVCObserveName, object: nil)
         
->>>>>>> develop
     }
     
     // MARK: ConfigureViews
     private func configureViews() {
-<<<<<<< HEAD
-        view.backgroundColor = .lightGray
-=======
         view.backgroundColor = .white
->>>>>>> develop
         
         view.addSubview(tableView)
         
@@ -161,47 +139,32 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "요기서 1초 결제 관리"
-<<<<<<< HEAD
-=======
             cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
             cell.titleLabel.textColor = .darkGray
->>>>>>> develop
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "이벤트 및 공지사항"
-<<<<<<< HEAD
-            cell.newImageView.backgroundColor = .red
-=======
             cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
             cell.titleLabel.textColor = .darkGray
->>>>>>> develop
             return cell
         case 5:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "요기요 안내"
-<<<<<<< HEAD
-=======
             cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
             cell.titleLabel.textColor = .darkGray
->>>>>>> develop
             return cell
         case 6:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomListCell.cellID, for: indexPath) as? BottomListCell else { return UITableViewCell() }
             cell.titleLabel.text = "고객만족센터"
-<<<<<<< HEAD
-=======
             cell.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
             cell.titleLabel.textColor = .darkGray
->>>>>>> develop
             return cell
         default:
             return UITableViewCell()
         }
     }
 }
-<<<<<<< HEAD
-=======
 
 extension AccountVC: LogVCDelegate {
     func pushLoggedVC(appUser: AppUser) {
@@ -209,4 +172,3 @@ extension AccountVC: LogVCDelegate {
         navigationController?.pushViewController(loggedAccountVC, animated: true)
     }
 }
->>>>>>> develop

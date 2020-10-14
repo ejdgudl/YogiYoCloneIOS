@@ -15,10 +15,6 @@ class BottomListCell: UITableViewCell {
     
     var titleLabel: UILabel = {
        let label = UILabel()
-<<<<<<< HEAD
-        label.text = " ss"
-=======
->>>>>>> develop
         return label
     }()
     
@@ -30,22 +26,14 @@ class BottomListCell: UITableViewCell {
     private let rightImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right")
-<<<<<<< HEAD
-        imageView.tintColor = .black
-=======
         imageView.tintColor = .darkGray
->>>>>>> develop
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     private lazy var bottomDeviderView: UIView = {
        let view = UIView()
-<<<<<<< HEAD
-        view.backgroundColor = .lightGray
-=======
         view.backgroundColor = ColorPiker.lightGray
->>>>>>> develop
         return view
     }()
     
@@ -62,11 +50,7 @@ class BottomListCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews

@@ -11,53 +11,31 @@ import UIKit
 class EmailIDCell: UITableViewCell {
     
     // MARK: Properties
-<<<<<<< HEAD
-    var user: User? {
-        didSet {
-            emailID.text = user?.email
-=======
     public var appUser: AppUser? {
         didSet {
             emailID.text = appUser?.email
->>>>>>> develop
         }
     }
     
     static let cellID = "EmailIDCellID"
     
-<<<<<<< HEAD
-    var emailIDTitle: UILabel = {
-=======
     private var emailIDTitle: UILabel = {
->>>>>>> develop
        let label = UILabel()
         label.text = "이메일 아이디"
         label.font = UIFont.systemFont(ofSize: 11)
         return label
     }()
     
-<<<<<<< HEAD
-    var emailID: UILabel = {
-=======
     private var emailID: UILabel = {
->>>>>>> develop
        let label = UILabel()
         label.text = "user Email"
         return label
     }()
     
-<<<<<<< HEAD
-    var rightImageView: UIImageView = {
-       let imageView = UIImageView()
-        imageView.image = UIImage(named: " ")
-        imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
-=======
     private var rightImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(named: " ")
         imageView.contentMode = .scaleAspectFit
->>>>>>> develop
         return imageView
     }()
     
@@ -74,11 +52,7 @@ class EmailIDCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews

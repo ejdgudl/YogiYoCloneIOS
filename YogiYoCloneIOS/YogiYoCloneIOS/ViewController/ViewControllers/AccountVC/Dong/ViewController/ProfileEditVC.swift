@@ -7,31 +7,17 @@
 //
 
 import UIKit
-<<<<<<< HEAD
-import KakaoSDKUser
-import NaverThirdPartyLogin
-=======
 import Alamofire
->>>>>>> develop
 
 class ProfileEditVC: UIViewController {
     
     // MARK: Properties
-<<<<<<< HEAD
-    var user: User? {
-=======
     public var appUser: AppUser? {
->>>>>>> develop
         didSet {
             self.tableView.reloadData()
         }
     }
     
-<<<<<<< HEAD
-    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
-    
-=======
->>>>>>> develop
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -46,8 +32,6 @@ class ProfileEditVC: UIViewController {
         configureViews()
     }
     
-<<<<<<< HEAD
-=======
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -89,24 +73,11 @@ class ProfileEditVC: UIViewController {
         }
     }
     
->>>>>>> develop
     // MARK: @Objc
     @objc private func didTapDismissButton() {
         navigationController?.popViewController(animated: true)
     }
     
-<<<<<<< HEAD
-    @objc private func didTapLogoutButton() {
-        alertNormal(title: "요기요", message: "로그아웃 하시겠어요?") { (_) in
-            UserApi.shared.logout { (_) in
-                print("Kakao Logout")
-                NotificationCenter.default.post(name: logoutObserveName, object: nil, userInfo: nil)
-                self.navigationController?.popViewController(animated: true)
-            }
-            
-            self.loginInstance?.requestDeleteToken()
-            print("Naver Logout")
-=======
     @objc private func didTapChangeButton() {
         let changeNickNameVC = ChangeNickNameVC()
         changeNickNameVC.appUser = self.appUser
@@ -181,7 +152,6 @@ class ProfileEditVC: UIViewController {
                     print("----- AF STATUS CODE IS 500 ~ [DELETE] (TOKEN)----- ")
                 }
             }
->>>>>>> develop
         }
     }
     
@@ -237,20 +207,6 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmailIDCell.cellID, for: indexPath) as? EmailIDCell else { return UITableViewCell() }
-<<<<<<< HEAD
-            cell.user = self.user
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: PasswordCell.cellID, for: indexPath) as? PasswordCell else { return UITableViewCell() }
-            return cell
-        case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneInfoCell.cellID, for: indexPath) as? PhoneInfoCell else { return UITableViewCell() }
-            cell.user = self.user
-            return cell
-        case 3:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NickNameCell.cellID, for: indexPath) as? NickNameCell else { return UITableViewCell() }
-            cell.user = self.user
-=======
             cell.appUser = self.appUser
             return cell
         case 1:
@@ -265,15 +221,11 @@ extension ProfileEditVC: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NickNameCell.cellID, for: indexPath) as? NickNameCell else { return UITableViewCell() }
             cell.appUser = self.appUser
             cell.changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
->>>>>>> develop
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomCell.cellID, for: indexPath) as? BottomCell else { return UITableViewCell() }
             cell.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
-<<<<<<< HEAD
-=======
             cell.leaveButton.addTarget(self, action: #selector(didTapLeaveButton), for: .touchUpInside)
->>>>>>> develop
             return cell
         default:
             return UITableViewCell()

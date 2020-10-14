@@ -1,4 +1,3 @@
-
 # YogiYoCloneIOS 패스트 캠퍼스 팀프로젝트
 
 <p align="center">
@@ -16,12 +15,7 @@
 - Cosmos
 - Kingfisher
 - Firebase/Auth
-- naveridlogin-sdk-ios
-- KakaoSDK
 - SwiftyJSON
-
-<div>
-  
 
 
 ## 소감 한마디
@@ -75,6 +69,24 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 ---
 김믿음
 ## StoreListVC
+- 카테고리별 매장 리스트 
+
+- 사용자가 지정한 지역의 매장 데이터를 가져오는 것으로 상단 카테고리는 UISegmentControl을 Custom 하여 구현 
+- 하단 페이징은 UIScrollView UITableView와 UITableViewCell 을 Customg하여 Paging 구현
+- ITableViewCell 내에는 Alanofire 라이브러리를 사용하여 데이터를 GET 방식으로 Fetch
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/61490943/95854544-1134ee80-0d92-11eb-9e28-e75be5a6a451.gif">
+</p>
+
+
+- 매장리스트 필터 정렬기능
+
+- 필터 기능은 Delegate를 활용하여 UIView 로 구성, 각 필터를 누를 때마다 필터된 데이터를 받아와 TableView 가 Reload 되도록 구현 
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/61490943/95853495-7c7dc100-0d90-11eb-86c2-846b5c157fce.gif">
+</p>
 
 
 ## HistoryVC 
@@ -187,11 +199,9 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - 체크해제에 대한 데이터 삭제
 
 <div>
-<p align="center">
 <img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
 <img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
-</p>
 </div>
 
 
@@ -203,10 +213,8 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - 클립보드복사 : UIPasteboard 이용하여 처리.
 
 <div>
-<p align="center">
 <img width="200" alt="2" src="https://qussk.github.io/image/gif/yogi2.gif">
 <img width="200" alt="5" src="https://qussk.github.io/image/gif/yogi5.gif">
-</p>
 </div>
 
 
@@ -218,9 +226,7 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 - url의 String포함을 addingPercentEncoding로 처리하여 url사용.
 
 <div>
-<p align="center">
 <img width="200" src="https://qussk.github.io/image/gif/yogi6.gif">
-</p>
 </div>
 
 

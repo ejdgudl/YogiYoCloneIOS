@@ -9,19 +9,12 @@
 import UIKit
 
 class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate {
-<<<<<<< HEAD
-    func change(to index: Int) {
-        print("click \(index)")
-    }
-    
-=======
     func categoryButtonScrollAction(to index: Int) {
         print("click \(index)")
     }
     
 
     
->>>>>>> develop
 //    MARK: Properties
     
     private let testTextLabel : UILabel = {
@@ -35,25 +28,17 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-<<<<<<< HEAD
-        view.backgroundColor = .systemPink
-        view.addSubview(testTextLabel)
-        
-=======
         view.backgroundColor = ColorPiker.customSystem
         view.addSubview(testTextLabel)
         
         configure()
         
->>>>>>> develop
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-<<<<<<< HEAD
-=======
     
     func configure() {
         let codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: ["전체","한식","피자/양식","분식","카페/디저트"])
@@ -64,7 +49,6 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate {
   
     }
 
->>>>>>> develop
 
     
 

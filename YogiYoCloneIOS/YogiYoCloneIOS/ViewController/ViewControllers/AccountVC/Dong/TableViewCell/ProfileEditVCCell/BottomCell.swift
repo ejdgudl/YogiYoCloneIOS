@@ -7,10 +7,7 @@
 //
 
 import UIKit
-<<<<<<< HEAD
-=======
 import Alamofire
->>>>>>> develop
 
 class BottomCell: UITableViewCell {
     
@@ -23,11 +20,7 @@ class BottomCell: UITableViewCell {
         return view
     }()
     
-<<<<<<< HEAD
-    let logoutButton: UIButton = {
-=======
     public let logoutButton: UIButton = {
->>>>>>> develop
         let button = UIButton()
         button.setTitle("로그아웃", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
@@ -35,11 +28,7 @@ class BottomCell: UITableViewCell {
         return button
     }()
     
-<<<<<<< HEAD
-    private let leaveButton: UIButton = {
-=======
     public let leaveButton: UIButton = {
->>>>>>> develop
         let button = UIButton()
         button.setTitle("회원탈퇴", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
@@ -66,11 +55,7 @@ class BottomCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews
@@ -88,24 +73,16 @@ class BottomCell: UITableViewCell {
             make.height.equalTo(25)
         }
         
-<<<<<<< HEAD
-        logoutButton.snp.makeConstraints { (make) in
-=======
         logoutButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalToSuperview().inset(20)
             make.right.equalTo(self.leaveButton.snp.left).offset(-18)
             make.width.equalTo(50)
             make.height.equalTo(25)
         }
         
-<<<<<<< HEAD
-        deviderView.snp.makeConstraints { (make) in
-=======
         deviderView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.centerY.equalTo(self.logoutButton.snp.centerY)
             make.left.equalTo(self.logoutButton.snp.right).offset(9)
             make.width.equalTo(1)

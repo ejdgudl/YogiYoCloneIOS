@@ -8,10 +8,7 @@
 
 import UIKit
 import Firebase
-<<<<<<< HEAD
-=======
 import Alamofire
->>>>>>> develop
 
 class PhoneAcceptVC: UIViewController {
     
@@ -34,11 +31,7 @@ class PhoneAcceptVC: UIViewController {
     }()
     
     private lazy var containerView: UIView = {
-<<<<<<< HEAD
-       let view = UIView()
-=======
         let view = UIView()
->>>>>>> develop
         view.addSubview(phoneNumTextField)
         view.addSubview(getCodeButton)
         phoneNumTextField.snp.makeConstraints { (make) in
@@ -54,11 +47,7 @@ class PhoneAcceptVC: UIViewController {
     
     private let codeTextField: TextField = {
         let tf = TextField()
-<<<<<<< HEAD
-        tf.placeholder = "4자리 인증번호 입력"
-=======
         tf.placeholder = "6자리 인증번호 입력"
->>>>>>> develop
         tf.textContentType = .oneTimeCode
         return tf
     }()
@@ -91,23 +80,6 @@ class PhoneAcceptVC: UIViewController {
         guard let phoneNum = phoneNumTextField.text, phoneNum.count == 11 else { return print("no번호")}
         let number = "+82\(phoneNum)"
         PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
-<<<<<<< HEAD
-          if let error = error {
-            debugPrint("에러는\(error)")
-            return
-          }
-//            print(verificationID)
-        }
-    }
-    
-    // 코드의 정확성 여부 조건 만들지 못함(메시지로 수신한 코드를 긁어오는 방법을 모름)
-    @objc private func didTapFinishButton() {
-        guard codeTextField.text?.count == 6 else { return }
-        dismiss(animated: true) {
-            guard let phoneNum = self.phoneNumTextField.text else { return }
-            let userPhoneNum: [String: String] = ["phoneNum": phoneNum]
-            NotificationCenter.default.post(name: presentLoggedAccountVCObserveName, object: nil, userInfo: userPhoneNum)
-=======
             if let error = error {
                 print("VerifyPhoneNumber Error is \(error)")
                 debugPrint(error)
@@ -222,7 +194,6 @@ class PhoneAcceptVC: UIViewController {
             } else {
                 print("----- AF STATUS CODE IS 500 ~ [PATCH] (PHONE NUMBER)----- ")
             }
->>>>>>> develop
         }
     }
     
@@ -247,58 +218,37 @@ class PhoneAcceptVC: UIViewController {
         [titleLabel, containerView, codeTextField, helpTitleLabel, finishButton].forEach {
             view.addSubview($0)
         }
-<<<<<<< HEAD
-
-        titleLabel.snp.makeConstraints { (make) in
-=======
         
         titleLabel.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.left.right.equalToSuperview().inset(17)
             make.height.equalTo(50)
         }
         
-<<<<<<< HEAD
-        containerView.snp.makeConstraints { (make) in
-=======
         containerView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.titleLabel.snp.bottom).offset(12)
             make.left.right.equalToSuperview().inset(17)
             make.height.equalTo(50)
         }
         
-<<<<<<< HEAD
-        codeTextField.snp.makeConstraints { (make) in
-=======
         codeTextField.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.containerView.snp.bottom).offset(12)
             make.left.right.equalToSuperview().inset(17)
             make.height.equalTo(50)
         }
         
-<<<<<<< HEAD
-        helpTitleLabel.snp.makeConstraints { (make) in
-=======
         helpTitleLabel.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.codeTextField.snp.bottom).offset(12)
             make.left.right.equalToSuperview().inset(17)
             make.height.equalTo(50)
         }
         
-<<<<<<< HEAD
-        finishButton.snp.makeConstraints { (make) in
-=======
         finishButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.helpTitleLabel.snp.bottom).offset(12)
             make.left.right.equalToSuperview().inset(17)
             make.height.equalTo(50)
@@ -306,8 +256,6 @@ class PhoneAcceptVC: UIViewController {
     }
     
 }
-<<<<<<< HEAD
-=======
 
 extension String {
     
@@ -328,4 +276,3 @@ extension String {
         return result
     }
 }
->>>>>>> develop

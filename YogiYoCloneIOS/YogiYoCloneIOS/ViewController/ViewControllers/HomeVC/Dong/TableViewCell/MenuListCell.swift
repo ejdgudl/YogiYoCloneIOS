@@ -25,17 +25,6 @@ class MenuListCell: UITableViewCell {
         return label
     }()
     
-<<<<<<< HEAD
-    private let buttonImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.down")
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .black
-        return imageView
-    }()
-    
-=======
->>>>>>> develop
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -54,30 +43,17 @@ class MenuListCell: UITableViewCell {
     
     // MARK: ConfigureViews
     private func configureViews() {
-<<<<<<< HEAD
-        backgroundColor = .lightGray
-=======
         backgroundColor = ColorPiker.lightGray
->>>>>>> develop
         
         addSubview(baseView)
         
         baseView.snp.makeConstraints { (make) in
-<<<<<<< HEAD
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview().inset(5)
-            make.left.right.equalToSuperview()
-        }
-        
-        [listTitle, buttonImage].forEach {
-=======
             make.top.equalToSuperview().inset(5)
             make.bottom.equalToSuperview()
             make.left.right.equalToSuperview()
         }
         
         [listTitle].forEach {
->>>>>>> develop
             baseView.addSubview($0)
         }
         
@@ -85,13 +61,5 @@ class MenuListCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(15)
         }
-<<<<<<< HEAD
-        
-        buttonImage.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.top.right.equalToSuperview().inset(15)
-        }
-=======
->>>>>>> develop
     }
 }

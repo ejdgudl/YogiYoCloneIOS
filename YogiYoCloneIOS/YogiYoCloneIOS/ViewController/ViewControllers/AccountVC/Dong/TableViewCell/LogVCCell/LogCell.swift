@@ -6,9 +6,6 @@
 //  Copyright © 2020 김동현. All rights reserved.
 //
 
-<<<<<<< HEAD
-import UIKit
-=======
 // 로그인시 반환 ID,Token
 struct AppUser: Codable {
     var id: Int
@@ -24,28 +21,12 @@ struct IdAndToken: Codable {
 
 import UIKit
 import Alamofire
->>>>>>> develop
 
 class LogCell: UITableViewCell {
     
     // MARK: Properties
     static let cellID = "RestCellID"
     
-<<<<<<< HEAD
-    private lazy var emailTF: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "    이메일 주소 입력"
-        tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        return tf
-    }()
-    
-    private let passwordTF: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "    비밀번호 입력"
-        tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-=======
     public lazy var emailTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "이메일 주소 입력"
@@ -62,7 +43,6 @@ class LogCell: UITableViewCell {
         tf.layer.borderWidth = 1
         tf.isSecureTextEntry = true
         tf.layer.borderColor = ColorPiker.lightGray.cgColor
->>>>>>> develop
         return tf
     }()
     
@@ -109,21 +89,6 @@ class LogCell: UITableViewCell {
         return stackView
     }()
     
-<<<<<<< HEAD
-    private let singInButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("로그인 하기", for: .normal)
-        button.backgroundColor = .lightGray
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        return button
-    }()
-    
-    private let signInButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("로그인 하기", for: .normal)
-        button.backgroundColor = .lightGray
-=======
 //    private lazy var singInButton: UIButton = {
 //        let button = UIButton()
 //        button.setTitle("로그인 하기", for: .normal)
@@ -138,7 +103,6 @@ class LogCell: UITableViewCell {
         button.setTitle("로그인 하기", for: .normal)
         button.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.85)
         button.addTarget(self, action: #selector(singInButtonHandler), for: .touchUpInside)
->>>>>>> develop
         return button
     }()
     
@@ -165,8 +129,6 @@ class LogCell: UITableViewCell {
         }
     }
     
-<<<<<<< HEAD
-=======
     // flow -> email, password 입력후 post - response 받아서 id token 저장후 header에 담아 해당 id get
     @objc private func singInButtonHandler() {
         guard let email = emailTF.text, let password = passwordTF.text else { return }
@@ -241,7 +203,6 @@ class LogCell: UITableViewCell {
         }
     }
     
->>>>>>> develop
     // MARK: Configure
     private func configure() {
         
@@ -252,11 +213,7 @@ class LogCell: UITableViewCell {
         backgroundColor = .white
         
         [emailTF, passwordTF, findStackView, signInButton].forEach{
-<<<<<<< HEAD
-            addSubview($0)
-=======
             contentView.addSubview($0)
->>>>>>> develop
         }
         
         contentView.addSubview(checkBoxButton)
@@ -267,34 +224,22 @@ class LogCell: UITableViewCell {
             make.height.equalTo(55)
         }
         
-<<<<<<< HEAD
-        passwordTF.snp.makeConstraints { (make) in
-=======
         passwordTF.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.left.right.equalToSuperview().inset(10)
             make.top.equalTo(self.emailTF.snp.bottom).offset(10)
             make.height.equalTo(55)
         }
         
-<<<<<<< HEAD
-        checkBoxButton.snp.makeConstraints { (make) in
-=======
         checkBoxButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.passwordTF.snp.bottom).offset(15)
             make.left.equalToSuperview().inset(10)
             make.height.equalTo(27)
         }
         
-<<<<<<< HEAD
-        findStackView.snp.makeConstraints { (make) in
-=======
         findStackView.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.top.equalTo(self.passwordTF.snp.bottom).offset(15)
             make.right.equalToSuperview().inset(10)
             make.height.equalTo(27)
@@ -306,12 +251,8 @@ class LogCell: UITableViewCell {
             }
         }
         
-<<<<<<< HEAD
-        signInButton.snp.makeConstraints { (make) in
-=======
         signInButton.snp.makeConstraints { [weak self] (make) in
             guard let self = self else { return }
->>>>>>> develop
             make.left.right.equalToSuperview().inset(10)
             make.top.equalTo(self.findStackView.snp.bottom).offset(10)
             make.height.equalTo(55)

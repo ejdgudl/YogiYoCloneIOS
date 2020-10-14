@@ -11,12 +11,6 @@ import UIKit
 class SegMenuItemCell: UICollectionViewCell {
     
     // MARK: Properties
-<<<<<<< HEAD
-    static let cellID = "SegMenuItemCellID"
-    
-    private var menuTitle = "육쌈 냉면"
-    private var menuPrice = 10000
-=======
     var photoMenu: PhotoMenu? {
         didSet {
             guard let photoMenu = photoMenu else { return }
@@ -39,7 +33,6 @@ class SegMenuItemCell: UICollectionViewCell {
     
     private var menuTitle = "육쌈 냉면"
     //    private var menuPrice = 10000
->>>>>>> develop
     
     let numberFormatter = NumberFormatter()
     
@@ -59,26 +52,10 @@ class SegMenuItemCell: UICollectionViewCell {
     
     private lazy var menuPriceLabel: UILabel = {
         let label = UILabel()
-<<<<<<< HEAD
-        let price = numberFormatter.string(from: NSNumber(value: menuPrice))
-        label.text = "\(price ?? "")원"
-=======
->>>>>>> develop
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     
-<<<<<<< HEAD
-    private lazy var menuStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [menuTitleLabel, menuPriceLabel])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .leading
-        return stackView
-    }()
-    
-=======
->>>>>>> develop
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,24 +76,12 @@ class SegMenuItemCell: UICollectionViewCell {
     private func configureViews() {
         backgroundColor = .white
         
-<<<<<<< HEAD
-        [menuImageButotn, menuStackView].forEach {
-=======
         [menuImageButotn, menuTitleLabel, menuPriceLabel].forEach {
->>>>>>> develop
             addSubview($0)
         }
         
         menuImageButotn.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
-<<<<<<< HEAD
-            make.bottom.equalToSuperview().multipliedBy(0.6)
-        }
-        
-        menuStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(menuImageButotn.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(8)
-=======
             make.height.equalTo(115)
         }
         
@@ -130,7 +95,6 @@ class SegMenuItemCell: UICollectionViewCell {
         menuPriceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(menuTitleLabel.snp.bottom).offset(2)
             make.height.equalTo(25)
->>>>>>> develop
             make.right.equalToSuperview()
             make.left.equalToSuperview().inset(10)
         }

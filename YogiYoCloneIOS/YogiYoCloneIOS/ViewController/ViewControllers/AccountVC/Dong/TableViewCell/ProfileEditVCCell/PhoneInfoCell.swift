@@ -11,15 +11,9 @@ import UIKit
 class PhoneInfoCell: UITableViewCell {
     
     // MARK: Properties
-<<<<<<< HEAD
-    var user: User? {
-        didSet {
-            phoneNum.text = user?.phoneNum
-=======
     public var appUser: AppUser? {
         didSet {
             phoneNum.text = appUser?.phone_num
->>>>>>> develop
         }
     }
     
@@ -67,11 +61,7 @@ class PhoneInfoCell: UITableViewCell {
     
     // MARK: Configure
     private func configure() {
-<<<<<<< HEAD
-        
-=======
         selectionStyle = .none
->>>>>>> develop
     }
     
     // MARK: ConfigureViews
