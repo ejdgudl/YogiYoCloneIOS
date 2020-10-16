@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class TopSearchView: UIView {
     
-    private let textField: UITextField = {
+    private let searchField: UITextField = {
         let textField = UITextField()
         let paddingView = UIView()
         let imageView = UIImageView()
@@ -35,7 +36,10 @@ class TopSearchView: UIView {
     
     private let cancleButton: UIButton = {
        let button = UIButton()
+        button.alpha = 0
         button.setTitle("취소", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14)
         return button
     }()
     
@@ -51,7 +55,9 @@ class TopSearchView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .thin)
         return button
     }()
-
+    
+    private var constraint: Constraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -63,27 +69,68 @@ class TopSearchView: UIView {
     }
     private func setTextField() {
         
-        self.addSubview(textField)
+        searchField.delegate = self
+        self.addSubview(searchField)
         
-        textField.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(CollectionDesign.padding)
-            $0.height.equalTo(textField.snp.width).multipliedBy(0.13)
+        searchField.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().inset(CollectionDesign.padding)
+            $0.height.equalTo(self.snp.width).multipliedBy(0.12)
+            constraint =
+            $0.trailing.equalToSuperview().offset(-CollectionDesign.padding)
+                .constraint
         }
     }
     private func setCancleButton() {
         
+        cancleButton.addTarget(self, action: #selector(cancleToggle(_:)), for: .touchUpInside)
+        self.addSubview(cancleButton)
+        
+        cancleButton.snp.makeConstraints {
+            $0.centerY.equalTo(searchField.snp.centerY)
+            $0.trailing.equalToSuperview().inset(CollectionDesign.padding)
+        }
     }
     private func setNowButton() {
         
         self.addSubview(nowButton)
         
         nowButton.snp.makeConstraints {
-            $0.top.equalTo(textField.snp.bottom).offset(CollectionDesign.padding)
+            $0.top.equalTo(searchField.snp.bottom).offset(CollectionDesign.padding)
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(CollectionDesign.padding)
         }
     }
+    @objc private func cancleToggle(_ sender: UIButton) {
+        searchField.resignFirstResponder()
+        UIView.animate(withDuration: 0.2) {
+            self.cancleButton.alpha = 0
+            self.constraint?
+                .update(offset: -CollectionDesign.padding)
+            self.layoutIfNeeded()
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension TopSearchView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.2) {
+            self.cancleButton.alpha = 1
+            self.constraint?
+                .update(offset: -(self.cancleButton.frame.width + CollectionDesign.padding * 2))
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+
     }
 }

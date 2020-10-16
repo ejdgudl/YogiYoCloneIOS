@@ -11,7 +11,10 @@ import SnapKit
 
 class MapVC: UIViewController {
     
-    private let topView = TopSearchView()
+    let topView: TopSearchView = {
+        let view = TopSearchView()
+        return view
+    }()
     
     private lazy var addressTableView: UITableView = {
         let tableView = UITableView()
@@ -20,7 +23,7 @@ class MapVC: UIViewController {
         tableView.dataSource = self
         tableView.register(NearestCustomCell.self, forCellReuseIdentifier: NearestCustomCell.identifier)
         tableView.register(NearestListCustomCell.self, forCellReuseIdentifier: NearestListCustomCell.identifier)
-//        tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>)
+        tableView.register(ExplainCustomCell.self, forCellReuseIdentifier: ExplainCustomCell.identifier)
         return tableView
     }()
     
