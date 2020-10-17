@@ -13,10 +13,11 @@ class MapVC: UIViewController {
     
     let topView: TopSearchView = {
         let view = TopSearchView()
+        
         return view
     }()
     
-    private lazy var addressTableView: UITableView = {
+    lazy var addressTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -45,6 +46,8 @@ class MapVC: UIViewController {
         title = "배달 주소 설정"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
         
+        topView.searchField.delegate = self
+        topView.cancleButton.addTarget(self, action: #selector(cancleToggle(_:)), for: .touchUpInside)
         view.addSubview(topView)
         
         view.addSubview(addressTableView)
@@ -61,7 +64,21 @@ class MapVC: UIViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    @objc func dismiss(_ sender: UIButton) {
+    @objc private func dismiss(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+    @objc private func cancleToggle(_ sender: UIButton) {
+        
+        topView.searchField.resignFirstResponder()
+        topView.searchField.isSelected = false
+        
+        addressTableView.reloadData()
+        
+        UIView.animate(withDuration: 0.2) {
+            self.topView.cancleButton.alpha = 0
+            self.topView.constraint?
+                .update(offset: -CollectionDesign.padding)
+            self.topView.layoutIfNeeded()
+        }
     }
 }
