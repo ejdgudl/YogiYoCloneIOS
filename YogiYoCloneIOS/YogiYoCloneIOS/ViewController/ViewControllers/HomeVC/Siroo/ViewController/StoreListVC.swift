@@ -264,7 +264,6 @@ extension StoreListVC : StoreListFilterViewDelegate {
         print("정렬값 적용되었습니다 order: \(selectedOrder)")
         fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true)
         print("필터정렬 이벤트 리스너 : \(fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true))")
-        
 
     }
 

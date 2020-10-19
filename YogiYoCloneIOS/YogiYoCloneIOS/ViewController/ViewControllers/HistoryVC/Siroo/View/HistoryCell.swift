@@ -20,9 +20,15 @@ class HistoryCell: UITableViewCell {
         didSet {
             storeName.text = history?.restaurantName
             historySetImage(from: history!.restaurantImage)
-//            orderStatus.text = history?.status
+            orderStatus.text = history?.status
 //            orderTime.text = history?.orderTime
             orderMenu.text = history?.orderMenu
+            
+            
+//            let range = orderStatus.text(orderStatus.inde
+//            range?.index(range?.endIndex, offsetBy: -11))
+//            let range = welcome.index(welcome.endIndex, offsetBy: -6)
+            
         }
     }
     
