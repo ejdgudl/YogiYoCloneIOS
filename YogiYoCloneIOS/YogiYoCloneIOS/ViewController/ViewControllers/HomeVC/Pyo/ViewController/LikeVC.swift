@@ -29,17 +29,18 @@ class LikeVC: UIViewController {
         
         title = "찜"
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        UIApplication.shared.statusBarStyle = .darkContent
-        tabBarController?.tabBar.isHidden = false
-        tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize:16, weight: .light)]
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(removeAll(_:)))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         
         loadData { (LikeData) in
             self.likeData = LikeData
@@ -74,5 +75,9 @@ class LikeVC: UIViewController {
             sender.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
             sender.isSelected = true
         }
+    }
+    @objc func removeAll(_ sender: UIButton) {
+        likeData = nil
+        likeTableView.reloadData()
     }
 }
