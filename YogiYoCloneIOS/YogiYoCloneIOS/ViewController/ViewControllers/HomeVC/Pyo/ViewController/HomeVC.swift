@@ -200,7 +200,8 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = .white
-    }
+        tabBarController?.tabBar.isHidden = false
+            }
     
     // MARK: Set UI
     private func setUI() {

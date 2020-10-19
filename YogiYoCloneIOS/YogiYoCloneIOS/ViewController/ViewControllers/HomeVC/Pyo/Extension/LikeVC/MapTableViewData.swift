@@ -10,10 +10,26 @@ import UIKit
 
 extension MapVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if !topView.searchField.isSelected {
+            
+            return 2
+        } else {
+            
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if !topView.searchField.isSelected {
+            
+            return falseCell(tableView: tableView, indexPath: indexPath)
+        } else {
+            
+            return trueCell(tableView: tableView, indexPath: indexPath)
+        }
+    }
+    
+    private func falseCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NearestCustomCell.identifier) else { fatalError() }
             
@@ -23,5 +39,10 @@ extension MapVC: UITableViewDataSource {
             
             return cell
         }
+    }
+    private func trueCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ExplainCustomCell.identifier) else { fatalError() }
+        
+        return cell
     }
 }
