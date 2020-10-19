@@ -85,6 +85,7 @@
 		739A42CD24F626DB00A51BE0 /* ShareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A42CC24F626DB00A51BE0 /* ShareVC.swift */; };
 		73A2501D252BF383009D42EF /* DidSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2501C252BF382009D42EF /* DidSearchVC.swift */; };
 		73A25020252BFB3D009D42EF /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2501F252BFB3D009D42EF /* TopView.swift */; };
+		73A7C506253D659200744979 /* NilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7C505253D659200744979 /* NilCell.swift */; };
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D303B41924F17C04001701F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D303B41824F17C04001701F0 /* FooterView.swift */; };
 		D307AAE124F268E400225E6A /* SignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307AAE024F268E400225E6A /* SignCell.swift */; };
@@ -251,6 +252,7 @@
 		739A42CC24F626DB00A51BE0 /* ShareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVC.swift; sourceTree = "<group>"; };
 		73A2501C252BF382009D42EF /* DidSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidSearchVC.swift; sourceTree = "<group>"; };
 		73A2501F252BFB3D009D42EF /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		73A7C505253D659200744979 /* NilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NilCell.swift; path = ../../../../../../../../../../../.Trash/NilCell.swift; sourceTree = "<group>"; };
 		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D303B41824F17C04001701F0 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				736B82B5253D5CC00027ED79 /* Custom */,
 				7306254E24F53AA400DC70C1 /* View */,
 				736B82A6253D58ED0027ED79 /* Cell */,
+				73A7C505253D659200744979 /* NilCell.swift */,
 			);
 			path = DetailVC;
 			sourceTree = "<group>";
@@ -1455,6 +1458,7 @@
 				731B059B2510E8DD005BC1DC /* PointView.swift in Sources */,
 				D3A27B9324F95C1F006FCE70 /* ObserveKey.swift in Sources */,
 				D3BFB928251E29EA00B6B363 /* SignUpVC.swift in Sources */,
+				73A7C506253D659200744979 /* NilCell.swift in Sources */,
 				D303B41924F17C04001701F0 /* FooterView.swift in Sources */,
 				731B058F2510E7D5005BC1DC /* CustomOrderCell.swift in Sources */,
 				D3A27B9124F9564F006FCE70 /* SmallBannerCell.swift in Sources */,
