@@ -567,14 +567,10 @@
 		731B057E2510E5F0005BC1DC /* OrderVC */ = {
 			isa = PBXGroup;
 			children = (
-				731B05802510E68E005BC1DC /* OrderVC.swift */,
-				731B059C2511E708005BC1DC /* OderModel.swift */,
-				731B057F2510E62C005BC1DC /* Section0 */,
-				731B05822510E6B0005BC1DC /* Section1 */,
-				731B05832510E6C0005BC1DC /* Section2 */,
-				731B05842510E6C6005BC1DC /* Section3 */,
-				731B05852510E6CE005BC1DC /* Section4 */,
-				734EE72C2513CA350091893C /* Section5 */,
+				73A7C561253D6D8F00744979 /* Controller */,
+				73A7C565253D6DD800744979 /* Extension */,
+				73A7C563253D6D9E00744979 /* Model */,
+				73A7C562253D6D9600744979 /* View */,
 			);
 			path = OrderVC;
 			sourceTree = "<group>";
@@ -687,6 +683,50 @@
 				7306256624F53CEE00DC70C1 /* Section4 */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		73A7C561253D6D8F00744979 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				731B05802510E68E005BC1DC /* OrderVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73A7C562253D6D9600744979 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73A7C564253D6DAD00744979 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73A7C563253D6D9E00744979 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				731B059C2511E708005BC1DC /* OderModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73A7C564253D6DAD00744979 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				731B057F2510E62C005BC1DC /* Section0 */,
+				731B05822510E6B0005BC1DC /* Section1 */,
+				731B05832510E6C0005BC1DC /* Section2 */,
+				731B05842510E6C6005BC1DC /* Section3 */,
+				731B05852510E6CE005BC1DC /* Section4 */,
+				734EE72C2513CA350091893C /* Section5 */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		73A7C565253D6DD800744979 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		8E9DD74491D6B090A37CFBB5 /* Frameworks */ = {
