@@ -111,7 +111,6 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
         tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         title = "성수동2가 277-17 ▼"
     }
     
@@ -220,7 +219,9 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
             make.height.equalTo(40)
         }
     }
-
+    
+    
+    
     
 //    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
     

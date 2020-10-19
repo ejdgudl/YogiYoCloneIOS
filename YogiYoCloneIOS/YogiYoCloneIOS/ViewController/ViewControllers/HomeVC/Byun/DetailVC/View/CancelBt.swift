@@ -1,13 +1,14 @@
 //
-//  WrapView.swift
+//  CancelBt.swift
 //  YogiYoCloneIOS
 //
-//  Created by junho woo on 2020/10/04.
+//  Created by Qussk_MAC on 2020/08/26.
 //  Copyright © 2020 김동현. All rights reserved.
 //
 
 import UIKit
 
-class WrapView: UIView {
-
+class CancelBt : UIButton{
+  
+  
 }

@@ -201,9 +201,9 @@ extension OrderListCell : UITableViewDataSource {
           
     orderData?[indexPath.row].option.forEach{
       miniListCell.miniSubMenuLable.text! += "+\($0.name) "
+     // addPrice = addPrice + $0.
       nameArr.append($0.name)
     }
-    
     print(addPrice)
     print(nameArr)
     
