@@ -16,6 +16,17 @@ class HistoryCell: UITableViewCell {
 
 //    MARK: Properties
     
+    var history: OrderListData.Results? {
+        didSet {
+            storeName.text = history?.restautantName
+            historySetImage(from: history?.restautantImage ?? "")
+            orderStatus.text = history?.status
+            orderMenu.text = history?.orderMenu
+            
+        }
+    }
+    
+
     private let delivery : UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "OrderImage"), for: .normal)
@@ -175,6 +186,13 @@ class HistoryCell: UITableViewCell {
         }
 
     }
+    
+    
+    func historySetImage(from url: String) {
+        guard let imageURL = URL(string: url) else { return }
+        storeImage.kf.setImage(with: imageURL)
+    }
+
 }
 
 

@@ -13,18 +13,8 @@ import SwiftyJSON
 import Kingfisher
 
 class StoreListCell: UITableViewCell {
-    var restaurant: AllListData.Results? {
-        didSet {
-            storeNameLabel.text = restaurant?.name
-            storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
-            setImage(from: restaurant!.image)
-            reviewLabel.text = " ・ 리뷰 \(String(restaurant!.reviewCount))"
-            deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))원"
-            estimatedTime.text = restaurant?.deliveryTime
-            bestMenuLabel.text = restaurant?.representativeMenus.joined()
-            
-        }
-    }
+    var restaurant: AllListData.Results?
+        
     
     static let identifier = "StoreListCell"
     
@@ -120,7 +110,6 @@ class StoreListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
-        setUIConstraints()
         print("deliveryDiscountLabel :\(String(describing: restaurant?.deliveryDiscount))")
 
     }
@@ -129,6 +118,7 @@ class StoreListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+
 //    MARK: SetUIConstraints
     
     private func setUIConstraints () {
@@ -173,6 +163,14 @@ class StoreListCell: UITableViewCell {
             make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
+        print("DEBUG : \(restaurant?.deliveryDiscount), \(restaurant?.name)")
+        storeNameLabel.text = restaurant?.name
+        storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
+        setImage(from: restaurant!.image)
+        reviewLabel.text = " ・ 리뷰 \(String(restaurant!.reviewCount))"
+        deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))원"
+        estimatedTime.text = restaurant?.deliveryTime
+        bestMenuLabel.text = restaurant?.representativeMenus.joined()
         deliveryDiscountLabel.snp.makeConstraints { (make) in
             make.top.equalTo(starImage.snp.bottom).offset(1)
             make.leading.equalTo(starImage.snp.leading)
@@ -183,15 +181,26 @@ class StoreListCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(20)
         }
         
+        estimatedTime.snp.makeConstraints { (make) in
+            make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
+            make.trailing.equalToSuperview().inset(20)
+        }
+        
         bestMenuLabel.snp.makeConstraints { (make) in
             make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
             make.leading.equalTo(deliveryDiscountLabel.snp.leading)
             make.trailing.equalTo(estimatedTime.snp.leading)
             make.bottom.equalToSuperview().inset(20)
+            make.width.equalTo(180)
         }
+
+        if restaurant?.deliveryDiscount == 0 {
+            deliveryDiscountLabel.removeFromSuperview()
+        }
+        
     }
-//    MARK:  Store Image Set
-    
+
+    //    MARK:  Store Image Set
     func setImage(from url: String) {
         guard let imageURL = URL(string: url) else { return }
         

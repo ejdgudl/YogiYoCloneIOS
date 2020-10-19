@@ -24,11 +24,10 @@ class HistoryDetailVC: UIViewController {
     // MARK: layout view 만들기
     func configureView() {
         let wrapView = drawWrap(parentView: view)
-        let closeButton = drawCloseButton(parentView: wrapView)
+        let closeButton: CloseButton = drawCloseButton(parentView: wrapView)
         let scrollView = drawScroll(parentView: wrapView, prev: closeButton)
         let storeView = drawStore(parentView: scrollView)
         let reOrderButton = drawReOrderButton(parentView: scrollView, prev: storeView)
-        
     }
     
     // section
@@ -52,8 +51,7 @@ class HistoryDetailVC: UIViewController {
         fillLayoutConstraints(target: wrapView, to: view)
         
         return wrapView
-        
-        
+ 
     }
     
     // 닫기 버튼

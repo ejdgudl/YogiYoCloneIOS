@@ -173,8 +173,8 @@ class StoreListFilterView: UIView {
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -60, bottom: 0, right: 0)
         button.setImage(UIImage(systemName: "circle"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.setTitleColor( .darkGray, for: .normal)
         button.imageView?.tintColor = .darkGray
+        button.setTitleColor( .darkGray, for: .normal)
         button.setTitle("결제수단 전체", for: .normal)
         button.titleLabel?.font = UIFont(name: FontModel.customMedium, size: 15)
         button.addTarget(self, action: #selector(paymentfilterButtontaped(_:)), for: .touchUpInside)
@@ -347,13 +347,13 @@ class StoreListFilterView: UIView {
         let selectedButton = paymentArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
         selectedButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        selectedButton.imageView?.tintColor = .systemGray
+        selectedButton.imageView?.tintColor = .systemRed
     }
     
     func setFilterView(view: StoreFilterbigView) {
         storeFilterBigView = view
     }
-    
+        
     
     
 //    MARK: Selector
@@ -381,27 +381,26 @@ class StoreListFilterView: UIView {
     }
     
     @objc func orderfilterButtontaped(_ sender: UIButton) {
+        // 선택된 필터 이외 필터의 초기화 컬러설정
         let image = UIImage(systemName: "circle")
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(image, for: .normal)
-            i.tintColor = UIColor.red
-    
+            i.imageView?.tintColor = .darkGray
         }
         
+        // 클릭이 확인되면, selectedorder 함수를 실행하여 선택된 필터에만 빨간색 적용
         selectedOrder = sender.tag
         selectChosenOrder(sender.tag)
-        
+
     }
-    
-    // 초기화 컬러
-    //sender 컬러 따로주는 작업
+
     
     @objc func paymentfilterButtontaped(_ sender: UIButton){
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = UIColor.red
+            i.imageView?.tintColor = .darkGray
 
         }
         selectedPayment = sender.tag
