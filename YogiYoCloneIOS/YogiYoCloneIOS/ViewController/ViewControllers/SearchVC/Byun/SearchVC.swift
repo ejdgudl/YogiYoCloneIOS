@@ -136,7 +136,7 @@ class SearchVC: UIViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       fechData(text: searchfield.text)
       let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
-        cell.textLabel?.text = data?.results![indexPath.row].name
+      cell.textLabel?.text = data?.results![indexPath.row].name
       
 
    //   self.data?.results![indexPath.row].name?.append(self.dataa)
