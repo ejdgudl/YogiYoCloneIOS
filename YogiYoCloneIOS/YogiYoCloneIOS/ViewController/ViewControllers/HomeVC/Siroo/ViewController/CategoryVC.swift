@@ -41,9 +41,11 @@ class CategoryVC: UIViewController {
     func configureTableView(index: Int) -> UIView {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
-        // tableView의 rowheight : 컨텐츠뷰의 길이에 따라 높이값 주기 
-        tableView.rowHeight = 120
+//        tableView.rowHeight = 120
         tableView.allowsSelection = true
         
         
@@ -104,11 +106,13 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
         cell.restaurant = self.restaurants[indexPath.row]
+        print("index: \(indexPath.row)")
         return cell
     }
     
 //셀이 선택되었을때 실행할 액션
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("안되나..")
         categoryDelegate?.categoryDelegate(id: self.restaurants[indexPath.row].id)
     }
     

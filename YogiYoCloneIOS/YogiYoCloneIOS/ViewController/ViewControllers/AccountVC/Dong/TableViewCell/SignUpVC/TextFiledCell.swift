@@ -324,7 +324,6 @@ class TextFiledCell: UITableViewCell {
             guard let self = self else { return }
             make.top.equalTo(self.acceptStackView.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(13)
-            make.height.equalTo(40)
         }
         
     }

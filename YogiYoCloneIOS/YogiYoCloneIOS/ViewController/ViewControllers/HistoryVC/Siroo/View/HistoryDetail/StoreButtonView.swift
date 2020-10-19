@@ -2,7 +2,7 @@
 //  StoreButtonView.swift
 //  YogiYoCloneIOS
 //
-//  Created by 김믿음 on 2020/10/04.
+//  Created by junho woo on 2020/10/04.
 //  Copyright © 2020 김동현. All rights reserved.
 //
 
@@ -14,7 +14,6 @@ class StoreButtonView: UIButton {
         self.setTitle("바비박스 (POS MENU FINAL)", for: .normal)
         self.setTitleColor(.black, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
-        self.titleLabel?.textAlignment = .left
 //        self.setImage(UIImage(systemName: "xmark"), for: .normal)
 //        self.imageView?.tintColor = .gray
 //        self.contentVerticalAlignment = .fill
