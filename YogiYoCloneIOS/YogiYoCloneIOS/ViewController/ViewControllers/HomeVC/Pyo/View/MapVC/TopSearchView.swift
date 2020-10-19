@@ -44,7 +44,7 @@ class TopSearchView: UIView {
         return button
     }()
     
-    private let nowButton: UIButton = {
+    let nowButton: UIButton = {
         let button = UIButton()
         button.setTitle("현재 위치로 주소 찾기", for: .normal)
         button.setImage(UIImage(systemName: "power"), for: .normal)

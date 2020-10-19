@@ -13,7 +13,6 @@ class MapVC: UIViewController {
     
     let topView: TopSearchView = {
         let view = TopSearchView()
-        
         return view
     }()
     
@@ -48,6 +47,7 @@ class MapVC: UIViewController {
         
         topView.searchField.delegate = self
         topView.cancleButton.addTarget(self, action: #selector(cancleToggle(_:)), for: .touchUpInside)
+        topView.nowButton.addTarget(self, action: #selector(pushNowVC(_:)), for: .touchUpInside)
         view.addSubview(topView)
         
         view.addSubview(addressTableView)
@@ -80,5 +80,9 @@ class MapVC: UIViewController {
                 .update(offset: -CollectionDesign.padding)
             self.topView.layoutIfNeeded()
         }
+    }
+    @objc private func pushNowVC(_ sender: UIButton) {
+        let nowVC = NowLocationVC()
+        navigationController?.pushViewController(nowVC, animated: true)
     }
 }
