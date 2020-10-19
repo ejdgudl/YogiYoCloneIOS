@@ -41,7 +41,6 @@ class LogCell: UITableViewCell {
         tf.placeholder = "비밀번호 입력"
         tf.addLeftPadding()
         tf.layer.borderWidth = 1
-        tf.isSecureTextEntry = true
         tf.layer.borderColor = ColorPiker.lightGray.cgColor
         return tf
     }()

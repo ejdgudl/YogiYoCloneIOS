@@ -31,7 +31,8 @@ class PaywithCell : UITableViewCell {
     
     setUI()
     setConstraint()
-    
+    selectionStyle = .none
+
   }
   
   

@@ -26,7 +26,8 @@ class CustomOrderCell : UITableViewCell{
     
     setUI()
     setConstraint()
-    
+    selectionStyle = .none
+
   }
   
   

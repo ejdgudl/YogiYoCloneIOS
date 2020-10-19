@@ -335,7 +335,7 @@ class StoreListFilterView: UIView {
         }
 
     }
-    // 필터를 선택시
+    
     func selectChosenOrder(_ index: Int) {
         let selectedButton = orderArrayButtons[index]
         selectedButton.setTitleColor(.red, for: .normal)
@@ -357,7 +357,7 @@ class StoreListFilterView: UIView {
     
     
 //    MARK: Selector
-    // 초기화 버튼 Action
+
     @objc func setInitButtonClicked() {
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
@@ -375,12 +375,11 @@ class StoreListFilterView: UIView {
   
     }
 
-    // 필터 닫기 버튼 Action
+    
     @objc func filtercloseButton() {
         storeFilterBigView?.removeFromSuperview()
     }
     
-    // 오더순 버튼 클릭시 색상변화
     @objc func orderfilterButtontaped(_ sender: UIButton) {
         // 선택된 필터 이외 필터의 초기화 컬러설정
         let image = UIImage(systemName: "circle")
@@ -408,7 +407,7 @@ class StoreListFilterView: UIView {
         selectChosenPayment(sender.tag)
         
     }
-    // 적용버튼 Action
+    
     @objc func enterButtontaped(_ sender: UIButton){
         /* 이벤트 발생
          리스너 : StoreVC의 카테고리 확인(StoreVC 의 Delegate) + FilterVC의 selected.tag를 확인!

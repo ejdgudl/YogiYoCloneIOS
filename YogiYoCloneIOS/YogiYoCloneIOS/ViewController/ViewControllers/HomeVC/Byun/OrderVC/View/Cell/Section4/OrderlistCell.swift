@@ -25,6 +25,8 @@ class OrderListCell : UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUI()
     setConstraint()
+    selectionStyle = .none
+
   }
   
   //고정금액

@@ -30,8 +30,9 @@ class paymentCell: UITableViewCell {
     
     setUI()
     setConstraint()
-    
+    selectionStyle = .none
   }
+  
   func setUI(){
     contentView.addSubview(irdpartyLabel)
     contentView.addSubview(uiViewLabel)

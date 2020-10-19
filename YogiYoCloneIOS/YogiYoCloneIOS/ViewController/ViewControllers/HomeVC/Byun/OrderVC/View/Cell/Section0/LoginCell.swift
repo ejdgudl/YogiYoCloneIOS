@@ -43,6 +43,7 @@ class loginCell: UITableViewCell {
         
     setUI()
     setConstrain()
+    selectionStyle = .none
     
   }
   func setUI(){

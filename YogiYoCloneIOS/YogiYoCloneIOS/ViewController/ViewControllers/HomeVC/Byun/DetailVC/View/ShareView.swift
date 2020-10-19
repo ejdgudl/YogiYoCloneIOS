@@ -88,7 +88,7 @@ class ShareView : UIView {
   //MARK: -kakaoScheme(url)
   @objc func kakaodidTap(_ sender : UIButton){
     print("ff")
-    let kakaoScheme = "kakao4885bdd8a886942a7d87a2767de2b999://kakaolink" //"kakao{kakao4885bdd8a886942a7d87a2767de2b999}://kakaolink"
+    let kakaoScheme = "kakao4885bdd8a886942a7d87a2767de2b999://kakaolink"
     if let url = URL(string: kakaoScheme) {
       print("카카오ing")
       if UIApplication.shared.canOpenURL(url){
@@ -98,7 +98,6 @@ class ShareView : UIView {
         }else {
           print("not found")
        
-          // "https://apps.apple.com/us/app/kakaotalk/id362057947")!)//
         }
       }
     }
